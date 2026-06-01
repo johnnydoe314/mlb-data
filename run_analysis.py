@@ -36,7 +36,7 @@ except ImportError:
 # ─────────────────────────────────────────────────────────────────────────────
 
 GITHUB_RAW_BASE = (
-    "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/data"
+    "https://raw.githubusercontent.com/johnnydoe314/mlb-data/main/data"
 )
 
 # Remote file names (must match what collect_data.py writes)
