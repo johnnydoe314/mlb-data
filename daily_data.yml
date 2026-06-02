@@ -1,37 +1,36 @@
-name: MLB Daily Data Collection
+name: MLB Stats Update
 
 on:
   schedule:
-    # Runs at 10:00 AM CT (15:00 UTC) — after morning probable pitchers are confirmed
+    # 10:00 AM CT = 15:00 UTC (16:00 UTC during CDT)
     - cron: '0 15 * * *'
-  workflow_dispatch:  # Allow manual trigger from GitHub UI or mobile
+  workflow_dispatch:
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
-  collect-data:
+  fetch-stats:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up Python
+      - name: Set up Python 3.11
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
-      - name: Install dependencies
-        run: |
-          pip install requests pybaseball pandas beautifulsoup4 lxml
+      - name: Fetch stats.csv from Baseball Savant
+        run: python scripts/fetch_stats.py
 
-      - name: Collect MLB data
-        run: python scripts/collect_data.py
-
-      - name: Commit and push data
+      - name: Commit and push
         run: |
-          git config --global user.name  "MLB Data Bot"
-          git config --global user.email "bot@mlb-data"
+          git config user.name  "MLB Data Bot"
+          git config user.email "bot@mlb-data"
           git add data/
-          git diff --staged --quiet || git commit -m "Data update: $(date -u '+%Y-%m-%d %H:%M UTC')"
-          git push
+          git diff --staged --quiet && echo "No changes to commit" || \
+            (git commit -m "Stats update $(date -u '+%Y-%m-%d')" && git push)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
