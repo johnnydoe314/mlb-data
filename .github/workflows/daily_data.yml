@@ -9,7 +9,7 @@ env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
-  fetch-data:
+  fetch-stats:
     runs-on: ubuntu-latest
 
     steps:
@@ -24,15 +24,12 @@ jobs:
       - name: Fetch pitcher Statcast (stats.csv)
         run: python scripts/fetch_stats.py
 
-      - name: Fetch probable pitchers (probable_pitchers.csv)
-        run: python scripts/fetch_pitchers.py
-
       - name: Commit and push
         run: |
           git config user.name  "MLB Data Bot"
           git config user.email "bot@mlb-data"
-          git add data/
+          git add data/stats.csv data/metadata.json
           git diff --staged --quiet && echo "No changes to commit" || \
-            (git commit -m "Data update $(date -u '+%Y-%m-%d %H:%M UTC')" && git push)
+            (git commit -m "Stats update $(date -u '+%Y-%m-%d')" && git push)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
