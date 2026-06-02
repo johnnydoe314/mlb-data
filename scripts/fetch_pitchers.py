@@ -27,6 +27,14 @@ HEADERS = {
     )
 }
 
+
+# MLB Stats API uses short abbreviations for some teams.
+# Normalize to the standard long form used across all files.
+ABBREV_FIX = {
+    "TB":  "TBR", "KC":  "KCR", "SD":  "SDP",
+    "SF":  "SFG", "AZ":  "ARI", "WAS": "WSH",
+}
+
 FIELDS = [
     "game_date","game_pk","game_time","venue",
     "away_team","away_team_name","home_team","home_team_name",
@@ -81,9 +89,9 @@ def parse_games(data: dict) -> list[dict]:
                 "game_pk":        str(g.get("gamePk", "")),
                 "game_time":      game_time,
                 "venue":          g.get("venue", {}).get("name", ""),
-                "away_team":      away["team"].get("abbreviation", ""),
+                "away_team":      ABBREV_FIX.get(away["team"].get("abbreviation", ""), away["team"].get("abbreviation", "")),
                 "away_team_name": away["team"].get("name", ""),
-                "home_team":      home["team"].get("abbreviation", ""),
+                "home_team":      ABBREV_FIX.get(home["team"].get("abbreviation", ""), home["team"].get("abbreviation", "")),
                 "home_team_name": home["team"].get("name", ""),
                 "away_pitcher_id": away_pid,
                 "away_pitcher":    away_name,
