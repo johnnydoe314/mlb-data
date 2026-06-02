@@ -1,9 +1,14 @@
 #!/usr/bin/env python3
 """
-fetch_bullpen.py v3
+fetch_bullpen.py v4
 ===================
-Fixed: /v1/teams/{id}/stats returns team aggregate (1 row).
-Fixed: /v1/stats?teamId={id} returns individual pitcher rows.
+Root cause fix: /v1/stats?teamId={id} only returns qualified pitchers
+(those with enough IP/GS), which filters out most relievers.
+
+Solution: use the 40-man ROSTER endpoint + hydrate stats.
+  GET /v1/teams/{id}/roster?rosterType=40Man&hydrate=stats(...)
+  → returns ALL pitchers on roster including low-leverage relievers
+  → classify by position (P + GS ratio) and match to Savant xwOBA data
 """
 
 import csv, io, json, sys, time, urllib.request, urllib.error
@@ -15,8 +20,8 @@ OUT_FILE   = OUT_DIR / "bullpen.csv"
 STATS_FILE = Path("data/stats.csv")
 YEAR       = 2026
 TIMEOUT    = 20
-RP_THRESH  = 0.33
-MIN_RP_PA  = 30
+RP_THRESH  = 0.33   # GS/GP < this → reliever
+MIN_RP_PA  = 30     # min PA in Savant to include
 
 HEADERS = {
     "User-Agent": (
@@ -44,51 +49,66 @@ def get(url):
 
 
 def fetch_all_teams():
-    data = get(f"https://statsapi.mlb.com/api/v1/teams?sportId=1&season={YEAR}&activeStatus=Y")
+    data = get(
+        f"https://statsapi.mlb.com/api/v1/teams"
+        f"?sportId=1&season={YEAR}&activeStatus=Y"
+    )
     return [
         {"id": t["id"], "abbrev": ABBREV_FIX.get(t["abbreviation"], t["abbreviation"])}
         for t in data.get("teams", [])
     ]
 
 
-def fetch_team_pitchers(team_id: int) -> list[dict]:
+def fetch_team_pitchers_via_roster(team_id: int, abbrev: str) -> list[dict]:
     """
-    FIXED: Use /v1/stats?teamId={id} — returns individual player rows.
-    /v1/teams/{id}/stats returns only team aggregate (was always 1 row).
+    Use 40-man roster with hydrated pitching stats.
+    Returns ALL pitchers on roster, not just qualified ones.
     """
     url = (
-        f"https://statsapi.mlb.com/api/v1/stats"
-        f"?stats=season&group=pitching&season={YEAR}"
-        f"&teamId={team_id}&gameType=R&limit=100"
+        f"https://statsapi.mlb.com/api/v1/teams/{team_id}/roster"
+        f"?rosterType=40Man&season={YEAR}"
+        f"&hydrate=stats(group=pitching,type=season,season={YEAR},gameType=R)"
     )
     try:
         data = get(url)
-    except urllib.error.HTTPError as e:
-        print(f"    HTTP {e.code} for team {team_id}")
-        return []
     except Exception as e:
-        print(f"    Error: {e}")
+        print(f"    Error fetching roster: {e}")
         return []
 
-    splits = data.get("stats", [{}])[0].get("splits", [])
-
-    # Debug: show first call response structure
-    if team_id == -1:  # won't trigger, just for reference
-        print(f"    DEBUG splits[0] keys: {list(splits[0].keys()) if splits else 'empty'}")
-
+    roster = data.get("roster", [])
     pitchers = []
-    for s in splits:
-        pid  = s.get("player", {}).get("id")
-        stat = s.get("stat", {})
+
+    for player in roster:
+        # Only pitchers
+        pos = player.get("position", {}).get("abbreviation", "")
+        if pos != "P":
+            continue
+
+        pid  = player.get("person", {}).get("id")
+        if not pid:
+            continue
+
+        # Get hydrated stats
+        stats_list = player.get("person", {}).get("stats", [])
+        if not stats_list:
+            # Some players may not have stats yet
+            continue
+
+        stat = stats_list[0].get("stats", {}) if stats_list else {}
         gs   = int(stat.get("gamesStarted", 0) or 0)
-        gp   = int(stat.get("gamesPlayed", 0) or 0)
-        if pid and gp > 0:
-            pitchers.append({
-                "player_id":   pid,
-                "gamesStarted": gs,
-                "gamesPitched": gp,
-                "is_reliever": (gs / gp) < RP_THRESH,
-            })
+        gp   = int(stat.get("gamesPlayed", stat.get("gamesPitched", 0)) or 0)
+
+        if gp == 0:
+            continue
+
+        is_rp = (gs / gp) < RP_THRESH
+        pitchers.append({
+            "player_id":    pid,
+            "gamesStarted": gs,
+            "gamesPlayed":  gp,
+            "is_reliever":  is_rp,
+        })
+
     return pitchers
 
 
@@ -131,9 +151,10 @@ def wavg(rps, field):
 def main():
     ts = datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
     print("=" * 58)
-    print(f"  FETCH BULLPEN v3 — {ts}")
+    print(f"  FETCH BULLPEN v4 — {ts}")
     print("=" * 58)
 
+    # 1. Load Savant
     print(f"\n  [1/3] Loading {STATS_FILE}...", end="", flush=True)
     if not STATS_FILE.exists():
         print(f"\n  [!] Not found — run fetch_stats.py first")
@@ -141,6 +162,7 @@ def main():
     savant = load_savant(STATS_FILE)
     print(f" {len(savant)} pitchers (PA ≥ {MIN_RP_PA})")
 
+    # 2. Get teams
     print(f"  [2/3] Fetching team list...", end="", flush=True)
     try:
         teams = fetch_all_teams()
@@ -149,47 +171,49 @@ def main():
         sys.exit(1)
     print(f" {len(teams)} teams")
 
-    print(f"  [3/3] Fetching individual pitcher stats per team...")
+    # 3. Roster + stats per team
+    print(f"  [3/3] Fetching 40-man roster + pitching stats per team...")
 
-    # Debug: show raw response from first team
-    first_team = teams[0]
+    # Debug first team
+    first = teams[0]
     debug_url = (
-        f"https://statsapi.mlb.com/api/v1/stats"
-        f"?stats=season&group=pitching&season={YEAR}"
-        f"&teamId={first_team['id']}&gameType=R&limit=5"
+        f"https://statsapi.mlb.com/api/v1/teams/{first['id']}/roster"
+        f"?rosterType=40Man&season={YEAR}"
+        f"&hydrate=stats(group=pitching,type=season,season={YEAR},gameType=R)"
     )
     try:
         debug_data = get(debug_url)
-        splits = debug_data.get("stats", [{}])[0].get("splits", [])
-        print(f"  DEBUG {first_team['abbrev']} (id={first_team['id']}): "
-              f"{len(splits)} splits returned")
-        if splits:
-            s = splits[0]
-            print(f"  DEBUG split keys: {list(s.keys())}")
-            print(f"  DEBUG player: {s.get('player',{}).get('fullName','?')} "
-                  f"id={s.get('player',{}).get('id','?')}")
-            print(f"  DEBUG stat keys: {list(s.get('stat',{}).keys())[:8]}")
-        else:
-            # Show full raw response structure
-            print(f"  DEBUG raw keys: {list(debug_data.keys())}")
-            stats_list = debug_data.get("stats", [])
+        roster = debug_data.get("roster", [])
+        pitchers_on_roster = [p for p in roster if p.get("position",{}).get("abbreviation") == "P"]
+        print(f"  DEBUG {first['abbrev']}: {len(roster)} roster, {len(pitchers_on_roster)} pitchers")
+        if pitchers_on_roster:
+            p = pitchers_on_roster[0]
+            pid = p.get("person",{}).get("id")
+            name = p.get("person",{}).get("fullName","?")
+            stats_list = p.get("person",{}).get("stats",[])
+            has_stats = "YES" if stats_list else "NO"
+            print(f"  DEBUG first pitcher: {name} (id={pid}) has_stats={has_stats}")
             if stats_list:
-                print(f"  DEBUG stats[0] keys: {list(stats_list[0].keys())}")
-                print(f"  DEBUG splits count: {len(stats_list[0].get('splits',[]))}")
+                stat = stats_list[0].get("stats",{})
+                print(f"  DEBUG stat keys: {list(stat.keys())[:12]}")
+                print(f"  DEBUG gamesPlayed={stat.get('gamesPlayed','?')} "
+                      f"gamesStarted={stat.get('gamesStarted','?')}")
     except Exception as e:
         print(f"  DEBUG error: {e}")
-
     print()
 
     team_buckets = {}
     total_matched = 0
 
     for t in teams:
-        pitchers = fetch_team_pitchers(t["id"])
+        pitchers = fetch_team_pitchers_via_roster(t["id"], t["abbrev"])
         matched = 0
+        rp_count = 0
+
         for p in pitchers:
             if not p["is_reliever"]:
                 continue
+            rp_count += 1
             svt = savant.get(p["player_id"])
             if not svt:
                 continue
@@ -197,17 +221,20 @@ def main():
             matched += 1
             total_matched += 1
 
-        rp_count = sum(1 for p in pitchers if p["is_reliever"])
-        print(f"    {t['abbrev']:<5} {len(pitchers):>3} pitchers "
-              f"({rp_count} RPs) → {matched} Savant matches")
+        total_p = len(pitchers)
+        sp_count = total_p - rp_count
+        print(f"    {t['abbrev']:<5} {total_p:>3} pitchers "
+              f"({sp_count} SP / {rp_count} RP) → {matched} Savant matches")
         time.sleep(0.15)
 
     print(f"\n  Total: {total_matched} reliever-Savant matches")
 
     if not team_buckets:
-        print("  [!] No data — check DEBUG output above for API response structure")
+        print("  [!] Still no data — check DEBUG output above")
+        # Don't exit with error — partial data is OK
         sys.exit(1)
 
+    # Aggregate
     rows = []
     for team, rps in sorted(team_buckets.items()):
         rows.append({
