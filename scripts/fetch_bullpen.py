@@ -1,26 +1,12 @@
 #!/usr/bin/env python3
 """
-fetch_bullpen.py v2
+fetch_bullpen.py v3
 ===================
-Builds team-level bullpen xwOBA gap data.
-
-Strategy (team-by-team approach — mirrors fetch_pitchers.py pattern):
-  1. GET /v1/teams → all 30 MLB team IDs
-  2. For each team: GET /v1/teams/{id}/stats?group=pitching → individual pitcher stats
-     (includes player_id, gamesStarted, gamesPitched per pitcher)
-  3. Load stats.csv (Savant) → xwOBA, wOBA, gap per pitcher
-  4. Match by player_id, filter relievers (GS/G < 0.33), aggregate by team
-
-Output: data/bullpen.csv
+Fixed: /v1/teams/{id}/stats returns team aggregate (1 row).
+Fixed: /v1/stats?teamId={id} returns individual pitcher rows.
 """
 
-import csv
-import io
-import json
-import sys
-import time
-import urllib.request
-import urllib.error
+import csv, io, json, sys, time, urllib.request, urllib.error
 from datetime import datetime
 from pathlib import Path
 
@@ -29,8 +15,8 @@ OUT_FILE   = OUT_DIR / "bullpen.csv"
 STATS_FILE = Path("data/stats.csv")
 YEAR       = 2026
 TIMEOUT    = 20
-RP_THRESH  = 0.33   # GS/GP < this → reliever
-MIN_RP_PA  = 30     # min PA to include in team aggregate
+RP_THRESH  = 0.33
+MIN_RP_PA  = 30
 
 HEADERS = {
     "User-Agent": (
@@ -51,36 +37,29 @@ FIELDS = [
 ]
 
 
-def get(url: str) -> dict:
+def get(url):
     req = urllib.request.Request(url, headers=HEADERS)
     with urllib.request.urlopen(req, timeout=TIMEOUT) as r:
-        return json.loads(r.read().decode("utf-8"))
+        return json.loads(r.read().decode())
 
 
-def fetch_all_teams() -> list[dict]:
-    """Get all 30 active MLB teams with their IDs."""
-    data = get(
-        f"https://statsapi.mlb.com/api/v1/teams"
-        f"?sportId=1&season={YEAR}&activeStatus=Y"
-    )
+def fetch_all_teams():
+    data = get(f"https://statsapi.mlb.com/api/v1/teams?sportId=1&season={YEAR}&activeStatus=Y")
     return [
-        {
-            "id":   t["id"],
-            "abbrev": ABBREV_FIX.get(t["abbreviation"], t["abbreviation"]),
-        }
+        {"id": t["id"], "abbrev": ABBREV_FIX.get(t["abbreviation"], t["abbreviation"])}
         for t in data.get("teams", [])
     ]
 
 
-def fetch_team_pitching(team_id: int) -> list[dict]:
+def fetch_team_pitchers(team_id: int) -> list[dict]:
     """
-    Get individual pitcher stats for one team.
-    Returns list of {player_id, gamesStarted, gamesPitched, is_reliever}
+    FIXED: Use /v1/stats?teamId={id} — returns individual player rows.
+    /v1/teams/{id}/stats returns only team aggregate (was always 1 row).
     """
     url = (
-        f"https://statsapi.mlb.com/api/v1/teams/{team_id}/stats"
-        f"?season={YEAR}&stats=season&group=pitching"
-        f"&gameType=R&playerPool=All"
+        f"https://statsapi.mlb.com/api/v1/stats"
+        f"?stats=season&group=pitching&season={YEAR}"
+        f"&teamId={team_id}&gameType=R&limit=100"
     )
     try:
         data = get(url)
@@ -88,27 +67,32 @@ def fetch_team_pitching(team_id: int) -> list[dict]:
         print(f"    HTTP {e.code} for team {team_id}")
         return []
     except Exception as e:
-        print(f"    Error for team {team_id}: {e}")
+        print(f"    Error: {e}")
         return []
 
+    splits = data.get("stats", [{}])[0].get("splits", [])
+
+    # Debug: show first call response structure
+    if team_id == -1:  # won't trigger, just for reference
+        print(f"    DEBUG splits[0] keys: {list(splits[0].keys()) if splits else 'empty'}")
+
     pitchers = []
-    for split in data.get("stats", [{}])[0].get("splits", []):
-        pid  = split.get("player", {}).get("id")
-        stat = split.get("stat", {})
+    for s in splits:
+        pid  = s.get("player", {}).get("id")
+        stat = s.get("stat", {})
         gs   = int(stat.get("gamesStarted", 0) or 0)
         gp   = int(stat.get("gamesPitched", 0) or 0)
         if pid and gp > 0:
             pitchers.append({
-                "player_id":    pid,
+                "player_id":   pid,
                 "gamesStarted": gs,
                 "gamesPitched": gp,
-                "is_reliever":  (gs / gp) < RP_THRESH,
+                "is_reliever": (gs / gp) < RP_THRESH,
             })
     return pitchers
 
 
-def load_savant(path: Path) -> dict[int, dict]:
-    """Load stats.csv — keyed by player_id (2026 rows only)."""
+def load_savant(path):
     savant = {}
     with open(path, "r", encoding="utf-8-sig") as f:
         content = f.read()
@@ -139,69 +123,91 @@ def load_savant(path: Path) -> dict[int, dict]:
     return savant
 
 
-def wavg(relievers: list[dict], field: str) -> float:
-    total_pa = sum(r["pa"] for r in relievers)
-    if not total_pa:
-        return 0.0
-    return round(sum(r[field] * r["pa"] for r in relievers) / total_pa, 4)
+def wavg(rps, field):
+    total = sum(r["pa"] for r in rps)
+    return round(sum(r[field] * r["pa"] for r in rps) / total, 4) if total else 0.0
 
 
 def main():
     ts = datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
-    print("=" * 55)
-    print(f"  FETCH BULLPEN v2 — {ts}")
-    print("=" * 55)
+    print("=" * 58)
+    print(f"  FETCH BULLPEN v3 — {ts}")
+    print("=" * 58)
 
-    # ── 1. Load Savant stats (local file) ─────────────────────
     print(f"\n  [1/3] Loading {STATS_FILE}...", end="", flush=True)
     if not STATS_FILE.exists():
-        print(f"\n  [!] {STATS_FILE} not found — run fetch_stats.py first")
+        print(f"\n  [!] Not found — run fetch_stats.py first")
         sys.exit(1)
     savant = load_savant(STATS_FILE)
     print(f" {len(savant)} pitchers (PA ≥ {MIN_RP_PA})")
 
-    # ── 2. Get all teams ───────────────────────────────────────
-    print(f"  [2/3] Fetching team list from MLB Stats API...",
-          end="", flush=True)
+    print(f"  [2/3] Fetching team list...", end="", flush=True)
     try:
         teams = fetch_all_teams()
     except Exception as e:
-        print(f"\n  [!] Could not fetch teams: {e}")
+        print(f"\n  [!] {e}")
         sys.exit(1)
     print(f" {len(teams)} teams")
 
-    # ── 3. Fetch pitching stats team by team ───────────────────
-    print(f"  [3/3] Fetching pitching stats per team...")
-    team_buckets: dict[str, list] = {}
+    print(f"  [3/3] Fetching individual pitcher stats per team...")
+
+    # Debug: show raw response from first team
+    first_team = teams[0]
+    debug_url = (
+        f"https://statsapi.mlb.com/api/v1/stats"
+        f"?stats=season&group=pitching&season={YEAR}"
+        f"&teamId={first_team['id']}&gameType=R&limit=5"
+    )
+    try:
+        debug_data = get(debug_url)
+        splits = debug_data.get("stats", [{}])[0].get("splits", [])
+        print(f"  DEBUG {first_team['abbrev']} (id={first_team['id']}): "
+              f"{len(splits)} splits returned")
+        if splits:
+            s = splits[0]
+            print(f"  DEBUG split keys: {list(s.keys())}")
+            print(f"  DEBUG player: {s.get('player',{}).get('fullName','?')} "
+                  f"id={s.get('player',{}).get('id','?')}")
+            print(f"  DEBUG stat keys: {list(s.get('stat',{}).keys())[:8]}")
+        else:
+            # Show full raw response structure
+            print(f"  DEBUG raw keys: {list(debug_data.keys())}")
+            stats_list = debug_data.get("stats", [])
+            if stats_list:
+                print(f"  DEBUG stats[0] keys: {list(stats_list[0].keys())}")
+                print(f"  DEBUG splits count: {len(stats_list[0].get('splits',[]))}")
+    except Exception as e:
+        print(f"  DEBUG error: {e}")
+
+    print()
+
+    team_buckets = {}
     total_matched = 0
 
     for t in teams:
-        tid    = t["id"]
-        abbrev = t["abbrev"]
-        pitchers = fetch_team_pitching(tid)
-        relievers_found = 0
-
+        pitchers = fetch_team_pitchers(t["id"])
+        matched = 0
         for p in pitchers:
             if not p["is_reliever"]:
                 continue
             svt = savant.get(p["player_id"])
             if not svt:
                 continue
-            team_buckets.setdefault(abbrev, []).append(svt)
-            relievers_found += 1
+            team_buckets.setdefault(t["abbrev"], []).append(svt)
+            matched += 1
             total_matched += 1
 
-        print(f"    {abbrev:<5} {len(pitchers):>3} pitchers → "
-              f"{relievers_found} relievers matched to Savant")
-        time.sleep(0.2)   # be respectful to the API
+        rp_count = sum(1 for p in pitchers if p["is_reliever"])
+        print(f"    {t['abbrev']:<5} {len(pitchers):>3} pitchers "
+              f"({rp_count} RPs) → {matched} Savant matches")
+        time.sleep(0.15)
 
-    print(f"\n  Total reliever-Savant matches: {total_matched}")
+    print(f"\n  Total: {total_matched} reliever-Savant matches")
 
     if not team_buckets:
-        print("  [!] No data built — check API responses above")
+        print("  [!] No data — check DEBUG output above for API response structure")
         sys.exit(1)
 
-    # ── 4. Aggregate and save ──────────────────────────────────
     rows = []
     for team, rps in sorted(team_buckets.items()):
         rows.append({
@@ -222,7 +228,7 @@ def main():
         writer.writeheader()
         writer.writerows(rows)
 
-    print(f"\n  [✓] Saved {OUT_FILE} — {len(rows)} teams")
+    print(f"\n  [✓] {OUT_FILE} — {len(rows)} teams")
     print()
     print(f"  {'Team':<6} {'PA':>6} {'wOBA':>7} {'xwOBA':>7} "
           f"{'Gap':>7} {'HH%':>6} {'K%':>6} {'RPs':>4}")
@@ -234,8 +240,7 @@ def main():
               f"{r['bullpen_woba']:>7.3f} {r['bullpen_xwoba']:>7.3f} "
               f"{r['bullpen_gap']:>+7.4f} {r['bullpen_hard_hit']:>6.1f} "
               f"{r['bullpen_k_pct']:>6.1f} {r['pitchers_counted']:>4}{flag}")
-    print()
-    print("=" * 55)
+    print("=" * 58)
 
 
 if __name__ == "__main__":
