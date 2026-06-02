@@ -2,15 +2,14 @@ name: MLB Stats Update
 
 on:
   schedule:
-    # 10:00 AM CT = 15:00 UTC (16:00 UTC during CDT)
-    - cron: '0 15 * * *'
+    - cron: '0 15 * * *'   # 10:00 AM CT daily
   workflow_dispatch:
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
-  fetch-stats:
+  fetch-data:
     runs-on: ubuntu-latest
 
     steps:
@@ -22,8 +21,11 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Fetch stats.csv from Baseball Savant
+      - name: Fetch pitcher Statcast (stats.csv)
         run: python scripts/fetch_stats.py
+
+      - name: Fetch probable pitchers (probable_pitchers.csv)
+        run: python scripts/fetch_pitchers.py
 
       - name: Commit and push
         run: |
@@ -31,6 +33,6 @@ jobs:
           git config user.email "bot@mlb-data"
           git add data/
           git diff --staged --quiet && echo "No changes to commit" || \
-            (git commit -m "Stats update $(date -u '+%Y-%m-%d')" && git push)
+            (git commit -m "Data update $(date -u '+%Y-%m-%d %H:%M UTC')" && git push)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
