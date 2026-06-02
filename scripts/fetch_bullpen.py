@@ -1,21 +1,17 @@
 #!/usr/bin/env python3
 """
-fetch_bullpen.py
-================
-Builds team-level bullpen xwOBA gap data by combining:
-  1. MLB Stats API  → player IDs, team affiliations, games started vs total
-  2. Baseball Savant stats.csv → xwOBA, wOBA, hard_hit% per pitcher
+fetch_bullpen.py v2
+===================
+Builds team-level bullpen xwOBA gap data.
 
-Logic:
-  - Relievers = pitchers where gamesStarted / gamesPitched < 0.33
-  - Group qualifying relievers by team
-  - Calculate PA-weighted average wOBA gap (wOBA - xwOBA)
-  - Positive gap = bullpen ERA running better than deserved (regression risk)
-  - Negative gap = bullpen ERA running worse than true talent (improving)
+Strategy (team-by-team approach — mirrors fetch_pitchers.py pattern):
+  1. GET /v1/teams → all 30 MLB team IDs
+  2. For each team: GET /v1/teams/{id}/stats?group=pitching → individual pitcher stats
+     (includes player_id, gamesStarted, gamesPitched per pitcher)
+  3. Load stats.csv (Savant) → xwOBA, wOBA, gap per pitcher
+  4. Match by player_id, filter relievers (GS/G < 0.33), aggregate by team
 
 Output: data/bullpen.csv
-  Team, bullpen_pa, bullpen_woba, bullpen_xwoba, bullpen_gap,
-  bullpen_hard_hit, bullpen_k_pct, pitchers_counted, fetched_at
 """
 
 import csv
@@ -28,11 +24,13 @@ import urllib.error
 from datetime import datetime
 from pathlib import Path
 
-OUT_DIR  = Path("data")
-OUT_FILE = OUT_DIR / "bullpen.csv"
+OUT_DIR    = Path("data")
+OUT_FILE   = OUT_DIR / "bullpen.csv"
 STATS_FILE = Path("data/stats.csv")
-YEAR     = 2026
-TIMEOUT  = 20
+YEAR       = 2026
+TIMEOUT    = 20
+RP_THRESH  = 0.33   # GS/GP < this → reliever
+MIN_RP_PA  = 30     # min PA to include in team aggregate
 
 HEADERS = {
     "User-Agent": (
@@ -42,90 +40,80 @@ HEADERS = {
     )
 }
 
-# Reliever threshold: if fewer than 1/3 of appearances are starts → reliever
-RP_THRESHOLD = 0.33
-
-# Minimum PA for a reliever to be included in team aggregate
-MIN_RP_PA = 30
+ABBREV_FIX = {
+    "TB": "TBR", "KC": "KCR", "SD": "SDP",
+    "SF": "SFG", "AZ": "ARI", "WAS": "WSH",
+}
 
 FIELDS = [
     "team", "bullpen_pa", "bullpen_woba", "bullpen_xwoba", "bullpen_gap",
     "bullpen_hard_hit", "bullpen_k_pct", "pitchers_counted", "fetched_at"
 ]
 
-# Standard abbreviation normalization
-ABBREV_FIX = {
-    "TB":  "TBR", "KC":  "KCR", "SD":  "SDP",
-    "SF":  "SFG", "AZ":  "ARI", "WAS": "WSH",
-}
+
+def get(url: str) -> dict:
+    req = urllib.request.Request(url, headers=HEADERS)
+    with urllib.request.urlopen(req, timeout=TIMEOUT) as r:
+        return json.loads(r.read().decode("utf-8"))
 
 
-def fetch_mlb_pitchers(year: int) -> dict[int, dict]:
+def fetch_all_teams() -> list[dict]:
+    """Get all 30 active MLB teams with their IDs."""
+    data = get(
+        f"https://statsapi.mlb.com/api/v1/teams"
+        f"?sportId=1&season={YEAR}&activeStatus=Y"
+    )
+    return [
+        {
+            "id":   t["id"],
+            "abbrev": ABBREV_FIX.get(t["abbreviation"], t["abbreviation"]),
+        }
+        for t in data.get("teams", [])
+    ]
+
+
+def fetch_team_pitching(team_id: int) -> list[dict]:
     """
-    Fetch all pitchers from MLB Stats API.
-    Returns dict keyed by player_id with team, gamesStarted, gamesPitched.
-    Handles pagination automatically.
+    Get individual pitcher stats for one team.
+    Returns list of {player_id, gamesStarted, gamesPitched, is_reliever}
     """
-    pitchers = {}
-    offset = 0
-    limit  = 500
+    url = (
+        f"https://statsapi.mlb.com/api/v1/teams/{team_id}/stats"
+        f"?season={YEAR}&stats=season&group=pitching"
+        f"&gameType=R&playerPool=All"
+    )
+    try:
+        data = get(url)
+    except urllib.error.HTTPError as e:
+        print(f"    HTTP {e.code} for team {team_id}")
+        return []
+    except Exception as e:
+        print(f"    Error for team {team_id}: {e}")
+        return []
 
-    while True:
-        url = (
-            "https://statsapi.mlb.com/api/v1/stats"
-            f"?stats=season&group=pitching&season={year}"
-            f"&gameType=R&playerPool=All&limit={limit}&offset={offset}"
-        )
-        try:
-            req = urllib.request.Request(url, headers=HEADERS)
-            with urllib.request.urlopen(req, timeout=TIMEOUT) as r:
-                data = json.loads(r.read().decode("utf-8"))
-        except Exception as e:
-            print(f"  [!] MLB Stats API error at offset {offset}: {e}")
-            break
-
-        splits = data.get("stats", [{}])[0].get("splits", [])
-        if not splits:
-            break
-
-        for s in splits:
-            pid   = s.get("player", {}).get("id")
-            team  = s.get("team", {}).get("abbreviation", "")
-            team  = ABBREV_FIX.get(team, team)
-            stat  = s.get("stat", {})
-            gs    = int(stat.get("gamesStarted", 0) or 0)
-            gp    = int(stat.get("gamesPitched", 0) or 0)
-            ip    = float(stat.get("inningsPitched", 0) or 0)
-
-            if pid and team:
-                pitchers[pid] = {
-                    "team":         team,
-                    "gamesStarted": gs,
-                    "gamesPitched": gp,
-                    "inningsPitched": ip,
-                    "is_reliever":  (gs / gp < RP_THRESHOLD) if gp > 0 else True,
-                }
-
-        if len(splits) < limit:
-            break
-        offset += limit
-        time.sleep(0.3)
-
+    pitchers = []
+    for split in data.get("stats", [{}])[0].get("splits", []):
+        pid  = split.get("player", {}).get("id")
+        stat = split.get("stat", {})
+        gs   = int(stat.get("gamesStarted", 0) or 0)
+        gp   = int(stat.get("gamesPitched", 0) or 0)
+        if pid and gp > 0:
+            pitchers.append({
+                "player_id":    pid,
+                "gamesStarted": gs,
+                "gamesPitched": gp,
+                "is_reliever":  (gs / gp) < RP_THRESH,
+            })
     return pitchers
 
 
-def load_savant_stats(path: Path) -> dict[int, dict]:
-    """
-    Load pitcher Statcast data from stats.csv.
-    Returns dict keyed by player_id (2026 rows only, best PA row per player).
-    """
+def load_savant(path: Path) -> dict[int, dict]:
+    """Load stats.csv — keyed by player_id (2026 rows only)."""
     savant = {}
     with open(path, "r", encoding="utf-8-sig") as f:
         content = f.read()
-
     reader = csv.reader(io.StringIO(content))
     headers = [h.strip().strip('"') for h in next(reader)]
-
     for row in reader:
         d = dict(zip(headers, row))
         if d.get("year") != str(YEAR):
@@ -138,128 +126,114 @@ def load_savant_stats(path: Path) -> dict[int, dict]:
             if pid in savant and pa <= savant[pid]["pa"]:
                 continue
             savant[pid] = {
-                "name":      d.get("last_name, first_name", ""),
-                "pa":        pa,
-                "woba":      float(d.get("woba", 0) or 0),
-                "xwoba":     float(d.get("xwoba", 0) or 0),
-                "gap":       round(float(d.get("woba", 0) or 0) -
-                                   float(d.get("xwoba", 0) or 0), 4),
-                "hard_hit":  float(d.get("hard_hit_percent", 0) or 0),
-                "k_pct":     float(d.get("k_percent", 0) or 0),
+                "pa":       pa,
+                "woba":     float(d.get("woba", 0) or 0),
+                "xwoba":    float(d.get("xwoba", 0) or 0),
+                "gap":      round(float(d.get("woba", 0) or 0) -
+                                  float(d.get("xwoba", 0) or 0), 4),
+                "hard_hit": float(d.get("hard_hit_percent", 0) or 0),
+                "k_pct":    float(d.get("k_percent", 0) or 0),
             }
         except (ValueError, KeyError):
             continue
-
     return savant
 
 
-def build_bullpen(mlb: dict, savant: dict) -> list[dict]:
-    """
-    Merge MLB role/team data with Savant xwOBA data.
-    Aggregate by team for relievers only.
-    """
-    # Match by player_id
-    team_buckets: dict[str, list] = {}
-
-    matched = skipped_not_rp = skipped_no_savant = 0
-
-    for pid, mlb_data in mlb.items():
-        if not mlb_data["is_reliever"]:
-            skipped_not_rp += 1
-            continue
-
-        svt = savant.get(pid)
-        if not svt:
-            skipped_no_savant += 1
-            continue
-
-        team = mlb_data["team"]
-        if team not in team_buckets:
-            team_buckets[team] = []
-        team_buckets[team].append(svt)
-        matched += 1
-
-    print(f"  Matched: {matched} relievers | "
-          f"Skipped (starters): {skipped_not_rp} | "
-          f"No Savant data: {skipped_no_savant}")
-
-    # Aggregate per team (PA-weighted averages)
-    rows = []
-    for team, relievers in sorted(team_buckets.items()):
-        total_pa   = sum(r["pa"] for r in relievers)
-        if total_pa == 0:
-            continue
-
-        def wavg(field):
-            return round(
-                sum(r[field] * r["pa"] for r in relievers) / total_pa, 4
-            )
-
-        rows.append({
-            "team":              team,
-            "bullpen_pa":        total_pa,
-            "bullpen_woba":      wavg("woba"),
-            "bullpen_xwoba":     wavg("xwoba"),
-            "bullpen_gap":       round(wavg("woba") - wavg("xwoba"), 4),
-            "bullpen_hard_hit":  wavg("hard_hit"),
-            "bullpen_k_pct":     wavg("k_pct"),
-            "pitchers_counted":  len(relievers),
-            "fetched_at":        datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC"),
-        })
-
-    return rows
+def wavg(relievers: list[dict], field: str) -> float:
+    total_pa = sum(r["pa"] for r in relievers)
+    if not total_pa:
+        return 0.0
+    return round(sum(r[field] * r["pa"] for r in relievers) / total_pa, 4)
 
 
 def main():
-    fetched_at = datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
+    ts = datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
     print("=" * 55)
-    print(f"  FETCH BULLPEN — {fetched_at}")
+    print(f"  FETCH BULLPEN v2 — {ts}")
     print("=" * 55)
 
-    # Step 1: MLB Stats API for roles + teams
-    print(f"\n  [1/3] Fetching pitcher roles from MLB Stats API...",
-          end="", flush=True)
-    mlb = fetch_mlb_pitchers(YEAR)
-    rp_count = sum(1 for p in mlb.values() if p["is_reliever"])
-    print(f" {len(mlb)} pitchers ({rp_count} relievers)")
-
-    if not mlb:
-        print("  [!] No MLB data — exiting")
-        sys.exit(1)
-
-    # Step 2: Load Savant stats
-    print(f"  [2/3] Loading Savant stats from {STATS_FILE}...",
-          end="", flush=True)
+    # ── 1. Load Savant stats (local file) ─────────────────────
+    print(f"\n  [1/3] Loading {STATS_FILE}...", end="", flush=True)
     if not STATS_FILE.exists():
         print(f"\n  [!] {STATS_FILE} not found — run fetch_stats.py first")
         sys.exit(1)
+    savant = load_savant(STATS_FILE)
+    print(f" {len(savant)} pitchers (PA ≥ {MIN_RP_PA})")
 
-    savant = load_savant_stats(STATS_FILE)
-    print(f" {len(savant)} pitchers with PA >= {MIN_RP_PA}")
+    # ── 2. Get all teams ───────────────────────────────────────
+    print(f"  [2/3] Fetching team list from MLB Stats API...",
+          end="", flush=True)
+    try:
+        teams = fetch_all_teams()
+    except Exception as e:
+        print(f"\n  [!] Could not fetch teams: {e}")
+        sys.exit(1)
+    print(f" {len(teams)} teams")
 
-    # Step 3: Merge and aggregate
-    print(f"  [3/3] Building team bullpen aggregates...")
-    rows = build_bullpen(mlb, savant)
+    # ── 3. Fetch pitching stats team by team ───────────────────
+    print(f"  [3/3] Fetching pitching stats per team...")
+    team_buckets: dict[str, list] = {}
+    total_matched = 0
 
-    # Save
+    for t in teams:
+        tid    = t["id"]
+        abbrev = t["abbrev"]
+        pitchers = fetch_team_pitching(tid)
+        relievers_found = 0
+
+        for p in pitchers:
+            if not p["is_reliever"]:
+                continue
+            svt = savant.get(p["player_id"])
+            if not svt:
+                continue
+            team_buckets.setdefault(abbrev, []).append(svt)
+            relievers_found += 1
+            total_matched += 1
+
+        print(f"    {abbrev:<5} {len(pitchers):>3} pitchers → "
+              f"{relievers_found} relievers matched to Savant")
+        time.sleep(0.2)   # be respectful to the API
+
+    print(f"\n  Total reliever-Savant matches: {total_matched}")
+
+    if not team_buckets:
+        print("  [!] No data built — check API responses above")
+        sys.exit(1)
+
+    # ── 4. Aggregate and save ──────────────────────────────────
+    rows = []
+    for team, rps in sorted(team_buckets.items()):
+        rows.append({
+            "team":             team,
+            "bullpen_pa":       sum(r["pa"] for r in rps),
+            "bullpen_woba":     wavg(rps, "woba"),
+            "bullpen_xwoba":    wavg(rps, "xwoba"),
+            "bullpen_gap":      round(wavg(rps, "woba") - wavg(rps, "xwoba"), 4),
+            "bullpen_hard_hit": wavg(rps, "hard_hit"),
+            "bullpen_k_pct":    wavg(rps, "k_pct"),
+            "pitchers_counted": len(rps),
+            "fetched_at":       ts,
+        })
+
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     with open(OUT_FILE, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=FIELDS, quoting=csv.QUOTE_ALL)
         writer.writeheader()
         writer.writerows(rows)
 
-    print(f"\n  [✓] Saved: {OUT_FILE} ({len(rows)} teams)")
+    print(f"\n  [✓] Saved {OUT_FILE} — {len(rows)} teams")
     print()
     print(f"  {'Team':<6} {'PA':>6} {'wOBA':>7} {'xwOBA':>7} "
-          f"{'Gap':>7} {'HH%':>6} {'K%':>6} {'RPs':>5}")
-    print("  " + "─" * 54)
+          f"{'Gap':>7} {'HH%':>6} {'K%':>6} {'RPs':>4}")
+    print("  " + "─" * 52)
     for r in sorted(rows, key=lambda x: x["bullpen_gap"]):
-        trend = "↑IMPROVE" if r["bullpen_gap"] > 0.015 else \
-                ("↓REGRESS" if r["bullpen_gap"] < -0.015 else "neutral")
+        flag = " ↑LUCKY" if r["bullpen_gap"] > 0.015 else \
+               (" ↓UNLUCKY" if r["bullpen_gap"] < -0.015 else "")
         print(f"  {r['team']:<6} {r['bullpen_pa']:>6} "
               f"{r['bullpen_woba']:>7.3f} {r['bullpen_xwoba']:>7.3f} "
-              f"{r['bullpen_gap']:>+7.3f} {r['bullpen_hard_hit']:>6.1f} "
-              f"{r['bullpen_k_pct']:>6.1f} {r['pitchers_counted']:>5}  {trend}")
+              f"{r['bullpen_gap']:>+7.4f} {r['bullpen_hard_hit']:>6.1f} "
+              f"{r['bullpen_k_pct']:>6.1f} {r['pitchers_counted']:>4}{flag}")
     print()
     print("=" * 55)
 
