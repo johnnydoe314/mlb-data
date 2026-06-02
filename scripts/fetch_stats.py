@@ -1,40 +1,50 @@
 #!/usr/bin/env python3
 """
-fetch_stats.py
-==============
-Fetches pitcher Statcast leaderboard from Baseball Savant and saves stats.csv
-Simple, focused, minimal dependencies — designed to run reliably in GitHub Actions.
+fetch_stats.py — updated
+========================
+Fetches pitcher Statcast leaderboard from Baseball Savant.
+Updated URL: min=30 PA (was 50), expanded to 46 metrics including
+swing speed, contact quality, expected stats, and standard slash line.
+
+min=30 also captures more relievers, improving bullpen data coverage.
 """
 
-import csv
-import io
-import os
-import sys
-import time
-import urllib.request
-import urllib.error
+import csv, io, os, sys, time, urllib.request, urllib.error
 from datetime import datetime
 from pathlib import Path
 
-# ── Config ────────────────────────────────────────────────────────────────────
+OUT_DIR   = Path("data")
+OUT_FILE  = OUT_DIR / "stats.csv"
+META_FILE = OUT_DIR / "metadata.json"
+TIMEOUT   = 30
 
-YEARS       = "2026,2025,2024,2023"
-OUT_DIR     = Path("data")
-OUT_FILE    = OUT_DIR / "stats.csv"
-META_FILE   = OUT_DIR / "metadata.json"
-MIN_PA      = 50
-TIMEOUT     = 30
-
+# Full URL matching the user's custom leaderboard
+# min=30 captures starters AND regular relievers
 SAVANT_URL = (
     "https://baseballsavant.mlb.com/leaderboard/custom"
-    f"?year={YEARS.replace(',', '%2C')}"
-    f"&type=pitcher&filter=&min={MIN_PA}"
-    "&selections=pa%2Ck_percent%2Cbb_percent%2Cwoba%2Cxwoba"
-    "%2Csweet_spot_percent%2Cbarrel_batted_rate%2Chard_hit_percent"
-    "%2Cavg_best_speed%2Cavg_hyper_speed%2Cwhiff_percent%2Cswing_percent"
-    "&chart=false&x=pa&y=pa&r=no&chartType=beeswarm"
+    "?year={years}"
+    "&type=pitcher&filter=&min=30"
+    "&selections="
+    "player_age,p_game,p_formatted_ip,"
+    "pa,ab,hit,single,double,triple,home_run,strikeout,walk,"
+    "k_percent,bb_percent,"
+    "batting_avg,slg_percent,on_base_percent,on_base_plus_slg,"
+    "p_run_support,"
+    "xba,xslg,woba,xwoba,xobp,xiso,"
+    "avg_swing_speed,fast_swing_rate,"
+    "blasts_contact,blasts_swing,"
+    "squared_up_contact,squared_up_swing,"
+    "avg_swing_length,swords,"
+    "attack_angle,attack_direction,ideal_angle_rate,vertical_swing_path,"
+    "exit_velocity_avg,launch_angle_avg,"
+    "sweet_spot_percent,barrel_batted_rate,hard_hit_percent,"
+    "avg_best_speed,avg_hyper_speed,"
+    "whiff_percent,swing_percent"
+    "&chart=false&x=player_age&y=player_age&r=no&chartType=beeswarm"
     "&sort=xwoba&sortDir=asc&csv=true"
 )
+
+YEARS = "2026,2025,2024,2023"
 
 HEADERS = {
     "User-Agent": (
@@ -48,7 +58,6 @@ HEADERS = {
     "DNT":             "1",
 }
 
-# ── Fetch ─────────────────────────────────────────────────────────────────────
 
 def fetch(url: str, retries: int = 3) -> str:
     for attempt in range(1, retries + 1):
@@ -59,9 +68,7 @@ def fetch(url: str, retries: int = 3) -> str:
         except urllib.error.HTTPError as e:
             print(f"  [!] HTTP {e.code} on attempt {attempt}/{retries}: {e.reason}")
             if e.code in (403, 429) and attempt < retries:
-                wait = attempt * 10
-                print(f"  ... waiting {wait}s before retry")
-                time.sleep(wait)
+                time.sleep(attempt * 10)
             else:
                 raise
         except Exception as e:
@@ -71,7 +78,6 @@ def fetch(url: str, retries: int = 3) -> str:
             else:
                 raise
 
-# ── Validate ──────────────────────────────────────────────────────────────────
 
 def validate(content: str) -> int:
     reader = csv.reader(io.StringIO(content))
@@ -79,61 +85,54 @@ def validate(content: str) -> int:
     required = {"woba", "xwoba", "k_percent", "hard_hit_percent"}
     missing  = required - set(headers)
     if missing:
-        raise ValueError(f"Missing expected columns: {missing}")
-    rows = sum(1 for _ in reader)
-    return rows
+        raise ValueError(f"Missing columns: {missing}")
+    return sum(1 for _ in reader)
 
-# ── Metadata ──────────────────────────────────────────────────────────────────
-
-def write_meta(rows: int, ok: bool):
-    import json
-    meta = {
-        "last_updated": datetime.utcnow().isoformat() + "Z",
-        "years":        YEARS,
-        "pitcher_rows": rows,
-        "status":       "ok" if ok else "error",
-    }
-    META_FILE.write_text(json.dumps(meta, indent=2))
-
-# ── Main ─────────────────────────────────────────────────────────────────────
 
 def main():
-    print("=" * 55)
-    print(f"  FETCH STATS.CSV — {datetime.utcnow().strftime('%Y-%m-%d %H:%M UTC')}")
-    print(f"  Years: {YEARS}  |  Min PA: {MIN_PA}")
-    print("=" * 55)
+    fetched_at = datetime.utcnow().isoformat() + "Z"
+    print("=" * 58)
+    print(f"  FETCH STATS — {fetched_at[:19]}")
+    print(f"  Years: {YEARS}  |  Min PA: 30  |  Metrics: 46")
+    print("=" * 58)
 
-    # Ensure output dir exists
     OUT_DIR.mkdir(parents=True, exist_ok=True)
 
-    # Fetch
+    url = SAVANT_URL.format(years=YEARS.replace(",", "%2C"))
+
     print("\n  Fetching from Baseball Savant...", end="", flush=True)
     try:
-        content = fetch(SAVANT_URL)
+        content = fetch(url)
     except Exception as e:
-        print(f"\n  [FAIL] Could not fetch data: {e}")
-        write_meta(0, ok=False)
+        print(f"\n  [FAIL] {e}")
         sys.exit(1)
 
-    # Validate
     try:
         rows = validate(content)
-        print(f" {rows} pitchers loaded.")
+        print(f" {rows} pitcher rows loaded.")
     except Exception as e:
-        print(f"\n  [FAIL] Validation error: {e}")
-        print(f"  First 200 chars of response: {content[:200]}")
-        write_meta(0, ok=False)
+        print(f"\n  [FAIL] {e}")
+        print(f"  First 200 chars: {content[:200]}")
         sys.exit(1)
 
-    # Save
     OUT_FILE.write_text(content, encoding="utf-8")
     size = OUT_FILE.stat().st_size
     print(f"  [✓] Saved: {OUT_FILE}  ({size/1024:.0f} KB)")
 
-    write_meta(rows, ok=True)
+    import json
+    meta = {
+        "last_updated":  fetched_at,
+        "years":         YEARS,
+        "min_pa":        30,
+        "metrics_count": 46,
+        "pitcher_rows":  rows,
+        "status":        "ok",
+    }
+    META_FILE.write_text(json.dumps(meta, indent=2))
+    print(f"  [✓] Metadata updated")
+    print(f"\n  Done. {rows} pitchers across {YEARS}.")
+    print("=" * 58)
 
-    print(f"\n  Done.")
-    print("=" * 55)
 
 if __name__ == "__main__":
     main()
