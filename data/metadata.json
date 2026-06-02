@@ -1,6 +1,8 @@
 {
-  "last_updated": "2026-06-02T19:24:34.240997Z",
+  "last_updated": "2026-06-02T19:31:00.391029Z",
   "years": "2026,2025,2024,2023",
-  "pitcher_rows": 1162,
+  "min_pa": 30,
+  "metrics_count": 46,
+  "pitcher_rows": 1600,
   "status": "ok"
 }
