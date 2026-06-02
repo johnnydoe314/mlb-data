@@ -1,0 +1,38 @@
+name: MLB Probable Pitchers
+
+on:
+  schedule:
+    # Every 30 min from 10:00am CT to 11:30pm CT (CDT = UTC-5)
+    # Covers full slate window — early games 10am, late games ~10:30pm CT
+    - cron: '0,30 15-23 * * *'   # 10:00am–6:30pm CT  (15:00–23:30 UTC)
+    - cron: '0,30 0-4 * * *'     # 7:00pm–11:30pm CT  (00:00–04:30 UTC)
+  workflow_dispatch:              # Manual trigger anytime
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  fetch-pitchers:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Fetch probable pitchers
+        run: python scripts/fetch_pitchers.py
+
+      - name: Commit and push
+        run: |
+          git config user.name  "MLB Data Bot"
+          git config user.email "bot@mlb-data"
+          git add data/probable_pitchers.csv
+          git diff --staged --quiet && echo "No changes — pitchers unchanged" || \
+            (git commit -m "Pitchers update $(date -u '+%H:%M UTC')" && git push)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
