@@ -39,6 +39,18 @@ ABBREV_FIX = {
     "SF": "SFG", "AZ": "ARI", "WAS": "WSH",
 }
 
+# Separate Savant download for bullpen — lower PA threshold than starters
+# Relievers typically face 10-40 batters; main stats.csv uses min=50
+BULLPEN_SAVANT_URL = (
+    "https://baseballsavant.mlb.com/leaderboard/custom"
+    "?year={year}"
+    "&type=pitcher&filter=&min=10"
+    "&selections=pa,woba,xwoba,hard_hit_percent,k_percent,bb_percent"
+    "&chart=false&x=pa&y=pa&r=no&chartType=beeswarm"
+    "&sort=xwoba&sortDir=asc&csv=true"
+)
+BULLPEN_SAVANT_FILE = OUT_DIR / "bullpen_savant.csv"
+
 FIELDS = [
     "team", "bullpen_pa", "bullpen_woba", "bullpen_xwoba", "bullpen_gap",
     "bullpen_hard_hit", "bullpen_k_pct", "pitchers_counted", "fetched_at"
