@@ -81,7 +81,7 @@ def fetch_team_pitchers(team_id: int) -> list[dict]:
         pid  = s.get("player", {}).get("id")
         stat = s.get("stat", {})
         gs   = int(stat.get("gamesStarted", 0) or 0)
-        gp   = int(stat.get("gamesPitched", 0) or 0)
+        gp   = int(stat.get("gamesPlayed", 0) or 0)
         if pid and gp > 0:
             pitchers.append({
                 "player_id":   pid,
