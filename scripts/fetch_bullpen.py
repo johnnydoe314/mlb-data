@@ -139,34 +139,97 @@ def fetch_people_stats(player_ids: list[int]) -> dict[int, dict]:
 
 # ── Savant loader ─────────────────────────────────────────────────────────────
 
+# Recency weights: current season valued 4x, halving each prior year
+RECENCY_WEIGHTS = {
+    YEAR:     4.0,   # 2026 — current season
+    YEAR - 1: 2.0,   # 2025 — last season
+    YEAR - 2: 1.0,   # 2024 — two seasons ago
+    YEAR - 3: 0.5,   # 2023 — three seasons ago
+}
+
+
 def load_savant(path):
-    savant = {}
+    """
+    Load Savant data with PA-weighted, recency-weighted averages.
+
+    For each pitcher, combine all available years using:
+        effective_weight = PA × recency_factor
+        weighted_metric  = Σ(metric × eff_weight) / Σ(eff_weight)
+
+    This gives:
+    - Current season data heavy influence when sample exists
+    - Historical data stabilises estimates for limited 2026 samples
+    - Same approach projection systems use (regress toward prior years)
+
+    Example pitcher:
+        2026: 40 PA  → eff_weight = 40 × 4.0 = 160  (22% of total)
+        2025: 210 PA → eff_weight = 210 × 2.0 = 420  (58% of total)
+        2024: 180 PA → eff_weight = 180 × 1.0 = 180  (25% of total)
+        Result: gap weighted 22% toward 2026, 58% toward 2025, 20% toward 2024
+    """
+    # Pass 1: collect all qualifying year rows per pitcher
+    all_years: dict[int, list] = {}
     with open(path, "r", encoding="utf-8-sig") as f:
-        content = f.read()
-    reader = csv.reader(io.StringIO(content))
+        raw = f.read()
+    reader = csv.reader(io.StringIO(raw))
     hdrs = [h.strip().strip('"') for h in next(reader)]
     for row in reader:
         d = dict(zip(hdrs, row))
-        if d.get("year") != str(YEAR):
-            continue
         try:
-            pid = int(d.get("player_id", 0))
-            pa  = int(d.get("pa", 0) or 0)
-            if not pid or pa < MIN_RP_PA:
+            pid  = int(d.get("player_id", 0))
+            year = int(d.get("year", 0))
+            pa   = int(d.get("pa", 0) or 0)
+            if not pid or pa < MIN_RP_PA or year not in RECENCY_WEIGHTS:
                 continue
-            if pid in savant and pa <= savant[pid]["pa"]:
-                continue
-            savant[pid] = {
+            all_years.setdefault(pid, []).append({
+                "year":     year,
                 "pa":       pa,
                 "woba":     float(d.get("woba", 0) or 0),
                 "xwoba":    float(d.get("xwoba", 0) or 0),
-                "gap":      round(float(d.get("woba", 0) or 0) -
-                                  float(d.get("xwoba", 0) or 0), 4),
                 "hard_hit": float(d.get("hard_hit_percent", 0) or 0),
                 "k_pct":    float(d.get("k_percent", 0) or 0),
-            }
+            })
         except (ValueError, KeyError):
             continue
+
+    # Pass 2: PA × recency weighted average per pitcher
+    savant = {}
+    has_2026 = has_prior_only = 0
+
+    for pid, entries in all_years.items():
+        total_eff_w = 0.0
+        metrics = {"woba": 0.0, "xwoba": 0.0, "hard_hit": 0.0, "k_pct": 0.0}
+        max_year = max(e["year"] for e in entries)
+
+        for e in entries:
+            eff_w = e["pa"] * RECENCY_WEIGHTS[e["year"]]
+            total_eff_w += eff_w
+            for m in metrics:
+                metrics[m] += e[m] * eff_w
+
+        if total_eff_w == 0:
+            continue
+
+        woba  = metrics["woba"]  / total_eff_w
+        xwoba = metrics["xwoba"] / total_eff_w
+        # Effective PA: sum of recency-weighted PA (represents signal strength)
+        eff_pa = int(total_eff_w / RECENCY_WEIGHTS[max_year])
+
+        savant[pid] = {
+            "pa":       eff_pa,
+            "woba":     round(woba, 4),
+            "xwoba":    round(xwoba, 4),
+            "gap":      round(woba - xwoba, 4),
+            "hard_hit": round(metrics["hard_hit"] / total_eff_w, 1),
+            "k_pct":    round(metrics["k_pct"]    / total_eff_w, 1),
+            "years":    sorted(set(e["year"] for e in entries), reverse=True),
+        }
+        if YEAR in [e["year"] for e in entries]:
+            has_2026 += 1
+        else:
+            has_prior_only += 1
+
+    print(f"    {len(savant)} pitchers | {has_2026} with 2026 data | {has_prior_only} prior-year only")
     return savant
 
 
