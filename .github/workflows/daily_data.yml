@@ -2,7 +2,9 @@ name: MLB Daily Data
 
 on:
   schedule:
-    - cron: '0 15 * * *'   # 10:00 AM CT daily
+  # Every hour from 10:00am CT through 8:00pm CT
+  - cron: '0 10-20 * * *'
+    timezone: "America/Chicago"
   workflow_dispatch:
 
 env:
