@@ -2,10 +2,20 @@ name: MLB Daily Data
 
 on:
   schedule:
-    # Once daily at 10:00 AM CT
-    # CT in summer = CDT = UTC-5  →  10am CT = 15:00 UTC
+    # ── 10:00 AM CT ──────────────────────────────────────────────────────────
+    # Full run: stats + bullpen + fatigue + odds
+    # CDT (summer) = UTC-5  →  10am CT = 15:00 UTC
     - cron: '0 15 * * *'
-  workflow_dispatch:
+
+    # ── 11:00 AM – 6:00 PM CT (hourly) ───────────────────────────────────────
+    # Partial run: stats + bullpen + fatigue only (no odds — API budget)
+    - cron: '0 16-23 * * *'
+
+    # ── 7:00 PM – 8:00 PM CT (hourly) ────────────────────────────────────────
+    # Crosses midnight UTC — split into separate cron entries
+    - cron: '0 0-1 * * *'
+
+  workflow_dispatch:   # always runs full pipeline when triggered manually
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
@@ -32,8 +42,12 @@ jobs:
       - name: Fetch bullpen usage + fatigue (bullpen_fatigue.csv)
         run: python scripts/fetch_bullpen_usage.py
 
+      # Odds only run at 10am CT (first cron) or on manual dispatch
+      # This keeps The-Odds-API usage at 16 calls/day = 480/month (free tier: 500)
       - name: Fetch all odds — full game + F5 (odds.csv + f5_odds.csv)
-        # 16 calls/day × 30 days = 480/month — within 500 free tier
+        if: >
+          github.event_name == 'workflow_dispatch' ||
+          github.event.schedule == '0 15 * * *'
         run: python scripts/fetch_all_odds.py
         env:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
@@ -44,6 +58,6 @@ jobs:
           git config user.email "bot@mlb-data"
           git add data/
           git diff --staged --quiet && echo "No changes to commit" || \
-            (git commit -m "Daily data $(date -u '+%Y-%m-%d')" && git push)
+            (git commit -m "Data update $(date -u '+%Y-%m-%d %H:%M UTC')" && git push)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
