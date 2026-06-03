@@ -69,7 +69,7 @@ def fetch_odds(api_key: str) -> list[dict]:
         "https://api.the-odds-api.com/v4/sports/baseball_mlb/odds/"
         f"?apiKey={api_key}"
         "&regions=us"
-        "&markets=h2h,spreads,totals"
+        "&markets=h2h,spreads,totals,h2h_h1,spreads_h1"
         "&oddsFormat=american"
         "&dateFormat=iso"
     )
