@@ -1,4 +1,4 @@
-name: MLB Stats Update
+name: MLB Daily Data
 
 on:
   schedule:
@@ -24,14 +24,15 @@ jobs:
       - name: Fetch pitcher Statcast (stats.csv)
         run: python scripts/fetch_stats.py
 
-      - name: Fetch team bullpen xwOBA data (bullpen.csv)
+      - name: Fetch bullpen xwOBA gaps (bullpen.csv)
         run: python scripts/fetch_bullpen.py
 
-      - name: Fetch bullpen usage + fatigue scores (bullpen_fatigue.csv)
+      - name: Fetch bullpen usage + fatigue (bullpen_fatigue.csv)
         run: python scripts/fetch_bullpen_usage.py
 
-      - name: Fetch F5 odds (f5_odds.csv)
-        run: python scripts/fetch_f5_odds.py
+      - name: Fetch all odds — full game + F5 (odds.csv + f5_odds.csv)
+        # 16 calls/day × 30 days = 480/month — within 500 free tier
+        run: python scripts/fetch_all_odds.py
         env:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
 
@@ -41,6 +42,6 @@ jobs:
           git config user.email "bot@mlb-data"
           git add data/
           git diff --staged --quiet && echo "No changes to commit" || \
-            (git commit -m "Daily data update $(date -u '+%Y-%m-%d')" && git push)
+            (git commit -m "Daily data $(date -u '+%Y-%m-%d')" && git push)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
