@@ -30,6 +30,11 @@ jobs:
       - name: Fetch bullpen usage + fatigue scores (bullpen_fatigue.csv)
         run: python scripts/fetch_bullpen_usage.py
 
+      - name: Fetch F5 odds (f5_odds.csv)
+        run: python scripts/fetch_f5_odds.py
+        env:
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+
       - name: Commit and push
         run: |
           git config user.name  "MLB Data Bot"
