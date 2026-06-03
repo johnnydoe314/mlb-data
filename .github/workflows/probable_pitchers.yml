@@ -2,13 +2,14 @@ name: MLB Probable Pitchers
 
 on:
   schedule:
-  # Every 30 min from 10:00am CT to 7:30pm CT
-  - cron: '0,30 10-19 * * *'
-    timezone: "America/Chicago"
-
-  # 8:00pm CT
-  - cron: '0 20 * * *'
-    timezone: "America/Chicago"
+    # Every 30 min, 10:00 AM – 8:00 PM CT
+    # CT in summer = CDT = UTC-5
+    # 10:00am-6:30pm CT = 15:00-23:30 UTC  (same calendar day)
+    - cron: '0,30 15-23 * * *'
+    # 7:00pm-7:30pm CT = 00:00-00:30 UTC   (crosses midnight UTC)
+    - cron: '0,30 0 * * *'
+    # 8:00pm CT = 01:00 UTC
+    - cron: '0 1 * * *'
   workflow_dispatch:
 
 env:
