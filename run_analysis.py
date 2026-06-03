@@ -32,7 +32,7 @@ except ImportError:
 # ─────────────────────────────────────────────────────────────────────────────
 
 GITHUB_RAW_BASE = (
-    "https://raw.githubusercontent.com/johnnydoe314/mlb-data/main/data"
+    "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/data"
 )
 
 DEFAULT_XLS      = "sportsref_download.xls"
@@ -202,16 +202,68 @@ def load_team_batting(path: Path) -> dict:
     return teams
 
 
-def compute(asn, hsn, at, ht, pitchers, teams):
+def load_bullpen(path: Path) -> dict:
+    """Load team bullpen xwOBA gap data."""
+    bp = {}
+    if not path.exists(): return bp
+    with open(path, newline="", encoding="utf-8-sig") as f:
+        for row in csv.DictReader(f):
+            t = row.get("team", "").strip()
+            if not t: continue
+            try:
+                bp[t] = {
+                    "gap":   float(row.get("bullpen_gap", 0) or 0),
+                    "k_pct": float(row.get("bullpen_k_pct", 0) or 0),
+                    "rps":   int(row.get("pitchers_counted", 0) or 0),
+                }
+            except: continue
+    return bp
+
+
+def load_fatigue(path: Path) -> dict:
+    """Load bullpen fatigue scores (from fetch_bullpen_usage.py)."""
+    fat = {}
+    if not path.exists(): return fat
+    with open(path, newline="", encoding="utf-8-sig") as f:
+        for row in csv.DictReader(f):
+            t = row.get("team", "").strip()
+            if not t: continue
+            try:
+                fat[t] = {
+                    "score":  float(row.get("fatigue_score", 1.0) or 1.0),
+                    "tired":  int(row.get("arms_tired", 0) or 0),
+                    "hi_lev": int(row.get("high_lev_available", 1) or 1),
+                }
+            except: continue
+    return fat
+
+
+def compute(asn, hsn, at, ht, pitchers, teams, bullpen=None, fatigue=None):
     a  = pitchers.get(asn)
     h  = pitchers.get(hsn)
     ab = teams.get(at)
     hb = teams.get(ht)
+    ba   = (bullpen or {}).get(at)
+    hb_bp = (bullpen or {}).get(ht)
+    fa   = (fatigue or {}).get(at, {"score": 1.0, "tired": 0, "hi_lev": 1})
+    fh   = (fatigue or {}).get(ht, {"score": 1.0, "tired": 0, "hi_lev": 1})
+
     sp = 0.0
     if a: sp += (a["gap"] * -100)
     if h: sp -= (h["gap"] * -100)
     bat = (ab["xwoba"] - hb["xwoba"]) * 100 if ab and hb else 0.0
-    raw = round(sp + bat, 2)
+
+    # Bullpen edge with fatigue adjustment
+    # Each team's gap discounted by their fatigue score (fresh=1.0, depleted<0.70)
+    bp = 0.0
+    if ba and hb_bp:
+        bp = round((ba["gap"] * fa["score"] - hb_bp["gap"] * fh["score"]) * -50, 2)
+    elif ba:
+        bp = round(ba["gap"] * fa["score"] * -50, 2)
+    elif hb_bp:
+        bp = round(hb_bp["gap"] * fh["score"] * 50, 2)
+
+    raw = round(sp + bat + bp, 2)
     park = PARK_ADJ.get(ht, 0)
     adj  = round(raw + (park if raw > 0 else -park if raw < 0 else 0), 2)
     aa   = abs(adj)
@@ -222,22 +274,34 @@ def compute(asn, hsn, at, ht, pitchers, teams):
     aligned  = std_bil or (sp_dom and aa >= 5)
     missing  = (asn and not a) or (hsn and not h)
     qualifies = aa >= 5 and aligned and not missing
-    return dict(sp_edge=sp, bat_edge=bat, park=park, raw=raw,
+
+    # Fatigue flags
+    fat_flags = []
+    if fa["score"] < 0.50: fat_flags.append(f"🔴{at}_BP_DEPLETED({fa['tired']}tired)")
+    elif fa["score"] < 0.70: fat_flags.append(f"🟡{at}_BP_TIRED({fa['tired']}tired)")
+    if fh["score"] < 0.50: fat_flags.append(f"🔴{ht}_BP_DEPLETED({fh['tired']}tired)")
+    elif fh["score"] < 0.70: fat_flags.append(f"🟡{ht}_BP_TIRED({fh['tired']}tired)")
+
+    return dict(sp_edge=sp, bat_edge=bat, bp_edge=bp, park=park, raw=raw,
                 adj=adj, abs=aa, band=band, model=model,
                 aligned=aligned, missing=missing, qualifies=qualifies,
                 sp_dominant=(sp_dom and not std_bil),
-                away_sp=a, home_sp=h, away_bat=ab, home_bat=hb)
+                away_sp=a, home_sp=h, away_bat=ab, home_bat=hb,
+                away_bp=ba, home_bp=hb_bp,
+                away_fatigue=fa, home_fatigue=fh,
+                fat_flags=fat_flags)
 
 
-def run_composite_analysis(games: list[dict], pitchers: dict, teams: dict):
+def run_composite_analysis(games: list[dict], pitchers: dict, teams: dict,
+                            bullpen: dict = None, fatigue: dict = None):
     print()
     print(c("═" * 68, "bold"))
     print(c("  COMPOSITE MODEL — FULL ANALYSIS", "bold", "cyan"))
     print(c("═" * 68, "bold"))
     print()
-    print(f"  {'Game':<13} {'SP':>6} {'BAT':>6} {'PRK':>5} {'ADJ':>7} "
+    print(f"  {'Game':<13} {'SP':>6} {'BAT':>6} {'BP':>5} {'PRK':>5} {'ADJ':>7} "
           f"{'Band':<5} {'Aln':>4} {'Model'}")
-    print(c("  " + "─" * 62, "dim"))
+    print(c("  " + "─" * 68, "dim"))
 
     qualifying = []
 
@@ -246,7 +310,7 @@ def run_composite_analysis(games: list[dict], pitchers: dict, teams: dict):
         home   = g.get("home_team", "?")
         asn    = g.get("away_pitcher", "TBD")
         hsn    = g.get("home_pitcher", "TBD")
-        r      = compute(asn, hsn, away, home, pitchers, teams)
+        r      = compute(asn, hsn, away, home, pitchers, teams, bullpen, fatigue)
 
         adj_col = ("green" if r["band"] == "8+" else
                    "yellow" if r["band"] == "5-8" else "dim")
@@ -255,10 +319,12 @@ def run_composite_analysis(games: list[dict], pitchers: dict, teams: dict):
                   (c("  ⚑","yellow") if (r["sp_dominant"] and not r["missing"]) else "")
 
         adj_str = c(f"{r['adj']:+.1f}", adj_col)
+        bp_str = f"{r.get('bp_edge',0.0):>+5.2f}"
+        fat_str = " " + " ".join(r.get("fat_flags",[])) if r.get("fat_flags") else ""
         print(f"  {away}@{home:<9} "
               f"{r['sp_edge']:>+6.1f} {r['bat_edge']:>+6.1f} "
-              f"{r['park']:>+5.1f} {adj_str:>7} "
-              f"{r['band']:<5} {aln_str:>4}  {r['model']}{flag}")
+              f"{bp_str} {r['park']:>+5.1f} {adj_str:>7} "
+              f"{r['band']:<5} {aln_str:>4}  {r['model']}{flag}{fat_str}")
 
         if r["qualifies"]:
             qualifying.append((g, r))
@@ -374,7 +440,16 @@ def main():
     # ── Load Statcast data (always, lightweight) ────────────────────────────
     pitchers = load_pitcher_statcast(Path(args.stats))
     teams    = load_team_batting(Path(args.statcast))
-    print(c(f"[DATA] {len(pitchers)} pitchers · {len(teams)} teams loaded",
+    # Try local path first, then data/ subdirectory (GitHub Actions layout)
+    from pathlib import Path as _P
+    def _find(name):
+        for p in [name, f"data/{name}"]:
+            if _P(p).exists(): return _P(p)
+        return _P(f"data/{name}")
+    bullpen  = load_bullpen(_find("bullpen.csv"))
+    fatigue  = load_fatigue(_find("bullpen_fatigue.csv"))
+    print(c(f"[DATA] {len(pitchers)} pitchers · {len(teams)} teams · "
+            f"{len(bullpen)} bullpen · {len(fatigue)} fatigue",
             "dim"), file=sys.stderr)
 
     # ── Get SP data ─────────────────────────────────────────────────────────
@@ -426,7 +501,7 @@ def main():
         print(c("[ANALYZE] No game data. Run without --analyze first.", "yellow"))
         return
 
-    qualifying = run_composite_analysis(games, pitchers, teams)
+    qualifying = run_composite_analysis(games, pitchers, teams, bullpen, fatigue)
 
     # Save qualifying plays
     if qualifying:
