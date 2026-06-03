@@ -249,8 +249,13 @@ def compute(asn, hsn, at, ht, pitchers, teams, bullpen=None, fatigue=None):
     fh   = (fatigue or {}).get(ht, {"score": 1.0, "tired": 0, "hi_lev": 1})
 
     sp = 0.0
-    if a: sp += (a["gap"] * -100)
-    if h: sp -= (h["gap"] * -100)
+    # gap = wOBA_allowed - xwOBA_allowed
+    # Positive gap → pitcher UNLUCKY (worse results than contact) → will IMPROVE → helps their team
+    # Negative gap → pitcher LUCKY  (better results than contact) → will REGRESS → hurts their team
+    # Away SP: positive gap improves AWAY → sp goes up; negative gap hurts AWAY → sp goes down
+    # Home SP: positive gap improves HOME → sp goes down; negative gap hurts HOME → sp goes up
+    if a: sp += (a["gap"] * 100)   # was: * -100 (sign was inverted — fixed)
+    if h: sp -= (h["gap"] * 100)   # was: * -100 (sign was inverted — fixed)
     bat = (ab["xwoba"] - hb["xwoba"]) * 100 if ab and hb else 0.0
 
     # Bullpen edge with fatigue adjustment
@@ -348,8 +353,8 @@ def run_composite_analysis(games: list[dict], pitchers: dict, teams: dict,
                 c(matchup,"bold"), band_str, adj_display, model_str, suffix))
             for nm, spd, role in [(asn, r["away_sp"], "Away"), (hsn, r["home_sp"], "Home")]:
                 if spd:
-                    d = (c("LUCKY→REGRESS","red") if spd["gap"]>0.02 else
-                         c("UNLUCKY→IMPROVE","green") if spd["gap"]<-0.02 else "neutral")
+                    d = (c("UNLUCKY→IMPROVE","green") if spd["gap"]>0.02 else
+                         c("LUCKY→REGRESS","red") if spd["gap"]<-0.02 else "neutral")
                     print(f"    {role} SP {nm}: "
                           f"gap {spd['gap']:+.3f}  HH%:{spd['hard_hit']:.0f}  "
                           f"K%:{spd['k_pct']:.0f}  →  {d}")
