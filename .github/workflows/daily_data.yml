@@ -61,3 +61,10 @@ jobs:
             (git commit -m "Data update $(date -u '+%Y-%m-%d %H:%M UTC')" && git push)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Log all games with composite scores (game_log.csv)
+        # Runs after odds fetch — logs every game's composite + lines
+        # Fills scores manually after games complete
+        run: python scripts/log_games.py
+        env:
+          PYTHONPATH: .
