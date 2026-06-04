@@ -1,0 +1,42 @@
+name: Backfill Game Log
+
+on:
+  workflow_dispatch:
+    inputs:
+      start_date:
+        description: 'Start date (YYYY-MM-DD)'
+        required: true
+        default: '2026-05-01'
+      end_date:
+        description: 'End date (YYYY-MM-DD)'
+        required: true
+        default: '2026-06-03'
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run backfill
+        run: |
+          python scripts/backfill_game_log.py \
+            --start ${{ github.event.inputs.start_date }} \
+            --end ${{ github.event.inputs.end_date }}
+
+      - name: Commit and push
+        run: |
+          git config user.name  "MLB Data Bot"
+          git config user.email "bot@mlb-data"
+          git add data/game_log.csv
+          git diff --staged --quiet && echo "No changes" || \
+            (git commit -m "Backfill game log ${{ github.event.inputs.start_date }} to ${{ github.event.inputs.end_date }}" && git push)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
