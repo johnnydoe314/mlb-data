@@ -150,35 +150,137 @@ def display_sp_slate(games: list[dict], pitchers: dict) -> list[dict]:
 
 
 # ─────────────────────────────────────────────────────────────────────────────
+# PITCHER PROJECTION — recency-weighted, sample-size-adjusted
+# ─────────────────────────────────────────────────────────────────────────────
+
+# 2026 MLB pitching baselines (pitchers-faced perspective)
+_LEAGUE_P = {
+    "gap":      0.000,   # wOBA − xwOBA averages ~0 by construction
+    "xwoba":    0.318,
+    "woba":     0.318,
+    "hard_hit": 37.0,
+    "k_pct":    22.0,
+    "bb_pct":    8.5,
+    "whiff":    25.0,
+}
+
+# Base year weights — must sum to 1.0
+_YR_W = {2026: 0.50, 2025: 0.25, 2024: 0.15, 2023: 0.10}
+
+# PA sample thresholds (PA ≈ IP × 4)
+_PA_STARTER  = 450   # ≈ 120 IP — full starter season
+_PA_RELIEVER = 160   # ≈ 40 IP  — full reliever season
+
+
+def _project_pitcher(seasons: dict) -> dict:
+    """Recency-weighted, sample-size-adjusted pitcher projection.
+
+    Args:
+        seasons: {year_int: {pa, woba, xwoba, gap, hard_hit, k_pct, bb_pct, whiff}}
+
+    Returns:
+        Projected stat dict. Keys match the old pipeline format plus metadata:
+          years_used, league_blend, pa (most recent season PA).
+
+    Missing seasons contribute 0 effective weight; their unused base weight
+    flows to a league-average baseline — it is never redistributed to other
+    seasons.  Small-sample seasons are partially regressed: effective weight
+    = base_weight × min(1, PA / threshold).
+
+    K% and BB% are opportunity-weighted (counts / PA) then regressed, rather
+    than averaging annual percentages.
+    """
+    is_starter = any(d["pa"] >= 350 for d in seasons.values())
+    threshold  = _PA_STARTER if is_starter else _PA_RELIEVER
+
+    # ── Effective weights ────────────────────────────────────────────────────
+    eff = {}
+    for yr, bw in _YR_W.items():
+        eff[yr] = 0.0 if yr not in seasons else bw * min(1.0, seasons[yr]["pa"] / threshold)
+
+    total_eff = sum(eff.values())
+    league_w  = max(0.0, 1.0 - total_eff)   # remainder → league average
+
+    # ── Simple stats: weighted mean + league-average fill ───────────────────
+    proj = {}
+    for stat in ("gap", "xwoba", "woba", "hard_hit", "whiff"):
+        val = sum(
+            seasons[yr][stat] * eff[yr]
+            for yr in _YR_W if yr in seasons and eff[yr] > 0
+        )
+        proj[stat] = round(val + _LEAGUE_P[stat] * league_w, 4)
+
+    # ── Rate stats: opportunity-weighted then regressed ──────────────────────
+    # Weight by (rate × PA × base_weight) / (PA × base_weight) to avoid
+    # small seasons skewing the average.
+    for stat in ("k_pct", "bb_pct"):
+        cnt_sum = sum(
+            seasons[yr][stat] * seasons[yr]["pa"] * _YR_W[yr]
+            for yr in _YR_W if yr in seasons and eff[yr] > 0
+        )
+        pa_sum = sum(
+            seasons[yr]["pa"] * _YR_W[yr]
+            for yr in _YR_W if yr in seasons and eff[yr] > 0
+        )
+        raw = (cnt_sum / pa_sum) if pa_sum > 0 else _LEAGUE_P[stat]
+        proj[stat] = round(raw * (1.0 - league_w) + _LEAGUE_P[stat] * league_w, 2)
+
+    # ── Metadata ─────────────────────────────────────────────────────────────
+    yrs = sorted(yr for yr in _YR_W if yr in seasons)
+    proj["years_used"]   = yrs
+    proj["league_blend"] = round(league_w, 3)
+    proj["pa"]           = seasons[max(yrs)]["pa"] if yrs else 0
+
+    return proj
+
+
+# ─────────────────────────────────────────────────────────────────────────────
 # COMPOSITE MODEL
 # ─────────────────────────────────────────────────────────────────────────────
 
 def load_pitcher_statcast(path: Path) -> dict:
-    pitchers = {}
-    if not path.exists(): return pitchers
+    """Load pitcher Statcast data and build recency-weighted projections.
+
+    Reads all available seasons (2023-2026) from stats.csv.  Each pitcher
+    receives a projected stat dict blended across seasons using _project_pitcher():
+      • Full seasons weighted by recency (50/25/15/10%).
+      • Partial seasons scaled by min(1, PA/threshold) before weighting.
+      • Missing seasons contribute 0; their unused weight flows to league avg.
+    """
+    MIN_PA   = 30
+    all_seas: dict = {}   # name -> {year_int -> stat_dict}
+
+    if not path.exists(): return {}
     with open(path, "r", encoding="utf-8-sig") as f:
         content = f.read()
-    reader = csv.reader(io.StringIO(content))
+    reader  = csv.reader(io.StringIO(content))
     headers = [h.strip().strip('"') for h in next(reader)]
+
     for row in reader:
-        d = dict(zip(headers, row))
-        if d.get("year") != "2026": continue
+        d    = dict(zip(headers, row))
         name = d.get("last_name, first_name", "").strip()
         if not name: continue
         try:
-            pa = int(d.get("pa", 0) or 0)
-            if name in pitchers and pa <= pitchers[name]["pa"]: continue
-            pitchers[name] = {
+            yr = int(d.get("year", 0) or 0)
+            pa = int(d.get("pa",   0) or 0)
+            if yr not in _YR_W or pa < MIN_PA: continue
+            entry = {
                 "pa":       pa,
-                "woba":     float(d.get("woba", 0)),
-                "xwoba":    float(d.get("xwoba", 0)),
-                "gap":      round(float(d.get("woba",0)) - float(d.get("xwoba",0)), 3),
-                "hard_hit": float(d.get("hard_hit_percent", 0)),
-                "whiff":    float(d.get("whiff_percent", 0)),
-                "k_pct":    float(d.get("k_percent", 0)),
+                "woba":     float(d.get("woba",             0) or 0),
+                "xwoba":    float(d.get("xwoba",            0) or 0),
+                "gap":      round(float(d.get("woba", 0) or 0) - float(d.get("xwoba", 0) or 0), 3),
+                "hard_hit": float(d.get("hard_hit_percent", 0) or 0),
+                "whiff":    float(d.get("whiff_percent",    0) or 0),
+                "k_pct":    float(d.get("k_percent",        0) or 0),
+                "bb_pct":   float(d.get("bb_percent",       0) or 0),
             }
+            # Prefer higher-PA entry if the same year appears twice
+            prev = all_seas.setdefault(name, {}).get(yr)
+            if prev is None or pa > prev["pa"]:
+                all_seas[name][yr] = entry
         except: continue
-    return pitchers
+
+    return {name: _project_pitcher(seas) for name, seas in all_seas.items()}
 
 
 def load_team_batting(path: Path) -> dict:
