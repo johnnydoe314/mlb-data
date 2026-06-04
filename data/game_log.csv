@@ -1,475 +1,68 @@
-game_date,away_team,home_team,away_sp,home_sp,away_gap,home_gap,sp_edge,bat_edge,bp_edge,park_adj,composite,band,model_dir,aligned,alignment_type,qualified,away_ml,home_ml,away_rl,home_rl,total,away_score,home_score,model_correct,bet_placed,bet_description,bet_result,notes,logged_at
-2026-06-04,SDP,PHI,"Giolito, Lucas","Wheeler, Zack",,,0.0,0.0,0.08,0,0.08,0-2,NEUT,0,NONE,0,179,-219,-120,-101,7.5,,,,0,,,,2026-06-04 06:27 UTC
-2026-06-04,BAL,BOS,"Rogers, Trevor","Bello, Brayan",,,0.0,0.0,-0.58,-1.5,0.92,0-2,NEUT,0,NONE,0,129,-156,-158,131,8.5,,,,0,,,,2026-06-04 06:27 UTC
-2026-06-04,CLE,NYY,"Cecconi, Slade","Rodón, Carlos",,,0.0,0.0,0.22,-1.5,-1.28,0-2,NEUT,0,NONE,0,129,-156,-170,140,7.5,,,,0,,,,2026-06-04 06:27 UTC
-2026-06-04,SFG,MIL,"Houser, Adrian","Crow, Coleman",,,0.0,0.0,0.25,0,0.25,0-2,NEUT,0,NONE,0,129,-156,-168,139,8.0,,,,0,,,,2026-06-04 06:27 UTC
-2026-06-04,TOR,ATL,TBD,"Sale, Chris",,,0.0,0.0,0.11,0,0.11,0-2,NEUT,0,NONE,0,123,-149,-168,139,8.0,,,,0,,,,2026-06-04 06:27 UTC
-2026-06-04,KCR,MIN,"Lugo, Seth","Morris, Andrew",,,0.0,0.0,0.25,0.5,0.75,0-2,NEUT,0,NONE,0,,,,,,,,,0,,,,2026-06-04 06:27 UTC
-2026-06-04,ATH,CHC,"Ginn, J.T.","Imanaga, Shota",,,0.0,0.0,-0.11,-1.0,0.89,0-2,NEUT,0,NONE,0,,,,,,,,,0,,,,2026-06-04 06:27 UTC
-2026-06-04,PIT,HOU,"Jones, Jared","Teng, Kai-Wei",,,0.0,0.0,0.11,-0.5,-0.39,0-2,NEUT,0,NONE,0,,,,,,,,,0,,,,2026-06-04 06:27 UTC
-2026-06-04,LAD,ARI,"Wrobleski, Justin","Nelson, Ryne",,,0.0,0.0,0.01,0,0.01,0-2,NEUT,0,NONE,0,,,,,,,,,0,,,,2026-06-04 06:27 UTC
-2026-05-01,ARI,CHC,TBD,TBD,,,0.0,0.0,0.0,-1.0,0.0,0-2,NEUT,0,NONE,0,,,,,,5,6,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-01,TEX,DET,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,5,4,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-01,CIN,PIT,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,1,9,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-01,MIL,WSH,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,6,1,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-01,BAL,NYY,TBD,TBD,,,0.0,0.0,0.0,-1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,2,7,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-01,HOU,BOS,TBD,TBD,,,0.0,0.0,0.0,-1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,1,3,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-01,SFG,TBR,TBD,TBD,,,0.0,0.0,0.0,0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,0,3,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-01,PHI,MIA,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,6,5,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-01,TOR,MIN,TBD,TBD,,,0.0,0.0,0.0,0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,7,3,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-01,LAD,STL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,2,7,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-01,ATL,COL,TBD,TBD,,,0.0,0.0,0.0,-3.0,0.0,0-2,NEUT,0,NONE,0,,,,,,8,6,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-01,NYM,LAA,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,4,3,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-01,CLE,ATH,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,8,5,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-01,CWS,SDP,TBD,TBD,,,0.0,0.0,0.0,1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,8,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-01,KCR,SEA,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,7,6,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-02,BAL,NYY,TBD,TBD,,,0.0,0.0,0.0,-1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,4,9,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-02,TOR,MIN,TBD,TBD,,,0.0,0.0,0.0,0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,11,4,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-02,ARI,CHC,TBD,TBD,,,0.0,0.0,0.0,-1.0,0.0,0-2,NEUT,0,NONE,0,,,,,,0,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-02,CLE,ATH,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,14,6,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-02,CIN,PIT,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,7,17,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-02,MIL,WSH,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,4,1,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-02,HOU,BOS,TBD,TBD,,,0.0,0.0,0.0,-1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,6,3,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-02,PHI,MIA,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,0,4,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-02,SFG,TBR,TBD,TBD,,,0.0,0.0,0.0,0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,1,5,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-02,LAD,STL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,2,3,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-02,TEX,DET,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,1,5,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-02,ATL,COL,TBD,TBD,,,0.0,0.0,0.0,-3.0,0.0,0-2,NEUT,0,NONE,0,,,,,,9,1,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-02,CWS,SDP,TBD,TBD,,,0.0,0.0,0.0,1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,4,0,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-02,NYM,LAA,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,3,4,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-02,KCR,SEA,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,3,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-03,TOR,MIN,TBD,TBD,,,0.0,0.0,0.0,0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,3,4,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-03,HOU,BOS,TBD,TBD,,,0.0,0.0,0.0,-1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,3,1,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-03,CIN,PIT,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,0,1,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-03,BAL,NYY,TBD,TBD,,,0.0,0.0,0.0,-1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,3,11,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-03,MIL,WSH,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,2,3,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-03,SFG,TBR,TBD,TBD,,,0.0,0.0,0.0,0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,1,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-03,PHI,MIA,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,7,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-03,LAD,STL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,4,1,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-03,ARI,CHC,TBD,TBD,,,0.0,0.0,0.0,-1.0,0.0,0-2,NEUT,0,NONE,0,,,,,,4,8,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-03,ATL,COL,TBD,TBD,,,0.0,0.0,0.0,-3.0,0.0,0-2,NEUT,0,NONE,0,,,,,,11,6,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-03,CLE,ATH,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,1,7,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-03,NYM,LAA,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,5,1,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-03,KCR,SEA,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,4,1,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-03,CWS,SDP,TBD,TBD,,,0.0,0.0,0.0,1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,3,4,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-03,TEX,DET,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,1,7,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-04,NYM,COL,TBD,TBD,,,0.0,0.0,0.0,-3.0,0.0,0-2,NEUT,0,NONE,0,,,,,,4,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-04,BOS,DET,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,5,4,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-04,TOR,TBR,TBD,TBD,,,0.0,0.0,0.0,0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,1,5,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-04,PHI,MIA,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,1,0,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-04,BAL,NYY,TBD,TBD,,,0.0,0.0,0.0,-1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,1,12,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-04,CIN,CHC,TBD,TBD,,,0.0,0.0,0.0,-1.0,0.0,0-2,NEUT,0,NONE,0,,,,,,4,5,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-04,CLE,KCR,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,2,6,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-04,MIL,STL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,3,6,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-04,LAD,HOU,TBD,TBD,,,0.0,0.0,0.0,-0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,8,3,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-04,CWS,LAA,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,6,0,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-04,ATL,SEA,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,4,5,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-04,SDP,SFG,TBD,TBD,,,0.0,0.0,0.0,1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,2,3,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-05,BOS,DET,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,10,3,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-05,TOR,TBR,TBD,TBD,,,0.0,0.0,0.0,0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,3,4,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-05,ATH,PHI,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,1,9,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-05,BAL,MIA,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,9,7,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-05,MIN,WSH,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,11,3,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-05,TEX,NYY,TBD,TBD,,,0.0,0.0,0.0,-1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,4,7,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-05,CIN,CHC,TBD,TBD,,,0.0,0.0,0.0,-1.0,0.0,0-2,NEUT,0,NONE,0,,,,,,2,3,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-05,CLE,KCR,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,3,5,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-05,LAD,HOU,TBD,TBD,,,0.0,0.0,0.0,-0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,1,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-05,CWS,LAA,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,3,4,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-05,PIT,ARI,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,0,9,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-05,ATL,SEA,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,3,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-05,SDP,SFG,TBD,TBD,,,0.0,0.0,0.0,1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,10,5,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-05,MIL,STL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,,,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-05,NYM,COL,TBD,TBD,,,0.0,0.0,0.0,-3.0,0.0,0-2,NEUT,0,NONE,0,,,,,,,,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-06,TOR,TBR,TBD,TBD,,,0.0,0.0,0.0,0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,0,3,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-06,MIL,STL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,6,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-06,LAD,HOU,TBD,TBD,,,0.0,0.0,0.0,-0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,12,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-06,SDP,SFG,TBD,TBD,,,0.0,0.0,0.0,1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,5,1,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-06,CWS,LAA,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,2,8,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-06,ATL,SEA,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,1,3,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-06,BOS,DET,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,4,0,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-06,ATH,PHI,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,3,6,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-06,BAL,MIA,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,7,4,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-06,MIN,WSH,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,2,15,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-06,TEX,NYY,TBD,TBD,,,0.0,0.0,0.0,-1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,6,1,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-06,CIN,CHC,TBD,TBD,,,0.0,0.0,0.0,-1.0,0.0,0-2,NEUT,0,NONE,0,,,,,,6,7,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-06,CLE,KCR,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,3,1,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-06,NYM,COL,TBD,TBD,,,0.0,0.0,0.0,-3.0,0.0,0-2,NEUT,0,NONE,0,,,,,,10,5,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-06,PIT,ARI,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,1,0,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-07,TEX,NYY,TBD,TBD,,,0.0,0.0,0.0,-1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,2,9,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-07,MIN,WSH,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,5,7,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-07,CLE,KCR,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,8,5,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-07,CIN,CHC,TBD,TBD,,,0.0,0.0,0.0,-1.0,0.0,0-2,NEUT,0,NONE,0,,,,,,3,8,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-07,NYM,COL,TBD,TBD,,,0.0,0.0,0.0,-3.0,0.0,0-2,NEUT,0,NONE,0,,,,,,2,6,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-07,PIT,ARI,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,4,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-07,ATH,PHI,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,12,1,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-07,BAL,MIA,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,3,4,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-07,TBR,BOS,TBD,TBD,,,0.0,0.0,0.0,-1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,8,4,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-07,STL,SDP,TBD,TBD,,,0.0,0.0,0.0,1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,2,1,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-08,HOU,CIN,TBD,TBD,,,0.0,0.0,0.0,-1.0,0.0,0-2,NEUT,0,NONE,0,,,,,,10,0,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-08,COL,PHI,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,9,7,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-08,ATH,BAL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,4,3,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-08,LAA,TOR,TBD,TBD,,,0.0,0.0,0.0,0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,0,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-08,TBR,BOS,TBD,TBD,,,0.0,0.0,0.0,-1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,0,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-08,WSH,MIA,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,3,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-08,MIN,CLE,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,4,6,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-08,DET,KCR,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,3,4,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-08,SEA,CWS,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,12,8,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-08,NYY,MIL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,0,6,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-08,CHC,TEX,TBD,TBD,,,0.0,0.0,0.0,-0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,7,1,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-08,NYM,ARI,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,3,1,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-08,STL,SDP,TBD,TBD,,,0.0,0.0,0.0,1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,6,0,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-08,ATL,LAD,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,1,3,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-08,PIT,SFG,TBD,TBD,,,0.0,0.0,0.0,1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,2,5,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-09,LAA,TOR,TBD,TBD,,,0.0,0.0,0.0,0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,1,14,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-09,ATH,BAL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,6,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-09,HOU,CIN,TBD,TBD,,,0.0,0.0,0.0,-1.0,0.0,0-2,NEUT,0,NONE,0,,,,,,1,3,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-09,WSH,MIA,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,7,8,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-09,COL,PHI,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,3,9,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-09,MIN,CLE,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,2,1,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-09,CHC,TEX,TBD,TBD,,,0.0,0.0,0.0,-0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,0,6,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-09,DET,KCR,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,1,5,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-09,SEA,CWS,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,1,6,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-09,NYY,MIL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,3,4,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-09,NYM,ARI,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,1,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-09,STL,SDP,TBD,TBD,,,0.0,0.0,0.0,1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,2,4,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-09,PIT,SFG,TBD,TBD,,,0.0,0.0,0.0,1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,13,3,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-09,ATL,LAD,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,7,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-09,TBR,BOS,TBD,TBD,,,0.0,0.0,0.0,-1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,,,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-10,WSH,MIA,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,2,5,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-10,ATH,BAL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,1,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-10,TBR,BOS,TBD,TBD,,,0.0,0.0,0.0,-1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,4,1,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-10,COL,PHI,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,0,6,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-10,LAA,TOR,TBD,TBD,,,0.0,0.0,0.0,0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,6,1,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-10,HOU,CIN,TBD,TBD,,,0.0,0.0,0.0,-1.0,0.0,0-2,NEUT,0,NONE,0,,,,,,0,5,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-10,MIN,CLE,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,5,4,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-10,SEA,CWS,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,1,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-10,NYY,MIL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,3,4,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-10,CHC,TEX,TBD,TBD,,,0.0,0.0,0.0,-0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,0,3,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-10,PIT,SFG,TBD,TBD,,,0.0,0.0,0.0,1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,6,7,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-10,NYM,ARI,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,1,5,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-10,STL,SDP,TBD,TBD,,,0.0,0.0,0.0,1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,2,3,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-10,ATL,LAD,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,7,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-10,DET,KCR,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,6,3,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-11,LAA,CLE,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,2,7,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-11,NYY,BAL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,2,3,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-11,TBR,TOR,TBD,TBD,,,0.0,0.0,0.0,0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,8,5,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-11,ARI,TEX,TBD,TBD,,,0.0,0.0,0.0,-0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,1,0,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-11,SEA,HOU,TBD,TBD,,,0.0,0.0,0.0,-0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,3,1,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-11,SFG,LAD,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,9,3,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-12,LAA,CLE,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,2,3,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-12,NYY,BAL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,6,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-12,WSH,CIN,TBD,TBD,,,0.0,0.0,0.0,-1.0,0.0,0-2,NEUT,0,NONE,0,,,,,,10,4,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-12,COL,PIT,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,1,3,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-12,PHI,BOS,TBD,TBD,,,0.0,0.0,0.0,-1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,2,1,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-12,TBR,TOR,TBD,TBD,,,0.0,0.0,0.0,0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,7,6,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-12,DET,NYM,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,2,10,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-12,CHC,ATL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,2,5,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-12,KCR,CWS,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,5,6,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-12,MIA,MIN,TBD,TBD,,,0.0,0.0,0.0,0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,0,3,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-12,SDP,MIL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,4,6,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-12,ARI,TEX,TBD,TBD,,,0.0,0.0,0.0,-0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,4,7,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-12,SEA,HOU,TBD,TBD,,,0.0,0.0,0.0,-0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,10,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-12,STL,ATH,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,6,4,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-12,SFG,LAD,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,6,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-13,NYY,BAL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,0,7,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-13,LAA,CLE,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,2,4,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-13,WSH,CIN,TBD,TBD,,,0.0,0.0,0.0,-1.0,0.0,0-2,NEUT,0,NONE,0,,,,,,8,7,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-13,COL,PIT,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,10,4,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-13,PHI,BOS,TBD,TBD,,,0.0,0.0,0.0,-1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,1,3,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-13,TBR,TOR,TBD,TBD,,,0.0,0.0,0.0,0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,3,5,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-13,DET,NYM,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,2,3,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-13,CHC,ATL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,1,4,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-13,KCR,CWS,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,5,6,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-13,MIA,MIN,TBD,TBD,,,0.0,0.0,0.0,0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,9,5,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-13,SDP,MIL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,3,1,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-13,ARI,TEX,TBD,TBD,,,0.0,0.0,0.0,-0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,5,6,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-13,SEA,HOU,TBD,TBD,,,0.0,0.0,0.0,-0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,3,4,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-13,STL,ATH,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,2,6,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-13,SFG,LAD,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,0,4,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-14,COL,PIT,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,2,7,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-14,WSH,CIN,TBD,TBD,,,0.0,0.0,0.0,-1.0,0.0,0-2,NEUT,0,NONE,0,,,,,,1,15,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-14,DET,NYM,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,4,9,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-14,MIA,MIN,TBD,TBD,,,0.0,0.0,0.0,0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,1,9,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-14,SDP,MIL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,1,7,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-14,SEA,HOU,TBD,TBD,,,0.0,0.0,0.0,-0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,8,3,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-14,STL,ATH,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,5,4,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-14,PHI,BOS,TBD,TBD,,,0.0,0.0,0.0,-1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,3,1,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-14,CHC,ATL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,2,0,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-14,KCR,CWS,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,2,6,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-14,SFG,LAD,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,2,5,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-15,PHI,PIT,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,11,9,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-15,BAL,WSH,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,2,3,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-15,TOR,DET,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,2,3,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-15,CIN,CLE,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,7,6,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-15,MIA,TBR,TBD,TBD,,,0.0,0.0,0.0,0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,2,7,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-15,MIL,MIN,TBD,TBD,,,0.0,0.0,0.0,0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,3,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-15,BOS,ATL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,2,3,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-15,NYY,NYM,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,5,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-15,CHC,CWS,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,10,5,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-15,TEX,HOU,TBD,TBD,,,0.0,0.0,0.0,-0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,0,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-15,KCR,STL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,4,5,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-15,ARI,COL,TBD,TBD,,,0.0,0.0,0.0,-3.0,0.0,0-2,NEUT,0,NONE,0,,,,,,9,1,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-15,LAD,LAA,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,6,0,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-15,SDP,SEA,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,2,0,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-15,SFG,ATH,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,2,5,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-16,TOR,DET,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,2,1,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-16,KCR,STL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,2,4,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-16,ARI,COL,TBD,TBD,,,0.0,0.0,0.0,-3.0,0.0,0-2,NEUT,0,NONE,0,,,,,,2,4,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-16,BAL,WSH,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,3,13,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-16,PHI,PIT,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,6,0,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-16,MIA,TBR,TBD,TBD,,,0.0,0.0,0.0,0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,10,5,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-16,CIN,CLE,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,4,7,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-16,TEX,HOU,TBD,TBD,,,0.0,0.0,0.0,-0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,1,4,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-16,CHC,CWS,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,3,8,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-16,MIL,MIN,TBD,TBD,,,0.0,0.0,0.0,0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,2,1,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-16,SDP,SEA,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,7,4,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-16,BOS,ATL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,3,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-16,NYY,NYM,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,3,6,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-16,LAD,LAA,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,15,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-16,SFG,ATH,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,6,4,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-17,MIA,TBR,TBD,TBD,,,0.0,0.0,0.0,0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,3,6,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-17,BAL,WSH,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,7,3,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-17,PHI,PIT,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,6,0,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-17,BOS,ATL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,1,8,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-17,CIN,CLE,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,3,10,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-17,TOR,DET,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,4,1,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-17,NYY,NYM,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,6,7,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-17,TEX,HOU,TBD,TBD,,,0.0,0.0,0.0,-0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,8,0,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-17,CHC,CWS,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,8,9,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-17,MIL,MIN,TBD,TBD,,,0.0,0.0,0.0,0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,4,5,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-17,KCR,STL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,2,0,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-17,ARI,COL,TBD,TBD,,,0.0,0.0,0.0,-3.0,0.0,0-2,NEUT,0,NONE,0,,,,,,8,6,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-17,SFG,ATH,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,10,1,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-17,LAD,LAA,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,10,1,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-17,SDP,SEA,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,8,3,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-18,CLE,DET,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,8,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-18,BAL,TBR,TBD,TBD,,,0.0,0.0,0.0,0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,6,16,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-18,CIN,PHI,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,4,5,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-18,ATL,MIA,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,0,12,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-18,NYM,WSH,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,16,7,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-18,TOR,NYY,TBD,TBD,,,0.0,0.0,0.0,-1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,6,7,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-18,BOS,KCR,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,3,1,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-18,HOU,MIN,TBD,TBD,,,0.0,0.0,0.0,0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,3,6,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-18,MIL,CHC,TBD,TBD,,,0.0,0.0,0.0,-1.0,0.0,0-2,NEUT,0,NONE,0,,,,,,9,3,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-18,TEX,COL,TBD,TBD,,,0.0,0.0,0.0,-3.0,0.0,0-2,NEUT,0,NONE,0,,,,,,6,7,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-18,ATH,LAA,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,1,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-18,LAD,SDP,TBD,TBD,,,0.0,0.0,0.0,1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,0,1,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-18,SFG,ARI,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,2,12,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-18,CWS,SEA,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,1,6,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-19,ATL,MIA,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,8,4,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-19,CLE,DET,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,4,3,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-19,BAL,TBR,TBD,TBD,,,0.0,0.0,0.0,0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,1,4,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-19,CIN,PHI,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,4,1,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-19,NYM,WSH,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,6,9,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-19,TOR,NYY,TBD,TBD,,,0.0,0.0,0.0,-1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,4,5,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-19,BOS,KCR,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,7,1,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-19,HOU,MIN,TBD,TBD,,,0.0,0.0,0.0,0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,2,1,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-19,MIL,CHC,TBD,TBD,,,0.0,0.0,0.0,-1.0,0.0,0-2,NEUT,0,NONE,0,,,,,,5,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-19,PIT,STL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,6,9,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-19,TEX,COL,TBD,TBD,,,0.0,0.0,0.0,-3.0,0.0,0-2,NEUT,0,NONE,0,,,,,,10,0,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-19,ATH,LAA,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,14,6,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-19,LAD,SDP,TBD,TBD,,,0.0,0.0,0.0,1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,5,4,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-19,SFG,ARI,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,3,5,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-19,CWS,SEA,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,2,1,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-20,CIN,PHI,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,9,4,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-20,BAL,TBR,TBD,TBD,,,0.0,0.0,0.0,0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,3,5,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-20,HOU,MIN,TBD,TBD,,,0.0,0.0,0.0,0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,1,4,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-20,TEX,COL,TBD,TBD,,,0.0,0.0,0.0,-3.0,0.0,0-2,NEUT,0,NONE,0,,,,,,5,4,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-20,SFG,ARI,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,3,6,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-20,CWS,SEA,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,4,5,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-20,CLE,DET,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,3,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-20,ATL,MIA,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,9,1,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-20,NYM,WSH,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,4,8,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-20,TOR,NYY,TBD,TBD,,,0.0,0.0,0.0,-1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,2,1,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-20,BOS,KCR,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,4,3,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-20,MIL,CHC,TBD,TBD,,,0.0,0.0,0.0,-1.0,0.0,0-2,NEUT,0,NONE,0,,,,,,5,0,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-20,PIT,STL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,7,0,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-20,LAD,SDP,TBD,TBD,,,0.0,0.0,0.0,1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,4,0,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-20,ATH,LAA,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,6,5,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-21,CLE,DET,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,3,1,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-21,PIT,STL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,6,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-21,NYM,WSH,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,2,1,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-21,ATL,MIA,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,9,3,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-21,TOR,NYY,TBD,TBD,,,0.0,0.0,0.0,-1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,2,0,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-21,ATH,LAA,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,3,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-21,COL,ARI,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,1,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-22,HOU,CHC,TBD,TBD,,,0.0,0.0,0.0,-1.0,0.0,0-2,NEUT,0,NONE,0,,,,,,4,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-22,CLE,PHI,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,1,0,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-22,TBR,NYY,TBD,TBD,,,0.0,0.0,0.0,-1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,4,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-22,PIT,TOR,TBD,TBD,,,0.0,0.0,0.0,0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,2,6,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-22,MIN,BOS,TBD,TBD,,,0.0,0.0,0.0,-1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,8,6,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-22,NYM,MIA,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,1,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-22,DET,BAL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,4,7,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-22,WSH,ATL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,4,5,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-22,SEA,KCR,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,2,0,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-22,LAD,MIL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,1,5,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-22,TEX,LAA,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,6,9,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-22,COL,ARI,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,3,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-22,ATH,SDP,TBD,TBD,,,0.0,0.0,0.0,1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,3,7,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-22,CWS,SFG,TBD,TBD,,,0.0,0.0,0.0,1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,9,4,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-22,STL,CIN,TBD,TBD,,,0.0,0.0,0.0,-1.0,0.0,0-2,NEUT,0,NONE,0,,,,,,,,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-23,STL,CIN,TBD,TBD,,,0.0,0.0,0.0,-1.0,0.0,0-2,NEUT,0,NONE,0,,,,,,8,1,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-23,STL,CIN,TBD,TBD,,,0.0,0.0,0.0,-1.0,0.0,0-2,NEUT,0,NONE,0,,,,,,6,7,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-23,HOU,CHC,TBD,TBD,,,0.0,0.0,0.0,-1.0,0.0,0-2,NEUT,0,NONE,0,,,,,,3,0,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-23,PIT,TOR,TBD,TBD,,,0.0,0.0,0.0,0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,2,5,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-23,CLE,PHI,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,0,3,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-23,CWS,SFG,TBD,TBD,,,0.0,0.0,0.0,1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,3,10,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-23,SEA,KCR,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,0,5,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-23,MIN,BOS,TBD,TBD,,,0.0,0.0,0.0,-1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,4,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-23,WSH,ATL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,2,0,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-23,NYM,MIA,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,1,4,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-23,LAD,MIL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,11,3,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-23,ATH,SDP,TBD,TBD,,,0.0,0.0,0.0,1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,0,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-23,TEX,LAA,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,2,5,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-23,COL,ARI,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,4,5,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-23,TBR,NYY,TBD,TBD,,,0.0,0.0,0.0,-1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,,,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-23,DET,BAL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,,,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-24,PIT,TOR,TBD,TBD,,,0.0,0.0,0.0,0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,4,1,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-24,DET,BAL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,3,5,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-24,DET,BAL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,4,1,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-24,MIN,BOS,TBD,TBD,,,0.0,0.0,0.0,-1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,6,5,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-24,CLE,PHI,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,3,1,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-24,TBR,NYY,TBD,TBD,,,0.0,0.0,0.0,-1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,0,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-24,NYM,MIA,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,0,4,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-24,SEA,KCR,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,6,8,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-24,LAD,MIL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,5,1,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-24,HOU,CHC,TBD,TBD,,,0.0,0.0,0.0,-1.0,0.0,0-2,NEUT,0,NONE,0,,,,,,8,5,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-24,CWS,SFG,TBD,TBD,,,0.0,0.0,0.0,1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,5,8,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-24,COL,ARI,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,1,9,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-24,ATH,SDP,TBD,TBD,,,0.0,0.0,0.0,1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,5,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-24,WSH,ATL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,2,1,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-24,TEX,LAA,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,1,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-24,STL,CIN,TBD,TBD,,,0.0,0.0,0.0,-1.0,0.0,0-2,NEUT,0,NONE,0,,,,,,,,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-25,CHC,PIT,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,1,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-25,TBR,BAL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,7,9,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-25,MIN,CWS,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,1,3,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-25,STL,MIL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,1,5,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-25,NYY,KCR,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,4,3,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-25,CIN,NYM,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,7,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-25,ARI,SFG,TBD,TBD,,,0.0,0.0,0.0,1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,6,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-25,WSH,CLE,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,10,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-25,PHI,SDP,TBD,TBD,,,0.0,0.0,0.0,1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,3,0,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-25,HOU,TEX,TBD,TBD,,,0.0,0.0,0.0,-0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,9,0,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-25,MIA,TOR,TBD,TBD,,,0.0,0.0,0.0,0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,8,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-25,COL,LAD,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,3,5,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-25,SEA,ATH,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,9,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-26,WSH,CLE,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,6,3,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-26,TBR,BAL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,1,6,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-26,LAA,DET,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,10,6,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-26,CHC,PIT,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,1,12,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-26,ATL,BOS,TBD,TBD,,,0.0,0.0,0.0,-1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,7,6,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-26,MIA,TOR,TBD,TBD,,,0.0,0.0,0.0,0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,1,8,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-26,CIN,NYM,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,7,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-26,MIN,CWS,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,5,3,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-26,NYY,KCR,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,15,1,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-26,STL,MIL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,0,6,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-26,HOU,TEX,TBD,TBD,,,0.0,0.0,0.0,-0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,7,10,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-26,SEA,ATH,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,4,1,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-26,PHI,SDP,TBD,TBD,,,0.0,0.0,0.0,1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,4,3,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-26,ARI,SFG,TBD,TBD,,,0.0,0.0,0.0,1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,7,5,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-26,COL,LAD,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,6,15,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-27,MIA,TOR,TBD,TBD,,,0.0,0.0,0.0,0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,1,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-27,WSH,CLE,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,2,3,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-27,STL,MIL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,1,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-27,SEA,ATH,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,9,1,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-27,ARI,SFG,TBD,TBD,,,0.0,0.0,0.0,1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,3,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-27,PHI,SDP,TBD,TBD,,,0.0,0.0,0.0,1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,3,0,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-27,TBR,BAL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,2,11,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-27,LAA,DET,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,0,4,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-27,CHC,PIT,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,10,4,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-27,ATL,BOS,TBD,TBD,,,0.0,0.0,0.0,-1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,0,8,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-27,CIN,NYM,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,2,4,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-27,MIN,CWS,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,2,15,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-27,NYY,KCR,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,7,0,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-27,HOU,TEX,TBD,TBD,,,0.0,0.0,0.0,-0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,4,3,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-27,COL,LAD,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,1,4,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-28,LAA,DET,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,7,1,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-28,MIN,CWS,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,2,6,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-28,ATL,BOS,TBD,TBD,,,0.0,0.0,0.0,-1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,10,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-28,TOR,BAL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,2,1,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-28,CHC,PIT,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,7,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-28,HOU,TEX,TBD,TBD,,,0.0,0.0,0.0,-0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,5,1,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-29,ATL,CIN,TBD,TBD,,,0.0,0.0,0.0,-1.0,0.0,0-2,NEUT,0,NONE,0,,,,,,8,3,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-29,SDP,WSH,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,7,5,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-29,MIN,PIT,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,5,6,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-29,TOR,BAL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,6,5,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-29,BOS,CLE,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,3,4,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-29,LAA,TBR,TBD,TBD,,,0.0,0.0,0.0,0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,5,8,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-29,MIA,NYM,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,7,9,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-29,CHC,STL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,5,6,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-29,DET,CWS,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,3,4,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-29,KCR,TEX,TBD,TBD,,,0.0,0.0,0.0,-0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,1,9,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-29,MIL,HOU,TBD,TBD,,,0.0,0.0,0.0,-0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,5,4,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-29,SFG,COL,TBD,TBD,,,0.0,0.0,0.0,-3.0,0.0,0-2,NEUT,0,NONE,0,,,,,,6,8,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-29,NYY,ATH,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,8,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-29,ARI,SEA,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,6,7,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-29,PHI,LAD,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,2,4,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-30,DET,CWS,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,1,7,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-30,SDP,WSH,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,4,9,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-30,KCR,TEX,TBD,TBD,,,0.0,0.0,0.0,-0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,6,7,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-30,TOR,BAL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,5,6,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-30,MIN,PIT,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,9,10,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-30,BOS,CLE,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,9,1,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-30,LAA,TBR,TBD,TBD,,,0.0,0.0,0.0,0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,14,3,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-30,MIA,NYM,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,1,6,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-30,MIL,HOU,TBD,TBD,,,0.0,0.0,0.0,-0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,2,9,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-30,CHC,STL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,6,1,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-30,ATL,CIN,TBD,TBD,,,0.0,0.0,0.0,-1.0,0.0,0-2,NEUT,0,NONE,0,,,,,,5,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-30,SFG,COL,TBD,TBD,,,0.0,0.0,0.0,-3.0,0.0,0-2,NEUT,0,NONE,0,,,,,,3,8,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-30,NYY,ATH,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,4,6,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-30,ARI,SEA,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,1,5,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-30,PHI,LAD,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,4,3,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-31,TOR,BAL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,5,9,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-31,SDP,WSH,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,2,4,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-31,MIN,PIT,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,3,9,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-31,BOS,CLE,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,9,4,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-31,LAA,TBR,TBD,TBD,,,0.0,0.0,0.0,0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,2,5,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-31,ATL,CIN,TBD,TBD,,,0.0,0.0,0.0,-1.0,0.0,0-2,NEUT,0,NONE,0,,,,,,4,6,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-31,MIA,NYM,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,1,10,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-31,DET,CWS,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,1,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-31,MIL,HOU,TBD,TBD,,,0.0,0.0,0.0,-0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,2,0,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-31,KCR,TEX,TBD,TBD,,,0.0,0.0,0.0,-0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,3,6,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-31,SFG,COL,TBD,TBD,,,0.0,0.0,0.0,-3.0,0.0,0-2,NEUT,0,NONE,0,,,,,,19,6,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-31,NYY,ATH,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,13,8,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-31,ARI,SEA,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,2,3,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-31,PHI,LAD,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,1,9,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-05-31,CHC,STL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,1,5,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-06-01,DET,TBR,TBD,TBD,,,0.0,0.0,0.0,0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,10,9,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-06-01,MIA,WSH,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,7,3,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-06-01,KCR,CIN,TBD,TBD,,,0.0,0.0,0.0,-1.0,0.0,0-2,NEUT,0,NONE,0,,,,,,9,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-06-01,CWS,MIN,TBD,TBD,,,0.0,0.0,0.0,0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,6,9,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-06-01,SFG,MIL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,2,16,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-06-01,TEX,STL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,2,1,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-06-01,COL,LAA,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,9,8,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-06-01,LAD,ARI,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,1,4,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-06-01,NYM,SEA,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,2,3,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-06-02,DET,TBR,TBD,TBD,,,0.0,0.0,0.0,0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,8,0,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-06-02,SDP,PHI,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,2,3,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-06-02,BAL,BOS,TBD,TBD,,,0.0,0.0,0.0,-1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,4,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-06-02,MIA,WSH,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,7,3,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-06-02,CLE,NYY,TBD,TBD,,,0.0,0.0,0.0,-1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,9,4,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-06-02,KCR,CIN,TBD,TBD,,,0.0,0.0,0.0,-1.0,0.0,0-2,NEUT,0,NONE,0,,,,,,3,4,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-06-02,TOR,ATL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,3,4,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-06-02,CWS,MIN,TBD,TBD,,,0.0,0.0,0.0,0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,4,6,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-06-02,SFG,MIL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,3,8,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-06-02,TEX,STL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,7,4,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-06-02,ATH,CHC,TBD,TBD,,,0.0,0.0,0.0,-1.0,0.0,0-2,NEUT,0,NONE,0,,,,,,2,1,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-06-02,PIT,HOU,TBD,TBD,,,0.0,0.0,0.0,-0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,10,6,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-06-02,COL,LAA,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,8,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-06-02,LAD,ARI,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,6,5,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-06-02,NYM,SEA,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,3,8,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-06-03,MIA,WSH,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,4,1,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-06-03,DET,TBR,TBD,TBD,,,0.0,0.0,0.0,0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,7,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-06-03,CWS,MIN,TBD,TBD,,,0.0,0.0,0.0,0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,8,0,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-06-03,NYM,SEA,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,7,1,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-06-03,SDP,PHI,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,2,3,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-06-03,BAL,BOS,TBD,TBD,,,0.0,0.0,0.0,-1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,1,8,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-06-03,CLE,NYY,TBD,TBD,,,0.0,0.0,0.0,-1.5,0.0,0-2,NEUT,0,NONE,0,,,,,,5,4,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-06-03,KCR,CIN,TBD,TBD,,,0.0,0.0,0.0,-1.0,0.0,0-2,NEUT,0,NONE,0,,,,,,5,2,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-06-03,TOR,ATL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,3,7,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-06-03,SFG,MIL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,1,0,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-06-03,TEX,STL,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,3,5,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-06-03,ATH,CHC,TBD,TBD,,,0.0,0.0,0.0,-1.0,0.0,0-2,NEUT,0,NONE,0,,,,,,5,4,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-06-03,PIT,HOU,TBD,TBD,,,0.0,0.0,0.0,-0.5,0.0,0-2,NEUT,0,NONE,0,,,,,,9,11,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-06-03,COL,LAA,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,4,11,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
-2026-06-03,LAD,ARI,TBD,TBD,,,0.0,0.0,0.0,0,0.0,0-2,NEUT,0,NONE,0,,,,,,7,0,,0,,,backfill — composite uses current stats (approx),2026-06-04 06:56 UTC
+"game_date","away_team","home_team","away_sp","home_sp","away_gap","home_gap","sp_edge","bat_edge","bp_edge","park_adj","composite","band","model_dir","aligned","alignment_type","qualified","away_ml","home_ml","away_rl","home_rl","total","away_score","home_score","model_correct","bet_placed","bet_description","bet_result","notes","logged_at"
+"2026-05-20","ATL","MIA","Sale, Chris","TBD","+0.022","","3.7","2.9","0.0","0.0","6.6","5-8","AWAY","1","BILATERAL","1","","","","","","9","1","1","1","ATL ML -1.5","WIN","OLD formula","2026-06-04 14:20 UTC"
+"2026-05-20","MIL","CHC","TBD","Harrison, Kyle","","-0.003","0.0","-1.4","0.0","-1.0","-1.7","0-2","NEUT","0","NONE","0","","","","","","5","0","","1","MIL ML","WIN","OLD formula; SP data partial","2026-06-04 14:20 UTC"
+"2026-05-20","LAD","SDP","Ohtani, Shohei","TBD","-0.028","","2.8","2.6","0.0","1.5","5.4","5-8","AWAY","1","BILATERAL","1","","","","","","4","0","1","1","LAD -1.5","WIN","OLD formula","2026-06-04 14:20 UTC"
+"2026-05-20","CWS","SEA","Burke, Sean","Hancock, Emerson","-0.025","-0.038","-1.9","0.0","0.0","0.0","-1.9","0-2","NEUT","0","NONE","0","","","","","","0","9","","1","CWS@SEA u7.5","LOSS","OLD formula; 9 total runs; UNDER loss","2026-06-04 14:20 UTC"
+"2026-05-21","PIT","STL","Ashcraft, Braxton","McGreevy, Michael","","","-10.9","-0.2","0.0","0.0","-11.1","8+","HOME","1","SP-DOM","0","","","","","","6","2","0","1","PIT ML (model disagreed)","WIN","OLD formula; model HOME/STL; we bet PIT","2026-06-04 14:20 UTC"
+"2026-05-21","ATL","MIA","TBD","TBD","","","0.0","2.9","0.0","0.0","2.9","2-5","AWAY","0","NONE","0","","","","","","9","3","1","1","ATL -1.5","WIN","OLD formula; SP data unavailable","2026-06-04 14:20 UTC"
+"2026-05-21","TOR","NYY","TBD","TBD","","","0.0","-3.8","0.0","-1.5","-3.8","2-5","HOME","0","NONE","0","","","","","","2","0","0","1","TOR ML","WIN","OLD formula; SP data unavailable","2026-06-04 14:20 UTC"
+"2026-05-21","NYM","WSH","Peterson, David","TBD","+0.012","","0.0","-1.3","0.0","0.0","-1.3","0-2","NEUT","0","NONE","0","","","","","","","","","1","NYM/WSH o7.5","LOSS","OLD formula; OVER loss 3 total runs","2026-06-04 14:20 UTC"
+"2026-05-22","HOU","CHC","Arrighetti, Spencer","Taillon, Jameson","-0.075","","7.8","-0.3","0.0","-1.0","7.5","5-8","AWAY","1","SP-DOM","0","","","","","","4","2","1","1","HOU ML","WIN","OLD formula; Arrighetti unlucky signal","2026-06-04 14:20 UTC"
+"2026-05-22","ATL","WSH","Elder, Bryce","TBD","-0.023","","2.5","0.2","0.0","0.0","2.7","2-5","AWAY","0","NONE","0","","","","","","5","4","1","1","ATL -1.5","WIN","OLD formula","2026-06-04 14:20 UTC"
+"2026-05-22","NYM","MIA","Peralta, Freddy","Pérez, Eury","","","-1.6","1.3","0.0","0.0","-0.3","0-2","NEUT","0","NONE","0","","","","","","1","2","","1","NYM ML","LOSS","OLD formula; MIA 2-1","2026-06-04 14:20 UTC"
+"2026-05-23","PHI","CLE","Cecconi, Slade","TBD","","","-1.2","1.4","0.0","0.0","0.2","0-2","NEUT","0","NONE","0","","","","","","3","0","","1","PHI -1.5","WIN","OLD formula; SP partial","2026-06-04 14:20 UTC"
+"2026-05-23","SEA","KCR","Kirby, George","TBD","","","-0.9","1.4","0.0","0.5","0.5","0-2","NEUT","0","NONE","0","","","","","","0","5","","1","SEA -1.5","LOSS","OLD formula; KC 5-0","2026-06-04 14:20 UTC"
+"2026-05-23","NYM","MIA","Peralta, Freddy","Meyer, Max","","","-5.0","1.3","0.0","0.0","-3.7","2-5","HOME","0","SP-DOM","0","","","","","","1","4","1","1","MIA ML (home)","WIN","OLD formula; MIA 4-1","2026-06-04 14:20 UTC"
+"2026-05-24","CLE","PHI","Messick, Parker","Painter, Andrew","","+0.020","1.4","-1.4","0.0","0.0","2.0","2-5","NEUT","0","NONE","0","","","","","","3","1","","1","CLE -1.5","WIN","OLD formula; CLE 3-1","2026-06-04 14:20 UTC"
+"2026-05-24","TBR","NYY","Rasmussen, Drew","Weathers, Ryan","","","0.2","-3.3","0.0","-1.5","-3.1","2-5","HOME","0","NONE","0","","","","","","0","2","1","1","TBR ML","LOSS","OLD formula; NYY 2-0","2026-06-04 14:20 UTC"
+"2026-05-24","LAD","MIL","Yamamoto, Yoshinobu","Sproat, Brandon","","+0.029","5.7","3.7","0.0","0.0","9.4","8+","AWAY","1","BILATERAL","0","","","","","","5","1","1","1","LAD -1.5","WIN","OLD formula; LAD 5-1","2026-06-04 14:20 UTC"
+"2026-05-24","PIT","TOR","Keller, Mitch","Cease, Dylan","","","5.7","2.2","0.0","0.5","7.9","5-8","AWAY","1","BILATERAL","0","","","","","","4","1","1","1","TOR -1.5 (home)","LOSS","OLD formula; model AWAY/PIT; bet TOR; PIT 4-1","2026-06-04 14:20 UTC"
+"2026-05-25","TBR","BAL","McClanahan, Shane","Bradish, Kyle","-0.056","+0.021","7.7","-1.4","0.0","0.0","6.3","5-8","AWAY","1","SP-DOM","1","","","","","","7","9","0","1","TBR ML","LOSS","OLD formula; BAL 9-7","2026-06-04 14:20 UTC"
+"2026-05-25","MIA","TOR","Junk, Janson","TBD","","","-2.1","0.1","0.0","0.5","-2.0","2-5","NEUT","0","NONE","0","","","","","","8","2","","1","TOR ML (home)","LOSS","OLD formula; MIA 8-2","2026-06-04 14:20 UTC"
+"2026-05-25","WSH","CLE","TBD","Cantillo, Joey","","+0.011","1.2","2.9","0.0","0.0","4.1","2-5","AWAY","0","NONE","0","","","","","","10","2","1","1","CLE ML (home)","LOSS","OLD formula; WSH 10-2","2026-06-04 14:20 UTC"
+"2026-05-25","PHI","SDP","Nola, Aaron","Vásquez, Randy","+0.026","-0.059","-8.6","-1.0","0.0","1.5","-9.6","8+","HOME","1","SP-DOM","1","","","","","","3","0","0","1","PHI ML (away, model override)","WIN","OLD formula; model HOME/SDP; overlay PHI; PHI 3-0","2026-06-04 14:20 UTC"
+"2026-05-26","NYY","KCR","Schlittler, Cam","Falter, Bailey","-0.037","","4.1","2.7","0.0","0.5","6.8","5-8","AWAY","1","BILATERAL","0","","","","","","15","1","1","1","NYY -1.5","WIN","OLD formula; NYY 15-1","2026-06-04 14:20 UTC"
+"2026-05-26","CIN","NYM","Burns, Chase","Peterson, David","-0.010","+0.012","1.3","1.8","0.0","-1.0","3.0","2-5","AWAY","0","NONE","0","","","","","","7","2","1","1","CIN -1.5","WIN","OLD formula; CIN 7-2","2026-06-04 14:20 UTC"
+"2026-05-26","STL","MIL","McGreevy, Michael","Harrison, Kyle","-0.077","-0.003","10.2","1.2","0.0","0.0","11.1","8+","AWAY","1","SP-DOM","1","","","","","","0","6","0","1","MIL ML (home, model override)","WIN","OLD formula; model AWAY/STL; overlay MIL; MIL 6-0","2026-06-04 14:20 UTC"
+"2026-05-26","CHC","PIT","TBD","Ashcraft, Braxton","","","0.7","0.4","0.0","-0.5","1.1","0-2","NEUT","0","NONE","0","","","","","","1","12","","1","PIT ML (home)","WIN","OLD formula; PIT 12-1","2026-06-04 14:20 UTC"
+"2026-05-26","ARI","SFG","Rodriguez, Eduardo","Mahle, Tyler","-0.042","","9.6","2.1","0.0","1.5","11.7","8+","AWAY","1","BILATERAL","0","","","","","","7","5","1","1","ARI ML","WIN","OLD formula; ARI 7-5","2026-06-04 14:20 UTC"
+"2026-05-26","PHI","SDP","Nola, Aaron","Vásquez, Randy","+0.026","-0.059","-8.6","-1.0","0.0","1.5","-9.6","8+","HOME","1","SP-DOM","1","","","","","","4","3","0","1","SDP ML (home)","LOSS","OLD formula; model HOME/SDP; PHI 4-3","2026-06-04 14:20 UTC"
+"2026-06-01","DET","TBR","Madden, Ty","Jax, Griffin","","-0.008","-0.8","1.8","0.0","0.5","1.5","0-2","NEUT","0","NONE","0","","","","","","","","","0","","","OLD formula; model NEUT","2026-06-04 14:20 UTC"
+"2026-06-01","MIA","WSH","Alcantara, Sandy","Cavalli, Cade","+0.022","+0.007","-1.5","-2.9","0.0","0.0","-4.4","2-5","HOME","0","NONE","0","","","","","","","","","0","","","OLD formula; model HOME/WSH","2026-06-04 14:20 UTC"
+"2026-06-01","KCR","CIN","Avila, Luinder","Burns, Chase","+0.058","-0.010","-6.8","-2.4","0.0","-1.0","-8.2","8+","HOME","1","BILATERAL","1","","","","","","","","","0","","","OLD formula; QUALIFYING; model HOME/CIN; CIN won","2026-06-04 14:20 UTC"
+"2026-06-01","CWS","MIN","Sandlin, David","Ryan, Joe","","-0.016","-1.6","0.0","0.0","0.5","-2.1","2-5","HOME","0","NONE","0","","","","","","","","","0","","","OLD formula; Sandlin not in file","2026-06-04 14:20 UTC"
+"2026-06-01","SFG","MIL","Roupp, Landen","Drohan, Shane","+0.003","-0.005","-0.8","-1.6","0.0","0.0","-2.4","2-5","HOME","0","NONE","0","","","","","","","","","0","","","OLD formula","2026-06-04 14:20 UTC"
+"2026-06-01","TEX","STL","deGrom, Jacob","McGreevy, Michael","-0.021","-0.077","-5.6","0.0","0.0","0.0","-5.6","5-8","HOME","1","SP-DOM","1","","","","","","","","","0","","","OLD formula; QUALIFYING SP-DOM; model HOME/STL; TEX won 7-4 (model wrong)","2026-06-04 14:20 UTC"
+"2026-06-01","COL","LAA","Freeland, Kyle","Soriano, José","+0.029","-0.043","-7.2","-0.1","0.0","0.0","-7.3","5-8","HOME","1","SP-DOM","1","","","","","","","","","0","","","OLD formula; QUALIFYING SP-DOM; model HOME/LAA; LAA won (model correct)","2026-06-04 14:20 UTC"
+"2026-06-01","LAD","ARI","Sheehan, Emmet","Rodriguez, Eduardo","+0.024","-0.042","-6.6","4.0","0.0","0.0","-2.6","2-5","HOME","0","NONE","0","","","","","","","","","0","","","OLD formula; LAD not aligned","2026-06-04 14:20 UTC"
+"2026-06-01","NYM","SEA","Warren, Austin","Hancock, Emerson","","-0.038","-3.8","-1.0","0.0","0.0","-4.8","2-5","HOME","0","SP-DOM","0","","","","","","","","","0","","","OLD formula; Warren not in file","2026-06-04 14:20 UTC"
+"2026-06-02","DET","TBR","Flaherty, Jack","Matz, Steven","-0.037","-0.008","-5.9","1.8","-0.03","0.5","-4.6","2-5","HOME","0","NONE","0","","","","","","","","","0","","","OLD formula; full slate scan","2026-06-04 14:20 UTC"
+"2026-06-02","SDP","PHI","Vásquez, Randy","Nola, Aaron","-0.059","+0.026","8.5","-0.6","0.14","0.0","8.0","8+","AWAY","1","SP-DOM","1","","","","","","2","3","0","1","PHI F5 ML (overlay override)","WIN","OLD formula; model AWAY/SDP; overlay PHI; PHI 3-2","2026-06-04 14:20 UTC"
+"2026-06-02","BAL","BOS","Baz, Shane","Early, Connelly","-0.044","-0.047","-4.4","1.3","-0.81","-1.5","-2.4","2-5","HOME","0","SP-DOM","0","","","","","","","","","0","","","OLD formula","2026-06-04 14:20 UTC"
+"2026-06-02","MIA","WSH","Bachar, Lake","Mikolas, Miles","0.000","+0.022","0.0","-2.9","-0.09","0.0","-3.0","2-5","HOME","0","NONE","0","","","","","","","","","0","","","OLD formula; Bachar gap=0.000","2026-06-04 14:20 UTC"
+"2026-06-02","CLE","NYY","Cantillo, Joey","Schlittler, Cam","+0.011","-0.037","-4.8","-4.3","0.53","-1.5","-7.1","5-8","HOME","1","BILATERAL","1","","","","","","9","4","0","1","NYY F5 ML","LOSS","OLD formula; QUALIFYING; model HOME/NYY; CLE 9-4; LOSS","2026-06-04 14:20 UTC"
+"2026-06-02","KCR","CIN","Cameron, Noah","Abbott, Andrew","+0.058","-0.010","-0.8","-2.4","0.26","-1.0","-1.9","0-2","NEUT","0","NONE","0","","","","","","","","","0","","","OLD formula; 0-2 band","2026-06-04 14:20 UTC"
+"2026-06-02","TOR","ATL","Gausman, Kevin","Elder, Bryce","+0.014","-0.023","-0.4","-3.0","0.18","0.0","-3.2","2-5","HOME","0","NONE","0","","","","","","3","4","1","0","","","OLD formula; ATL 4-3","2026-06-04 14:20 UTC"
+"2026-06-02","CWS","MIN","Martin, Davis","Prielipp, Connor","","-0.016","3.6","0.0","-0.16","0.5","3.9","2-5","AWAY","0","SP-DOM","0","","","","","","","","","0","","","OLD formula; Martin not in file","2026-06-04 14:20 UTC"
+"2026-06-02","SFG","MIL","McDonald, Trevor","Harrison, Kyle","+0.003","-0.005","-2.2","-1.6","0.42","0.0","-3.4","2-5","HOME","1","BILATERAL","0","","","","","","","","","0","","","OLD formula; MIL won 8-3","2026-06-04 14:20 UTC"
+"2026-06-02","TEX","STL","Eovaldi, Nathan","May, Dustin","-0.021","-0.077","3.0","0.0","-0.1","0.0","2.9","2-5","AWAY","0","SP-DOM","0","","","","","","","","","0","","","OLD formula","2026-06-04 14:20 UTC"
+"2026-06-02","ATH","CHC","Jump, Gage","Taillon, Jameson","","-0.053","0.5","0.0","-0.27","-1.0","-0.8","0-2","NEUT","0","NONE","0","","","","","","","","","0","","","OLD formula; Jump not in file","2026-06-04 14:20 UTC"
+"2026-06-02","PIT","HOU","Chandler, Bubba","Burrows, Mike","+0.029","+0.016","5.3","-0.2","0.16","-0.5","4.8","2-5","AWAY","0","SP-DOM","0","","","","","","","","","0","","","OLD formula","2026-06-04 14:20 UTC"
+"2026-06-02","COL","LAA","Sugano, Tomoyuki","Rodriguez, Grayson","+0.029","-0.043","7.6","-0.1","-0.09","0.0","7.4","5-8","AWAY","1","SP-DOM","1","","","","","","9","8","1","0","","","OLD formula; 5-8 aligned; COL won 9-8","2026-06-04 14:20 UTC"
+"2026-06-02","LAD","ARI","Lauer, Eric","Soroka, Michael","","-0.042","-1.5","4.0","0.04","0.0","2.5","2-5","AWAY","0","NONE","0","","","","","","","","","0","","","OLD formula; Lauer not in file","2026-06-04 14:20 UTC"
+"2026-06-02","NYM","SEA","TBD","Gilbert, Logan","","-0.038","0.1","-1.0","-0.08","0.0","-1.0","0-2","NEUT","0","NONE","0","","","","","","","","","0","","","OLD formula; NYM TBD starter","2026-06-04 14:20 UTC"
+"2026-06-03","MIA","WSH","Bachar, Lake","Mikolas, Miles","0.000","+0.022","-0.0","-2.9","-0.09","0.0","-7.2","5-8","HOME","0","NONE","0","","","","","","","","","0","","","CORRECTED formula; missing SP flag (WSH side only known)","2026-06-04 14:20 UTC"
+"2026-06-03","DET","TBR","Flaherty, Jack","Matz, Steven","-0.037","-0.008","6.2","1.8","-0.03","0.5","6.2","5-8","AWAY","1","BILATERAL","1","","","","","","","","","0","","","CORRECTED formula; DET starter not in file estimate","2026-06-04 14:20 UTC"
+"2026-06-03","CWS","MIN","Martin, Davis","Prielipp, Connor","","-0.016","4.4","0.0","-0.16","0.5","4.4","2-5","AWAY","0","SP-DOM","0","","","","","","","","","0","","","CORRECTED formula; Martin not in file","2026-06-04 14:20 UTC"
+"2026-06-03","NYM","SEA","TBD","Gilbert, Logan","","-0.038","-1.7","-1.0","-0.08","0.0","-1.7","0-2","NEUT","0","NONE","0","","","","","","","","","0","","","CORRECTED formula; NYM TBD","2026-06-04 14:20 UTC"
+"2026-06-03","SDP","PHI","Vásquez, Randy","Nola, Aaron","-0.059","+0.026","-3.4","-0.6","0.14","0.0","-3.4","2-5","HOME","0","SP-DOM","0","","","","","","","","","0","","","CORRECTED formula","2026-06-04 14:20 UTC"
+"2026-06-03","BAL","BOS","Baz, Shane","Early, Connelly","-0.044","-0.047","1.4","1.3","-0.81","-1.5","1.4","0-2","NEUT","0","NONE","0","","","","","","","","","0","","","CORRECTED formula","2026-06-04 14:20 UTC"
+"2026-06-03","CLE","NYY","Cantillo, Joey","Schlittler, Cam","+0.011","-0.037","-5.3","-4.3","0.53","-1.5","-5.3","5-8","HOME","1","BILATERAL","1","","","","","","","","","0","","","CORRECTED formula; missing SP flag estimate","2026-06-04 14:20 UTC"
+"2026-06-03","KCR","CIN","Cameron, Noah","Abbott, Andrew","+0.058","-0.010","-2.5","-2.4","0.26","-1.0","-2.5","2-5","HOME","1","BILATERAL","0","","","","","","","","","0","","","CORRECTED formula","2026-06-04 14:20 UTC"
+"2026-06-03","TOR","ATL","Corbin, Patrick","Elder, Bryce","+0.016","-0.023","-5.0","-3.0","0.18","0.0","-5.0","5-8","HOME","1","BILATERAL","1","","","","","","3","7","1","1","ATL -1.5 +139 & ATL ML","WIN","CORRECTED formula; QUALIFYING SP-DOM; Corbin lucky signal; ATL 7-3","2026-06-04 14:20 UTC"
+"2026-06-03","SFG","MIL","McDonald, Trevor","Harrison, Kyle","+0.003","-0.005","-1.4","-1.6","0.42","0.0","-1.4","0-2","NEUT","0","NONE","0","","","","","","","","","0","","","CORRECTED formula","2026-06-04 14:20 UTC"
+"2026-06-03","TEX","STL","Eovaldi, Nathan","May, Dustin","-0.021","-0.077","-3.7","0.0","-0.1","0.0","-3.7","2-5","HOME","0","SP-DOM","0","","","","","","","","","0","","","CORRECTED formula","2026-06-04 14:20 UTC"
+"2026-06-03","ATH","CHC","Jump, Gage","Taillon, Jameson","","-0.053","1.5","0.0","-0.27","-1.0","1.5","0-2","NEUT","0","NONE","0","","","","","","","","","0","","","CORRECTED formula","2026-06-04 14:20 UTC"
+"2026-06-03","PIT","HOU","Skenes, Paul","Arrighetti, Spencer","-0.002","-0.075","7.0","-0.2","0.16","-0.5","7.0","5-8","AWAY","1","SP-DOM","1","","","","","","9","11","0","1","PIT F5 ML (SP-DOM red bullpen flag → F5 only)","WIN","CORRECTED formula; QUALIFYING; Arrighetti lucky; PIT led F5; HOU won game 11-9","2026-06-04 14:20 UTC"
+"2026-06-03","COL","LAA","Sugano, Tomoyuki","Rodriguez, Grayson","+0.029","-0.043","3.6","-0.1","-0.09","0.0","3.6","2-5","AWAY","0","SP-DOM","0","","","","","","","","","0","","","CORRECTED formula","2026-06-04 14:20 UTC"
+"2026-06-03","LAD","ARI","Lauer, Eric","Soroka, Michael","","-0.042","0.4","4.0","0.04","0.0","0.4","0-2","NEUT","0","NONE","0","","","","","","","","","0","","","CORRECTED formula","2026-06-04 14:20 UTC"
