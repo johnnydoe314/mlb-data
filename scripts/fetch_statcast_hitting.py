@@ -1,285 +1,136 @@
 #!/usr/bin/env python3
 """
-log_games.py
-============
-Logs ALL games from today's slate to data/game_log.csv —
-composite scores, lines, model direction, and alignment,
-regardless of whether we placed a bet.
+fetch_statcast_hitting.py
+=========================
+Downloads individual batter Statcast data from Baseball Savant.
+Multi-year (2026,2025,2024,2023), qualified PAs, sorted by xwOBA.
 
-Run AFTER the daily analysis session, once final scores are known.
-Optionally pass --scores to fill in actual results.
+Output: data/statcast_batting.csv  (~1000+ rows, one per player)
 
-Usage:
-    python scripts/log_games.py                    # log today's composite data
-    python scripts/log_games.py --date 2026-06-03  # log a specific date
-    
-Output: data/game_log.csv (appends; creates if missing)
+NOTE: This is individual player data, NOT team aggregates.
+      The team-level file (statcast_hitting_2026.csv) used by the
+      composite model's batting edge is kept separate.
 
-Schema:
-    game_date, away_team, home_team, away_sp, home_sp,
-    away_gap, home_gap, sp_edge, bat_edge, bp_edge, park_adj,
-    composite, band, model_dir, aligned, alignment_type, qualified,
-    away_ml, home_ml, away_rl, home_rl, total,
-    away_score, home_score, model_correct,
-    bet_placed, bet_description, bet_result,
-    notes, logged_at
+Source URL (user-specified):
+  baseballsavant.mlb.com/leaderboard/custom?year=2026,2025,2024,2023
+  &type=batter&group_by=name (default — individual players)
+  &selections=player_age,ab,pa,hit,...,whiff_percent,swing_percent
+
+Runs daily at 10am CT via daily_data.yml.
 """
 
-import csv, io, json, os, sys, urllib.request
-from datetime import date, datetime
+import csv, io, sys, time, urllib.request, urllib.error
+from datetime import datetime
 from pathlib import Path
 
-DATA_DIR  = Path("data")
-LOG_FILE  = DATA_DIR / "game_log.csv"
-TIMEOUT   = 15
+OUT_DIR  = Path("data")
+OUT_FILE = OUT_DIR / "statcast_batting.csv"
+TIMEOUT  = 30
 
-NORM = {'TB':'TBR','KC':'KCR','SD':'SDP','SF':'SFG','AZ':'ARI'}
-PARK = {'COL':-3.0,'BOS':-1.5,'NYY':-1.5,'CHC':-1.0,'CIN':-1.0,
-        'TEX':-0.5,'HOU':-0.5,'SDP':+1.5,'SFG':+1.5,'TBR':+0.5,'TOR':+0.5,'MIN':+0.5}
+HEADERS = {
+    "User-Agent": (
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) "
+        "Chrome/124.0.0.0 Safari/537.36"
+    ),
+    "Accept": "text/csv,text/plain,*/*",
+    "Accept-Language": "en-US,en;q=0.9",
+    "Referer": "https://baseballsavant.mlb.com/",
+}
 
-FIELDS = [
-    'game_date','away_team','home_team','away_sp','home_sp',
-    'away_gap','home_gap','sp_edge','bat_edge','bp_edge','park_adj',
-    'composite','band','model_dir','aligned','alignment_type','qualified',
-    'away_ml','home_ml','away_rl','home_rl','total',
-    'away_score','home_score','model_correct',
-    'bet_placed','bet_description','bet_result',
-    'notes','logged_at',
-]
+# Exact URL provided — csv=true appended to trigger download
+URL = (
+    "https://baseballsavant.mlb.com/leaderboard/custom"
+    "?year=2026%2C2025%2C2024%2C2023"
+    "&type=batter"
+    "&filter="
+    "&min=q"
+    "&selections=player_age%2Cab%2Cpa%2Chit%2Csingle%2Cdouble%2Ctriple%2Chome_run"
+    "%2Cstrikeout%2Cwalk%2Ck_percent%2Cbb_percent%2Cbatting_avg%2Cslg_percent"
+    "%2Con_base_percent%2Con_base_plus_slg%2Cxba%2Cxslg%2Cwoba%2Cxwoba"
+    "%2Cxobp%2Cxiso%2Cavg_swing_speed%2Cfast_swing_rate%2Cblasts_contact"
+    "%2Cblasts_swing%2Csquared_up_contact%2Csquared_up_swing%2Cavg_swing_length"
+    "%2Cswords%2Cattack_angle%2Cattack_direction%2Cideal_angle_rate"
+    "%2Cvertical_swing_path%2Cexit_velocity_avg%2Claunch_angle_avg"
+    "%2Csweet_spot_percent%2Cbarrel_batted_rate%2Chard_hit_percent"
+    "%2Cavg_best_speed%2Cavg_hyper_speed%2Cwhiff_percent%2Cswing_percent"
+    "&chart=false"
+    "&x=player_age&y=player_age&r=no&chartType=beeswarm"
+    "&sort=xwoba&sortDir=desc"
+    "&csv=true"   # required for CSV download
+)
 
-GITHUB_RAW = "https://raw.githubusercontent.com/johnnydoe314/mlb-data/main/data"
 
-def fetch(path):
-    url = f"{GITHUB_RAW}/{path}"
-    req = urllib.request.Request(url, headers={"User-Agent": "log_games/1.0"})
-    with urllib.request.urlopen(req, timeout=TIMEOUT) as r:
-        return r.read().decode("utf-8")
-
-
-def load_pitchers(content):
-    p = {}
-    reader = csv.reader(io.StringIO(content))
-    hdrs = [h.strip().strip('"') for h in next(reader)]
-    for row in reader:
-        d = dict(zip(hdrs, row))
-        if d.get('year','').strip() != '2026': continue
-        name = d.get('last_name, first_name','').strip()
-        if not name: continue
+def fetch(url: str, retries: int = 3) -> str:
+    for attempt in range(1, retries + 1):
         try:
-            pa = int(d.get('pa',0) or 0)
-            if name in p and pa <= p[name]['pa']: continue
-            p[name] = {
-                'pa': pa,
-                'gap': round(float(d.get('woba',0) or 0) -
-                             float(d.get('xwoba',0) or 0), 3),
-            }
-        except: pass
-    return p
-
-
-def load_teams(content):
-    t = {}
-    for row in csv.DictReader(io.StringIO(content)):
-        tm = row.get('Team','').strip().upper()
-        if not tm or tm == 'MLB': continue
-        try:
-            t[tm] = float(row.get('xwOBA',0))
-        except: pass
-    return t
-
-
-def load_bullpen(content):
-    bp = {}
-    for row in csv.DictReader(io.StringIO(content)):
-        tm = row.get('team','').strip()
-        fat = float(row.get('fatigue_score',1.0) or 1.0)
-        gap = float(row.get('bullpen_gap',0) or 0)
-        if tm:
-            bp[tm] = {'gap': gap, 'fat': fat}
-    return bp
-
-
-def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen):
-    a  = pitchers.get(asn)
-    h  = pitchers.get(hsn)
-    ab = teams.get(at)
-    hb = teams.get(ht)
-    ba = bullpen.get(at, {'gap':0,'fat':1.0})
-    hb_bp = bullpen.get(ht, {'gap':0,'fat':1.0})
-
-    # CORRECTED formula: positive gap = unlucky = helps team
-    sp = 0.0
-    if a: sp += (a['gap'] * 100)
-    if h: sp -= (h['gap'] * 100)
-
-    bat = (ab - hb) * 100 if ab and hb else 0.0
-
-    bp = round((ba['gap']*ba['fat'] - hb_bp['gap']*hb_bp['fat']) * -50, 2) \
-         if ba and hb_bp else 0.0
-
-    park = PARK.get(ht, 0)
-    raw  = round(sp + bat + bp, 2)
-    adj  = round(raw + (park if raw > 0 else -park if raw < 0 else 0), 2)
-    aa   = abs(adj)
-    band = '8+' if aa>=8 else('5-8' if aa>=5 else('2-5' if aa>=2 else '0-2'))
-    model = 'AWAY' if adj>2 else('HOME' if adj<-2 else 'NEUT')
-    std  = (sp>1.5 and bat>1.5) or (sp<-1.5 and bat<-1.5)
-    spd  = abs(sp)>=3.0 and abs(bat)<=1.5
-    aln  = std or (spd and aa>=5)
-    miss = (asn!='TBD' and not a) or (hsn!='TBD' and not h)
-    qual = aa>=5 and aln and not miss
-
-    return {
-        'sp_edge': round(sp,2), 'bat_edge': round(bat,2),
-        'bp_edge': bp, 'park_adj': park, 'composite': adj,
-        'band': band, 'model_dir': model,
-        'aligned': aln, 'alignment_type': 'BILATERAL' if std else ('SP-DOM' if spd else 'NONE'),
-        'qualified': qual,
-        'away_gap': a['gap'] if a else '',
-        'home_gap': h['gap'] if h else '',
-    }
-
-
-def load_existing_log():
-    if not LOG_FILE.exists():
-        return set()
-    with open(LOG_FILE, newline='', encoding='utf-8') as f:
-        rows = list(csv.DictReader(f))
-    return {(r['game_date'], r['away_team'], r['home_team']) for r in rows}
-
-
-def append_rows(new_rows):
-    is_new = not LOG_FILE.exists()
-    with open(LOG_FILE, 'a', newline='', encoding='utf-8') as f:
-        writer = csv.DictWriter(f, fieldnames=FIELDS, extrasaction='ignore')
-        if is_new:
-            writer.writeheader()
-        writer.writerows(new_rows)
+            req = urllib.request.Request(url, headers=HEADERS)
+            with urllib.request.urlopen(req, timeout=TIMEOUT) as r:
+                return r.read().decode("utf-8")
+        except urllib.error.HTTPError as e:
+            print(f"  [!] HTTP {e.code} attempt {attempt}/{retries}")
+            if attempt < retries:
+                time.sleep(attempt * 5)
+            else:
+                raise
+        except Exception as e:
+            print(f"  [!] Error attempt {attempt}/{retries}: {e}")
+            if attempt < retries:
+                time.sleep(5)
+            else:
+                raise
 
 
 def main():
-    import argparse
-    parser = argparse.ArgumentParser(description='Log all games with composite scores')
-    parser.add_argument('--date', default=date.today().isoformat(), help='Date YYYY-MM-DD')
-    args = parser.parse_args()
+    ts = datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
 
-    game_date = args.date
-    logged_at = datetime.utcnow().strftime('%Y-%m-%d %H:%M UTC')
-    DATA_DIR.mkdir(exist_ok=True)
+    print("=" * 58)
+    print(f"  FETCH STATCAST BATTER DATA — {ts}")
+    print(f"  Years: 2026,2025,2024,2023  |  Level: individual player")
+    print("=" * 58)
 
-    print(f"Loading data for {game_date}...")
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
 
-    def fetch_optional(path, label):
-        try:
-            content = fetch(path)
-            print(f"  [✓] {label}")
-            return content
-        except Exception as e:
-            print(f"  [~] {label} not found — skipping ({e})")
-            return None
+    print(f"\n  Fetching...", end="", flush=True)
 
-    # Required files — exit if missing
-    stats_content = fetch_optional('stats.csv', 'stats.csv')
-    pp_content    = fetch_optional('probable_pitchers.csv', 'probable_pitchers.csv')
-    if not stats_content or not pp_content:
-        print("  [!] Critical files missing — cannot log games.")
+    try:
+        content = fetch(URL)
+    except Exception as e:
+        print(f"\n  [FAIL] {e}")
         sys.exit(1)
 
-    # Optional files — degrade gracefully if absent
-    sc_content      = fetch_optional('statcast_hitting_2026.csv', 'statcast_hitting_2026.csv')
-    odds_content    = fetch_optional('odds.csv', 'odds.csv')
-    bullpen_content = fetch_optional('bullpen.csv', 'bullpen.csv')
-    fatigue_content = fetch_optional('bullpen_fatigue.csv', 'bullpen_fatigue.csv')
+    lines = [ln for ln in content.strip().split("\n") if ln.strip()]
+    rows  = len(lines) - 1  # subtract header
 
-    # Merge bullpen + fatigue (empty dicts if files missing)
-    bp_raw  = {r['team']: r for r in csv.DictReader(io.StringIO(bullpen_content))} \
-              if bullpen_content else {}
-    fat_raw = {r['team']: r for r in csv.DictReader(io.StringIO(fatigue_content))} \
-              if fatigue_content else {}
-    bullpen = {}
-    for tm in set(list(bp_raw.keys()) + list(fat_raw.keys())):
-        gap = float(bp_raw.get(tm,{}).get('bullpen_gap',0) or 0)
-        fat = float(fat_raw.get(tm,{}).get('fatigue_score',1.0) or 1.0)
-        bullpen[tm] = {'gap': gap, 'fat': fat}
+    print(f" {rows} players")
 
-    pitchers = load_pitchers(stats_content)
-    teams    = load_teams(sc_content) if sc_content else {}
+    if rows < 100:
+        print(f"  [!] Expected 1000+ rows, got {rows} — possible fetch issue")
+        print(f"  Preview: {lines[0][:120] if lines else 'empty'}")
+        sys.exit(1)
 
-    # Odds map (empty if odds.csv missing)
-    odds_map = {}
-    if odds_content:
-        for r in csv.DictReader(io.StringIO(odds_content)):
-            at = NORM.get(r['away_team'], r['away_team'])
-            ht = NORM.get(r['home_team'], r['home_team'])
-            odds_map[(at,ht)] = r
-    else:
-        print("  [~] No odds data — lines will be blank in log")
+    OUT_FILE.write_text(content, encoding="utf-8")
+    size_kb = OUT_FILE.stat().st_size / 1024
+    print(f"  [✓] {OUT_FILE}  ({rows} players, {size_kb:.0f} KB)")
 
-    # Games
-    games = []
-    for row in csv.DictReader(io.StringIO(pp_content)):
-        at = NORM.get(row['away_team'], row['away_team'])
-        ht = NORM.get(row['home_team'], row['home_team'])
-        games.append({
-            'at': at, 'ht': ht,
-            'asp': row.get('away_pitcher','TBD'),
-            'hsp': row.get('home_pitcher','TBD'),
-        })
+    # Show column list
+    reader = csv.DictReader(io.StringIO(content))
+    cols   = reader.fieldnames or []
+    print(f"\n  Columns ({len(cols)}):")
+    for i in range(0, len(cols), 6):
+        print(f"    {', '.join(cols[i:i+6])}")
 
-    existing = load_existing_log()
-    new_rows = []
+    # Top 5 by xwOBA as a sanity check
+    rows_data = list(reader)
+    xwoba_col = next((c for c in cols if c.lower() == 'xwoba'), '')
+    name_col  = next((c for c in cols if 'last_name' in c.lower()), cols[0] if cols else '')
+    if xwoba_col and rows_data:
+        print(f"\n  Top 5 by xwOBA:")
+        for r in rows_data[:5]:
+            print(f"    {r.get(name_col,'?'):<25} xwOBA:{r.get(xwoba_col,'?')}")
 
-    for g in games:
-        at,ht,asn,hsn = g['at'],g['ht'],g['asp'],g['hsp']
-        key = (game_date, at, ht)
-        if key in existing:
-            print(f"  SKIP {at}@{ht} — already logged")
-            continue
-
-        c = compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen)
-        o = odds_map.get((at,ht), {})
-
-        row = {
-            'game_date':      game_date,
-            'away_team':      at,
-            'home_team':      ht,
-            'away_sp':        asn,
-            'home_sp':        hsn,
-            'away_gap':       c['away_gap'],
-            'home_gap':       c['home_gap'],
-            'sp_edge':        c['sp_edge'],
-            'bat_edge':       c['bat_edge'],
-            'bp_edge':        c['bp_edge'],
-            'park_adj':       c['park_adj'],
-            'composite':      c['composite'],
-            'band':           c['band'],
-            'model_dir':      c['model_dir'],
-            'aligned':        int(c['aligned']),
-            'alignment_type': c['alignment_type'],
-            'qualified':      int(c['qualified']),
-            'away_ml':        o.get('away_ml',''),
-            'home_ml':        o.get('home_ml',''),
-            'away_rl':        o.get('away_rl',''),
-            'home_rl':        o.get('home_rl',''),
-            'total':          o.get('total',''),
-            'away_score':     '',   # fill in after game
-            'home_score':     '',   # fill in after game
-            'model_correct':  '',   # fill in after game
-            'bet_placed':     0,
-            'bet_description':'',
-            'bet_result':     '',
-            'notes':          '',
-            'logged_at':      logged_at,
-        }
-        new_rows.append(row)
-        qual_str = ' ★ QUALIFIES' if c['qualified'] else ''
-        print(f"  {at}@{ht:<7} {c['composite']:+.1f} {c['band']:<5} {c['model_dir']:<5} {c['alignment_type']:<10}{qual_str}")
-
-    if new_rows:
-        append_rows(new_rows)
-        print(f"\n  [✓] {LOG_FILE} — {len(new_rows)} new rows added")
-    else:
-        print("\n  Nothing new to log.")
+    print(f"\n  Done.")
+    print("=" * 58)
 
 
 if __name__ == "__main__":
