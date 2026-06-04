@@ -2,20 +2,10 @@ name: MLB Daily Data
 
 on:
   schedule:
-    # ── 10:00 AM CT ──────────────────────────────────────────────────────────
-    # Full run: stats + bullpen + fatigue + odds
-    # CDT (summer) = UTC-5  →  10am CT = 15:00 UTC
-    - cron: '0 15 * * *'
-
-    # ── 11:00 AM – 6:00 PM CT (hourly) ───────────────────────────────────────
-    # Partial run: stats + bullpen + fatigue only (no odds — API budget)
-    - cron: '0 16-23 * * *'
-
-    # ── 7:00 PM – 8:00 PM CT (hourly) ────────────────────────────────────────
-    # Crosses midnight UTC — split into separate cron entries
-    - cron: '0 0-1 * * *'
-
-  workflow_dispatch:   # always runs full pipeline when triggered manually
+    - cron: '0 15 * * *'    # 10:00 AM CT (full run — stats + odds)
+    - cron: '0 19 * * *'    # 2:00 PM CT  (refresh bullpen/fatigue)
+    - cron: '0 23 * * *'    # 6:00 PM CT  (pre-game refresh)
+  workflow_dispatch:
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
@@ -33,8 +23,17 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Install dependencies
+        run: pip install beautifulsoup4
+
       - name: Fetch pitcher Statcast (stats.csv)
         run: python scripts/fetch_stats.py
+
+      - name: Fetch exit velocity — batter + pitcher (exit_velocity_*.csv)
+        run: python scripts/fetch_exit_velocity.py
+
+      - name: Fetch team Statcast hitting (statcast_hitting_YEAR.csv)
+        run: python scripts/fetch_statcast_hitting.py
 
       - name: Fetch bullpen xwOBA gaps (bullpen.csv)
         run: python scripts/fetch_bullpen.py
@@ -42,9 +41,9 @@ jobs:
       - name: Fetch bullpen usage + fatigue (bullpen_fatigue.csv)
         run: python scripts/fetch_bullpen_usage.py
 
-      # Odds only run at 10am CT (first cron) or on manual dispatch
-      # This keeps The-Odds-API usage at 16 calls/day = 480/month (free tier: 500)
       - name: Fetch all odds — full game + F5 (odds.csv + f5_odds.csv)
+        # 16 calls/day × 30 days = 480/month — within 500 free tier
+        # Only runs on the 10am CT cron or manual dispatch
         if: >
           github.event_name == 'workflow_dispatch' ||
           github.event.schedule == '0 15 * * *'
@@ -52,19 +51,15 @@ jobs:
         env:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
 
+      - name: Log all games with composite scores (game_log.csv)
+        run: python scripts/log_games.py
+
       - name: Commit and push
         run: |
           git config user.name  "MLB Data Bot"
           git config user.email "bot@mlb-data"
           git add data/
           git diff --staged --quiet && echo "No changes to commit" || \
-            (git commit -m "Data update $(date -u '+%Y-%m-%d %H:%M UTC')" && git push)
+            (git commit -m "Daily data $(date -u '+%Y-%m-%d %H:%M UTC')" && git push)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Log all games with composite scores (game_log.csv)
-        # Runs after odds fetch — logs every game's composite + lines
-        # Fills scores manually after games complete
-        run: python scripts/log_games.py
-        env:
-          PYTHONPATH: .
