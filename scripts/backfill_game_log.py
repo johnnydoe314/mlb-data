@@ -92,28 +92,69 @@ def fetch_raw(path):
 
 # ── Data loaders ─────────────────────────────────────────────────────────────
 
+_LEAGUE_P = {"gap": 0.000, "xwoba": 0.318, "woba": 0.318,
+              "hard_hit": 37.0, "k_pct": 22.0, "bb_pct": 8.5, "whiff": 25.0}
+_YR_W      = {2026: 0.50, 2025: 0.25, 2024: 0.15, 2023: 0.10}
+_PA_START  = 450
+_PA_RELIEF = 160
+
+
+def _project_pitcher(seasons):
+    threshold = _PA_START if any(d["pa"] >= 350 for d in seasons.values()) else _PA_RELIEF
+    eff = {yr: (0.0 if yr not in seasons
+                else bw * min(1.0, seasons[yr]["pa"] / threshold))
+           for yr, bw in _YR_W.items()}
+    total_eff = sum(eff.values())
+    league_w  = max(0.0, 1.0 - total_eff)
+    proj = {}
+    for stat in ("gap", "xwoba", "woba", "hard_hit", "whiff"):
+        val = sum(seasons[yr][stat] * eff[yr]
+                  for yr in _YR_W if yr in seasons and eff[yr] > 0)
+        proj[stat] = round(val + _LEAGUE_P[stat] * league_w, 4)
+    for stat in ("k_pct", "bb_pct"):
+        cnt = sum(seasons[yr][stat] * seasons[yr]["pa"] * _YR_W[yr]
+                  for yr in _YR_W if yr in seasons and eff[yr] > 0)
+        pa  = sum(seasons[yr]["pa"] * _YR_W[yr]
+                  for yr in _YR_W if yr in seasons and eff[yr] > 0)
+        raw = (cnt / pa) if pa > 0 else _LEAGUE_P[stat]
+        proj[stat] = round(raw * (1.0 - league_w) + _LEAGUE_P[stat] * league_w, 2)
+    yrs = sorted(yr for yr in _YR_W if yr in seasons)
+    proj["years_used"]   = yrs
+    proj["league_blend"] = round(league_w, 3)
+    proj["pa"]           = seasons[max(yrs)]["pa"] if yrs else 0
+    return proj
+
+
 def load_pitchers():
+    """Multi-year recency-weighted projection (2023-2026), regressed to league avg."""
+    MIN_PA = 30
     content = fetch_raw("stats.csv")
-    p = {}
+    all_seas = {}
     reader = csv.reader(io.StringIO(content))
     hdrs = [h.strip().strip('"') for h in next(reader)]
     for row in reader:
         d = dict(zip(hdrs, row))
-        if d.get('year','').strip() != '2026': continue
-        name = d.get('last_name, first_name','').strip()
+        name = d.get('last_name, first_name', '').strip()
         if not name: continue
         try:
-            pa = int(d.get('pa',0) or 0)
-            if name in p and pa <= p[name]['pa']: continue
-            p[name] = {
-                'pa':    pa,
-                'gap':   round(float(d.get('woba',0) or 0) -
-                               float(d.get('xwoba',0) or 0), 3),
-                'k_pct': float(d.get('k_percent',0) or 0),
-                'bb_pct':float(d.get('bb_percent',0) or 0),
+            yr = int(d.get('year', 0) or 0)
+            pa = int(d.get('pa',   0) or 0)
+            if yr not in _YR_W or pa < MIN_PA: continue
+            entry = {
+                'pa':       pa,
+                'gap':      round(float(d.get('woba', 0) or 0) - float(d.get('xwoba', 0) or 0), 3),
+                'woba':     float(d.get('woba',             0) or 0),
+                'xwoba':    float(d.get('xwoba',            0) or 0),
+                'hard_hit': float(d.get('hard_hit_percent', 0) or 0),
+                'k_pct':    float(d.get('k_percent',        0) or 0),
+                'bb_pct':   float(d.get('bb_percent',       0) or 0),
+                'whiff':    float(d.get('whiff_percent',    0) or 0),
             }
+            prev = all_seas.setdefault(name, {}).get(yr)
+            if prev is None or pa > prev['pa']:
+                all_seas[name][yr] = entry
         except: pass
-    return p
+    return {name: _project_pitcher(seas) for name, seas in all_seas.items()}
 
 
 def load_teams():
