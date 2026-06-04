@@ -171,10 +171,31 @@ def compute(asn, hsn, at, ht, pitchers, teams):
 
 # ── MLB Stats API: schedule + starters ───────────────────────────────────────
 
+def sp_name(pitcher_dict):
+    """Convert API pitcher dict to 'Last, First' format matching stats.csv."""
+    if not pitcher_dict:
+        return "TBD"
+    last  = pitcher_dict.get("lastName", "")
+    first = pitcher_dict.get("firstName", "")
+    if not last:
+        # Fall back to splitting fullName
+        full  = pitcher_dict.get("fullName", "")
+        parts = full.rsplit(" ", 1)
+        last  = parts[-1] if parts else ""
+        first = parts[0]  if len(parts) > 1 else ""
+    return f"{last}, {first}" if last else "TBD"
+
+
 def get_schedule(start: str, end: str):
+    """Fetch all final regular-season games with starters and scores.
+
+    Uses probablePitcher hydration so starters come from the schedule
+    response directly — no per-game boxscore calls needed.
+    """
     url = (f"https://statsapi.mlb.com/api/v1/schedule"
            f"?sportId=1&startDate={start}&endDate={end}"
-           f"&hydrate=linescore&gameType=R")
+           f"&hydrate=probablePitcher,linescore"
+           f"&gameType=R")
     data = api_get(url)
     if not data:
         return []
@@ -185,47 +206,30 @@ def get_schedule(start: str, end: str):
             status = g.get("status", {}).get("abstractGameState", "")
             if status != "Final":
                 continue
+
             teams  = g.get("teams", {})
-            away_t = NORM.get(teams.get("away",{}).get("team",{}).get("name",""), "")
-            home_t = NORM.get(teams.get("home",{}).get("team",{}).get("name",""), "")
+            away_d = teams.get("away", {})
+            home_d = teams.get("home", {})
+
+            away_t = NORM.get(away_d.get("team", {}).get("name", ""), "")
+            home_t = NORM.get(home_d.get("team", {}).get("name", ""), "")
             if not away_t or not home_t:
                 continue
-            a_score = teams.get("away",{}).get("score", "")
-            h_score = teams.get("home",{}).get("score", "")
+
+            away_sp = sp_name(away_d.get("probablePitcher", {}))
+            home_sp = sp_name(home_d.get("probablePitcher", {}))
+
             games.append({
                 "game_date": date_entry["date"],
                 "gamePk":    g["gamePk"],
                 "away":      away_t,
                 "home":      home_t,
-                "a_score":   a_score,
-                "h_score":   h_score,
+                "away_sp":   away_sp,
+                "home_sp":   home_sp,
+                "a_score":   away_d.get("score", ""),
+                "h_score":   home_d.get("score", ""),
             })
     return games
-
-
-def get_starters(game_pk):
-    """Return (away_sp_name, home_sp_name) in 'Last, First' format."""
-    url = f"https://statsapi.mlb.com/api/v1/game/{game_pk}/boxscore"
-    data = api_get(url)
-    if not data:
-        return "TBD", "TBD"
-
-    starters = {}
-    for side in ("away", "home"):
-        pitchers = data.get("teams", {}).get(side, {}).get("pitchers", [])
-        players  = data.get("teams", {}).get(side, {}).get("players", {})
-        if pitchers:
-            sp_id  = pitchers[0]
-            sp_key = f"ID{sp_id}"
-            info   = players.get(sp_key, {})
-            person = info.get("person", {})
-            fname  = person.get("firstName", "")
-            lname  = person.get("lastName", "")
-            starters[side] = f"{lname}, {fname}" if lname else "TBD"
-        else:
-            starters[side] = "TBD"
-
-    return starters.get("away", "TBD"), starters.get("home", "TBD")
 
 
 # ── Log helpers ───────────────────────────────────────────────────────────────
@@ -256,8 +260,6 @@ def main():
                     help="Start date YYYY-MM-DD (default: 2026-05-01)")
     ap.add_argument("--end",   default=(date.today() - timedelta(days=1)).isoformat(),
                     help="End date YYYY-MM-DD (default: yesterday)")
-    ap.add_argument("--delay", type=float, default=0.3,
-                    help="Seconds between boxscore API calls (default: 0.3)")
     args = ap.parse_args()
 
     print("=" * 62)
@@ -297,12 +299,10 @@ def main():
         gd   = g["game_date"]
         at   = g["away"]
         ht   = g["home"]
+        asn  = g["away_sp"]
+        hsn  = g["home_sp"]
         a_sc = g["a_score"]
         h_sc = g["h_score"]
-
-        # Get actual starters from boxscore
-        asn, hsn = get_starters(g["gamePk"])
-        time.sleep(args.delay)
 
         c = compute(asn, hsn, at, ht, pitchers, teams)
 
