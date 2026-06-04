@@ -169,20 +169,33 @@ def main():
 
     print(f"Loading data for {game_date}...")
 
-    try:
-        stats_content    = fetch('stats.csv')
-        pp_content       = fetch('probable_pitchers.csv')
-        sc_content       = fetch('statcast_hitting_2026.csv')
-        odds_content     = fetch('odds.csv')
-        bullpen_content  = fetch('bullpen.csv')
-        fatigue_content  = fetch('bullpen_fatigue.csv')
-    except Exception as e:
-        print(f"  [!] Fetch error: {e}")
+    def fetch_optional(path, label):
+        try:
+            content = fetch(path)
+            print(f"  [✓] {label}")
+            return content
+        except Exception as e:
+            print(f"  [~] {label} not found — skipping ({e})")
+            return None
+
+    # Required files — exit if missing
+    stats_content = fetch_optional('stats.csv', 'stats.csv')
+    pp_content    = fetch_optional('probable_pitchers.csv', 'probable_pitchers.csv')
+    if not stats_content or not pp_content:
+        print("  [!] Critical files missing — cannot log games.")
         sys.exit(1)
 
-    # Merge bullpen + fatigue
-    bp_raw = {r['team']: r for r in csv.DictReader(io.StringIO(bullpen_content))}
-    fat_raw = {r['team']: r for r in csv.DictReader(io.StringIO(fatigue_content))}
+    # Optional files — degrade gracefully if absent
+    sc_content      = fetch_optional('statcast_hitting_2026.csv', 'statcast_hitting_2026.csv')
+    odds_content    = fetch_optional('odds.csv', 'odds.csv')
+    bullpen_content = fetch_optional('bullpen.csv', 'bullpen.csv')
+    fatigue_content = fetch_optional('bullpen_fatigue.csv', 'bullpen_fatigue.csv')
+
+    # Merge bullpen + fatigue (empty dicts if files missing)
+    bp_raw  = {r['team']: r for r in csv.DictReader(io.StringIO(bullpen_content))} \
+              if bullpen_content else {}
+    fat_raw = {r['team']: r for r in csv.DictReader(io.StringIO(fatigue_content))} \
+              if fatigue_content else {}
     bullpen = {}
     for tm in set(list(bp_raw.keys()) + list(fat_raw.keys())):
         gap = float(bp_raw.get(tm,{}).get('bullpen_gap',0) or 0)
@@ -190,14 +203,17 @@ def main():
         bullpen[tm] = {'gap': gap, 'fat': fat}
 
     pitchers = load_pitchers(stats_content)
-    teams    = load_teams(sc_content)
+    teams    = load_teams(sc_content) if sc_content else {}
 
-    # Odds map
+    # Odds map (empty if odds.csv missing)
     odds_map = {}
-    for r in csv.DictReader(io.StringIO(odds_content)):
-        at = NORM.get(r['away_team'], r['away_team'])
-        ht = NORM.get(r['home_team'], r['home_team'])
-        odds_map[(at,ht)] = r
+    if odds_content:
+        for r in csv.DictReader(io.StringIO(odds_content)):
+            at = NORM.get(r['away_team'], r['away_team'])
+            ht = NORM.get(r['home_team'], r['home_team'])
+            odds_map[(at,ht)] = r
+    else:
+        print("  [~] No odds data — lines will be blank in log")
 
     # Games
     games = []
