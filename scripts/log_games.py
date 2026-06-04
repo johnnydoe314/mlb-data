@@ -208,10 +208,29 @@ def append_rows(new_rows):
 def main():
     import argparse
     parser = argparse.ArgumentParser(description='Log all games with composite scores')
-    parser.add_argument('--date', default=date.today().isoformat(), help='Date YYYY-MM-DD')
+    parser.add_argument('--date', default='', help='Date YYYY-MM-DD (overrides GAME_DATE env)')
     args = parser.parse_args()
 
-    game_date = args.date
+    # Date: CLI arg → GAME_DATE env var → today
+    game_date = args.date or os.environ.get('GAME_DATE', '') or date.today().isoformat()
+
+    # Bets: read from BETS_JSON env var (set by GitHub Actions workflow_dispatch input)
+    # Format: [{"game":"TOR@ATL","desc":"ATL F5 ML","result":"WIN"},...]
+    bets_map = {}   # "AT@HT" -> {"desc": str, "result": str}
+    try:
+        bets_raw = os.environ.get('BETS_JSON', '[]')
+        for b in json.loads(bets_raw):
+            key = b.get('game', '').strip()
+            if key:
+                bets_map[key] = {
+                    'desc':   b.get('desc', ''),
+                    'result': b.get('result', ''),
+                }
+        if bets_map:
+            print(f"  [✓] Bets loaded from BETS_JSON: {list(bets_map.keys())}")
+    except Exception as e:
+        print(f"  [~] Could not parse BETS_JSON: {e}")
+
     logged_at = datetime.utcnow().strftime('%Y-%m-%d %H:%M UTC')
     DATA_DIR.mkdir(exist_ok=True)
 
@@ -287,6 +306,9 @@ def main():
         c = compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen)
         o = odds_map.get((at,ht), {})
 
+        bet_key = f"{at}@{ht}"
+        bet_info = bets_map.get(bet_key, {})
+
         row = {
             'game_date':      game_date,
             'away_team':      at,
@@ -310,12 +332,12 @@ def main():
             'away_rl':        o.get('away_rl',''),
             'home_rl':        o.get('home_rl',''),
             'total':          o.get('total',''),
-            'away_score':     '',   # fill in after game
-            'home_score':     '',   # fill in after game
-            'model_correct':  '',   # fill in after game
-            'bet_placed':     0,
-            'bet_description':'',
-            'bet_result':     '',
+            'away_score':     '',
+            'home_score':     '',
+            'model_correct':  '',
+            'bet_placed':     1 if bet_info.get('desc') else 0,
+            'bet_description': bet_info.get('desc', ''),
+            'bet_result':      bet_info.get('result', ''),
             'notes':          '',
             'logged_at':      logged_at,
         }
