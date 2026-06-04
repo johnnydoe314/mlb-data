@@ -1,0 +1,10 @@
+game_date,away_team,home_team,away_sp,home_sp,away_gap,home_gap,sp_edge,bat_edge,bp_edge,park_adj,composite,band,model_dir,aligned,alignment_type,qualified,away_ml,home_ml,away_rl,home_rl,total,away_score,home_score,model_correct,bet_placed,bet_description,bet_result,notes,logged_at
+2026-06-04,SDP,PHI,"Giolito, Lucas","Wheeler, Zack",,,0.0,0.0,0.08,0,0.08,0-2,NEUT,0,NONE,0,179,-219,-120,-101,7.5,,,,0,,,,2026-06-04 06:27 UTC
+2026-06-04,BAL,BOS,"Rogers, Trevor","Bello, Brayan",,,0.0,0.0,-0.58,-1.5,0.92,0-2,NEUT,0,NONE,0,129,-156,-158,131,8.5,,,,0,,,,2026-06-04 06:27 UTC
+2026-06-04,CLE,NYY,"Cecconi, Slade","Rodón, Carlos",,,0.0,0.0,0.22,-1.5,-1.28,0-2,NEUT,0,NONE,0,129,-156,-170,140,7.5,,,,0,,,,2026-06-04 06:27 UTC
+2026-06-04,SFG,MIL,"Houser, Adrian","Crow, Coleman",,,0.0,0.0,0.25,0,0.25,0-2,NEUT,0,NONE,0,129,-156,-168,139,8.0,,,,0,,,,2026-06-04 06:27 UTC
+2026-06-04,TOR,ATL,TBD,"Sale, Chris",,,0.0,0.0,0.11,0,0.11,0-2,NEUT,0,NONE,0,123,-149,-168,139,8.0,,,,0,,,,2026-06-04 06:27 UTC
+2026-06-04,KCR,MIN,"Lugo, Seth","Morris, Andrew",,,0.0,0.0,0.25,0.5,0.75,0-2,NEUT,0,NONE,0,,,,,,,,,0,,,,2026-06-04 06:27 UTC
+2026-06-04,ATH,CHC,"Ginn, J.T.","Imanaga, Shota",,,0.0,0.0,-0.11,-1.0,0.89,0-2,NEUT,0,NONE,0,,,,,,,,,0,,,,2026-06-04 06:27 UTC
+2026-06-04,PIT,HOU,"Jones, Jared","Teng, Kai-Wei",,,0.0,0.0,0.11,-0.5,-0.39,0-2,NEUT,0,NONE,0,,,,,,,,,0,,,,2026-06-04 06:27 UTC
+2026-06-04,LAD,ARI,"Wrobleski, Justin","Nelson, Ryne",,,0.0,0.0,0.01,0,0.01,0-2,NEUT,0,NONE,0,,,,,,,,,0,,,,2026-06-04 06:27 UTC
