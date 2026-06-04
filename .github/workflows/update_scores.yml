@@ -1,17 +1,12 @@
 name: Update Scores
 
 on:
-  # Run at 10am UTC (5am CT) every day to catch overnight final scores
+  # 10am UTC = 5am CT — catches all overnight final scores
   schedule:
     - cron: '0 10 * * *'
 
-  # Also triggerable manually
+  # Or trigger manually any time
   workflow_dispatch:
-    inputs:
-      date:
-        description: 'Date to update scores for (YYYY-MM-DD, default: yesterday)'
-        required: false
-        default: ''
 
 jobs:
   update-scores:
@@ -32,8 +27,6 @@ jobs:
         run: pip install requests --quiet
 
       - name: Run update_scores.py
-        env:
-          SCORE_DATE: ${{ github.event.inputs.date || '' }}
         run: python scripts/update_scores.py
 
       - name: Commit updated scores
