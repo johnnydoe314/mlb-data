@@ -32,7 +32,7 @@ jobs:
       - name: Fetch exit velocity — batter + pitcher (exit_velocity_*.csv)
         run: python scripts/fetch_exit_velocity.py
 
-      - name: Fetch team Statcast hitting (statcast_hitting_YEAR.csv)
+      - name: Fetch batter Statcast data (statcast_batting.csv)
         run: python scripts/fetch_statcast_hitting.py
 
       - name: Fetch bullpen xwOBA gaps (bullpen.csv)
