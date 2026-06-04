@@ -1,0 +1,52 @@
+name: Log Games
+
+on:
+  # Run automatically after the daily data fetch completes
+  workflow_run:
+    workflows: ["Daily Data"]
+    types: [completed]
+
+  # Or trigger manually with optional bet info
+  workflow_dispatch:
+    inputs:
+      date:
+        description: 'Game date (YYYY-MM-DD, default: today)'
+        required: false
+        default: ''
+      bets:
+        description: 'Bets as JSON: [{"game":"TOR@ATL","desc":"ATL F5 ML","result":""},{"game":"LAD@ARI","desc":"LAD ML","result":""}]'
+        required: false
+        default: '[]'
+
+jobs:
+  log-games:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests --quiet
+
+      - name: Run log_games.py
+        env:
+          BETS_JSON: ${{ github.event.inputs.bets || '[]' }}
+          GAME_DATE: ${{ github.event.inputs.date || '' }}
+        run: python scripts/log_games.py
+
+      - name: Commit game log
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/game_log.csv
+          git diff --staged --quiet && echo "No changes to commit" || \
+            git commit -m "Log games $(date -u +%Y-%m-%d) [bot]"
+          git push
