@@ -1,0 +1,46 @@
+name: Update Scores
+
+on:
+  # Run at 10am UTC (5am CT) every day to catch overnight final scores
+  schedule:
+    - cron: '0 10 * * *'
+
+  # Also triggerable manually
+  workflow_dispatch:
+    inputs:
+      date:
+        description: 'Date to update scores for (YYYY-MM-DD, default: yesterday)'
+        required: false
+        default: ''
+
+jobs:
+  update-scores:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests --quiet
+
+      - name: Run update_scores.py
+        env:
+          SCORE_DATE: ${{ github.event.inputs.date || '' }}
+        run: python scripts/update_scores.py
+
+      - name: Commit updated scores
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/game_log.csv
+          git diff --staged --quiet && echo "No score changes" || \
+            git commit -m "Update scores $(date -u +%Y-%m-%d) [bot]"
+          git push
