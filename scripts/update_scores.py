@@ -112,22 +112,43 @@ def main():
         row['away_score'] = a_score
         row['home_score'] = h_score
 
-        # Determine if model was correct
-        model = row.get('model_dir', 'NEUT')
         try:
             a, h = int(a_score), int(h_score)
-            if model == 'AWAY':
-                row['model_correct'] = 1 if a > h else (0 if a < h else '')
-            elif model == 'HOME':
-                row['model_correct'] = 1 if h > a else (0 if h < a else '')
+            if a == h:
+                row['model_correct'] = ''
+                row['lean_correct']  = ''
             else:
-                row['model_correct'] = ''  # NEUT — no directional prediction
+                actual = 'AWAY' if a > h else 'HOME'
+                model  = row.get('model_dir', 'NEUT')
+                qual   = int(row.get('qualified', 0) or 0)
+
+                # model_correct — only for qualified plays (|comp|>=5, aligned, not MISS)
+                if qual and model != 'NEUT':
+                    row['model_correct'] = 1 if model == actual else 0
+                else:
+                    row['model_correct'] = ''
+
+                # lean_correct — composite lean direction for all games
+                try:
+                    comp = float(row.get('composite', 0) or 0)
+                    if abs(comp) >= 0.05:   # ignore near-zero composites
+                        lean = 'AWAY' if comp > 0 else 'HOME'
+                        row['lean_correct'] = 1 if lean == actual else 0
+                    else:
+                        row['lean_correct'] = ''
+                except (ValueError, TypeError):
+                    row['lean_correct'] = ''
+
         except (ValueError, TypeError):
             row['model_correct'] = ''
+            row['lean_correct']  = ''
 
         updated += 1
-        correct_str = '✅' if row['model_correct'] == 1 else ('❌' if row['model_correct'] == 0 else '~')
-        print(f"  {at}@{ht}: {a_score}-{h_score} | model said {model} → {correct_str}")
+        mc  = row['model_correct']
+        lc  = row['lean_correct']
+        mc_str = '✅' if mc == 1 else ('❌' if mc == 0 else '~')
+        lc_str = '✅' if lc == 1 else ('❌' if lc == 0 else '~')
+        print(f"  {at}@{ht}: {a_score}-{h_score} | model={model} qual={qual} → MC:{mc_str} LC:{lc_str}")
 
     with open(LOG_FILE, 'w', newline='', encoding='utf-8') as f:
         writer = csv.DictWriter(f, fieldnames=fields, extrasaction='ignore')
