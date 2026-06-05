@@ -115,8 +115,8 @@ def main():
         try:
             a, h = int(a_score), int(h_score)
             if a == h:
-                row['model_correct'] = ''
-                row['lean_correct']  = ''
+                row['model'] = ''
+                row['lean']  = ''
             else:
                 actual = 'AWAY' if a > h else 'HOME'
                 model  = row.get('model_dir', 'NEUT')
@@ -124,28 +124,28 @@ def main():
 
                 # model_correct — only for qualified plays (|comp|>=5, aligned, not MISS)
                 if qual and model != 'NEUT':
-                    row['model_correct'] = 1 if model == actual else 0
+                    row['model'] = 1 if model == actual else 0
                 else:
-                    row['model_correct'] = ''
+                    row['model'] = ''
 
                 # lean_correct — composite lean direction for all games
                 try:
                     comp = float(row.get('composite', 0) or 0)
                     if abs(comp) >= 0.05:   # ignore near-zero composites
                         lean = 'AWAY' if comp > 0 else 'HOME'
-                        row['lean_correct'] = 1 if lean == actual else 0
+                        row['lean'] = 1 if lean == actual else 0
                     else:
-                        row['lean_correct'] = ''
+                        row['lean'] = ''
                 except (ValueError, TypeError):
-                    row['lean_correct'] = ''
+                    row['lean'] = ''
 
         except (ValueError, TypeError):
-            row['model_correct'] = ''
-            row['lean_correct']  = ''
+            row['model'] = ''
+            row['lean']  = ''
 
         updated += 1
-        mc  = row['model_correct']
-        lc  = row['lean_correct']
+        mc  = row['model']
+        lc  = row['lean']
         mc_str = '✅' if mc == 1 else ('❌' if mc == 0 else '~')
         lc_str = '✅' if lc == 1 else ('❌' if lc == 0 else '~')
         print(f"  {at}@{ht}: {a_score}-{h_score} | model={model} qual={qual} → MC:{mc_str} LC:{lc_str}")
