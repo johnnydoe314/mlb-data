@@ -1,5 +1,5 @@
 "game_date","game_pk","game_time","venue","away_team","away_team_name","home_team","home_team_name","away_pitcher_id","away_pitcher","home_pitcher_id","home_pitcher","status"
-"2026-06-05","824673","2026-06-05T18:20:00Z","Wrigley Field","SFG","San Francisco Giants","CHC","Chicago Cubs","592662","Ray, Robbie","665795","Cabrera, Edward","Scheduled"
+"2026-06-05","824673","2026-06-05T18:20:00Z","Wrigley Field","SFG","San Francisco Giants","CHC","Chicago Cubs","592662","Ray, Robbie","665795","Cabrera, Edward","Pre-Game"
 "2026-06-05","824271","2026-06-05T22:40:00Z","Comerica Park","SEA","Seattle Mariners","DET","Detroit Tigers","693433","Woo, Bryan","664285","Valdez, Framber","Scheduled"
 "2026-06-05","823455","2026-06-05T22:40:00Z","Citizens Bank Park","CWS","Chicago White Sox","PHI","Philadelphia Phillies","641743","Kay, Anthony","666200","Luzardo, Jesús","Scheduled"
 "2026-06-05","823538","2026-06-05T23:05:00Z","Yankee Stadium","BOS","Boston Red Sox","NYY","New York Yankees","543243","Gray, Sonny","677960","Weathers, Ryan","Scheduled"
