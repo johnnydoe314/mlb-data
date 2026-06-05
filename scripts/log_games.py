@@ -42,7 +42,7 @@ FIELDS = [
     'away_gap','home_gap','sp_edge','bat_edge','bp_edge','park_adj',
     'composite','band','model_dir','aligned','alignment_type','qualified',
     'away_ml','home_ml','away_rl','home_rl','total',
-    'away_score','home_score','model_correct',
+    'away_score','home_score','model_correct','lean_correct',
     'bet_placed','bet_description','bet_result',
     'notes','logged_at',
 ]
@@ -334,7 +334,8 @@ def main():
             'total':          o.get('total',''),
             'away_score':     '',
             'home_score':     '',
-            'model_correct':  '',
+            'model_correct':  '',   # 1/0 only when qualified play result is known
+            'lean_correct':   '',   # 1/0 for all directional leans once scores are known
             'bet_placed':     1 if bet_info.get('desc') else 0,
             'bet_description': bet_info.get('desc', ''),
             'bet_result':      bet_info.get('result', ''),
