@@ -36,7 +36,7 @@ GITHUB_RAW_BASE = (
 )
 
 DEFAULT_XLS      = "sportsref_download.xls"
-DEFAULT_STATCAST  = "statcast_hitting_2026.csv"
+DEFAULT_STATCAST  = "team_batting.csv"
 DEFAULT_STATS     = "stats.csv"
 OUTPUT_DIR        = Path("analysis_output")
 MIN_PA            = 15
@@ -284,21 +284,23 @@ def load_pitcher_statcast(path: Path) -> dict:
 
 
 def load_team_batting(path: Path) -> dict:
+    """Load team batting xwOBA from team_batting.csv.
+    Columns: team, pa, xwoba, woba, hard_hit, barrel_pct, avg_ev
+    """
     teams = {}
     if not path.exists(): return teams
     with open(path, newline="", encoding="utf-8-sig") as f:
         for row in csv.DictReader(f):
-            team = row.get("Team", "").strip().upper()
-            if not team or team == "MLB": continue
-            pa = int(row.get("PA", 0) or 0)
-            if team in teams and pa <= teams[team]["pa"]: continue
+            team = row.get("team", "").strip().upper()
+            if not team: continue
             try:
                 teams[team] = {
-                    "pa":        pa,
-                    "xwoba":     float(row.get("xwOBA", 0)),
-                    "hard_hit":  float(row.get("Hard Hit%", 0)),
-                    "barrel":    float(row.get("Barrel%", 0)),
-                    "exit_velo": float(row.get("Exit Velocity", 0)),
+                    "pa":         int(float(row.get("pa", 0) or 0)),
+                    "xwoba":      float(row.get("xwoba", 0) or 0),
+                    "woba":       float(row.get("woba",  0) or 0),
+                    "hard_hit":   float(row.get("hard_hit", 0) or 0),
+                    "barrel_pct": float(row.get("barrel_pct", 0) or 0),
+                    "avg_ev":     float(row.get("avg_ev", 0) or 0),
                 }
             except: continue
     return teams
