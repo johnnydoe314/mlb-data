@@ -126,12 +126,22 @@ def load_pitchers(content):
 
 
 def load_teams(content):
+    """Load team batting xwOBA from team_batting.csv.
+    Columns: team, pa, xwoba, woba, hard_hit, barrel_pct, avg_ev
+    """
     t = {}
     for row in csv.DictReader(io.StringIO(content)):
-        tm = row.get('Team','').strip().upper()
-        if not tm or tm == 'MLB': continue
+        tm = row.get('team', '').strip().upper()
+        if not tm: continue
         try:
-            t[tm] = float(row.get('xwOBA',0))
+            t[tm] = {
+                'xwoba':      float(row.get('xwoba', 0) or 0),
+                'woba':       float(row.get('woba',  0) or 0),
+                'hard_hit':   float(row.get('hard_hit', 0) or 0),
+                'barrel_pct': float(row.get('barrel_pct', 0) or 0),
+                'avg_ev':     float(row.get('avg_ev', 0) or 0),
+                'pa':         int(float(row.get('pa', 0) or 0)),
+            }
         except: pass
     return t
 
@@ -160,7 +170,7 @@ def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen):
     if a: sp += (a['gap'] * 100)
     if h: sp -= (h['gap'] * 100)
 
-    bat = (ab - hb) * 100 if ab and hb else 0.0
+    bat = ((ab['xwoba'] - hb['xwoba']) * 100) if ab and hb else 0.0
 
     bp = round((ba['gap']*ba['fat'] - hb_bp['gap']*hb_bp['fat']) * -50, 2) \
          if ba and hb_bp else 0.0
@@ -253,7 +263,7 @@ def main():
         sys.exit(1)
 
     # Optional files — degrade gracefully if absent
-    sc_content      = fetch_optional('statcast_hitting_2026.csv', 'statcast_hitting_2026.csv')
+    sc_content      = fetch_optional('team_batting.csv', 'team_batting.csv')
     odds_content    = fetch_optional('odds.csv', 'odds.csv')
     bullpen_content = fetch_optional('bullpen.csv', 'bullpen.csv')
     fatigue_content = fetch_optional('bullpen_fatigue.csv', 'bullpen_fatigue.csv')
