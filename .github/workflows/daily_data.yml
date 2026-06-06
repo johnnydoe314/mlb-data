@@ -27,18 +27,23 @@ jobs:
         run: pip install beautifulsoup4
 
       - name: Fetch pitcher Statcast (stats.csv)
+        continue-on-error: true
         run: python scripts/fetch_stats.py
 
       - name: Fetch exit velocity — batter + pitcher (exit_velocity_*.csv)
+        continue-on-error: true
         run: python scripts/fetch_exit_velocity.py
 
       - name: Fetch batter Statcast data (statcast_batting.csv)
+        continue-on-error: true
         run: python scripts/fetch_statcast_hitting.py
 
       - name: Fetch bullpen xwOBA gaps (bullpen.csv)
+        continue-on-error: true
         run: python scripts/fetch_bullpen.py
 
       - name: Fetch bullpen usage + fatigue (bullpen_fatigue.csv)
+        continue-on-error: true
         run: python scripts/fetch_bullpen_usage.py
 
       - name: Fetch all odds — full game + F5 (odds.csv + f5_odds.csv)
@@ -47,6 +52,7 @@ jobs:
         if: >
           github.event_name == 'workflow_dispatch' ||
           github.event.schedule == '0 15 * * *'
+        continue-on-error: true
         run: python scripts/fetch_all_odds.py
         env:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
