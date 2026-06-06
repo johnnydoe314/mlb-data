@@ -147,10 +147,31 @@ def _parse_savant_team_csv(content: str) -> list:
 
 
 def _mlb_api_fallback(year: str = "2026") -> list:
-    """Fallback: fetch team batting from MLB Stats API (traditional stats only).
-    Returns xwoba=0 entries so the BAT edge is 0 — better than crashing.
+    """Fallback: MLB Stats API + compute wOBA from traditional components.
+
+    wOBA formula (2026 weights):
+      (0.690×BB + 0.722×HBP + 0.884×1B + 1.261×2B + 1.601×3B + 2.072×HR)
+      ────────────────────────────────────────────────────────────────────
+      (AB + BB − IBB + SF + HBP)
     """
     import json as _json
+
+    def _woba(s):
+        bb   = int(s.get("baseOnBalls",0)       or 0)
+        hbp  = int(s.get("hitByPitch",0)        or 0)
+        h    = int(s.get("hits",0)              or 0)
+        d2   = int(s.get("doubles",0)           or 0)
+        d3   = int(s.get("triples",0)           or 0)
+        hr   = int(s.get("homeRuns",0)          or 0)
+        ab   = int(s.get("atBats",0)            or 0)
+        sf   = int(s.get("sacFlies",0)          or 0)
+        ibb  = int(s.get("intentionalWalks",0)  or 0)
+        s1b  = h - d2 - d3 - hr
+        num  = (0.690*bb + 0.722*hbp + 0.884*s1b +
+                1.261*d2  + 1.601*d3  + 2.072*hr)
+        den  = ab + bb - ibb + sf + hbp
+        return round(num / den, 3) if den > 0 else 0.0
+
     url = (
         f"https://statsapi.mlb.com/api/v1/teams/stats"
         f"?season={year}&gameType=R&stats=season&group=hitting&sportId=1"
@@ -165,11 +186,12 @@ def _mlb_api_fallback(year: str = "2026") -> list:
         if not abbr: continue
         stat = split.get("stat",{})
         try:
+            woba = _woba(stat)
             rows.append({
                 "team":       abbr,
                 "pa":         int(stat.get("plateAppearances",0) or 0),
-                "xwoba":      float(stat.get("wOBA",0) or 0),   # best proxy
-                "woba":       float(stat.get("wOBA",0) or 0),
+                "xwoba":      woba,   # computed wOBA as proxy for xwOBA
+                "woba":       woba,
                 "hard_hit":   0.0,
                 "barrel_pct": 0.0,
                 "avg_ev":     0.0,
