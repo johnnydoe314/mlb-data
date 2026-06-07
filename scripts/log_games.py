@@ -98,7 +98,7 @@ def load_pitchers(content):
     """Multi-year recency-weighted projection (2023-2026), regressed to league avg."""
     MIN_PA = 30
     all_seas = {}
-    reader = csv.reader(io.StringIO(content))
+    reader = csv.reader(io.StringIO(content.lstrip('\ufeff')))
     hdrs = [h.strip().strip('"') for h in next(reader)]
     for row in reader:
         d = dict(zip(hdrs, row))
