@@ -301,6 +301,7 @@ def main():
             'at': at, 'ht': ht,
             'asp': row.get('away_pitcher','TBD'),
             'hsp': row.get('home_pitcher','TBD'),
+            'game_date': row.get('game_date', game_date),   # use CSV date if available
         })
 
     existing = load_existing_log()
@@ -308,9 +309,10 @@ def main():
 
     for g in games:
         at,ht,asn,hsn = g['at'],g['ht'],g['asp'],g['hsp']
-        key = (game_date, at, ht)
+        row_date = g.get('game_date', game_date)           # each game's own date
+        key = (row_date, at, ht)
         if key in existing:
-            print(f"  SKIP {at}@{ht} — already logged")
+            print(f"  SKIP {at}@{ht} ({row_date}) — already logged")
             continue
 
         c = compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen)
@@ -320,7 +322,7 @@ def main():
         bet_info = bets_map.get(bet_key, {})
 
         row = {
-            'game_date':      game_date,
+            'game_date':      g.get('game_date', game_date),   # prefer CSV date over today()
             'away_team':      at,
             'home_team':      ht,
             'away_sp':        asn,
