@@ -54,6 +54,155 @@ ANSI = {
     "dim":   "\033[2m",
 }
 
+# ─────────────────────────────────────────────────────────────────────────────
+# PLAY RECOMMENDATION SYSTEM
+# ─────────────────────────────────────────────────────────────────────────────
+#
+# All edges are from the FAVORED TEAM's perspective before classification.
+# If composite points HOME, we negate sp/bat/bp so positive = home team edge.
+#
+# SP thresholds  (typical range −5 to +5)
+SP_GREAT, SP_GOOD, SP_BAD, SP_VBAD   =  3.0,  1.5, -1.5, -3.0
+# BAT thresholds (typical range −4 to +4)
+BAT_GREAT, BAT_GOOD, BAT_BAD, BAT_VBAD =  2.5,  1.5, -1.5, -2.5
+# BP thresholds  (typical range −2 to +2 with freshness term)
+BP_GREAT, BP_GOOD, BP_BAD, BP_VBAD   =  0.8,  0.3, -0.3, -0.8
+
+# Display labels and symbols per category
+CAT_LABEL = {
+    "GREAT":    "GREAT ▲▲",
+    "GOOD":     "GOOD  ▲",
+    "NEUTRAL":  "NEUT  →",
+    "BAD":      "BAD   ▼",
+    "VERY_BAD": "VBAD  ▼▼",
+}
+CAT_SHORT = {
+    "GREAT": "★GRT", "GOOD": "GD", "NEUTRAL": "NT", "BAD": "BD", "VERY_BAD": "▼▼",
+}
+
+
+def _cat(v, great, good, bad, vbad):
+    """Map a numeric edge to its 5-category label (favored-team perspective)."""
+    if v >= great: return "GREAT"
+    if v >= good:  return "GOOD"
+    if v >= bad:   return "NEUTRAL"
+    if v >= vbad:  return "BAD"
+    return "VERY_BAD"
+
+
+def _norm3(cat):
+    """Collapse 5 → 3 categories for the core lookup table."""
+    if cat in ("GREAT", "GOOD"):   return "GOOD"
+    if cat == "NEUTRAL":           return "NEUTRAL"
+    return "BAD"
+
+
+# Core lookup: (sp_3, bat_3, bp_3) → (f5, full)
+# Built directly from the user's logic CSV.
+_PLAY_LOOKUP = {
+    ("GOOD",    "GOOD",    "GOOD"):    (True,  True),
+    ("GOOD",    "GOOD",    "NEUTRAL"): (True,  True),
+    ("GOOD",    "GOOD",    "BAD"):     (True,  False),
+    ("GOOD",    "NEUTRAL", "GOOD"):    (True,  True),
+    ("GOOD",    "NEUTRAL", "NEUTRAL"): (True,  False),
+    ("GOOD",    "NEUTRAL", "BAD"):     (True,  False),  # HOME only
+    ("GOOD",    "BAD",     "GOOD"):    (False, True),
+    ("GOOD",    "BAD",     "NEUTRAL"): (False, False),
+    ("GOOD",    "BAD",     "BAD"):     (False, False),
+    ("NEUTRAL", "GOOD",    "GOOD"):    (False, True),   # HOME only
+    ("NEUTRAL", "GOOD",    "NEUTRAL"): (False, True),   # HOME only
+    ("NEUTRAL", "GOOD",    "BAD"):     (False, False),
+    ("NEUTRAL", "NEUTRAL", "GOOD"):    (False, False),
+    ("NEUTRAL", "NEUTRAL", "NEUTRAL"): (False, False),
+    ("NEUTRAL", "NEUTRAL", "BAD"):     (False, False),
+    ("NEUTRAL", "BAD",     "GOOD"):    (False, False),
+    ("NEUTRAL", "BAD",     "NEUTRAL"): (False, False),
+    ("NEUTRAL", "BAD",     "BAD"):     (False, False),
+    ("BAD",     "GOOD",    "GOOD"):    (False, False),
+    ("BAD",     "GOOD",    "NEUTRAL"): (False, False),
+    ("BAD",     "GOOD",    "BAD"):     (False, False),
+    ("BAD",     "NEUTRAL", "GOOD"):    (False, False),
+    ("BAD",     "NEUTRAL", "NEUTRAL"): (False, False),
+    ("BAD",     "NEUTRAL", "BAD"):     (False, False),
+    ("BAD",     "BAD",     "GOOD"):    (False, False),
+    ("BAD",     "BAD",     "NEUTRAL"): (False, False),
+    ("BAD",     "BAD",     "BAD"):     (False, False),
+}
+
+# Rows that only apply when the favored team is the HOME team
+_HOME_ONLY = {
+    ("GOOD",    "NEUTRAL", "BAD"),     # row 8: F5 home only
+    ("NEUTRAL", "GOOD",    "GOOD"),    # row 11: Full home only
+    ("NEUTRAL", "GOOD",    "NEUTRAL"), # row 14: Full home only
+}
+
+
+def recommend_play(sp, bat, bp, model_dir):
+    """
+    Classify SP/BAT/BP edges from the favored team's perspective and produce
+    F5, Full Game, and Run Line recommendations per the user's logic table.
+
+    Returns dict with keys:
+        sp_cat, bat_cat, bp_cat  — 5-category labels
+        f5, full                 — bool play recommendations
+        run_line                 — bool flag (consider run line if True)
+        note                     — any conditional note
+    """
+    if model_dir == "NEUT":
+        return dict(sp_cat="NEUTRAL", bat_cat="NEUTRAL", bp_cat="NEUTRAL",
+                    f5=False, full=False, run_line=False, note="")
+
+    # Flip to favored-team perspective
+    sign = -1 if model_dir == "HOME" else 1
+    adj_sp, adj_bat, adj_bp = sp * sign, bat * sign, bp * sign
+
+    # Classify into 5 categories
+    sp_cat  = _cat(adj_sp,  SP_GREAT,  SP_GOOD,  SP_BAD,  SP_VBAD)
+    bat_cat = _cat(adj_bat, BAT_GREAT, BAT_GOOD, BAT_BAD, BAT_VBAD)
+    bp_cat  = _cat(adj_bp,  BP_GREAT,  BP_GOOD,  BP_BAD,  BP_VBAD)
+
+    # Core table lookup (3-category)
+    key = (_norm3(sp_cat), _norm3(bat_cat), _norm3(bp_cat))
+    f5, full = _PLAY_LOOKUP.get(key, (False, False))
+
+    # Apply HOME-only conditions
+    if key in _HOME_ONLY and model_dir != "HOME":
+        if key == ("GOOD", "NEUTRAL", "BAD"):
+            f5 = False      # F5 only valid for home team
+        else:
+            full = False    # Full only valid for home team
+
+    # ── Great SP bonus ────────────────────────────────────────────────────────
+    if sp_cat == "GREAT":
+        f5 = True           # Great SP → always at least F5
+        if bat_cat in ("GREAT", "GOOD") or bp_cat in ("GREAT", "GOOD"):
+            full = True     # Great SP + another positive → Full
+
+    # ── Great BAT bonus ───────────────────────────────────────────────────────
+    if bat_cat == "GREAT" and sp_cat in ("GREAT", "GOOD") and not full:
+        if bp_cat not in ("BAD", "VERY_BAD"):
+            full = True     # Great BAT + Good SP + non-bad BP → upgrade to Full
+
+    # ── Very Bad SP override ─────────────────────────────────────────────────
+    if sp_cat == "VERY_BAD":
+        f5 = full = False   # Never play when SP is this bad for our team
+
+    # ── Very Bad BP downgrade ────────────────────────────────────────────────
+    if bp_cat == "VERY_BAD" and full:
+        full = False        # Demote Full → F5-only when pen is disastrous
+
+    # ── Run line flag ────────────────────────────────────────────────────────
+    # Only surfaces when there's already a play AND a Great edge exists.
+    # Final run-line decision is always yours based on odds comparison.
+    run_line = (f5 or full) and (sp_cat == "GREAT" or bat_cat == "GREAT")
+
+    note = ""
+    if key in _HOME_ONLY and model_dir == "HOME":
+        note = "home-team condition"
+
+    return dict(sp_cat=sp_cat, bat_cat=bat_cat, bp_cat=bp_cat,
+                f5=f5, full=full, run_line=run_line, note=note)
+
 def c(text, *codes):
     if not sys.stdout.isatty(): return text
     return "".join(ANSI.get(x, "") for x in codes) + text + ANSI["reset"]
@@ -402,6 +551,8 @@ def compute(asn, hsn, at, ht, pitchers, teams, bullpen=None, fatigue=None):
     if fh["score"] < 0.50: fat_flags.append(f"🔴{ht}_BP_DEPLETED({fh['tired']}tired)")
     elif fh["score"] < 0.70: fat_flags.append(f"🟡{ht}_BP_TIRED({fh['tired']}tired)")
 
+    rec = recommend_play(sp, bat, bp, model)
+
     return dict(sp_edge=sp, bat_edge=bat, bp_edge=bp, park=park, raw=raw,
                 adj=adj, abs=aa, band=band, model=model,
                 aligned=aligned, missing=missing, qualifies=qualifies,
@@ -409,7 +560,11 @@ def compute(asn, hsn, at, ht, pitchers, teams, bullpen=None, fatigue=None):
                 away_sp=a, home_sp=h, away_bat=ab, home_bat=hb,
                 away_bp=ba, home_bp=hb_bp,
                 away_fatigue=fa, home_fatigue=fh,
-                fat_flags=fat_flags)
+                fat_flags=fat_flags,
+                # play recommendation
+                sp_cat=rec["sp_cat"], bat_cat=rec["bat_cat"], bp_cat=rec["bp_cat"],
+                f5=rec["f5"], full=rec["full"], run_line=rec["run_line"],
+                rec_note=rec["note"])
 
 
 def run_composite_analysis(games: list[dict], pitchers: dict, teams: dict,
@@ -445,6 +600,25 @@ def run_composite_analysis(games: list[dict], pitchers: dict, teams: dict,
               f"{r['sp_edge']:>+6.1f} {r['bat_edge']:>+6.1f} "
               f"{bp_str} {r['park']:>+5.1f} {adj_str:>7} "
               f"{r['band']:<5} {aln_str:>4}  {r['model']}{flag}{fat_str}")
+
+        # ── Play recommendation line ──────────────────────────────────────────
+        sc = CAT_SHORT; _sp = sc[r["sp_cat"]]; _bat = sc[r["bat_cat"]]; _bp = sc[r["bp_cat"]]
+        cats = f"SP:{_sp:<5} BAT:{_bat:<5} BP:{_bp:<5}"
+        if r["f5"] or r["full"]:
+            plays = []
+            if r["full"]:
+                plays.append(c("FULL", "green", "bold"))
+            if r["f5"] and not r["full"]:
+                plays.append(c("F5", "yellow", "bold"))
+            elif r["f5"]:
+                plays.append(c("F5", "green"))
+            rl_str = c(" RL?","cyan") if r["run_line"] else ""
+            note_str = f"  [{r['rec_note']}]" if r["rec_note"] else ""
+            rec_str = c(" + ".join(plays) + rl_str, "") + note_str
+        else:
+            rec_str = c("—  pass", "dim")
+        print(f"  {'':13}  {cats}  →  {rec_str}")
+        print()
 
         if r["qualifies"]:
             qualifying.append((g, r))
