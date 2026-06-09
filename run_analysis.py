@@ -363,14 +363,25 @@ def compute(asn, hsn, at, ht, pitchers, teams, bullpen=None, fatigue=None):
     bat = (ab["xwoba"] - hb["xwoba"]) * 100 if ab and hb else 0.0
 
     # Bullpen edge with fatigue adjustment
-    # Each team's gap discounted by their fatigue score (fresh=1.0, depleted<0.70)
+    # Two components:
+    #   1. Quality term: each pen's gap discounted by availability (existing)
+    #   2. Freshness term: direct reward for the fresher pen, independent of quality
+    #      fa["score"]=1.0 means fully rested; <0.65 is depleted (🔴 flag)
+    #      Positive when AWAY pen is fresher → AWAY edge; negative → HOME edge
+    BP_FRESH_SCALE = 2.0
     bp = 0.0
     if ba and hb_bp:
-        bp = round((ba["gap"] * fa["score"] - hb_bp["gap"] * fh["score"]) * -50, 2)
+        quality_term   = (ba["gap"] * fa["score"] - hb_bp["gap"] * fh["score"]) * -50
+        freshness_term = (fa["score"] - fh["score"]) * BP_FRESH_SCALE
+        bp = round(quality_term + freshness_term, 2)
     elif ba:
-        bp = round(ba["gap"] * fa["score"] * -50, 2)
+        quality_term   = ba["gap"] * fa["score"] * -50
+        freshness_term = (fa["score"] - 1.0) * BP_FRESH_SCALE   # penalise tired away pen vs fresh baseline
+        bp = round(quality_term + freshness_term, 2)
     elif hb_bp:
-        bp = round(hb_bp["gap"] * fh["score"] * 50, 2)
+        quality_term   = hb_bp["gap"] * fh["score"] * 50
+        freshness_term = (1.0 - fh["score"]) * BP_FRESH_SCALE   # reward tired home pen vs fresh baseline
+        bp = round(quality_term + freshness_term, 2)
 
     raw = round(sp + bat + bp, 2)
     park = PARK_ADJ.get(ht, 0)
