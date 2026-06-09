@@ -157,6 +157,19 @@ def main():
 
     print(f"\n  [✓] {updated} rows updated in {LOG_FILE}")
 
+    # Also pull F5 scores for the same date
+    try:
+        import importlib.util, pathlib
+        f5_path = pathlib.Path(__file__).parent / "fetch_f5_scores.py"
+        if not f5_path.exists():
+            f5_path = pathlib.Path("scripts/fetch_f5_scores.py")
+        spec = importlib.util.spec_from_file_location("fetch_f5_scores", f5_path)
+        f5_mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(f5_mod)
+        f5_mod.update_log(args.date)
+    except Exception as e:
+        print(f"  [!] F5 fetch failed (non-fatal): {e}")
+
 
 if __name__ == "__main__":
     main()
