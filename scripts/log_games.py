@@ -100,7 +100,9 @@ FIELDS = [
     'composite','band','model_dir','aligned','alignment_type','qualified',
     'sp_cat','bat_cat','bp_cat','f5_rec','full_rec','run_line_flag',
     'away_ml','home_ml','away_rl','home_rl','total',
-    'away_score','home_score','model','lean',
+    'away_score','home_score',
+    'away_f5','home_f5','f5_total','f5_result','f5_lean','f5_correct',
+    'model','lean',
     'bet_placed','bet_description','bet_result',
     'notes','logged_at',
 ]
@@ -418,6 +420,12 @@ def main():
             'total':          o.get('total',''),
             'away_score':     '',
             'home_score':     '',
+            'away_f5':        '',
+            'home_f5':        '',
+            'f5_total':       '',
+            'f5_result':      '',
+            'f5_lean':        '',
+            'f5_correct':     '',
             'model':  '',   # 1/0 only when qualified play result is known
             'lean':   '',   # 1/0 for all directional leans once scores are known
             'bet_placed':     1 if bet_info.get('desc') else 0,
