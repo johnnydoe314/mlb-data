@@ -172,8 +172,11 @@ def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen):
 
     bat = ((ab['xwoba'] - hb['xwoba']) * 100) if ab and hb else 0.0
 
-    bp = round((ba['gap']*ba['fat'] - hb_bp['gap']*hb_bp['fat']) * -50, 2) \
-         if ba and hb_bp else 0.0
+    # BP: quality term (gap × availability) + freshness term (direct fatigue edge)
+    BP_FRESH_SCALE = 2.0
+    quality_term   = (ba['gap']*ba['fat'] - hb_bp['gap']*hb_bp['fat']) * -50
+    freshness_term = (ba['fat'] - hb_bp['fat']) * BP_FRESH_SCALE
+    bp = round(quality_term + freshness_term, 2)
 
     park = PARK.get(ht, 0)
     raw  = round(sp + bat + bp, 2)
