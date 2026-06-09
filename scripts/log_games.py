@@ -37,10 +37,68 @@ NORM = {'TB':'TBR','KC':'KCR','SD':'SDP','SF':'SFG','AZ':'ARI'}
 PARK = {'COL':-3.0,'BOS':-1.5,'NYY':-1.5,'CHC':-1.0,'CIN':-1.0,
         'TEX':-0.5,'HOU':-0.5,'SDP':+1.5,'SFG':+1.5,'TBR':+0.5,'TOR':+0.5,'MIN':+0.5}
 
+# ── Play recommendation system ────────────────────────────────────────────────
+SP_GREAT, SP_GOOD, SP_BAD, SP_VBAD     =  3.0,  1.5, -1.5, -3.0
+BAT_GREAT, BAT_GOOD, BAT_BAD, BAT_VBAD =  2.5,  1.5, -1.5, -2.5
+BP_GREAT, BP_GOOD, BP_BAD, BP_VBAD     =  0.8,  0.3, -0.3, -0.8
+
+def _cat5(v, great, good, bad, vbad):
+    if v >= great: return 'GREAT'
+    if v >= good:  return 'GOOD'
+    if v >= bad:   return 'NEUTRAL'
+    if v >= vbad:  return 'BAD'
+    return 'VERY_BAD'
+
+def _n3(c): return 'GOOD' if c in ('GREAT','GOOD') else ('NEUTRAL' if c=='NEUTRAL' else 'BAD')
+
+_PLAY_LOOKUP = {
+    ('GOOD','GOOD','GOOD'):(True,True), ('GOOD','GOOD','NEUTRAL'):(True,True),
+    ('GOOD','GOOD','BAD'):(True,False), ('GOOD','NEUTRAL','GOOD'):(True,True),
+    ('GOOD','NEUTRAL','NEUTRAL'):(True,False), ('GOOD','NEUTRAL','BAD'):(True,False),
+    ('GOOD','BAD','GOOD'):(False,True), ('GOOD','BAD','NEUTRAL'):(False,False),
+    ('GOOD','BAD','BAD'):(False,False), ('NEUTRAL','GOOD','GOOD'):(False,True),
+    ('NEUTRAL','GOOD','NEUTRAL'):(False,True), ('NEUTRAL','GOOD','BAD'):(False,False),
+    ('NEUTRAL','NEUTRAL','GOOD'):(False,False), ('NEUTRAL','NEUTRAL','NEUTRAL'):(False,False),
+    ('NEUTRAL','NEUTRAL','BAD'):(False,False), ('NEUTRAL','BAD','GOOD'):(False,False),
+    ('NEUTRAL','BAD','NEUTRAL'):(False,False), ('NEUTRAL','BAD','BAD'):(False,False),
+    ('BAD','GOOD','GOOD'):(False,False), ('BAD','GOOD','NEUTRAL'):(False,False),
+    ('BAD','GOOD','BAD'):(False,False), ('BAD','NEUTRAL','GOOD'):(False,False),
+    ('BAD','NEUTRAL','NEUTRAL'):(False,False), ('BAD','NEUTRAL','BAD'):(False,False),
+    ('BAD','BAD','GOOD'):(False,False), ('BAD','BAD','NEUTRAL'):(False,False),
+    ('BAD','BAD','BAD'):(False,False),
+}
+_HOME_ONLY = {('GOOD','NEUTRAL','BAD'), ('NEUTRAL','GOOD','GOOD'), ('NEUTRAL','GOOD','NEUTRAL')}
+
+def recommend_play(sp, bat, bp, model_dir):
+    if model_dir == 'NEUT':
+        return dict(sp_cat='NEUTRAL',bat_cat='NEUTRAL',bp_cat='NEUTRAL',
+                    f5=False,full=False,run_line=False)
+    sign = -1 if model_dir == 'HOME' else 1
+    adj_sp, adj_bat, adj_bp = sp*sign, bat*sign, bp*sign
+    sp_cat  = _cat5(adj_sp,  SP_GREAT,  SP_GOOD,  SP_BAD,  SP_VBAD)
+    bat_cat = _cat5(adj_bat, BAT_GREAT, BAT_GOOD, BAT_BAD, BAT_VBAD)
+    bp_cat  = _cat5(adj_bp,  BP_GREAT,  BP_GOOD,  BP_BAD,  BP_VBAD)
+    key = (_n3(sp_cat), _n3(bat_cat), _n3(bp_cat))
+    f5, full = _PLAY_LOOKUP.get(key, (False, False))
+    if key in _HOME_ONLY and model_dir != 'HOME':
+        if key == ('GOOD','NEUTRAL','BAD'): f5 = False
+        else: full = False
+    if sp_cat == 'GREAT':
+        f5 = True
+        if bat_cat in ('GREAT','GOOD') or bp_cat in ('GREAT','GOOD'): full = True
+    if bat_cat == 'GREAT' and sp_cat in ('GREAT','GOOD') and not full:
+        if bp_cat not in ('BAD','VERY_BAD'): full = True
+    if sp_cat == 'VERY_BAD': f5 = full = False
+    if bp_cat == 'VERY_BAD' and full: full = False
+    run_line = (f5 or full) and (sp_cat == 'GREAT' or bat_cat == 'GREAT')
+    return dict(sp_cat=sp_cat, bat_cat=bat_cat, bp_cat=bp_cat,
+                f5=f5, full=full, run_line=run_line)
+
 FIELDS = [
     'game_date','away_team','home_team','away_sp','home_sp',
     'away_gap','home_gap','sp_edge','bat_edge','bp_edge','park_adj',
     'composite','band','model_dir','aligned','alignment_type','qualified',
+    'sp_cat','bat_cat','bp_cat','f5_rec','full_rec','run_line_flag',
     'away_ml','home_ml','away_rl','home_rl','total',
     'away_score','home_score','model','lean',
     'bet_placed','bet_description','bet_result',
@@ -190,6 +248,8 @@ def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen):
     miss = (asn!='TBD' and not a) or (hsn!='TBD' and not h)
     qual = aa>=5 and aln and not miss
 
+    rec = recommend_play(round(sp,2), round(bat,2), bp, model)
+
     return {
         'sp_edge': round(sp,2), 'bat_edge': round(bat,2),
         'bp_edge': bp, 'park_adj': park, 'composite': adj,
@@ -198,6 +258,9 @@ def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen):
         'qualified': qual,
         'away_gap': a['gap'] if a else '',
         'home_gap': h['gap'] if h else '',
+        'sp_cat': rec['sp_cat'], 'bat_cat': rec['bat_cat'], 'bp_cat': rec['bp_cat'],
+        'f5_rec': int(rec['f5']), 'full_rec': int(rec['full']),
+        'run_line_flag': int(rec['run_line']),
     }
 
 
@@ -342,6 +405,12 @@ def main():
             'aligned':        int(c['aligned']),
             'alignment_type': c['alignment_type'],
             'qualified':      int(c['qualified']),
+            'sp_cat':         c['sp_cat'],
+            'bat_cat':        c['bat_cat'],
+            'bp_cat':         c['bp_cat'],
+            'f5_rec':         c['f5_rec'],
+            'full_rec':       c['full_rec'],
+            'run_line_flag':  c['run_line_flag'],
             'away_ml':        o.get('away_ml',''),
             'home_ml':        o.get('home_ml',''),
             'away_rl':        o.get('away_rl',''),
