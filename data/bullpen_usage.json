@@ -1,86 +1,4 @@
 {
-  "2026-06-05": [
-    {
-      "id": 681916,
-      "name": "Dylan Smith",
-      "team": "SFG",
-      "pitches": 12,
-      "ip": 1.0,
-      "date": "2026-06-05"
-    },
-    {
-      "id": 693313,
-      "name": "Carson Seymour",
-      "team": "SFG",
-      "pitches": 45,
-      "ip": 3.0,
-      "date": "2026-06-05"
-    },
-    {
-      "id": 571948,
-      "name": "Hoby Milner",
-      "team": "CHC",
-      "pitches": 22,
-      "ip": 0.1,
-      "date": "2026-06-05"
-    },
-    {
-      "id": 681799,
-      "name": "Ethan Roberts",
-      "team": "CHC",
-      "pitches": 29,
-      "ip": 1.2,
-      "date": "2026-06-05"
-    },
-    {
-      "id": 573204,
-      "name": "Caleb Thielbar",
-      "team": "CHC",
-      "pitches": 13,
-      "ip": 1.0,
-      "date": "2026-06-05"
-    },
-    {
-      "id": 608348,
-      "name": "Carson Kelly",
-      "team": "CHC",
-      "pitches": 6,
-      "ip": 1.0,
-      "date": "2026-06-05"
-    },
-    {
-      "id": 664208,
-      "name": "Phil Maton",
-      "team": "CHC",
-      "pitches": 27,
-      "ip": 1.1,
-      "date": "2026-06-05"
-    },
-    {
-      "id": 663969,
-      "name": "Tyler Phillips",
-      "team": "MIA",
-      "pitches": 33,
-      "ip": 2.0,
-      "date": "2026-06-05"
-    },
-    {
-      "id": 687473,
-      "name": "Ryan Gusto",
-      "team": "MIA",
-      "pitches": 33,
-      "ip": 2.0,
-      "date": "2026-06-05"
-    },
-    {
-      "id": 656605,
-      "name": "Mitch Keller",
-      "team": "PIT",
-      "pitches": 41,
-      "ip": 2.0,
-      "date": "2026-06-05"
-    }
-  ],
   "2026-06-06": [
     {
       "id": 678606,
@@ -1453,6 +1371,48 @@
       "pitches": 9,
       "ip": 1.0,
       "date": "2026-06-08"
+    }
+  ],
+  "2026-06-09": [
+    {
+      "id": 543135,
+      "name": "Nathan Eovaldi",
+      "team": "TEX",
+      "pitches": 33,
+      "ip": 1.2,
+      "date": "2026-06-09"
+    },
+    {
+      "id": 663568,
+      "name": "Stephen Kolek",
+      "team": "KCR",
+      "pitches": 29,
+      "ip": 2.0,
+      "date": "2026-06-09"
+    },
+    {
+      "id": 656550,
+      "name": "Grant Holmes",
+      "team": "ATL",
+      "pitches": 26,
+      "ip": 2.0,
+      "date": "2026-06-09"
+    },
+    {
+      "id": 685126,
+      "name": "Brandon Eisert",
+      "team": "CWS",
+      "pitches": 21,
+      "ip": 0.2,
+      "date": "2026-06-09"
+    },
+    {
+      "id": 607200,
+      "name": "Erick Fedde",
+      "team": "CWS",
+      "pitches": 15,
+      "ip": 1.1,
+      "date": "2026-06-09"
     }
   ]
 }
