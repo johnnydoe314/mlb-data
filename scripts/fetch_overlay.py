@@ -5,7 +5,7 @@ fetch_overlay.py
 Automatically runs the Professional Overlay Score (POS) for today's
 qualifying plays. No manual input required.
 
-Pulls from the data pipeline (stats, bullpen, fatigue, odds) + uses the
+Pulls from the data pipeline (stats, bullpen, fatigue) + uses the
 Claude API with web search to research each SP's xERA/FIP, recent form,
 injuries, and lineup context.
 
@@ -303,9 +303,7 @@ def build_prompt(g, c, o):
                 f"fatigue {data.get('fat',1):.3f}{fat_flag}, "
                 f"{data.get('tired',0)} tired arms, {data.get('rps',0)} RPs tracked")
 
-    ml_str = (f"{at} ML:{o.get('away_ml','?')}, {ht} ML:{o.get('home_ml','?')}, "
-              f"RL:{o.get('away_rl','?')}/{o.get('home_rl','?')}, "
-              f"O/U:{o.get('total','?')}")
+    ml_str = ""  # odds removed
 
     return f"""Today is {today}. Research and score this qualifying MLB play.
 
@@ -434,7 +432,6 @@ def main():
         stats    = fetch_raw('stats.csv')
         pp       = fetch_raw('probable_pitchers.csv')
         sc       = fetch_raw('statcast_hitting_2026.csv')
-        odds_raw = fetch_raw('odds.csv')
         bp_raw   = fetch_raw('bullpen.csv')
         fat_raw  = fetch_raw('bullpen_fatigue.csv')
     except Exception as e:
@@ -444,11 +441,6 @@ def main():
     pitchers = load_pitchers(stats)
     teams    = load_teams(sc)
     bullpen  = load_bullpen_merged(bp_raw, fat_raw)
-    odds_map = {}
-    for r in csv.DictReader(io.StringIO(odds_raw)):
-        at = NORM.get(r['away_team'],r['away_team'])
-        ht = NORM.get(r['home_team'],r['home_team'])
-        odds_map[(at,ht)] = r
 
     games = []
     for row in csv.DictReader(io.StringIO(pp)):
@@ -480,7 +472,6 @@ def main():
     for g in target_games:
         at,ht  = g['at'], g['ht']
         c      = g['composite']
-        o      = odds_map.get((at,ht), {})
 
         print(f"  {at}@{ht} (composite {c['composite']:+.1f})... ", end="", flush=True)
 
