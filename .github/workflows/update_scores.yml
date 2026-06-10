@@ -29,9 +29,6 @@ jobs:
       - name: Run update_scores.py
         run: python scripts/update_scores.py
 
-      - name: Fetch F5 scores (f5_result, f5_lean, f5_correct)
-        continue-on-error: true
-        run: python scripts/fetch_f5_scores.py
 
       - name: Commit updated scores
         run: |
