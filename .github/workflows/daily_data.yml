@@ -2,7 +2,7 @@ name: MLB Daily Data
 
 on:
   schedule:
-    - cron: '0 15 * * *'    # 10:00 AM CT (full run — stats + odds)
+    - cron: '0 15 * * *'    # 10:00 AM CT (full run — stats + bullpen + batting)
     - cron: '0 19 * * *'    # 2:00 PM CT  (refresh bullpen/fatigue)
     - cron: '0 23 * * *'    # 6:00 PM CT  (pre-game refresh)
   workflow_dispatch:
@@ -46,16 +46,6 @@ jobs:
         continue-on-error: true
         run: python scripts/fetch_bullpen_usage.py
 
-      - name: Fetch all odds — full game + F5 (odds.csv + f5_odds.csv)
-        # 16 calls/day × 30 days = 480/month — within 500 free tier
-        # Only runs on the 10am CT cron or manual dispatch
-        if: >
-          github.event_name == 'workflow_dispatch' ||
-          github.event.schedule == '0 15 * * *'
-        continue-on-error: true
-        run: python scripts/fetch_all_odds.py
-        env:
-          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
 
       - name: Log all games with composite scores (game_log.csv)
         run: python scripts/log_games.py
