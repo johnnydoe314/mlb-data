@@ -1,174 +1,262 @@
 #!/usr/bin/env python3
 """
-update_scores.py
-================
-Fill in actual scores + model_correct for yesterday's games in game_log.csv.
-Run each morning after overnight game completion.
+update_scores.py — fetch final scores AND F5 data from the MLB Stats API
+live game feed, updating game_log.csv in one pass.
 
-Usage:
-    python scripts/update_scores.py --date 2026-06-03
-
-Fetches final scores from MLB Stats API and matches to game_log.csv rows.
+Flow:
+  1. schedule endpoint  →  get gamePks for target date
+  2. /game/{pk}/feed/live  →  linescore with per-inning data
+  3. Derive: away_score, home_score, away_f5, home_f5, f5_total, f5_result
+  4. Also compute: lean, model, f5_lean, f5_correct and write to game_log.csv
 """
 
-import csv, json, sys, urllib.request
+import csv
+import json
+import os
+import sys
+import urllib.request
+import urllib.error
 from datetime import date, timedelta
 from pathlib import Path
 
-LOG_FILE = Path("data/game_log.csv")
-TIMEOUT  = 20
+MLB_SCH  = "https://statsapi.mlb.com/api/v1/schedule"
+MLB_FEED = "https://statsapi.mlb.com/api/v1.1/game/{pk}/feed/live"
+LOG_FILE = Path(os.environ.get("LOG_FILE", "data/game_log.csv"))
+TIMEOUT  = 25
 
-TEAM_NAME_MAP = {
-    "Athletics": "ATH", "Oakland Athletics": "ATH",
-    "Diamondbacks": "ARI", "Arizona Diamondbacks": "ARI",
-    "Braves": "ATL", "Atlanta Braves": "ATL",
-    "Orioles": "BAL", "Baltimore Orioles": "BAL",
-    "Red Sox": "BOS", "Boston Red Sox": "BOS",
-    "Cubs": "CHC", "Chicago Cubs": "CHC",
-    "White Sox": "CWS", "Chicago White Sox": "CWS",
-    "Reds": "CIN", "Cincinnati Reds": "CIN",
-    "Guardians": "CLE", "Cleveland Guardians": "CLE",
-    "Rockies": "COL", "Colorado Rockies": "COL",
-    "Tigers": "DET", "Detroit Tigers": "DET",
-    "Astros": "HOU", "Houston Astros": "HOU",
-    "Royals": "KCR", "Kansas City Royals": "KCR",
-    "Angels": "LAA", "Los Angeles Angels": "LAA",
-    "Dodgers": "LAD", "Los Angeles Dodgers": "LAD",
-    "Marlins": "MIA", "Miami Marlins": "MIA",
-    "Brewers": "MIL", "Milwaukee Brewers": "MIL",
-    "Twins": "MIN", "Minnesota Twins": "MIN",
-    "Mets": "NYM", "New York Mets": "NYM",
-    "Yankees": "NYY", "New York Yankees": "NYY",
-    "Phillies": "PHI", "Philadelphia Phillies": "PHI",
-    "Pirates": "PIT", "Pittsburgh Pirates": "PIT",
-    "Padres": "SDP", "San Diego Padres": "SDP",
-    "Mariners": "SEA", "Seattle Mariners": "SEA",
-    "Giants": "SFG", "San Francisco Giants": "SFG",
-    "Cardinals": "STL", "St. Louis Cardinals": "STL",
-    "Rays": "TBR", "Tampa Bay Rays": "TBR",
-    "Rangers": "TEX", "Texas Rangers": "TEX",
-    "Blue Jays": "TOR", "Toronto Blue Jays": "TOR",
-    "Nationals": "WSH", "Washington Nationals": "WSH",
+# Normalise MLB abbreviations to our internal standard
+MLB_NORM = {
+    "AZ": "ARI", "KC": "KCR", "SD": "SDP", "SF": "SFG",
+    "TB": "TBR", "OAK": "ATH", "LAN": "LAD",
 }
+def norm(t: str) -> str:
+    return MLB_NORM.get(t.strip().upper(), t.strip().upper())
 
 
-def fetch_scores(game_date: str) -> dict:
-    """Fetch final scores from MLB Stats API."""
-    url = (f"https://statsapi.mlb.com/api/v1/schedule"
-           f"?sportId=1&date={game_date}&hydrate=linescore")
-    req = urllib.request.Request(url, headers={"User-Agent": "update_scores/1.0"})
+# ── MLB API helpers ───────────────────────────────────────────────────────────
+
+def _get(url: str) -> dict:
+    req = urllib.request.Request(url, headers={"User-Agent": "update_scores/2.0"})
     with urllib.request.urlopen(req, timeout=TIMEOUT) as r:
-        data = json.loads(r.read().decode())
+        return json.loads(r.read())
 
-    scores = {}
-    for date_entry in data.get("dates", []):
-        for game in date_entry.get("games", []):
-            status = game.get("status", {}).get("abstractGameState", "")
-            if status != "Final":
-                continue
-            teams = game.get("teams", {})
-            away  = TEAM_NAME_MAP.get(
-                teams.get("away",{}).get("team",{}).get("name",""), "")
-            home  = TEAM_NAME_MAP.get(
-                teams.get("home",{}).get("team",{}).get("name",""), "")
-            a_score = teams.get("away",{}).get("score", "")
-            h_score = teams.get("home",{}).get("score", "")
-            if away and home:
-                scores[(away, home)] = (a_score, h_score)
-    return scores
 
+def get_gamepks(target_date: str) -> list[int]:
+    """Return list of regular-season gamePks for a date."""
+    url = f"{MLB_SCH}?sportId=1&date={target_date}&gameType=R"
+    data = _get(url)
+    pks = []
+    for day in data.get("dates", []):
+        for g in day.get("games", []):
+            pks.append(g["gamePk"])
+    return pks
+
+
+def get_game_result(pk: int) -> dict | None:
+    """
+    Fetch live feed for a single game.
+    Returns None if the game isn't Final yet.
+    Returns dict with: game_date, away, home, away_score, home_score,
+                       away_f5, home_f5, f5_total, f5_result
+    """
+    url = MLB_FEED.format(pk=pk)
+    try:
+        data = _get(url)
+    except Exception as e:
+        print(f"    [!] gamePk {pk} — fetch error: {e}", file=sys.stderr)
+        return None
+
+    gd = data.get("gameData", {})
+    ld = data.get("liveData", {})
+    ls = ld.get("linescore", {})
+
+    # Only process completed games
+    state = gd.get("status", {}).get("abstractGameState", "")
+    if state != "Final":
+        return None
+
+    away_abbrev = norm(gd.get("teams", {}).get("away", {}).get("abbreviation", ""))
+    home_abbrev = norm(gd.get("teams", {}).get("home", {}).get("abbreviation", ""))
+    game_date   = gd.get("datetime", {}).get("officialDate", "")
+
+    # Final scores from linescore totals
+    ls_teams    = ls.get("teams", {})
+    away_score  = int(ls_teams.get("away", {}).get("runs") or 0)
+    home_score  = int(ls_teams.get("home", {}).get("runs") or 0)
+
+    # F5 — sum runs in innings 1-5
+    innings = ls.get("innings", [])
+    away_f5 = sum(int(i.get("away", {}).get("runs") or 0)
+                  for i in innings if int(i.get("num", 0)) <= 5)
+    home_f5 = sum(int(i.get("home", {}).get("runs") or 0)
+                  for i in innings if int(i.get("num", 0)) <= 5)
+
+    f5_total  = away_f5 + home_f5
+    f5_result = ("AWAY" if away_f5 > home_f5
+                 else "HOME" if home_f5 > away_f5
+                 else "Tie")
+
+    return dict(
+        game_date  = game_date,
+        away       = away_abbrev,
+        home       = home_abbrev,
+        away_score = away_score,
+        home_score = home_score,
+        away_f5    = away_f5,
+        home_f5    = home_f5,
+        f5_total   = f5_total,
+        f5_result  = f5_result,
+    )
+
+
+# ── Derived-field helpers ─────────────────────────────────────────────────────
+
+def _lean(composite, a_sc, h_sc) -> str | int:
+    """1/0 — did composite direction match actual result?"""
+    try:
+        adj = float(composite or 0)
+    except (TypeError, ValueError):
+        return ""
+    if abs(adj) < 0.05 or a_sc == h_sc:
+        return ""
+    model  = "AWAY" if adj > 0 else "HOME"
+    actual = "AWAY" if a_sc > h_sc else "HOME"
+    return 1 if model == actual else 0
+
+
+def _model(composite, model_dir, qualified, a_sc, h_sc) -> str | int:
+    """1/0 for qualifying plays only."""
+    try:
+        if int(qualified or 0) != 1:
+            return ""
+    except (TypeError, ValueError):
+        return ""
+    if not model_dir or model_dir == "NEUT" or a_sc == h_sc:
+        return ""
+    actual = "AWAY" if a_sc > h_sc else "HOME"
+    return 1 if model_dir == actual else 0
+
+
+def _f5_lean(composite, f5_result) -> str | int:
+    """1/0 — did composite direction match F5 result?"""
+    if not f5_result or f5_result == "Tie":
+        return ""
+    try:
+        adj = float(composite or 0)
+    except (TypeError, ValueError):
+        return ""
+    if abs(adj) < 0.05:
+        return ""
+    model  = "AWAY" if adj > 0 else "HOME"
+    return 1 if model == f5_result else 0
+
+
+def _f5_correct(f5_rec, model_dir, f5_result) -> str | int:
+    """1/0 — was the F5 recommendation correct?"""
+    try:
+        if int(f5_rec or 0) != 1:
+            return ""
+    except (TypeError, ValueError):
+        return ""
+    if not f5_result or f5_result == "Tie":
+        return ""
+    return 1 if model_dir == f5_result else 0
+
+
+# ── Main ──────────────────────────────────────────────────────────────────────
 
 def main():
     import argparse
-    p = argparse.ArgumentParser()
-    p.add_argument("--date",
-                   default=(date.today() - timedelta(days=1)).isoformat())
+    p = argparse.ArgumentParser(description="Update game_log with scores + F5 data")
+    p.add_argument("--date", default="",
+                   help="Date YYYY-MM-DD (default: yesterday)")
     args = p.parse_args()
-    game_date = args.date
 
-    if not LOG_FILE.exists():
-        print("No game_log.csv found.")
+    target = (args.date.strip() or
+              os.environ.get("GAME_DATE", "") or
+              (date.today() - timedelta(days=1)).isoformat())
+
+    print(f"Fetching scores for {target}...")
+
+    # 1. Get game PKs
+    try:
+        pks = get_gamepks(target)
+    except Exception as e:
+        print(f"  [!] Schedule fetch failed: {e}", file=sys.stderr)
+        sys.exit(1)
+
+    if not pks:
+        print(f"  No games found for {target}")
         sys.exit(0)
 
-    print(f"Fetching scores for {game_date}...")
-    scores = fetch_scores(game_date)
-    print(f"  Found {len(scores)} final games from API")
+    print(f"  Found {len(pks)} games — fetching live feeds...")
 
-    rows = []
-    updated = 0
-    with open(LOG_FILE, newline='', encoding='utf-8') as f:
+    # 2. Fetch each game
+    results: dict[tuple, dict] = {}   # (away, home) -> result
+    for pk in pks:
+        r = get_game_result(pk)
+        if r:
+            key = (r["away"], r["home"])
+            results[key] = r
+            print(f"    {r['away']}@{r['home']:5}  {r['away_score']}-{r['home_score']}"
+                  f"   F5: {r['away_f5']}-{r['home_f5']} ({r['f5_result']})")
+
+    if not results:
+        print(f"  No final games found for {target}")
+        sys.exit(0)
+
+    # 3. Update game_log.csv
+    if not LOG_FILE.exists():
+        print(f"  [!] {LOG_FILE} not found", file=sys.stderr)
+        sys.exit(1)
+
+    with open(LOG_FILE, newline="", encoding="utf-8-sig") as f:
         rows = list(csv.DictReader(f))
 
-    fields = list(rows[0].keys()) if rows else []
+    if not rows:
+        sys.exit(0)
 
+    fields = list(rows[0].keys())
+    # Ensure F5 columns exist
+    for col in ("away_f5","home_f5","f5_total","f5_result","f5_lean","f5_correct"):
+        if col not in fields:
+            idx = (fields.index("home_score") + 1
+                   if "home_score" in fields else len(fields))
+            fields.insert(idx, col)
+
+    updated = 0
     for row in rows:
-        if row['game_date'] != game_date:
+        if row.get("game_date", "") != target:
             continue
-        at = row['away_team']; ht = row['home_team']
-        result = scores.get((at, ht))
-        if not result:
+        key = (row.get("away_team",""), row.get("home_team",""))
+        if key not in results:
             continue
-        a_score, h_score = result
-        row['away_score'] = a_score
-        row['home_score'] = h_score
 
-        try:
-            a, h = int(a_score), int(h_score)
-            if a == h:
-                row['model'] = ''
-                row['lean']  = ''
-            else:
-                actual = 'AWAY' if a > h else 'HOME'
-                model  = row.get('model_dir', 'NEUT')
-                qual   = int(row.get('qualified', 0) or 0)
-
-                # model_correct — only for qualified plays (|comp|>=5, aligned, not MISS)
-                if qual and model != 'NEUT':
-                    row['model'] = 1 if model == actual else 0
-                else:
-                    row['model'] = ''
-
-                # lean_correct — composite lean direction for all games
-                try:
-                    comp = float(row.get('composite', 0) or 0)
-                    if abs(comp) >= 0.05:   # ignore near-zero composites
-                        lean = 'AWAY' if comp > 0 else 'HOME'
-                        row['lean'] = 1 if lean == actual else 0
-                    else:
-                        row['lean'] = ''
-                except (ValueError, TypeError):
-                    row['lean'] = ''
-
-        except (ValueError, TypeError):
-            row['model'] = ''
-            row['lean']  = ''
-
+        res = results[key]
+        a_sc = res["away_score"]
+        h_sc = res["home_score"]
+        row["away_score"] = a_sc
+        row["home_score"] = h_sc
+        row["away_f5"]    = res["away_f5"]
+        row["home_f5"]    = res["home_f5"]
+        row["f5_total"]   = res["f5_total"]
+        row["f5_result"]  = res["f5_result"]
+        row["lean"]       = _lean(row.get("composite"), a_sc, h_sc)
+        row["model"]      = _model(row.get("composite"), row.get("model_dir"),
+                                   row.get("qualified"), a_sc, h_sc)
+        row["f5_lean"]    = _f5_lean(row.get("composite"), res["f5_result"])
+        row["f5_correct"] = _f5_correct(row.get("f5_rec"), row.get("model_dir"),
+                                         res["f5_result"])
         updated += 1
-        mc  = row['model']
-        lc  = row['lean']
-        mc_str = '✅' if mc == 1 else ('❌' if mc == 0 else '~')
-        lc_str = '✅' if lc == 1 else ('❌' if lc == 0 else '~')
-        print(f"  {at}@{ht}: {a_score}-{h_score} | model={model} qual={qual} → MC:{mc_str} LC:{lc_str}")
 
-    with open(LOG_FILE, 'w', newline='', encoding='utf-8') as f:
-        writer = csv.DictWriter(f, fieldnames=fields, extrasaction='ignore')
+    print(f"\n  Updated {updated} rows")
+
+    with open(LOG_FILE, "w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=fields, extrasaction="ignore")
         writer.writeheader()
         writer.writerows(rows)
 
-    print(f"\n  [✓] {updated} rows updated in {LOG_FILE}")
-
-    # Also pull F5 scores for the same date
-    try:
-        import importlib.util, pathlib
-        f5_path = pathlib.Path(__file__).parent / "fetch_f5_scores.py"
-        if not f5_path.exists():
-            f5_path = pathlib.Path("scripts/fetch_f5_scores.py")
-        spec = importlib.util.spec_from_file_location("fetch_f5_scores", f5_path)
-        f5_mod = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(f5_mod)
-        f5_mod.update_log(args.date)
-    except Exception as e:
-        print(f"  [!] F5 fetch failed (non-fatal): {e}")
+    print(f"  [✓] {LOG_FILE} saved")
 
 
 if __name__ == "__main__":
