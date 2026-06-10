@@ -19,8 +19,10 @@ Schema:
     game_date, away_team, home_team, away_sp, home_sp,
     away_gap, home_gap, sp_edge, bat_edge, bp_edge, park_adj,
     composite, band, model_dir, aligned, alignment_type, qualified,
-    away_ml, home_ml, away_rl, home_rl, total,
-    away_score, home_score, model_correct,
+    sp_cat, bat_cat, bp_cat, f5_rec, full_rec, run_line_flag,
+    away_score, home_score,
+    away_f5, home_f5, f5_total, f5_result, f5_lean, f5_correct,
+    model, lean,
     bet_placed, bet_description, bet_result,
     notes, logged_at
 """
@@ -99,7 +101,6 @@ FIELDS = [
     'away_gap','home_gap','sp_edge','bat_edge','bp_edge','park_adj',
     'composite','band','model_dir','aligned','alignment_type','qualified',
     'sp_cat','bat_cat','bp_cat','f5_rec','full_rec','run_line_flag',
-    'away_ml','home_ml','away_rl','home_rl','total',
     'away_score','home_score',
     'away_f5','home_f5','f5_total','f5_result','f5_lean','f5_correct',
     'model','lean',
@@ -267,20 +268,30 @@ def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen):
 
 
 def load_existing_log():
+    """Return dict keyed by (game_date, away_team, home_team) → row dict.
+    Preserves bet/score data for merge when re-running the same day."""
     if not LOG_FILE.exists():
-        return set()
+        return {}
     with open(LOG_FILE, newline='', encoding='utf-8') as f:
-        rows = list(csv.DictReader(f))
-    return {(r['game_date'], r['away_team'], r['home_team']) for r in rows}
+        return {(r['game_date'], r['away_team'], r['home_team']): r
+                for r in csv.DictReader(f)}
 
 
-def append_rows(new_rows):
-    is_new = not LOG_FILE.exists()
-    with open(LOG_FILE, 'a', newline='', encoding='utf-8') as f:
+# Fields we always preserve from an existing row (never overwrite with blanks)
+_PRESERVE_FIELDS = {
+    'away_score','home_score','away_f5','home_f5','f5_total',
+    'f5_result','f5_lean','f5_correct','model','lean',
+    'bet_placed','bet_description','bet_result','notes',
+}
+
+
+def write_log(all_rows):
+    """Write the complete game log, always overwriting — never appending."""
+    LOG_FILE.parent.mkdir(parents=True, exist_ok=True)
+    with open(LOG_FILE, 'w', newline='', encoding='utf-8') as f:
         writer = csv.DictWriter(f, fieldnames=FIELDS, extrasaction='ignore')
-        if is_new:
-            writer.writeheader()
-        writer.writerows(new_rows)
+        writer.writeheader()
+        writer.writerows(all_rows)
 
 
 def main():
@@ -332,7 +343,6 @@ def main():
 
     # Optional files — degrade gracefully if absent
     sc_content      = fetch_optional('team_batting.csv', 'team_batting.csv')
-    odds_content    = fetch_optional('odds.csv', 'odds.csv')
     bullpen_content = fetch_optional('bullpen.csv', 'bullpen.csv')
     fatigue_content = fetch_optional('bullpen_fatigue.csv', 'bullpen_fatigue.csv')
 
@@ -350,16 +360,6 @@ def main():
     pitchers = load_pitchers(stats_content)
     teams    = load_teams(sc_content) if sc_content else {}
 
-    # Odds map (empty if odds.csv missing)
-    odds_map = {}
-    if odds_content:
-        for r in csv.DictReader(io.StringIO(odds_content)):
-            at = NORM.get(r['away_team'], r['away_team'])
-            ht = NORM.get(r['home_team'], r['home_team'])
-            odds_map[(at,ht)] = r
-    else:
-        print("  [~] No odds data — lines will be blank in log")
-
     # Games
     games = []
     for row in csv.DictReader(io.StringIO(pp_content)):
@@ -372,25 +372,33 @@ def main():
             'game_date': row.get('game_date', game_date),   # use CSV date if available
         })
 
-    existing = load_existing_log()
-    new_rows = []
+    existing = load_existing_log()   # dict: key → existing row
+    updated_rows = []                # will hold ALL rows for final write
+
+    # Carry forward every existing row that isn't being refreshed today
+    today_date = None
+    for g in games:
+        if g.get('game_date'):
+            today_date = g['game_date']
+            break
+
+    for key, row in existing.items():
+        if row.get('game_date') != today_date:
+            updated_rows.append(row)
 
     for g in games:
         at,ht,asn,hsn = g['at'],g['ht'],g['asp'],g['hsp']
-        row_date = g.get('game_date', game_date)           # each game's own date
+        row_date = g.get('game_date', game_date)
         key = (row_date, at, ht)
-        if key in existing:
-            print(f"  SKIP {at}@{ht} ({row_date}) — already logged")
-            continue
 
         c = compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen)
-        o = odds_map.get((at,ht), {})
 
         bet_key = f"{at}@{ht}"
         bet_info = bets_map.get(bet_key, {})
 
+        # Start with fresh composite values
         row = {
-            'game_date':      g.get('game_date', game_date),   # prefer CSV date over today()
+            'game_date':      row_date,
             'away_team':      at,
             'home_team':      ht,
             'away_sp':        asn,
@@ -413,11 +421,6 @@ def main():
             'f5_rec':         c['f5_rec'],
             'full_rec':       c['full_rec'],
             'run_line_flag':  c['run_line_flag'],
-            'away_ml':        o.get('away_ml',''),
-            'home_ml':        o.get('home_ml',''),
-            'away_rl':        o.get('away_rl',''),
-            'home_rl':        o.get('home_rl',''),
-            'total':          o.get('total',''),
             'away_score':     '',
             'home_score':     '',
             'away_f5':        '',
@@ -426,23 +429,31 @@ def main():
             'f5_result':      '',
             'f5_lean':        '',
             'f5_correct':     '',
-            'model':  '',   # 1/0 only when qualified play result is known
-            'lean':   '',   # 1/0 for all directional leans once scores are known
+            'model':          '',
+            'lean':           '',
             'bet_placed':     1 if bet_info.get('desc') else 0,
             'bet_description': bet_info.get('desc', ''),
             'bet_result':      bet_info.get('result', ''),
             'notes':          '',
             'logged_at':      logged_at,
         }
-        new_rows.append(row)
-        qual_str = ' ★ QUALIFIES' if c['qualified'] else ''
-        print(f"  {at}@{ht:<7} {c['composite']:+.1f} {c['band']:<5} {c['model_dir']:<5} {c['alignment_type']:<10}{qual_str}")
 
-    if new_rows:
-        append_rows(new_rows)
-        print(f"\n  [✓] {LOG_FILE} — {len(new_rows)} new rows added")
-    else:
-        print("\n  Nothing new to log.")
+        # Merge: preserve scores/bets/notes from any previously logged row
+        if key in existing:
+            old = existing[key]
+            for f in _PRESERVE_FIELDS:
+                if old.get(f, ''):          # only keep if previously non-empty
+                    row[f] = old[f]
+            action = 'REFRESH'
+        else:
+            action = 'NEW'
+
+        updated_rows.append(row)
+        qual_str = ' ★ QUALIFIES' if c['qualified'] else ''
+        print(f"  [{action}] {at}@{ht:<7} {c['composite']:+.1f} {c['band']:<5} {c['model_dir']:<5} {c['alignment_type']:<10}{qual_str}")
+
+    write_log(updated_rows)
+    print(f"\n  [✓] {LOG_FILE} — {len(updated_rows)} total rows ({sum(1 for g in games)} today's games)")
 
 
 if __name__ == "__main__":
