@@ -85,9 +85,12 @@ def recommend_play(sp, bat, bp, model_dir):
     if key in _HOME_ONLY and model_dir != 'HOME':
         if key == ('GOOD','NEUTRAL','BAD'): f5 = False
         else: full = False
-    if sp_cat == 'GREAT':
+    # Great SP bonus — only when opposing offense isn't dominant
+    if sp_cat == 'GREAT' and bat_cat not in ('BAD','VERY_BAD'):
         f5 = True
-        if bat_cat in ('GREAT','GOOD') or bp_cat in ('GREAT','GOOD'): full = True
+        if (bat_cat in ('GREAT','GOOD') or bp_cat in ('GREAT','GOOD')) \
+                and bp_cat not in ('BAD','VERY_BAD'):
+            full = True
     if bat_cat == 'GREAT' and sp_cat in ('GREAT','GOOD') and not full:
         if bp_cat not in ('BAD','VERY_BAD'): full = True
     if sp_cat == 'VERY_BAD': f5 = full = False
