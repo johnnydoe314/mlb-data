@@ -173,10 +173,12 @@ def recommend_play(sp, bat, bp, model_dir):
             full = False    # Full only valid for home team
 
     # ── Great SP bonus ────────────────────────────────────────────────────────
-    if sp_cat == "GREAT":
-        f5 = True           # Great SP → always at least F5
-        if bat_cat in ("GREAT", "GOOD") or bp_cat in ("GREAT", "GOOD"):
-            full = True     # Great SP + another positive → Full
+    # Only applies when opposing offense isn't dominant (BAT not BAD/VERY_BAD)
+    if sp_cat == "GREAT" and bat_cat not in ("BAD", "VERY_BAD"):
+        f5 = True           # Great SP + manageable offense → at least F5
+        if (bat_cat in ("GREAT", "GOOD") or bp_cat in ("GREAT", "GOOD")) \
+                and bp_cat not in ("BAD", "VERY_BAD"):
+            full = True     # Great SP + another positive + non-bad pen → Full
 
     # ── Great BAT bonus ───────────────────────────────────────────────────────
     if bat_cat == "GREAT" and sp_cat in ("GREAT", "GOOD") and not full:
