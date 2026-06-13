@@ -1,22 +1,4 @@
 {
-  "2026-06-08": [
-    {
-      "id": 689296,
-      "name": "Anthony Nunez",
-      "team": "BAL",
-      "pitches": 11,
-      "ip": 0.1,
-      "date": "2026-06-08"
-    },
-    {
-      "id": 668984,
-      "name": "Casey Legumina",
-      "team": "TBR",
-      "pitches": 9,
-      "ip": 1.0,
-      "date": "2026-06-08"
-    }
-  ],
   "2026-06-09": [
     {
       "id": 543135,
@@ -573,6 +555,88 @@
       "pitches": 23,
       "ip": 1.0,
       "date": "2026-06-11"
+    }
+  ],
+  "2026-06-12": [
+    {
+      "id": 696062,
+      "name": "Wilber Dotel",
+      "team": "PIT",
+      "pitches": 14,
+      "ip": 1.0,
+      "date": "2026-06-12"
+    },
+    {
+      "id": 621097,
+      "name": "Jacob Waguespack",
+      "team": "DET",
+      "pitches": 20,
+      "ip": 1.0,
+      "date": "2026-06-12"
+    },
+    {
+      "id": 593958,
+      "name": "Eduardo Rodriguez",
+      "team": "ARI",
+      "pitches": 63,
+      "ip": 2.0,
+      "date": "2026-06-12"
+    },
+    {
+      "id": 677960,
+      "name": "Ryan Weathers",
+      "team": "NYY",
+      "pitches": 44,
+      "ip": 2.0,
+      "date": "2026-06-12"
+    },
+    {
+      "id": 808963,
+      "name": "Roki Sasaki",
+      "team": "LAD",
+      "pitches": 25,
+      "ip": 1.1,
+      "date": "2026-06-12"
+    },
+    {
+      "id": 641743,
+      "name": "Anthony Kay",
+      "team": "CWS",
+      "pitches": 48,
+      "ip": 2.0,
+      "date": "2026-06-12"
+    },
+    {
+      "id": 621383,
+      "name": "Tanner Banks",
+      "team": "PHI",
+      "pitches": 28,
+      "ip": 1.0,
+      "date": "2026-06-12"
+    },
+    {
+      "id": 691725,
+      "name": "Andrew Painter",
+      "team": "PHI",
+      "pitches": 14,
+      "ip": 1.1,
+      "date": "2026-06-12"
+    },
+    {
+      "id": 679883,
+      "name": "Luinder Avila",
+      "team": "KCR",
+      "pitches": 28,
+      "ip": 0.2,
+      "date": "2026-06-12"
+    },
+    {
+      "id": 657746,
+      "name": "Joe Ryan",
+      "team": "MIN",
+      "pitches": 18,
+      "ip": 0.2,
+      "date": "2026-06-12"
     }
   ]
 }
