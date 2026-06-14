@@ -121,40 +121,53 @@ def fetch(path):
 
 
 # ── Pitcher projection constants ──────────────────────────────────────────────
-_LEAGUE_P = {"gap": 0.000, "xwoba": 0.318, "woba": 0.318,
-              "hard_hit": 37.0, "k_pct": 22.0, "bb_pct": 8.5, "whiff": 25.0}
-_YR_W      = {2026: 0.50, 2025: 0.25, 2024: 0.15, 2023: 0.10}
-_PA_START  = 450   # ≈ 120 IP starter threshold
-_PA_RELIEF = 160   # ≈ 40 IP reliever threshold
+_YR_W     = {2026: 0.50, 2025: 0.25, 2024: 0.15, 2023: 0.10}
+_PA_START = 450   # ≈ 120 IP starter threshold
+_PA_RELIEF = 160  # ≈ 40 IP reliever threshold
+_MIN_DATA_W = 0.10  # minimum normalised weight — below this, treat as insufficient
 
 
 def _project_pitcher(seasons):
-    """Recency-weighted, sample-size-adjusted projection across up to 4 seasons."""
+    """Recency-weighted projection using only real pitcher data — no league average blend.
+
+    Weights are normalised to 1.0 so the projection reflects the pitcher's actual
+    data rather than a diluted mix with league average. Returns None when the
+    pitcher has too little data (normalised weight < _MIN_DATA_W).
+    """
     threshold = _PA_START if any(d["pa"] >= 350 for d in seasons.values()) else _PA_RELIEF
-    eff = {yr: (0.0 if yr not in seasons
-                else bw * min(1.0, seasons[yr]["pa"] / threshold))
-           for yr, bw in _YR_W.items()}
-    total_eff = sum(eff.values())
-    league_w  = max(0.0, 1.0 - total_eff)
+
+    # Raw recency-weighted sample-size adjustment
+    raw_eff = {
+        yr: bw * min(1.0, seasons[yr]["pa"] / threshold)
+        if yr in seasons else 0.0
+        for yr, bw in _YR_W.items()
+    }
+    total_w = sum(raw_eff.values())
+
+    if total_w < _MIN_DATA_W:
+        return None   # insufficient data → caller sees this as MISS
+
+    # Normalise so all weight comes from real data
+    eff = {yr: w / total_w for yr, w in raw_eff.items()}
 
     proj = {}
     for stat in ("gap", "xwoba", "woba", "hard_hit", "whiff"):
-        val = sum(seasons[yr][stat] * eff[yr]
-                  for yr in _YR_W if yr in seasons and eff[yr] > 0)
-        proj[stat] = round(val + _LEAGUE_P[stat] * league_w, 4)
-
+        proj[stat] = round(
+            sum(seasons[yr][stat] * eff[yr]
+                for yr in _YR_W if yr in seasons and raw_eff[yr] > 0),
+            4
+        )
     for stat in ("k_pct", "bb_pct"):
-        cnt = sum(seasons[yr][stat] * seasons[yr]["pa"] * _YR_W[yr]
-                  for yr in _YR_W if yr in seasons and eff[yr] > 0)
-        pa  = sum(seasons[yr]["pa"] * _YR_W[yr]
-                  for yr in _YR_W if yr in seasons and eff[yr] > 0)
-        raw = (cnt / pa) if pa > 0 else _LEAGUE_P[stat]
-        proj[stat] = round(raw * (1.0 - league_w) + _LEAGUE_P[stat] * league_w, 2)
+        cnt = sum(seasons[yr][stat] * seasons[yr]["pa"] * eff[yr]
+                  for yr in _YR_W if yr in seasons and raw_eff[yr] > 0)
+        pa  = sum(seasons[yr]["pa"]             * eff[yr]
+                  for yr in _YR_W if yr in seasons and raw_eff[yr] > 0)
+        proj[stat] = round(cnt / pa, 2) if pa > 0 else 0.0
 
     yrs = sorted(yr for yr in _YR_W if yr in seasons)
-    proj["years_used"]   = yrs
-    proj["league_blend"] = round(league_w, 3)
-    proj["pa"]           = seasons[max(yrs)]["pa"] if yrs else 0
+    proj["years_used"] = yrs
+    proj["data_weight"] = round(total_w, 3)  # coverage: 1.0 = full-season data
+    proj["pa"]          = seasons[max(yrs)]["pa"] if yrs else 0
     return proj
 
 
@@ -255,6 +268,11 @@ def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen):
     qual = aa>=5 and aln and not miss
 
     rec = recommend_play(round(sp,2), round(bat,2), bp, model)
+
+    # If either starter is missing from the file, suppress all play recommendations.
+    # A composite built on only one pitcher's data is unreliable.
+    if miss:
+        rec['f5'] = rec['full'] = rec['run_line'] = False
 
     return {
         'sp_edge': round(sp,2), 'bat_edge': round(bat,2),
