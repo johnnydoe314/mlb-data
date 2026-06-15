@@ -575,11 +575,28 @@ def run_composite_analysis(games: list[dict], pitchers: dict, teams: dict,
 
     qualifying = []
 
+    def _ct(iso: str) -> str:
+        """Convert ISO UTC timestamp to Central Time (CDT Apr–Oct, CST Nov–Mar)."""
+        if not iso:
+            return "  ?:?? CT"
+        try:
+            from datetime import datetime, timezone, timedelta
+            dt_utc = datetime.fromisoformat(iso.replace("Z", "+00:00"))
+            # CDT = UTC-5 (Mar–Nov), CST = UTC-6 (Nov–Mar)
+            month = dt_utc.month
+            offset = timedelta(hours=-5) if 3 <= month <= 11 else timedelta(hours=-6)
+            dt_ct = dt_utc + offset
+            suffix = "CT"
+            return dt_ct.strftime(f"%-I:%M %p {suffix}")
+        except Exception:
+            return "  ?:?? CT"
+
     for g in games:
         away   = g.get("away_team", "?")
         home   = g.get("home_team", "?")
         asn    = g.get("away_pitcher", "TBD")
         hsn    = g.get("home_pitcher", "TBD")
+        gtime  = _ct(g.get("game_time", ""))
         r      = compute(asn, hsn, away, home, pitchers, teams, bullpen, fatigue)
 
         adj_col = ("green" if r["band"] == "8+" else
@@ -591,7 +608,7 @@ def run_composite_analysis(games: list[dict], pitchers: dict, teams: dict,
         adj_str = c(f"{r['adj']:+.1f}", adj_col)
         bp_str = f"{r.get('bp_edge',0.0):>+5.2f}"
         fat_str = " " + " ".join(r.get("fat_flags",[])) if r.get("fat_flags") else ""
-        print(f"  {away}@{home:<9} "
+        print(f"  {away}@{home:<9} {gtime:<10} "
               f"{r['sp_edge']:>+6.1f} {r['bat_edge']:>+6.1f} "
               f"{bp_str} {r['park']:>+5.1f} {adj_str:>7} "
               f"{r['band']:<5} {aln_str:>4}  {r['model']}{flag}{fat_str}")
