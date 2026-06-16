@@ -18,6 +18,7 @@ Output: data/game_log.csv (appends; creates if missing)
 Schema:
     game_date, away_team, home_team, away_sp, home_sp,
     away_gap, home_gap, sp_edge, bat_edge, bp_edge, park_adj,
+    away_fa_score, home_fa_score, away_bp_tired, home_bp_tired,
     composite, band, model_dir, aligned, alignment_type, qualified,
     sp_cat, bat_cat, bp_cat, f5_rec, full_rec, run_line_flag,
     away_score, home_score,
@@ -102,6 +103,7 @@ def recommend_play(sp, bat, bp, model_dir):
 FIELDS = [
     'game_date','away_team','home_team','away_sp','home_sp',
     'away_gap','home_gap','sp_edge','bat_edge','bp_edge','park_adj',
+    'away_fa_score','home_fa_score','away_bp_tired','home_bp_tired',
     'composite','band','model_dir','aligned','alignment_type','qualified',
     'sp_cat','bat_cat','bp_cat','f5_rec','full_rec','run_line_flag',
     'away_score','home_score',
@@ -227,10 +229,11 @@ def load_bullpen(content):
     bp = {}
     for row in csv.DictReader(io.StringIO(content)):
         tm = row.get('team','').strip()
-        fat = float(row.get('fatigue_score',1.0) or 1.0)
-        gap = float(row.get('bullpen_gap',0) or 0)
+        fat   = float(row.get('fatigue_score',1.0) or 1.0)
+        tired = int(float(row.get('arms_tired',0) or 0))
+        gap   = float(row.get('bullpen_gap',0) or 0)
         if tm:
-            bp[tm] = {'gap': gap, 'fat': fat}
+            bp[tm] = {'gap': gap, 'fat': fat, 'tired': tired}
     return bp
 
 
@@ -282,6 +285,10 @@ def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen):
         'qualified': qual,
         'away_gap': a['gap'] if a else '',
         'home_gap': h['gap'] if h else '',
+        'away_fa_score': round(ba['fat'], 3),
+        'home_fa_score': round(hb_bp['fat'], 3),
+        'away_bp_tired': ba.get('tired', 0),
+        'home_bp_tired': hb_bp.get('tired', 0),
         'sp_cat': rec['sp_cat'], 'bat_cat': rec['bat_cat'], 'bp_cat': rec['bp_cat'],
         'f5_rec': int(rec['f5']), 'full_rec': int(rec['full']),
         'run_line_flag': int(rec['run_line']),
@@ -430,6 +437,10 @@ def main():
             'bat_edge':       c['bat_edge'],
             'bp_edge':        c['bp_edge'],
             'park_adj':       c['park_adj'],
+            'away_fa_score':  c['away_fa_score'],
+            'home_fa_score':  c['home_fa_score'],
+            'away_bp_tired':  c['away_bp_tired'],
+            'home_bp_tired':  c['home_bp_tired'],
             'composite':      c['composite'],
             'band':           c['band'],
             'model_dir':      c['model_dir'],
