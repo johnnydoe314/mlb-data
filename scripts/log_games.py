@@ -23,6 +23,8 @@ Schema:
     sp_cat, bat_cat, bp_cat, f5_rec, full_rec, run_line_flag,
     away_score, home_score,
     away_f5, home_f5, f5_total, f5_result, f5_lean, f5_correct,
+    away_innings, home_innings,
+    away_sp_exit_inn, away_sp_exit_score, home_sp_exit_inn, home_sp_exit_score,
     model, lean,
     bet_placed, bet_description, bet_result,
     notes, logged_at
@@ -108,6 +110,9 @@ FIELDS = [
     'sp_cat','bat_cat','bp_cat','f5_rec','full_rec','run_line_flag',
     'away_score','home_score',
     'away_f5','home_f5','f5_total','f5_result','f5_lean','f5_correct',
+    'away_innings','home_innings',
+    'away_sp_exit_inn','away_sp_exit_score',
+    'home_sp_exit_inn','home_sp_exit_score',
     'model','lean',
     'bet_placed','bet_description','bet_result',
     'notes','logged_at',
