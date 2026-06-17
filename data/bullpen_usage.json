@@ -1,86 +1,4 @@
 {
-  "2026-06-12": [
-    {
-      "id": 696062,
-      "name": "Wilber Dotel",
-      "team": "PIT",
-      "pitches": 14,
-      "ip": 1.0,
-      "date": "2026-06-12"
-    },
-    {
-      "id": 621097,
-      "name": "Jacob Waguespack",
-      "team": "DET",
-      "pitches": 20,
-      "ip": 1.0,
-      "date": "2026-06-12"
-    },
-    {
-      "id": 593958,
-      "name": "Eduardo Rodriguez",
-      "team": "ARI",
-      "pitches": 63,
-      "ip": 2.0,
-      "date": "2026-06-12"
-    },
-    {
-      "id": 677960,
-      "name": "Ryan Weathers",
-      "team": "NYY",
-      "pitches": 44,
-      "ip": 2.0,
-      "date": "2026-06-12"
-    },
-    {
-      "id": 808963,
-      "name": "Roki Sasaki",
-      "team": "LAD",
-      "pitches": 25,
-      "ip": 1.1,
-      "date": "2026-06-12"
-    },
-    {
-      "id": 641743,
-      "name": "Anthony Kay",
-      "team": "CWS",
-      "pitches": 48,
-      "ip": 2.0,
-      "date": "2026-06-12"
-    },
-    {
-      "id": 621383,
-      "name": "Tanner Banks",
-      "team": "PHI",
-      "pitches": 28,
-      "ip": 1.0,
-      "date": "2026-06-12"
-    },
-    {
-      "id": 691725,
-      "name": "Andrew Painter",
-      "team": "PHI",
-      "pitches": 14,
-      "ip": 1.1,
-      "date": "2026-06-12"
-    },
-    {
-      "id": 679883,
-      "name": "Luinder Avila",
-      "team": "KCR",
-      "pitches": 28,
-      "ip": 0.2,
-      "date": "2026-06-12"
-    },
-    {
-      "id": 657746,
-      "name": "Joe Ryan",
-      "team": "MIN",
-      "pitches": 18,
-      "ip": 0.2,
-      "date": "2026-06-12"
-    }
-  ],
   "2026-06-13": [
     {
       "id": 694335,
@@ -1525,6 +1443,88 @@
       "pitches": 3,
       "ip": 0.1,
       "date": "2026-06-15"
+    }
+  ],
+  "2026-06-16": [
+    {
+      "id": 669199,
+      "name": "Lake Bachar",
+      "team": "MIA",
+      "pitches": 11,
+      "ip": 1.0,
+      "date": "2026-06-16"
+    },
+    {
+      "id": 605288,
+      "name": "Adrian Houser",
+      "team": "SFG",
+      "pitches": 29,
+      "ip": 1.0,
+      "date": "2026-06-16"
+    },
+    {
+      "id": 656550,
+      "name": "Grant Holmes",
+      "team": "ATL",
+      "pitches": 55,
+      "ip": 2.0,
+      "date": "2026-06-16"
+    },
+    {
+      "id": 677944,
+      "name": "Slade Cecconi",
+      "team": "CLE",
+      "pitches": 20,
+      "ip": 2.0,
+      "date": "2026-06-16"
+    },
+    {
+      "id": 650633,
+      "name": "Michael King",
+      "team": "SDP",
+      "pitches": 32,
+      "ip": 1.0,
+      "date": "2026-06-16"
+    },
+    {
+      "id": 669467,
+      "name": "Andre Pallante",
+      "team": "STL",
+      "pitches": 25,
+      "ip": 2.0,
+      "date": "2026-06-16"
+    },
+    {
+      "id": 663372,
+      "name": "Ryan Feltner",
+      "team": "COL",
+      "pitches": 13,
+      "ip": 0.1,
+      "date": "2026-06-16"
+    },
+    {
+      "id": 665795,
+      "name": "Edward Cabrera",
+      "team": "CHC",
+      "pitches": 14,
+      "ip": 1.0,
+      "date": "2026-06-16"
+    },
+    {
+      "id": 677958,
+      "name": "Kumar Rocker",
+      "team": "TEX",
+      "pitches": 17,
+      "ip": 0.2,
+      "date": "2026-06-16"
+    },
+    {
+      "id": 686613,
+      "name": "Hunter Brown",
+      "team": "HOU",
+      "pitches": 13,
+      "ip": 0.2,
+      "date": "2026-06-16"
     }
   ]
 }
