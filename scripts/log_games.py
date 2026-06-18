@@ -215,25 +215,49 @@ def load_pitchers(content):
 
 def load_teams(content):
     """Load team batting from team_batting.csv.
-    Uses off_score (xwOBA + BB% + Hard Hit% composite) if available,
-    falls back to raw xwOBA.
+    Recomputes off_score from raw components (xwOBA + BB% + HH%) each time,
+    ensuring the additive formula is always applied correctly regardless of
+    what value is stored in the CSV.
     """
+    LG_XWOBA = 0.318; LG_BB = 8.5; LG_HH = 37.0
+    WOBA_SCALE = 1.24; LG_R_PA = 0.119
+    PARK_FACTOR = {
+        "COL":1.10,"BOS":1.05,"NYY":1.05,"CHC":1.03,"CIN":1.03,
+        "TEX":1.01,"HOU":1.01,"SDP":0.97,"SFG":0.97,"TBR":0.99,
+        "TOR":1.01,"MIN":1.01,
+    }
+
+    def _off(xwoba, bb_pct, hard_hit_pct):
+        """Additive off_score: league-avg fallback when components are missing."""
+        bb = bb_pct       if bb_pct       > 0 else LG_BB
+        hh = hard_hit_pct if hard_hit_pct > 0 else LG_HH
+        return round(xwoba + (bb - LG_BB) * 0.006 * 0.30
+                           + (hh - LG_HH) * 0.003 * 0.20, 4)
+
+    def _wrc(woba, team):
+        pf   = PARK_FACTOR.get(team, 1.00)
+        rate = (woba - LG_XWOBA) / WOBA_SCALE + LG_R_PA
+        return round((rate / LG_R_PA) * 100 / pf)
+
     t = {}
     for row in csv.DictReader(io.StringIO(content)):
         tm = row.get('team', '').strip().upper()
         if not tm: continue
         try:
-            xwoba     = float(row.get('xwoba',     0) or 0)
-            off_score = float(row.get('off_score',  0) or 0)
+            xwoba    = float(row.get('xwoba',     0) or 0)
+            woba     = float(row.get('woba',      0) or 0) or xwoba
+            bb_pct   = float(row.get('bb_pct',    0) or 0)
+            hard_hit = float(row.get('hard_hit',  0) or 0)
+            off      = _off(xwoba, bb_pct, hard_hit)
             t[tm] = {
                 'xwoba':      xwoba,
-                'off_score':  off_score if off_score else xwoba,
-                'woba':       float(row.get('woba',       0) or 0),
-                'hard_hit':   float(row.get('hard_hit',   0) or 0),
-                'bb_pct':     float(row.get('bb_pct',     0) or 0),
+                'off_score':  off,
+                'woba':       woba,
+                'hard_hit':   hard_hit,
+                'bb_pct':     bb_pct,
                 'barrel_pct': float(row.get('barrel_pct', 0) or 0),
                 'avg_ev':     float(row.get('avg_ev',     0) or 0),
-                'wrc_plus':   int(float(row.get('wrc_plus', 100) or 100)),
+                'wrc_plus':   _wrc(woba, tm),
                 'pa':         int(float(row.get('pa', 0) or 0)),
             }
         except: pass
