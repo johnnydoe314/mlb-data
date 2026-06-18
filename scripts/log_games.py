@@ -25,6 +25,15 @@ Schema:
     away_off_score_matchup_f5, home_off_score_matchup_f5,
     away_def_score, home_def_score,
     away_def_score_f5, home_def_score_f5,
+    away_sp_k_pct, home_sp_k_pct,
+    away_sp_bb_pct, home_sp_bb_pct,
+    away_sp_hard_hit, home_sp_hard_hit,
+    away_sp_barrel, home_sp_barrel,
+    away_sp_kbb, home_sp_kbb,
+    away_team_k_pct, home_team_k_pct,
+    away_team_barrel, home_team_barrel,
+    k_pct_matchup_away, k_pct_matchup_home,
+    hh_matchup_away, hh_matchup_home,
     composite, band, model_dir, aligned, alignment_type, qualified,
     sp_cat, bat_cat, bp_cat, f5_rec, full_rec, run_line_flag,
     away_score, home_score,
@@ -118,6 +127,15 @@ FIELDS = [
     'away_off_score_matchup_f5','home_off_score_matchup_f5',
     'away_def_score','home_def_score',
     'away_def_score_f5','home_def_score_f5',
+    'away_sp_k_pct','home_sp_k_pct',
+    'away_sp_bb_pct','home_sp_bb_pct',
+    'away_sp_hard_hit','home_sp_hard_hit',
+    'away_sp_barrel','home_sp_barrel',
+    'away_sp_kbb','home_sp_kbb',
+    'away_team_k_pct','home_team_k_pct',
+    'away_team_barrel','home_team_barrel',
+    'k_pct_matchup_away','k_pct_matchup_home',
+    'hh_matchup_away','hh_matchup_home',
     'composite','band','model_dir','aligned','alignment_type','qualified',
     'sp_cat','bat_cat','bp_cat','f5_rec','full_rec','run_line_flag',
     'away_score','home_score',
@@ -531,6 +549,38 @@ def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen,
     a_def_f5 = calc_def_score(h,   ba['gap'],  ba['fat'],  at, f5=True)
     h_def_f5 = calc_def_score(a,   hb_bp['gap'],  hb_bp['fat'],  ht, f5=True)
 
+    # ── Individual SP components (stored separately for correlation analysis) ──
+    LG_K = 22.0; LG_HH = 37.0; LG_BAR = 8.0; LG_BB = 8.5
+
+    def _sp(pitcher, field, default):
+        return round(pitcher.get(field, default), 2) if pitcher else round(default, 2)
+
+    a_k   = _sp(a, 'k_pct',      LG_K)
+    a_bb  = _sp(a, 'bb_pct',     LG_BB)
+    a_hh  = _sp(a, 'hard_hit',   LG_HH)
+    a_bar = _sp(a, 'barrel_pct', LG_BAR)
+    h_k   = _sp(h, 'k_pct',      LG_K)
+    h_bb  = _sp(h, 'bb_pct',     LG_BB)
+    h_hh  = _sp(h, 'hard_hit',   LG_HH)
+    h_bar = _sp(h, 'barrel_pct', LG_BAR)
+
+    at_k   = round(ab.get('k_pct',     LG_K)   if ab else LG_K,   2)
+    at_bar = round(ab.get('barrel_pct',LG_BAR) if ab else LG_BAR, 2)
+    ht_k   = round(hb.get('k_pct',     LG_K)   if hb else LG_K,   2)
+    ht_bar = round(hb.get('barrel_pct',LG_BAR) if hb else LG_BAR, 2)
+
+    # K% matchup: SP K% advantage over opposing lineup's typical K rate
+    # Positive = SP dominates that lineup at the plate (harder to make contact)
+    k_mu_away = round(a_k - ht_k, 2)   # away SP K% vs home lineup K%
+    k_mu_home = round(h_k - at_k, 2)   # home SP K% vs away lineup K%
+
+    # HH% matchup: team HH% produced minus SP HH% allowed
+    # Positive = offense hits harder than SP suppresses (offense advantage)
+    hh_mu_away = round(ht_k - a_hh, 2)   # home offense HH% vs away SP HH% allowed
+    hh_mu_home = round(at_k - h_hh, 2)   # away offense HH% vs home SP HH% allowed
+    # Note: using team k_pct as a proxy for hard contact production until
+    # team hard_hit% is fully populated from statcast_batting.csv aggregation
+
     return {
         'sp_edge': round(sp,2), 'bat_edge': round(bat,2),
         'bp_edge': bp, 'park_adj': park, 'composite': adj,
@@ -553,6 +603,15 @@ def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen,
         'home_def_score':    h_def,
         'away_def_score_f5': a_def_f5,
         'home_def_score_f5': h_def_f5,
+        'away_sp_k_pct':  a_k,   'home_sp_k_pct':  h_k,
+        'away_sp_bb_pct': a_bb,  'home_sp_bb_pct': h_bb,
+        'away_sp_hard_hit':a_hh, 'home_sp_hard_hit':h_hh,
+        'away_sp_barrel': a_bar, 'home_sp_barrel': h_bar,
+        'away_sp_kbb': round(a_k - a_bb, 2), 'home_sp_kbb': round(h_k - h_bb, 2),
+        'away_team_k_pct':  at_k,  'home_team_k_pct':  ht_k,
+        'away_team_barrel': at_bar, 'home_team_barrel': ht_bar,
+        'k_pct_matchup_away': k_mu_away, 'k_pct_matchup_home': k_mu_home,
+        'hh_matchup_away': hh_mu_away,  'hh_matchup_home': hh_mu_home,
         'away_fa_score': round(ba['fat'], 3),
         'home_fa_score': round(hb_bp['fat'], 3),
         'away_bp_tired': ba.get('tired', 0),
@@ -734,6 +793,17 @@ def main():
             'home_def_score':    c['home_def_score'],
             'away_def_score_f5': c['away_def_score_f5'],
             'home_def_score_f5': c['home_def_score_f5'],
+            'away_sp_k_pct':  c['away_sp_k_pct'],  'home_sp_k_pct':  c['home_sp_k_pct'],
+            'away_sp_bb_pct': c['away_sp_bb_pct'], 'home_sp_bb_pct': c['home_sp_bb_pct'],
+            'away_sp_hard_hit':c['away_sp_hard_hit'],'home_sp_hard_hit':c['home_sp_hard_hit'],
+            'away_sp_barrel': c['away_sp_barrel'], 'home_sp_barrel': c['home_sp_barrel'],
+            'away_sp_kbb':    c['away_sp_kbb'],    'home_sp_kbb':    c['home_sp_kbb'],
+            'away_team_k_pct':  c['away_team_k_pct'], 'home_team_k_pct':  c['home_team_k_pct'],
+            'away_team_barrel': c['away_team_barrel'],'home_team_barrel': c['home_team_barrel'],
+            'k_pct_matchup_away': c['k_pct_matchup_away'],
+            'k_pct_matchup_home': c['k_pct_matchup_home'],
+            'hh_matchup_away': c['hh_matchup_away'],
+            'hh_matchup_home': c['hh_matchup_home'],
             'composite':      c['composite'],
             'band':           c['band'],
             'model_dir':      c['model_dir'],
