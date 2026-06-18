@@ -34,7 +34,7 @@ jobs:
         continue-on-error: true
         run: python scripts/fetch_exit_velocity.py
 
-      - name: Fetch batter Statcast data (statcast_batting.csv)
+      - name: Fetch batter Statcast + team batting with off_score (team_batting.csv)
         continue-on-error: true
         run: python scripts/fetch_statcast_hitting.py
 
@@ -45,6 +45,10 @@ jobs:
       - name: Fetch bullpen usage + fatigue (bullpen_fatigue.csv)
         continue-on-error: true
         run: python scripts/fetch_bullpen_usage.py
+
+      - name: Fetch team platoon splits + pitcher handedness (team_platoon.csv, pitcher_hand.csv)
+        continue-on-error: true
+        run: python scripts/fetch_platoon_splits.py
 
 
       - name: Log all games with composite scores (game_log.csv)
