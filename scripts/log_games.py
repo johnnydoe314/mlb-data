@@ -21,6 +21,10 @@ Schema:
     away_fa_score, home_fa_score, away_bp_tired, home_bp_tired,
     away_off_score, home_off_score, away_wrc_plus, home_wrc_plus,
     away_sp_hand, home_sp_hand,
+    away_off_score_matchup, home_off_score_matchup,
+    away_off_score_matchup_f5, home_off_score_matchup_f5,
+    away_def_score, home_def_score,
+    away_def_score_f5, home_def_score_f5,
     composite, band, model_dir, aligned, alignment_type, qualified,
     sp_cat, bat_cat, bp_cat, f5_rec, full_rec, run_line_flag,
     away_score, home_score,
@@ -110,6 +114,10 @@ FIELDS = [
     'away_fa_score','home_fa_score','away_bp_tired','home_bp_tired',
     'away_off_score','home_off_score','away_wrc_plus','home_wrc_plus',
     'away_sp_hand','home_sp_hand',
+    'away_off_score_matchup','home_off_score_matchup',
+    'away_off_score_matchup_f5','home_off_score_matchup_f5',
+    'away_def_score','home_def_score',
+    'away_def_score_f5','home_def_score_f5',
     'composite','band','model_dir','aligned','alignment_type','qualified',
     'sp_cat','bat_cat','bp_cat','f5_rec','full_rec','run_line_flag',
     'away_score','home_score',
@@ -331,6 +339,129 @@ def load_bullpen(content):
     return bp
 
 
+def calc_off_score_matchup(team, team_data, platoon_data, sp_hand, full_game=True):
+    """
+    Offensive ability vs a specific SP handedness.
+    Weights (full game):  35% wRC+_vs_hand, 30% xwOBA_vs_hand, 15% K/BB, 10% ISO/Barrel, 10% Pitch
+    Weights (F5):         30% wRC+_vs_hand, 35% xwOBA_vs_hand, 13% K/BB,  8% ISO/Barrel, 14% Pitch
+
+    Pitch-type matchup uses xwOBA vs hand as a proxy until SP arsenal data is available.
+    Falls back to season off_score when platoon data has < 100 PA vs that handedness.
+    """
+    LG_XWOBA = 0.318; LG_WOBA_SCALE = 1.24; LG_R_PA = 0.119
+    LG_BB = 8.5; LG_K = 22.0; LG_BARREL = 8.0
+    PARK_FACTOR = {"COL":1.10,"BOS":1.05,"NYY":1.05,"CHC":1.03,"CIN":1.03,
+                   "TEX":1.01,"HOU":1.01,"SDP":0.97,"SFG":0.97,"TBR":0.99,
+                   "TOR":1.01,"MIN":1.01}
+
+    w = ((0.35, 0.30, 0.15, 0.10, 0.10) if full_game else
+         (0.30, 0.35, 0.13, 0.08, 0.14))
+
+    # Resolve handedness-specific stats
+    p         = platoon_data or {}
+    hk        = 'lhp' if sp_hand == 'L' else 'rhp'
+    xw_vh     = float(p.get(f'xwoba_vs_{hk}',  0) or 0)
+    bb_vh     = float(p.get(f'bb_pct_vs_{hk}', 0) or 0)
+    pa_vh     = int(float(p.get(f'pa_vs_{hk}', 0) or 0))
+
+    # Fall back to season stats if platoon data is thin
+    if pa_vh < 100 or xw_vh == 0:
+        xw_vh = team_data.get('off_score') or team_data.get('xwoba', LG_XWOBA)
+        bb_vh = team_data.get('bb_pct', LG_BB)
+
+    # Season-level fallbacks for non-platoon components
+    k_team  = team_data.get('k_pct',     LG_K)
+    barrel  = team_data.get('barrel_pct', LG_BARREL)
+
+    # C1: wRC+ vs handedness (normalized back to xwOBA scale)
+    pf      = PARK_FACTOR.get(team, 1.00)
+    rate    = (xw_vh - LG_XWOBA) / LG_WOBA_SCALE + LG_R_PA
+    wrc_vh  = (rate / LG_R_PA) * 100 / pf
+    wrc_comp = LG_XWOBA + (wrc_vh - 100) / 100 * LG_XWOBA
+
+    # C2: xwOBA vs handedness
+    xw_comp = xw_vh
+
+    # C3: K%/BB% matchup — walks good (team on base), low K% good (makes contact)
+    kbb_adj = (bb_vh - LG_BB) * 0.006 + (LG_K - k_team) * 0.003
+    kbb_comp = LG_XWOBA + kbb_adj
+
+    # C4: ISO/Barrel% — power production
+    barrel_adj = (barrel - LG_BARREL) * 0.004
+    iso_comp = LG_XWOBA + barrel_adj
+
+    # C5: Pitch-type matchup (proxy = xwOBA vs hand until arsenal data is available)
+    pitch_comp = xw_vh
+
+    return round(w[0]*wrc_comp + w[1]*xw_comp + w[2]*kbb_comp +
+                 w[3]*iso_comp + w[4]*pitch_comp, 4)
+
+
+def calc_def_score(pitcher, bp_gap, bp_fat, park_team, f5=False):
+    """
+    Team run prevention composite. Expressed as expected xwOBA allowed.
+    Lower = better defense. League average ≈ 0.318.
+
+    Weights (full): 30% SP quality, 25% BP quality, 15% BP availability,
+                    10% defense*, 10% batted-ball suppression, 5% catcher*, 5% park
+    Weights (F5):   45% SP quality, 5% BP quality, 5% BP availability,
+                    15% defense*, 15% batted-ball suppression, 10% catcher*, 5% park
+
+    *Defense (OAA/DRS) and catcher (framing/CS) use neutral values until data available.
+
+    Components where we have data:
+      SP quality     — gap (regression), K%, BB%, hard_hit%
+      BP quality     — bullpen gap
+      BP availability — fatigue_score
+      Batted-ball    — SP hard_hit%, barrel%
+      Park           — PARK factor dict
+    """
+    LG_XWOBA = 0.318; LG_K = 22.0; LG_BB = 8.5; LG_HH = 37.0; LG_BAR = 8.0
+    PARK_VALS = {"COL":-3.0,"BOS":-1.5,"NYY":-1.5,"CHC":-1.0,"CIN":-1.0,
+                 "TEX":-0.5,"HOU":-0.5,"SDP":+1.5,"SFG":+1.5,"TBR":+0.5,
+                 "TOR":+0.5,"MIN":+0.5}
+
+    w = ((0.30, 0.25, 0.15, 0.10, 0.10, 0.05, 0.05) if not f5 else
+         (0.45, 0.05, 0.05, 0.15, 0.15, 0.10, 0.05))
+
+    sp_gap = pitcher.get('gap',      0.0) if pitcher else 0.0
+    sp_k   = pitcher.get('k_pct',   LG_K) if pitcher else LG_K
+    sp_bb  = pitcher.get('bb_pct',  LG_BB) if pitcher else LG_BB
+    sp_hh  = pitcher.get('hard_hit',LG_HH) if pitcher else LG_HH
+    sp_bar = pitcher.get('barrel_pct', LG_BAR) if pitcher else LG_BAR
+
+    # C1: SP quality — higher K%, lower BB%, lower HH% → lower xwOBA allowed
+    sp_qual  = ((sp_k  - LG_K)  * 0.005   # extra Ks reduce allowed xwOBA
+              - (sp_bb - LG_BB) * 0.004   # extra BBs increase allowed xwOBA
+              - (sp_hh - LG_HH) * 0.002)  # harder contact = more runs
+    # Regression: negative gap = lucky SP = will allow more → higher def_score
+    sp_regress = -sp_gap * 100 * 0.003
+    sp_comp  = LG_XWOBA - sp_qual + sp_regress
+
+    # C2: BP quality — positive bp_gap = unlucky pen = expects improvement = lower def
+    bp_qual_comp = LG_XWOBA - bp_gap * 3.0
+
+    # C3: BP availability — tired pen allows more runs
+    bp_avail_comp = LG_XWOBA + (1.0 - bp_fat) * 0.025
+
+    # C4: Defense — neutral (no OAA/DRS data yet)
+    def_comp = LG_XWOBA
+
+    # C5: Batted-ball suppression — SP hard_hit%, barrel%
+    supp_adj  = (sp_hh - LG_HH) * 0.002 + (sp_bar - LG_BAR) * 0.002
+    supp_comp = LG_XWOBA + supp_adj
+
+    # C6: Catcher/run game — neutral (no framing/CS data yet)
+    cat_comp = LG_XWOBA
+
+    # C7: Park — positive PARK = pitcher-friendly = fewer runs allowed
+    park_val  = PARK_VALS.get(park_team, 0.0)
+    park_comp = LG_XWOBA - park_val * 0.005
+
+    return round(w[0]*sp_comp  + w[1]*bp_qual_comp + w[2]*bp_avail_comp +
+                 w[3]*def_comp + w[4]*supp_comp    + w[5]*cat_comp + w[6]*park_comp, 4)
+
+
 def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen,
                       platoon=None, pitcher_hand=None,
                       away_pid=None, home_pid=None):
@@ -381,6 +512,25 @@ def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen,
     # Determine platoon flag for display
     platoon_active = bool(away_hand or home_hand)
 
+    # ── Matchup scores ────────────────────────────────────────────────────────
+    # Away team faces home SP (home_hand); home team faces away SP (away_hand)
+    a_off_mu    = calc_off_score_matchup(at, ab or {}, platoon.get(at, {}) if platoon else {},
+                                         home_hand, full_game=True)
+    h_off_mu    = calc_off_score_matchup(ht, hb or {}, platoon.get(ht, {}) if platoon else {},
+                                         away_hand, full_game=True)
+    a_off_mu_f5 = calc_off_score_matchup(at, ab or {}, platoon.get(at, {}) if platoon else {},
+                                         home_hand, full_game=False)
+    h_off_mu_f5 = calc_off_score_matchup(ht, hb or {}, platoon.get(ht, {}) if platoon else {},
+                                         away_hand, full_game=False)
+
+    # def_score uses the OPPOSING pitcher (what they'll face)
+    # Away def = home pitcher quality vs away batters
+    # Home def = away pitcher quality vs home batters
+    a_def    = calc_def_score(h,   ba['gap'],  ba['fat'],  at, f5=False)
+    h_def    = calc_def_score(a,   hb_bp['gap'],  hb_bp['fat'],  ht, f5=False)
+    a_def_f5 = calc_def_score(h,   ba['gap'],  ba['fat'],  at, f5=True)
+    h_def_f5 = calc_def_score(a,   hb_bp['gap'],  hb_bp['fat'],  ht, f5=True)
+
     return {
         'sp_edge': round(sp,2), 'bat_edge': round(bat,2),
         'bp_edge': bp, 'park_adj': park, 'composite': adj,
@@ -393,8 +543,16 @@ def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen,
         'home_off_score': round(home_off, 4),
         'away_wrc_plus':  ab.get('wrc_plus', '') if ab else '',
         'home_wrc_plus':  hb.get('wrc_plus', '') if hb else '',
-        'away_sp_hand': home_hand,  # what hand the AWAY team faces
-        'home_sp_hand': away_hand,  # what hand the HOME team faces
+        'away_sp_hand': home_hand,
+        'home_sp_hand': away_hand,
+        'away_off_score_matchup':    a_off_mu,
+        'home_off_score_matchup':    h_off_mu,
+        'away_off_score_matchup_f5': a_off_mu_f5,
+        'home_off_score_matchup_f5': h_off_mu_f5,
+        'away_def_score':    a_def,
+        'home_def_score':    h_def,
+        'away_def_score_f5': a_def_f5,
+        'home_def_score_f5': h_def_f5,
         'away_fa_score': round(ba['fat'], 3),
         'home_fa_score': round(hb_bp['fat'], 3),
         'away_bp_tired': ba.get('tired', 0),
@@ -568,6 +726,14 @@ def main():
             'home_wrc_plus':  c['home_wrc_plus'],
             'away_sp_hand':   c['away_sp_hand'],
             'home_sp_hand':   c['home_sp_hand'],
+            'away_off_score_matchup':    c['away_off_score_matchup'],
+            'home_off_score_matchup':    c['home_off_score_matchup'],
+            'away_off_score_matchup_f5': c['away_off_score_matchup_f5'],
+            'home_off_score_matchup_f5': c['home_off_score_matchup_f5'],
+            'away_def_score':    c['away_def_score'],
+            'home_def_score':    c['home_def_score'],
+            'away_def_score_f5': c['away_def_score_f5'],
+            'home_def_score_f5': c['home_def_score_f5'],
             'composite':      c['composite'],
             'band':           c['band'],
             'model_dir':      c['model_dir'],
