@@ -136,6 +136,7 @@ FIELDS = [
     'away_team_barrel','home_team_barrel',
     'k_pct_matchup_away','k_pct_matchup_home',
     'hh_matchup_away','hh_matchup_home',
+    'k_matchup_f5','k_matchup_dir',
     'composite','band','model_dir','aligned','alignment_type','qualified',
     'sp_cat','bat_cat','bp_cat','f5_rec','full_rec','run_line_flag',
     'away_score','home_score',
@@ -520,12 +521,40 @@ def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen,
     spd  = abs(sp)>=3.0 and abs(bat)<=1.5
     aln  = std or (spd and aa>=5)
     miss = (asn!='TBD' and not a) or (hsn!='TBD' and not h)
-    qual = aa>=5 and aln and not miss
 
     rec = recommend_play(round(sp,2), round(bat,2), bp, model)
 
     if miss:
         rec['f5'] = rec['full'] = rec['run_line'] = False
+
+    # ── Rule: suppress F5 for GREAT-SP-dominant qualifying plays with |adj|>6 ──
+    # Backtest shows these win F5 at ~50% (coin flip) despite high composite.
+    # The SP regression signal needs more than 5 innings to fully materialize.
+    if (rec['sp_cat'] == 'GREAT'
+            and rec['bat_cat'] in ('NEUTRAL', 'BAD', 'VERY_BAD')
+            and aa > 6):
+        rec['f5'] = False
+
+    # Re-evaluate qual after potential f5 suppression
+    qual = aa >= 5 and aln and not miss
+    # Qualifying plays must have at least one of f5 or full active
+    if qual and not rec['f5'] and not rec['full']:
+        qual = False
+
+    # ── K% matchup counter play ────────────────────────────────────────────────
+    # When the opposing SP has a K% advantage > +5 over the favored lineup,
+    # the composite's favored team wins F5 at only 26.7% (n=15 backtest).
+    # The COUNTER direction wins F5 at ~73.3% — flag as a standalone F5 play.
+    # opp_k_adv: opposing SP's K% advantage over the favored lineup
+    #   model=AWAY → away is favored → opp SP is HOME → k_mu_home = home SP K% - away lineup K%
+    #   model=HOME → home is favored → opp SP is AWAY → k_mu_away = away SP K% - home lineup K%
+    K_MATCHUP_THRESH = 5.0
+    opp_k_adv = k_mu_home if model == 'AWAY' else k_mu_away
+    k_matchup_f5  = 0
+    k_matchup_dir = ''
+    if not miss and model != 'NEUT' and opp_k_adv >= K_MATCHUP_THRESH:
+        k_matchup_f5  = 1
+        k_matchup_dir = 'HOME' if model == 'AWAY' else 'AWAY'  # bet opposite
 
     # Determine platoon flag for display
     platoon_active = bool(away_hand or home_hand)
@@ -612,6 +641,7 @@ def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen,
         'away_team_barrel': at_bar, 'home_team_barrel': ht_bar,
         'k_pct_matchup_away': k_mu_away, 'k_pct_matchup_home': k_mu_home,
         'hh_matchup_away': hh_mu_away,  'hh_matchup_home': hh_mu_home,
+        'k_matchup_f5': k_matchup_f5, 'k_matchup_dir': k_matchup_dir,
         'away_fa_score': round(ba['fat'], 3),
         'home_fa_score': round(hb_bp['fat'], 3),
         'away_bp_tired': ba.get('tired', 0),
@@ -804,6 +834,8 @@ def main():
             'k_pct_matchup_home': c['k_pct_matchup_home'],
             'hh_matchup_away': c['hh_matchup_away'],
             'hh_matchup_home': c['hh_matchup_home'],
+            'k_matchup_f5':  c['k_matchup_f5'],
+            'k_matchup_dir': c['k_matchup_dir'],
             'composite':      c['composite'],
             'band':           c['band'],
             'model_dir':      c['model_dir'],
