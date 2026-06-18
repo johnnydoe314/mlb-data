@@ -19,6 +19,8 @@ Schema:
     game_date, away_team, home_team, away_sp, home_sp,
     away_gap, home_gap, sp_edge, bat_edge, bp_edge, park_adj,
     away_fa_score, home_fa_score, away_bp_tired, home_bp_tired,
+    away_off_score, home_off_score, away_wrc_plus, home_wrc_plus,
+    away_sp_hand, home_sp_hand,
     composite, band, model_dir, aligned, alignment_type, qualified,
     sp_cat, bat_cat, bp_cat, f5_rec, full_rec, run_line_flag,
     away_score, home_score,
@@ -106,6 +108,8 @@ FIELDS = [
     'game_date','away_team','home_team','away_sp','home_sp',
     'away_gap','home_gap','sp_edge','bat_edge','bp_edge','park_adj',
     'away_fa_score','home_fa_score','away_bp_tired','home_bp_tired',
+    'away_off_score','home_off_score','away_wrc_plus','home_wrc_plus',
+    'away_sp_hand','home_sp_hand',
     'composite','band','model_dir','aligned','alignment_type','qualified',
     'sp_cat','bat_cat','bp_cat','f5_rec','full_rec','run_line_flag',
     'away_score','home_score',
@@ -210,24 +214,85 @@ def load_pitchers(content):
 
 
 def load_teams(content):
-    """Load team batting xwOBA from team_batting.csv.
-    Columns: team, pa, xwoba, woba, hard_hit, barrel_pct, avg_ev
+    """Load team batting from team_batting.csv.
+    Uses off_score (xwOBA + BB% + Hard Hit% composite) if available,
+    falls back to raw xwOBA.
     """
     t = {}
     for row in csv.DictReader(io.StringIO(content)):
         tm = row.get('team', '').strip().upper()
         if not tm: continue
         try:
+            xwoba     = float(row.get('xwoba',     0) or 0)
+            off_score = float(row.get('off_score',  0) or 0)
             t[tm] = {
-                'xwoba':      float(row.get('xwoba', 0) or 0),
-                'woba':       float(row.get('woba',  0) or 0),
-                'hard_hit':   float(row.get('hard_hit', 0) or 0),
+                'xwoba':      xwoba,
+                'off_score':  off_score if off_score else xwoba,
+                'woba':       float(row.get('woba',       0) or 0),
+                'hard_hit':   float(row.get('hard_hit',   0) or 0),
+                'bb_pct':     float(row.get('bb_pct',     0) or 0),
                 'barrel_pct': float(row.get('barrel_pct', 0) or 0),
-                'avg_ev':     float(row.get('avg_ev', 0) or 0),
+                'avg_ev':     float(row.get('avg_ev',     0) or 0),
+                'wrc_plus':   int(float(row.get('wrc_plus', 100) or 100)),
                 'pa':         int(float(row.get('pa', 0) or 0)),
             }
         except: pass
     return t
+
+
+def load_platoon(content):
+    """Load team platoon splits (vs LHP / vs RHP) from team_platoon.csv."""
+    p = {}
+    for row in csv.DictReader(io.StringIO(content)):
+        tm = row.get('team','').strip().upper()
+        if not tm: continue
+        try:
+            p[tm] = {
+                'off_vs_lhp': float(row.get('off_score_vs_lhp', 0) or 0),
+                'off_vs_rhp': float(row.get('off_score_vs_rhp', 0) or 0),
+                'xw_vs_lhp':  float(row.get('xwoba_vs_lhp',    0) or 0),
+                'xw_vs_rhp':  float(row.get('xwoba_vs_rhp',    0) or 0),
+                'pa_vs_lhp':  int(float(row.get('pa_vs_lhp', 0) or 0)),
+                'pa_vs_rhp':  int(float(row.get('pa_vs_rhp', 0) or 0)),
+            }
+        except: pass
+    return p
+
+
+def load_pitcher_hand(content):
+    """Load pitcher handedness cache (pitcher_id → 'L' or 'R')."""
+    h = {}
+    for row in csv.DictReader(io.StringIO(content)):
+        pid = row.get('pitcher_id','').strip()
+        if pid: h[pid] = row.get('hand','R').strip()
+    return h
+
+
+def team_off_score(team, sp_hand, teams, platoon):
+    """
+    Return the platoon-weighted offensive score for a team facing a given SP hand.
+    If platoon data available and SP hand is known:
+        70% vs-SP-hand split + 30% season average off_score
+    Otherwise: season off_score.
+    """
+    base = teams.get(team, {})
+    season_off = base.get('off_score') or base.get('xwoba', 0.318)
+
+    if not sp_hand or not platoon:
+        return season_off
+
+    p = platoon.get(team, {})
+    key = 'off_vs_lhp' if sp_hand == 'L' else 'off_vs_rhp'
+    pa_key = 'pa_vs_lhp' if sp_hand == 'L' else 'pa_vs_rhp'
+
+    vs_hand = p.get(key, 0)
+    pa_split = p.get(pa_key, 0)
+
+    # Only use platoon if we have meaningful sample (≥100 PA)
+    if vs_hand and pa_split >= 100:
+        return round(0.70 * vs_hand + 0.30 * season_off, 4)
+
+    return season_off
 
 
 def load_bullpen(content):
@@ -242,7 +307,9 @@ def load_bullpen(content):
     return bp
 
 
-def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen):
+def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen,
+                      platoon=None, pitcher_hand=None,
+                      away_pid=None, home_pid=None):
     a  = pitchers.get(asn)
     h  = pitchers.get(hsn)
     ab = teams.get(at)
@@ -250,12 +317,19 @@ def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen):
     ba = bullpen.get(at, {'gap':0,'fat':1.0})
     hb_bp = bullpen.get(ht, {'gap':0,'fat':1.0})
 
-    # CORRECTED formula: positive gap = unlucky = helps team
+    # SP handedness from pitcher_hand cache (used for platoon weighting)
+    away_hand = pitcher_hand.get(away_pid,'') if (pitcher_hand and away_pid) else ''
+    home_hand = pitcher_hand.get(home_pid,'') if (pitcher_hand and home_pid) else ''
+
     sp = 0.0
     if a: sp += (a['gap'] * 100)
     if h: sp -= (h['gap'] * 100)
 
-    bat = ((ab['xwoba'] - hb['xwoba']) * 100) if ab and hb else 0.0
+    # BAT: use off_score with platoon weighting
+    # Away team faces home SP (home_hand); home team faces away SP (away_hand)
+    away_off = team_off_score(at, home_hand, teams, platoon)
+    home_off = team_off_score(ht, away_hand, teams, platoon)
+    bat = round((away_off - home_off) * 100, 2)
 
     # BP: quality term (gap × availability) + freshness term (direct fatigue edge)
     BP_FRESH_SCALE = 2.0
@@ -277,10 +351,11 @@ def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen):
 
     rec = recommend_play(round(sp,2), round(bat,2), bp, model)
 
-    # If either starter is missing from the file, suppress all play recommendations.
-    # A composite built on only one pitcher's data is unreliable.
     if miss:
         rec['f5'] = rec['full'] = rec['run_line'] = False
+
+    # Determine platoon flag for display
+    platoon_active = bool(away_hand or home_hand)
 
     return {
         'sp_edge': round(sp,2), 'bat_edge': round(bat,2),
@@ -290,6 +365,12 @@ def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen):
         'qualified': qual,
         'away_gap': a['gap'] if a else '',
         'home_gap': h['gap'] if h else '',
+        'away_off_score': round(away_off, 4),
+        'home_off_score': round(home_off, 4),
+        'away_wrc_plus':  ab.get('wrc_plus', '') if ab else '',
+        'home_wrc_plus':  hb.get('wrc_plus', '') if hb else '',
+        'away_sp_hand': home_hand,  # what hand the AWAY team faces
+        'home_sp_hand': away_hand,  # what hand the HOME team faces
         'away_fa_score': round(ba['fat'], 3),
         'home_fa_score': round(hb_bp['fat'], 3),
         'away_bp_tired': ba.get('tired', 0),
@@ -378,6 +459,8 @@ def main():
     sc_content      = fetch_optional('team_batting.csv', 'team_batting.csv')
     bullpen_content = fetch_optional('bullpen.csv', 'bullpen.csv')
     fatigue_content = fetch_optional('bullpen_fatigue.csv', 'bullpen_fatigue.csv')
+    platoon_content = fetch_optional('team_platoon.csv', 'team_platoon.csv')
+    hand_content    = fetch_optional('pitcher_hand.csv', 'pitcher_hand.csv')
 
     # Merge bullpen + fatigue (empty dicts if files missing)
     bp_raw  = {r['team']: r for r in csv.DictReader(io.StringIO(bullpen_content))} \
@@ -386,12 +469,15 @@ def main():
               if fatigue_content else {}
     bullpen = {}
     for tm in set(list(bp_raw.keys()) + list(fat_raw.keys())):
-        gap = float(bp_raw.get(tm,{}).get('bullpen_gap',0) or 0)
-        fat = float(fat_raw.get(tm,{}).get('fatigue_score',1.0) or 1.0)
-        bullpen[tm] = {'gap': gap, 'fat': fat}
+        gap   = float(bp_raw.get(tm,{}).get('bullpen_gap',0) or 0)
+        fat   = float(fat_raw.get(tm,{}).get('fatigue_score',1.0) or 1.0)
+        tired = int(float(fat_raw.get(tm,{}).get('arms_tired',0) or 0))
+        bullpen[tm] = {'gap': gap, 'fat': fat, 'tired': tired}
 
-    pitchers = load_pitchers(stats_content)
-    teams    = load_teams(sc_content) if sc_content else {}
+    pitchers     = load_pitchers(stats_content)
+    teams        = load_teams(sc_content)    if sc_content      else {}
+    platoon      = load_platoon(platoon_content) if platoon_content else {}
+    pitcher_hand = load_pitcher_hand(hand_content) if hand_content else {}
 
     # Games
     games = []
@@ -402,7 +488,9 @@ def main():
             'at': at, 'ht': ht,
             'asp': row.get('away_pitcher','TBD'),
             'hsp': row.get('home_pitcher','TBD'),
-            'game_date': row.get('game_date', game_date),   # use CSV date if available
+            'away_pid': row.get('away_pitcher_id','').strip(),
+            'home_pid': row.get('home_pitcher_id','').strip(),
+            'game_date': row.get('game_date', game_date),
         })
 
     existing = load_existing_log()   # dict: key → existing row
@@ -424,7 +512,11 @@ def main():
         row_date = g.get('game_date', game_date)
         key = (row_date, at, ht)
 
-        c = compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen)
+        c = compute_composite(
+            asn, hsn, at, ht, pitchers, teams, bullpen,
+            platoon=platoon, pitcher_hand=pitcher_hand,
+            away_pid=g.get('away_pid',''), home_pid=g.get('home_pid',''),
+        )
 
         bet_key = f"{at}@{ht}"
         bet_info = bets_map.get(bet_key, {})
@@ -446,6 +538,12 @@ def main():
             'home_fa_score':  c['home_fa_score'],
             'away_bp_tired':  c['away_bp_tired'],
             'home_bp_tired':  c['home_bp_tired'],
+            'away_off_score': c['away_off_score'],
+            'home_off_score': c['home_off_score'],
+            'away_wrc_plus':  c['away_wrc_plus'],
+            'home_wrc_plus':  c['home_wrc_plus'],
+            'away_sp_hand':   c['away_sp_hand'],
+            'home_sp_hand':   c['home_sp_hand'],
             'composite':      c['composite'],
             'band':           c['band'],
             'model_dir':      c['model_dir'],
