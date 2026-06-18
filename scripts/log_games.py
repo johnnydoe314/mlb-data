@@ -541,21 +541,6 @@ def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen,
     if qual and not rec['f5'] and not rec['full']:
         qual = False
 
-    # ── K% matchup counter play ────────────────────────────────────────────────
-    # When the opposing SP has a K% advantage > +5 over the favored lineup,
-    # the composite's favored team wins F5 at only 26.7% (n=15 backtest).
-    # The COUNTER direction wins F5 at ~73.3% — flag as a standalone F5 play.
-    # opp_k_adv: opposing SP's K% advantage over the favored lineup
-    #   model=AWAY → away is favored → opp SP is HOME → k_mu_home = home SP K% - away lineup K%
-    #   model=HOME → home is favored → opp SP is AWAY → k_mu_away = away SP K% - home lineup K%
-    K_MATCHUP_THRESH = 5.0
-    opp_k_adv = k_mu_home if model == 'AWAY' else k_mu_away
-    k_matchup_f5  = 0
-    k_matchup_dir = ''
-    if not miss and model != 'NEUT' and opp_k_adv >= K_MATCHUP_THRESH:
-        k_matchup_f5  = 1
-        k_matchup_dir = 'HOME' if model == 'AWAY' else 'AWAY'  # bet opposite
-
     # Determine platoon flag for display
     platoon_active = bool(away_hand or home_hand)
 
@@ -609,6 +594,21 @@ def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen,
     hh_mu_home = round(at_k - h_hh, 2)   # away offense HH% vs home SP HH% allowed
     # Note: using team k_pct as a proxy for hard contact production until
     # team hard_hit% is fully populated from statcast_batting.csv aggregation
+
+    # ── K% matchup counter play ────────────────────────────────────────────────
+    # When the opposing SP has a K% advantage > +5 over the favored lineup,
+    # the composite's favored team wins F5 at only 26.7% (n=15 backtest).
+    # The COUNTER direction wins F5 at ~73.3% — flag as a standalone F5 play.
+    # opp_k_adv: opposing SP's K% advantage over the favored lineup
+    #   model=AWAY → opp SP is HOME → k_mu_home (home SP K% minus away lineup K%)
+    #   model=HOME → opp SP is AWAY → k_mu_away (away SP K% minus home lineup K%)
+    K_MATCHUP_THRESH = 5.0
+    opp_k_adv = k_mu_home if model == 'AWAY' else k_mu_away
+    k_matchup_f5  = 0
+    k_matchup_dir = ''
+    if not miss and model != 'NEUT' and opp_k_adv >= K_MATCHUP_THRESH:
+        k_matchup_f5  = 1
+        k_matchup_dir = 'HOME' if model == 'AWAY' else 'AWAY'  # bet opposite
 
     return {
         'sp_edge': round(sp,2), 'bat_edge': round(bat,2),
