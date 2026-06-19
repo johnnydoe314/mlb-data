@@ -137,6 +137,8 @@ FIELDS = [
     'k_pct_matchup_away','k_pct_matchup_home',
     'hh_matchup_away','hh_matchup_home',
     'k_matchup_f5','k_matchup_dir',
+    'v3_core_qual','v3_core_dir','v3_core_conf','v3_rules',
+    'v3_counter_qual','v3_counter_dir','v3_counter_conf',
     'composite','band','model_dir','aligned','alignment_type','qualified',
     'sp_cat','bat_cat','bp_cat','f5_rec','full_rec','run_line_flag',
     'away_score','home_score',
@@ -610,6 +612,61 @@ def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen,
         k_matchup_f5  = 1
         k_matchup_dir = 'HOME' if model == 'AWAY' else 'AWAY'  # bet opposite
 
+    # ── V3 MODEL — backtested 72.4% (n=58) / core-only 74.5% (n=47) ────────────
+    # Rules operate on favored-team-perspective values already computed above.
+    # R1, R3 = standalone-capable (fire alone). R2, R4 = confirmation-only
+    # (only count when paired with another rule). R5 = counter play.
+    fav_k   = a_k   if model == 'AWAY' else h_k
+    fav_kbb = a_kbb if model == 'AWAY' else h_kbb
+    opp_kbb = h_kbb if model == 'AWAY' else a_kbb
+    bat_fav = bat * sign if sign else 0.0
+
+    fav_k_low = fav_k < 18.0          # B1: blocks all standard plays (30.8% F5 hist.)
+    opp_k_dom = opp_k_adv >= 5.0      # B3: blocks R1-R4, enables R5 instead
+
+    v3_same = []      # (rule_id, standalone_capable, base_confidence)
+    v3_counter = []
+
+    if not miss and model != 'NEUT':
+        # R1: composite sweet spot — 79.3% (23W 6L, n=29)
+        if 3 <= aa < 6 and not fav_k_low and not opp_k_dom:
+            v3_same.append(('R1', True, 79.3))
+        # R3: SP K-BB% sweet spot (15-20) — 82.6% (19W 4L, n=23)
+        if 15 <= fav_kbb <= 20 and aa >= 2 and not fav_k_low and not opp_k_dom:
+            v3_same.append(('R3', True, 82.6))
+        # R2: BAT-dominant + neutral BP — confirm-only, 75.0% w/ confirmation
+        if bat_fav >= 1.5 and bpc == 'NEUTRAL' and not fav_k_low and not opp_k_dom:
+            v3_same.append(('R2', False, 75.0))
+        # R4: opposing SP weak K-BB% (<12) — confirm-only, 71.0% standalone
+        if opp_kbb < 12 and aa >= 2 and not fav_k_low and not opp_k_dom:
+            v3_same.append(('R4', False, 71.0))
+        # R5: K% matchup counter — supplementary (n=11, below 20 threshold)
+        if opp_k_dom and opp_kbb >= 13 and not fav_k_low:
+            v3_counter.append(('R5', 73.0))
+
+    v3_core_qual = False
+    v3_core_dir  = ''
+    v3_core_conf = 0.0
+    v3_rules_str = ''
+
+    if v3_same:
+        standalone_fired = any(r[1] for r in v3_same)
+        confirmed        = len(v3_same) >= 2
+        if standalone_fired or confirmed:
+            v3_core_qual = True
+            v3_core_dir  = model
+            best_conf    = max(r[2] for r in v3_same)
+            v3_core_conf = round(min(best_conf + (5.0 if confirmed else 0.0), 85.0), 1)
+            v3_rules_str = '+'.join(r[0] for r in v3_same)
+
+    v3_counter_qual = False
+    v3_counter_dir  = ''
+    v3_counter_conf = 0.0
+    if v3_counter and not v3_same:
+        v3_counter_qual = True
+        v3_counter_dir  = 'HOME' if model == 'AWAY' else 'AWAY'
+        v3_counter_conf = max(r[1] for r in v3_counter)
+
     return {
         'sp_edge': round(sp,2), 'bat_edge': round(bat,2),
         'bp_edge': bp, 'park_adj': park, 'composite': adj,
@@ -642,6 +699,10 @@ def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen,
         'k_pct_matchup_away': k_mu_away, 'k_pct_matchup_home': k_mu_home,
         'hh_matchup_away': hh_mu_away,  'hh_matchup_home': hh_mu_home,
         'k_matchup_f5': k_matchup_f5, 'k_matchup_dir': k_matchup_dir,
+        'v3_core_qual': int(v3_core_qual), 'v3_core_dir': v3_core_dir,
+        'v3_core_conf': v3_core_conf, 'v3_rules': v3_rules_str,
+        'v3_counter_qual': int(v3_counter_qual), 'v3_counter_dir': v3_counter_dir,
+        'v3_counter_conf': v3_counter_conf,
         'away_fa_score': round(ba['fat'], 3),
         'home_fa_score': round(hb_bp['fat'], 3),
         'away_bp_tired': ba.get('tired', 0),
@@ -836,6 +897,13 @@ def main():
             'hh_matchup_home': c['hh_matchup_home'],
             'k_matchup_f5':  c['k_matchup_f5'],
             'k_matchup_dir': c['k_matchup_dir'],
+            'v3_core_qual':    c['v3_core_qual'],
+            'v3_core_dir':     c['v3_core_dir'],
+            'v3_core_conf':    c['v3_core_conf'],
+            'v3_rules':        c['v3_rules'],
+            'v3_counter_qual': c['v3_counter_qual'],
+            'v3_counter_dir':  c['v3_counter_dir'],
+            'v3_counter_conf': c['v3_counter_conf'],
             'composite':      c['composite'],
             'band':           c['band'],
             'model_dir':      c['model_dir'],
