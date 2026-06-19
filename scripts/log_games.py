@@ -616,6 +616,8 @@ def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen,
     # Rules operate on favored-team-perspective values already computed above.
     # R1, R3 = standalone-capable (fire alone). R2, R4 = confirmation-only
     # (only count when paired with another rule). R5 = counter play.
+    a_kbb = round(a_k - a_bb, 2)
+    h_kbb = round(h_k - h_bb, 2)
     fav_k   = a_k   if model == 'AWAY' else h_k
     fav_kbb = a_kbb if model == 'AWAY' else h_kbb
     opp_kbb = h_kbb if model == 'AWAY' else a_kbb
@@ -636,7 +638,7 @@ def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen,
         if 15 <= fav_kbb <= 20 and aa >= 2 and not fav_k_low and not opp_k_dom:
             v3_same.append(('R3', True, 82.6))
         # R2: BAT-dominant + neutral BP — confirm-only, 75.0% w/ confirmation
-        if bat_fav >= 1.5 and bpc == 'NEUTRAL' and not fav_k_low and not opp_k_dom:
+        if bat_fav >= 1.5 and rec['bp_cat'] == 'NEUTRAL' and not fav_k_low and not opp_k_dom:
             v3_same.append(('R2', False, 75.0))
         # R4: opposing SP weak K-BB% (<12) — confirm-only, 71.0% standalone
         if opp_kbb < 12 and aa >= 2 and not fav_k_low and not opp_k_dom:
