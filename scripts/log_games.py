@@ -619,7 +619,8 @@ def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen,
     fav_k   = a_k   if model == 'AWAY' else h_k
     fav_kbb = a_kbb if model == 'AWAY' else h_kbb
     opp_kbb = h_kbb if model == 'AWAY' else a_kbb
-    bat_fav = bat * sign if sign else 0.0
+    v3_sign = 1 if model == 'AWAY' else (-1 if model == 'HOME' else 0)
+    bat_fav = bat * v3_sign
 
     fav_k_low = fav_k < 18.0          # B1: blocks all standard plays (30.8% F5 hist.)
     opp_k_dom = opp_k_adv >= 5.0      # B3: blocks R1-R4, enables R5 instead
