@@ -117,8 +117,15 @@ def main():
         with open(debug_path, "w", encoding="utf-8") as f:
             json.dump({
                 "total_txns": len(txns),
+                "today_teams": sorted(today_teams),
+                "today_teams_count": len(today_teams),
                 "response_keys": list(data.keys()),
                 "sample_keys_per_txn": [list(t.keys()) for t in txns[:5]],
+                "all_team_abbrs_in_txns": sorted(set(
+                    TEAM_ID_TO_ABBR.get((t.get("toTeam") or t.get("fromTeam") or {}).get("id"), "?")
+                    for t in txns
+                )),
+                "relevant_count_before_team_filter": sum(1 for t in txns if _is_relevant(t)),
                 "sample_txns": txns[:3],
             }, f, indent=2, default=str)
         print(f"  [DEBUG] wrote {debug_path}")
