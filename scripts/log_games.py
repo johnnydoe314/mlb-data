@@ -148,7 +148,7 @@ FIELDS = [
     'home_sp_exit_inn','home_sp_exit_score',
     'model','lean',
     'bet_placed','bet_description','bet_result',
-    'notes','logged_at',
+    'notes','logged_at','revision','last_updated_reason',
 ]
 
 GITHUB_RAW = "https://raw.githubusercontent.com/johnnydoe314/mlb-data/main/data"
@@ -747,6 +747,12 @@ def main():
     import argparse
     parser = argparse.ArgumentParser(description='Log all games with composite scores')
     parser.add_argument('--date', default='', help='Date YYYY-MM-DD (overrides GAME_DATE env)')
+    parser.add_argument('--reason', default='',
+                         help="Why this run changes prior data, e.g. "
+                              "'SP scratch: Cavalli->Mikolas' or 'lineup news: Ohtani out'. "
+                              "Required context for any mid-day rerun that isn't a routine "
+                              "scheduled refresh. Stored per-row only when that row's core "
+                              "values actually change.")
     args = parser.parse_args()
 
     # Date: CLI arg → GAME_DATE env var → today
@@ -934,21 +940,56 @@ def main():
             'bet_result':      bet_info.get('result', ''),
             'notes':          '',
             'logged_at':      logged_at,
+            'revision':       1,
+            'last_updated_reason': 'initial',
         }
 
-        # Merge: preserve scores/bets/notes from any previously logged row
+        # Merge: preserve scores/bets/notes from any previously logged row.
+        # Revision tracking: only bump revision + record a reason when a core
+        # model-output field actually changes value. Identical reruns (e.g. the
+        # routine 3x/day scheduled refresh finding no new data) leave revision
+        # and last_updated_reason untouched — so the count only reflects
+        # meaningful changes (SP scratches, lineup news, manual corrections),
+        # not every time the pipeline happens to execute.
+        _CORE_FIELDS = ('composite', 'model_dir', 'away_sp', 'home_sp',
+                        'sp_edge', 'bat_edge', 'bp_edge', 'qualified')
+
         if key in existing:
             old = existing[key]
             for f in _PRESERVE_FIELDS:
                 if old.get(f, ''):          # only keep if previously non-empty
                     row[f] = old[f]
-            action = 'REFRESH'
+
+            changed = any(
+                str(old.get(f, '')).strip() != str(row.get(f, '')).strip()
+                for f in _CORE_FIELDS
+            )
+            if changed:
+                try:
+                    prev_rev = int(old.get('revision', 1) or 1)
+                except ValueError:
+                    prev_rev = 1
+                row['revision'] = prev_rev + 1
+                row['last_updated_reason'] = (
+                    args.reason.strip() if args.reason.strip()
+                    else 'scheduled refresh (data update, no manual reason given)'
+                )
+                action = 'REFRESH'
+            else:
+                # Nothing material changed — keep prior revision/reason untouched,
+                # carry forward the original logged_at too so it doesn't look
+                # like a fresh change happened.
+                row['revision'] = old.get('revision', 1)
+                row['last_updated_reason'] = old.get('last_updated_reason', 'initial')
+                row['logged_at'] = old.get('logged_at', logged_at)
+                action = 'UNCHANGED'
         else:
             action = 'NEW'
 
         updated_rows.append(row)
         qual_str = ' ★ QUALIFIES' if c['qualified'] else ''
-        print(f"  [{action}] {at}@{ht:<7} {c['composite']:+.1f} {c['band']:<5} {c['model_dir']:<5} {c['alignment_type']:<10}{qual_str}")
+        rev_str = f" rev{row['revision']}:{row['last_updated_reason']}" if action == 'REFRESH' else ''
+        print(f"  [{action}] {at}@{ht:<7} {c['composite']:+.1f} {c['band']:<5} {c['model_dir']:<5} {c['alignment_type']:<10}{qual_str}{rev_str}")
 
     write_log(updated_rows)
     print(f"\n  [✓] {LOG_FILE} — {len(updated_rows)} total rows ({sum(1 for g in games)} today's games)")
