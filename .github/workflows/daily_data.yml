@@ -50,6 +50,9 @@ jobs:
         continue-on-error: true
         run: python scripts/fetch_platoon_splits.py
 
+      - name: Fetch injury/roster transaction notes (injury_notes.csv)
+        continue-on-error: true
+        run: python scripts/fetch_injury_notes.py
 
       - name: Log all games with composite scores (game_log.csv)
         run: python scripts/log_games.py
