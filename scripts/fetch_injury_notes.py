@@ -42,7 +42,7 @@ TXN_URL = "https://statsapi.mlb.com/api/v1/transactions"
 RELEVANT_KEYWORDS = (
     "injured list", "il ", "10-day", "15-day", "60-day",
     "activated", "reinstated", "optioned", "recalled",
-    "designated for assignment", "placed on",
+    "designated for assignment", " placed ", "rehab assignment",
 )
 
 TEAM_ID_TO_ABBR = {
@@ -113,7 +113,13 @@ def main():
 
     rows = []
     for t in txns:
-        team_id = t.get("team", {}).get("id")
+        # MLB API uses toTeam/fromTeam (not a flat 'team' field) for most
+        # transaction types. toTeam is the team gaining the player (the
+        # relevant one for "who's on this team's IL right now" purposes);
+        # fall back to fromTeam, then a flat 'team' field if either appears
+        # in some response variant.
+        team_obj = t.get("toTeam") or t.get("fromTeam") or t.get("team") or {}
+        team_id = team_obj.get("id")
         abbr = TEAM_ID_TO_ABBR.get(team_id)
         if not abbr:
             continue
