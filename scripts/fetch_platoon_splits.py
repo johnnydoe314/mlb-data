@@ -231,14 +231,15 @@ def fetch_pitcher_handedness():
 
     if new_ids:
         print(f"  Looking up handedness for {len(new_ids)} pitchers...")
-        # Batch requests of 50
         id_list = list(new_ids)
         for i in range(0, len(id_list), 50):
             batch = ",".join(id_list[i:i+50])
-            url   = (
-                f"https://statsapi.mlb.com/api/v1/people?personIds={batch}"
-                "&fields=people,id,fullName,pitchHand"
-            )
+            # NOTE: no 'fields' sparse-fieldset filter — that param needs the
+            # full nested path (pitchHand,code) to return the sub-field, and
+            # getting it wrong silently returns an empty pitchHand object for
+            # every pitcher. Simpler and more robust to just fetch the full
+            # person record; the payload for ~50 pitchers is trivial.
+            url = f"https://statsapi.mlb.com/api/v1/people?personIds={batch}"
             try:
                 req = urllib.request.Request(url, headers={"User-Agent":"mlb/1.0"})
                 with urllib.request.urlopen(req, timeout=TIMEOUT) as r:
@@ -246,7 +247,15 @@ def fetch_pitcher_handedness():
                 for person in data.get("people",[]):
                     pid  = str(person.get("id",""))
                     name = person.get("fullName","")
-                    hand = person.get("pitchHand",{}).get("code","R")
+                    hand = person.get("pitchHand",{}).get("code","")
+                    if not hand:
+                        # Don't silently assert a handedness we don't actually
+                        # know — leave it blank so it's visibly "unknown"
+                        # rather than wrongly defaulting to 'R'. Downstream
+                        # consumers (team_off_score in log_games.py) already
+                        # treat a blank/missing hand as "use season average,
+                        # no platoon weighting" rather than guessing.
+                        print(f"  [!] No pitchHand returned for {name} (id={pid}) — leaving blank")
                     cache[pid] = {"name": name, "hand": hand}
             except Exception as e:
                 print(f"  [!] Batch lookup failed: {e}")
@@ -259,8 +268,10 @@ def fetch_pitcher_handedness():
         for pid, v in sorted(cache.items(), key=lambda x: int(x[0]) if x[0].isdigit() else 0):
             writer.writerow({"pitcher_id":pid, "name":v["name"], "hand":v["hand"]})
 
-    print(f"  [✓] {HAND_OUT} ({len(cache)} pitchers)")
-
+    l_count = sum(1 for v in cache.values() if v["hand"]=="L")
+    r_count = sum(1 for v in cache.values() if v["hand"]=="R")
+    blank_count = sum(1 for v in cache.values() if not v["hand"])
+    print(f"  [✓] {HAND_OUT} ({len(cache)} pitchers — {r_count} R, {l_count} L, {blank_count} unknown)")
 
 def main():
     print(f"Fetching platoon splits {YEAR}...")
