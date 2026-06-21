@@ -19,6 +19,7 @@ Skips dates already in game_log.csv. Safe to re-run.
 
 import csv, io, json, sys, time, urllib.request, urllib.error
 from datetime import date, timedelta, datetime
+from zoneinfo import ZoneInfo
 from pathlib import Path
 
 DATA_DIR = Path("data")
@@ -299,7 +300,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--start", default="2026-05-01",
                     help="Start date YYYY-MM-DD (default: 2026-05-01)")
-    ap.add_argument("--end",   default=(date.today() - timedelta(days=1)).isoformat(),
+    ap.add_argument("--end",   default=(datetime.now(ZoneInfo("America/Chicago")).date() - timedelta(days=1)).isoformat(),
                     help="End date YYYY-MM-DD (default: yesterday)")
     args = ap.parse_args()
 
