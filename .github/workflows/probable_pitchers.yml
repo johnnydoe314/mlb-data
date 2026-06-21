@@ -36,7 +36,28 @@ jobs:
           git config user.name  "MLB Data Bot"
           git config user.email "bot@mlb-data"
           git add data/probable_pitchers.csv
-          git diff --staged --quiet && echo "No changes — pitchers unchanged" || \
-            (git commit -m "Pitchers update $(date -u '+%H:%M UTC')" && git push)
+          if git diff --staged --quiet; then
+            echo "No changes — pitchers unchanged"
+          else
+            git commit -m "Pitchers update $(date -u '+%H:%M UTC')"
+          for i in 1 2 3 4 5; do
+            if git push; then
+              echo "Pushed successfully (attempt $i)"
+              break
+            fi
+            if [ "$i" -eq 5 ]; then
+              echo "Push failed after 5 attempts — giving up"
+              exit 1
+            fi
+            echo "Push rejected (attempt $i) — remote has new commits, rebasing and retrying..."
+            git fetch origin main
+            if ! git rebase origin/main; then
+              git rebase --abort
+              echo "Rebase conflict — needs manual resolution, aborting"
+              exit 1
+            fi
+            sleep $((RANDOM % 5 + 2))
+          done
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
