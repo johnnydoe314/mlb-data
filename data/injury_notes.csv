@@ -1,15 +1,19 @@
 game_date,team,player,transaction_type,txn_date,description,relevant_today
-2026-06-21,ARI,Jordan Lawlar,Status Change,2026-06-20,Arizona Diamondbacks placed LF Jordan Lawlar on the 10-day injured list. Right hamstring strain.,1
-2026-06-21,SFG,Jared Oliva,Designated for Assignment,2026-06-20,San Francisco Giants designated CF Jared Oliva for assignment.,1
-2026-06-21,TOR,Daulton Varsho,Status Change,2026-06-20,Toronto Blue Jays activated CF Daulton Varsho from the 10-day injured list.,1
-2026-06-21,ATH,Mark Leiter Jr.,Status Change,2026-06-20,"Athletics placed RHP Mark Leiter Jr. on the 15-day injured list retroactive to June 18, 2026. Right hip impingement.",1
 2026-06-21,BOS,Isiah Kiner-Falefa,Status Change,2026-06-20,"Boston Red Sox placed 2B Isiah Kiner-Falefa on the 10-day injured list retroactive to June 19, 2026. Left forearm inflammation.",1
 2026-06-21,CHC,Luis Peralta,Designated for Assignment,2026-06-20,Chicago Cubs designated LHP Luis Peralta for assignment.,1
-2026-06-21,SDP,Ron Marinaccio,Status Change,2026-06-20,San Diego Padres activated RHP Ron Marinaccio.,1
+2026-06-21,ARI,Jordan Lawlar,Status Change,2026-06-20,Arizona Diamondbacks placed LF Jordan Lawlar on the 10-day injured list. Right hamstring strain.,1
+2026-06-21,ATH,Mark Leiter Jr.,Status Change,2026-06-20,"Athletics placed RHP Mark Leiter Jr. on the 15-day injured list retroactive to June 18, 2026. Right hip impingement.",1
 2026-06-21,TOR,Lazaro Estrada,Status Change,2026-06-20,Toronto Blue Jays activated RHP Lazaro Estrada from the 60-day injured list.,1
+2026-06-21,SDP,Ron Marinaccio,Status Change,2026-06-20,San Diego Padres activated RHP Ron Marinaccio.,1
+2026-06-21,LAD,Blake Treinen,Status Change,2026-06-20,Los Angeles Dodgers placed RHP Blake Treinen on the 15-day injured list. Right elbow inflammation.,1
+2026-06-21,SFG,Jared Oliva,Designated for Assignment,2026-06-20,San Francisco Giants designated CF Jared Oliva for assignment.,1
+2026-06-21,TOR,Daulton Varsho,Status Change,2026-06-20,Toronto Blue Jays activated CF Daulton Varsho from the 10-day injured list.,1
+2026-06-21,BAL,Adley Rutschman,Status Change,2026-06-20,"Baltimore Orioles placed C Adley Rutschman on the 7-day injured list retroactive to June 19, 2026. Concussion.",1
 2026-06-21,ARI,Michael Soroka,Status Change,2026-06-20,Arizona Diamondbacks placed RHP Michael Soroka on the 15-day injured list. Left glute strain.,1
-2026-06-21,BOS,Anthony Seigler,Recalled,2026-06-20,Boston Red Sox recalled 2B Anthony Seigler from Worcester Red Sox.,1
+2026-06-21,BAL,Michael Siani,Recalled,2026-06-20,Baltimore Orioles recalled CF Michael Siani from Norfolk Tides.,1
 2026-06-21,ARI,Philip Abner,Recalled,2026-06-20,Arizona Diamondbacks recalled LHP Philip Abner from Reno Aces.,1
+2026-06-21,LAD,Chayce McDermott,Recalled,2026-06-20,Los Angeles Dodgers recalled RHP Chayce McDermott from Oklahoma City Comets.,1
+2026-06-21,BOS,Anthony Seigler,Recalled,2026-06-20,Boston Red Sox recalled 2B Anthony Seigler from Worcester Red Sox.,1
 2026-06-21,ARI,Tim Tawa,Recalled,2026-06-20,Arizona Diamondbacks recalled LF Tim Tawa from Reno Aces.,1
 2026-06-21,TBR,Jonny DeLuca,Status Change,2026-06-19,Tampa Bay Rays activated RF Jonny DeLuca from the 10-day injured list.,1
 2026-06-21,KCR,Seth Lugo,Status Change,2026-06-19,Kansas City Royals activated RHP Seth Lugo from the 7-day injured list.,1
