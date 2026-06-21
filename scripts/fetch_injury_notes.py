@@ -26,6 +26,7 @@ import sys
 import urllib.request
 import urllib.error
 from datetime import date, datetime, timedelta
+from zoneinfo import ZoneInfo
 from pathlib import Path
 
 OUT_DIR     = Path("data")
@@ -91,7 +92,9 @@ def main():
     else:
         print("  [~] No today's-teams scope found — will include all teams")
 
-    end = date.today()
+    # Anchor to US/Central, not the runner's UTC clock — see log_games.py
+    # for the full explanation of this bug pattern.
+    end = datetime.now(ZoneInfo("America/Chicago")).date()
     start = end - timedelta(days=LOOKBACK_DAYS)
     url = f"{TXN_URL}?startDate={start.isoformat()}&endDate={end.isoformat()}&sportId=1"
 
