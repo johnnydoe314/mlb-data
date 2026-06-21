@@ -23,6 +23,7 @@ import sys
 import urllib.request
 import urllib.error
 from datetime import date, timedelta
+from zoneinfo import ZoneInfo
 from pathlib import Path
 
 MLB_SCH  = "https://statsapi.mlb.com/api/v1/schedule"
@@ -272,7 +273,7 @@ def main():
 
     target = (args.date.strip() or
               os.environ.get("GAME_DATE", "") or
-              (date.today() - timedelta(days=1)).isoformat())
+              (datetime.now(ZoneInfo("America/Chicago")).date() - timedelta(days=1)).isoformat())
 
     print(f"Fetching scores for {target}...")
 
