@@ -25,6 +25,7 @@ via secrets if you add it).
 
 import csv, io, json, os, sys, time, urllib.request, urllib.error
 from datetime import date, datetime
+from zoneinfo import ZoneInfo
 from pathlib import Path
 
 DATA_DIR   = Path("data")
@@ -275,7 +276,7 @@ def build_prompt(g, c, o):
     ab = c['away_bat'];     hb = c['home_bat']
     ba = c['away_bp'];      hb_bp = c['home_bp']
 
-    today = date.today().strftime("%B %d, %Y")
+    today = datetime.now(ZoneInfo("America/Chicago")).strftime("%B %d, %Y")
     direction = c['model']
     bet_team  = at if direction == 'AWAY' else ht
     bet_sp    = asn if direction == 'AWAY' else hsn
@@ -410,7 +411,7 @@ def main():
     parser = argparse.ArgumentParser(description='Automated professional overlay for qualifying plays')
     parser.add_argument('--all',      action='store_true', help='Run overlay on all games, not just qualifying')
     parser.add_argument('--min-adj',  type=float, default=5.0, help='Min |composite| to include (default 5.0)')
-    parser.add_argument('--date',     default=date.today().isoformat())
+    parser.add_argument('--date',     default=datetime.now(ZoneInfo("America/Chicago")).date().isoformat())
     args = parser.parse_args()
 
     api_key = os.environ.get("ANTHROPIC_API_KEY","")
