@@ -155,6 +155,29 @@ FIELDS = [
 GITHUB_RAW = "https://raw.githubusercontent.com/johnnydoe314/mlb-data/main/data"
 
 def fetch(path):
+    """
+    Read a sibling data file. Prefers the LOCAL checkout (data/{path}) over
+    a live HTTP fetch from the remote repo.
+
+    Why this matters: inside a single GitHub Actions run, earlier steps
+    (fetch_stats.py, fetch_platoon_splits.py, etc.) write fresh files to the
+    local checkout, but nothing gets pushed to GitHub until the final
+    "Commit and push" step — that happens AFTER log_games.py runs. An HTTP
+    fetch here would silently pull the PREVIOUS commit's data, one full
+    cycle behind whatever the same run's earlier steps just computed. This
+    bit us directly: a pitcher_hand.csv fix landed locally, but log_games.py
+    fetched the stale pre-fix version via HTTP in the same run and produced
+    blank sp_hand values until a second, separate run picked up the
+    now-actually-committed file.
+
+    Falls back to the HTTP fetch when no local file exists — covers
+    standalone/manual runs outside a full repo checkout (e.g. a scratch
+    directory with only some files pulled down).
+    """
+    local_path = DATA_DIR / path
+    if local_path.exists():
+        return local_path.read_text(encoding="utf-8")
+
     url = f"{GITHUB_RAW}/{path}"
     req = urllib.request.Request(url, headers={"User-Agent": "log_games/1.0"})
     with urllib.request.urlopen(req, timeout=TIMEOUT) as r:
