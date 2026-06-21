@@ -47,6 +47,7 @@ Schema:
 
 import csv, io, json, os, sys, urllib.request
 from datetime import date, datetime
+from zoneinfo import ZoneInfo
 from pathlib import Path
 
 DATA_DIR  = Path("data")
@@ -756,7 +757,13 @@ def main():
     args = parser.parse_args()
 
     # Date: CLI arg → GAME_DATE env var → today
-    game_date = args.date or os.environ.get('GAME_DATE', '') or date.today().isoformat()
+    # Anchor 'today' to US/Central explicitly. date.today() reads the
+    # runner's system clock (UTC on GitHub Actions) — UTC midnight falls
+    # at 7pm CDT, which was silently mislabeling rows logged in the
+    # evening under TOMORROW's date. Confirmed live: a run at 8:06pm CT
+    # on 6/20 would have logged that night's games under game_date=6/21.
+    today_central = datetime.now(ZoneInfo("America/Chicago")).date().isoformat()
+    game_date = args.date or os.environ.get('GAME_DATE', '') or today_central
 
     # Bets: read from BETS_JSON env var (set by GitHub Actions workflow_dispatch input)
     # Format: [{"game":"TOR@ATL","desc":"ATL F5 ML","result":"WIN"},...]
