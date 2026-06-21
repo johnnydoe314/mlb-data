@@ -35,6 +35,26 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/game_log.csv
-          git diff --staged --quiet && echo "No score changes" || \
+          if git diff --staged --quiet; then
+            echo "No score changes"
+          else
             git commit -m "Update scores $(date -u +%Y-%m-%d) [bot]"
-          git push
+          for i in 1 2 3 4 5; do
+            if git push; then
+              echo "Pushed successfully (attempt $i)"
+              break
+            fi
+            if [ "$i" -eq 5 ]; then
+              echo "Push failed after 5 attempts — giving up"
+              exit 1
+            fi
+            echo "Push rejected (attempt $i) — remote has new commits, rebasing and retrying..."
+            git fetch origin main
+            if ! git rebase origin/main; then
+              git rebase --abort
+              echo "Rebase conflict — needs manual resolution, aborting"
+              exit 1
+            fi
+            sleep $((RANDOM % 5 + 2))
+          done
+          fi
