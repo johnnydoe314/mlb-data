@@ -13,6 +13,7 @@ import sys
 import urllib.request
 import urllib.error
 from datetime import date, datetime
+from zoneinfo import ZoneInfo
 from pathlib import Path
 
 OUT_DIR  = Path("data")
@@ -109,7 +110,12 @@ def save(games: list[dict]):
         writer.writerows(games)
 
 def main():
-    today = date.today().strftime("%Y-%m-%d")
+    # Anchor to US/Central explicitly — date.today() uses the runner's
+    # system clock (UTC on GitHub Actions), and UTC midnight falls at
+    # 7pm CDT, which silently rolled "today" over to tomorrow for any
+    # run in the 7pm-midnight Central window. This was confirmed live:
+    # at 8:06pm CT on 6/20, date.today() was already returning 6/21.
+    today = datetime.now(ZoneInfo("America/Chicago")).strftime("%Y-%m-%d")
     print("=" * 55)
     print(f"  FETCH PROBABLE PITCHERS — {today}")
     print("=" * 55)
