@@ -16,6 +16,7 @@ import sys
 import urllib.request
 import urllib.error
 from datetime import date, timedelta
+from zoneinfo import ZoneInfo
 from pathlib import Path
 
 # ── Config ────────────────────────────────────────────────────────────────────
@@ -103,7 +104,7 @@ def f5_correct(f5_rec, f5_result, model_dir):
 def update_log(target_date: str | None = None) -> int:
     """Update game_log.csv with F5 data for target_date (default: yesterday)."""
     if target_date is None:
-        target_date = (date.today() - timedelta(days=1)).isoformat()
+        target_date = (datetime.now(ZoneInfo("America/Chicago")).date() - timedelta(days=1)).isoformat()
 
     print(f"Fetching F5 scores for {target_date}...")
     f5_data = fetch_linescore(target_date)
