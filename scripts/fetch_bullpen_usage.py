@@ -33,6 +33,7 @@ import urllib.request
 import urllib.error
 from collections import defaultdict
 from datetime import date, datetime, timedelta
+from zoneinfo import ZoneInfo
 from pathlib import Path
 
 OUT_DIR       = Path("data")
@@ -319,8 +320,8 @@ def build_fatigue(history: dict, today: str) -> list[dict]:
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 def main():
-    today     = date.today().isoformat()
-    yesterday = (date.today() - timedelta(days=1)).isoformat()
+    today     = datetime.now(ZoneInfo("America/Chicago")).date().isoformat()
+    yesterday = (datetime.now(ZoneInfo("America/Chicago")).date() - timedelta(days=1)).isoformat()
     ts        = datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
 
     print("=" * 58)
@@ -338,7 +339,7 @@ def main():
     print(f"  [2/3] Fetching boxscores...")
     dates_to_fetch = []
     for i in range(1, 4):  # yesterday + 2 days before
-        d = (date.today() - timedelta(days=i)).isoformat()
+        d = (datetime.now(ZoneInfo("America/Chicago")).date() - timedelta(days=i)).isoformat()
         if d not in history:
             dates_to_fetch.append(d)
 
