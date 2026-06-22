@@ -1,12 +1,19 @@
 name: Update Scores
 
 on:
-  # 10am UTC = 5am CT — catches all overnight final scores
+  # 10am UTC = 5am CT — catches all overnight final scores (targets yesterday)
   schedule:
     - cron: '0 10 * * *'
+  # 5am UTC = midnight CT — catches same-day late/west-coast games (targets today)
+    - cron: '0 5 * * *'
 
-  # Or trigger manually any time
+  # Or trigger manually with an optional date override
   workflow_dispatch:
+    inputs:
+      game_date:
+        description: 'Date to score (YYYY-MM-DD, default: yesterday)'
+        required: false
+        default: ''
 
 jobs:
   update-scores:
@@ -27,8 +34,20 @@ jobs:
         run: pip install requests --quiet
 
       - name: Run update_scores.py
-        run: python scripts/update_scores.py
-
+        run: |
+          # The 5am UTC / midnight CT run targets today; 10am UTC / 5am CT run
+          # targets yesterday. Manual dispatch can pass an explicit date.
+          HOUR=$(TZ=America/Chicago date +%H)
+          if [ -n "${{ github.event.inputs.game_date }}" ]; then
+            python scripts/update_scores.py --date "${{ github.event.inputs.game_date }}"
+          elif [ "$HOUR" -le 1 ]; then
+            # Midnight CT run — target today's games (just finished)
+            TODAY=$(TZ=America/Chicago date +%Y-%m-%d)
+            python scripts/update_scores.py --date "$TODAY"
+          else
+            # Morning run — target yesterday's games
+            python scripts/update_scores.py
+          fi
 
       - name: Commit updated scores
         run: |
