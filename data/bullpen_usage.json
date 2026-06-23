@@ -1,246 +1,4 @@
 {
-  "2026-06-18": [
-    {
-      "id": 667297,
-      "name": "Tommy Nance",
-      "team": "TOR",
-      "pitches": 14,
-      "ip": 0.2,
-      "date": "2026-06-18"
-    },
-    {
-      "id": 689254,
-      "name": "Mason Fluharty",
-      "team": "TOR",
-      "pitches": 5,
-      "ip": 1.0,
-      "date": "2026-06-18"
-    },
-    {
-      "id": 686580,
-      "name": "Justin Slaten",
-      "team": "BOS",
-      "pitches": 15,
-      "ip": 1.0,
-      "date": "2026-06-18"
-    },
-    {
-      "id": 547973,
-      "name": "Aroldis Chapman",
-      "team": "BOS",
-      "pitches": 20,
-      "ip": 1.0,
-      "date": "2026-06-18"
-    },
-    {
-      "id": 670059,
-      "name": "Colin Holderman",
-      "team": "CLE",
-      "pitches": 17,
-      "ip": 0.1,
-      "date": "2026-06-18"
-    },
-    {
-      "id": 671922,
-      "name": "Cade Smith",
-      "team": "CLE",
-      "pitches": 22,
-      "ip": 1.1,
-      "date": "2026-06-18"
-    },
-    {
-      "id": 683769,
-      "name": "Hunter Gaddis",
-      "team": "CLE",
-      "pitches": 21,
-      "ip": 0.2,
-      "date": "2026-06-18"
-    },
-    {
-      "id": 682120,
-      "name": "Tim Herrin",
-      "team": "CLE",
-      "pitches": 12,
-      "ip": 0.2,
-      "date": "2026-06-18"
-    },
-    {
-      "id": 680723,
-      "name": "Drew Rom",
-      "team": "MIL",
-      "pitches": 32,
-      "ip": 1.1,
-      "date": "2026-06-18"
-    },
-    {
-      "id": 684974,
-      "name": "Craig Yoho",
-      "team": "MIL",
-      "pitches": 17,
-      "ip": 1.0,
-      "date": "2026-06-18"
-    },
-    {
-      "id": 681982,
-      "name": "Grant Anderson",
-      "team": "MIL",
-      "pitches": 21,
-      "ip": 0.2,
-      "date": "2026-06-18"
-    },
-    {
-      "id": 669270,
-      "name": "Joel Kuhnel",
-      "team": "MIL",
-      "pitches": 21,
-      "ip": 1.0,
-      "date": "2026-06-18"
-    },
-    {
-      "id": 689520,
-      "name": "Cody Laweryson",
-      "team": "MIN",
-      "pitches": 17,
-      "ip": 1.0,
-      "date": "2026-06-18"
-    },
-    {
-      "id": 664875,
-      "name": "Justin Lawrence",
-      "team": "MIN",
-      "pitches": 18,
-      "ip": 1.0,
-      "date": "2026-06-18"
-    },
-    {
-      "id": 573124,
-      "name": "Taylor Rogers",
-      "team": "MIN",
-      "pitches": 15,
-      "ip": 0.1,
-      "date": "2026-06-18"
-    },
-    {
-      "id": 679358,
-      "name": "Eric Orze",
-      "team": "MIN",
-      "pitches": 12,
-      "ip": 1.0,
-      "date": "2026-06-18"
-    },
-    {
-      "id": 702193,
-      "name": "Andrew Morris",
-      "team": "MIN",
-      "pitches": 8,
-      "ip": 0.2,
-      "date": "2026-06-18"
-    },
-    {
-      "id": 682608,
-      "name": "Peyton Gray",
-      "team": "TEX",
-      "pitches": 10,
-      "ip": 1.0,
-      "date": "2026-06-18"
-    },
-    {
-      "id": 615698,
-      "name": "Cal Quantrill",
-      "team": "TEX",
-      "pitches": 36,
-      "ip": 2.0,
-      "date": "2026-06-18"
-    },
-    {
-      "id": 695239,
-      "name": "Robby Ahlstrom",
-      "team": "TEX",
-      "pitches": 28,
-      "ip": 1.0,
-      "date": "2026-06-18"
-    },
-    {
-      "id": 668390,
-      "name": "Cole Winn",
-      "team": "TEX",
-      "pitches": 9,
-      "ip": 1.0,
-      "date": "2026-06-18"
-    },
-    {
-      "id": 670329,
-      "name": "Rico Garcia",
-      "team": "BAL",
-      "pitches": 10,
-      "ip": 1.0,
-      "date": "2026-06-18"
-    },
-    {
-      "id": 662253,
-      "name": "Andr\u00e9s Mu\u00f1oz",
-      "team": "SEA",
-      "pitches": 21,
-      "ip": 1.0,
-      "date": "2026-06-18"
-    },
-    {
-      "id": 660825,
-      "name": "Eduard Bazardo",
-      "team": "SEA",
-      "pitches": 11,
-      "ip": 1.0,
-      "date": "2026-06-18"
-    },
-    {
-      "id": 686751,
-      "name": "Seth Johnson",
-      "team": "PHI",
-      "pitches": 8,
-      "ip": 0.1,
-      "date": "2026-06-18"
-    },
-    {
-      "id": 680732,
-      "name": "Sean Burke",
-      "team": "CWS",
-      "pitches": 41,
-      "ip": 2.2,
-      "date": "2026-06-18"
-    },
-    {
-      "id": 663542,
-      "name": "Bryan Hudson",
-      "team": "CWS",
-      "pitches": 27,
-      "ip": 1.2,
-      "date": "2026-06-18"
-    },
-    {
-      "id": 700669,
-      "name": "Gordon Graceffo",
-      "team": "STL",
-      "pitches": 2,
-      "ip": 0.1,
-      "date": "2026-06-18"
-    },
-    {
-      "id": 669461,
-      "name": "Matthew Liberatore",
-      "team": "STL",
-      "pitches": 48,
-      "ip": 1.2,
-      "date": "2026-06-18"
-    },
-    {
-      "id": 702070,
-      "name": "Noah Cameron",
-      "team": "KCR",
-      "pitches": 40,
-      "ip": 2.0,
-      "date": "2026-06-18"
-    }
-  ],
   "2026-06-19": [
     {
       "id": 693686,
@@ -1565,6 +1323,600 @@
       "pitches": 4,
       "ip": 0.1,
       "date": "2026-06-21"
+    }
+  ],
+  "2026-06-22": [
+    {
+      "id": 621112,
+      "name": "Paul Blackburn",
+      "team": "NYY",
+      "pitches": 18,
+      "ip": 1.2,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 642232,
+      "name": "Ryan Yarbrough",
+      "team": "NYY",
+      "pitches": 31,
+      "ip": 2.0,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 623454,
+      "name": "Drew Anderson",
+      "team": "DET",
+      "pitches": 19,
+      "ip": 1.1,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 805427,
+      "name": "Drew Sommers",
+      "team": "DET",
+      "pitches": 6,
+      "ip": 0.1,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 676684,
+      "name": "Will Vest",
+      "team": "DET",
+      "pitches": 12,
+      "ip": 1.1,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 656638,
+      "name": "Alex Lange",
+      "team": "KCR",
+      "pitches": 15,
+      "ip": 1.0,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 670167,
+      "name": "John Schreiber",
+      "team": "KCR",
+      "pitches": 18,
+      "ip": 1.0,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 592155,
+      "name": "Cam Booser",
+      "team": "TBR",
+      "pitches": 9,
+      "ip": 1.0,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 642121,
+      "name": "Cole Sulser",
+      "team": "TBR",
+      "pitches": 13,
+      "ip": 1.0,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 518886,
+      "name": "Craig Kimbrel",
+      "team": "TBR",
+      "pitches": 14,
+      "ip": 1.0,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 677958,
+      "name": "Kumar Rocker",
+      "team": "TEX",
+      "pitches": 76,
+      "ip": 5.0,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 641302,
+      "name": "Tyler Alexander",
+      "team": "TEX",
+      "pitches": 15,
+      "ip": 1.0,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 656641,
+      "name": "Jacob Latz",
+      "team": "TEX",
+      "pitches": 31,
+      "ip": 1.1,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 695239,
+      "name": "Robby Ahlstrom",
+      "team": "TEX",
+      "pitches": 8,
+      "ip": 1.0,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 596001,
+      "name": "Jakob Junis",
+      "team": "TEX",
+      "pitches": 17,
+      "ip": 0.2,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 676534,
+      "name": "Calvin Faucher",
+      "team": "MIA",
+      "pitches": 24,
+      "ip": 1.0,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 656848,
+      "name": "Michael Petersen",
+      "team": "MIA",
+      "pitches": 13,
+      "ip": 0.2,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 669622,
+      "name": "Anthony Bender",
+      "team": "MIA",
+      "pitches": 7,
+      "ip": 0.1,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 690978,
+      "name": "Dax Fulton",
+      "team": "MIA",
+      "pitches": 16,
+      "ip": 1.0,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 686751,
+      "name": "Seth Johnson",
+      "team": "PHI",
+      "pitches": 17,
+      "ip": 1.0,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 663767,
+      "name": "Chase Shugart",
+      "team": "PHI",
+      "pitches": 24,
+      "ip": 1.0,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 641835,
+      "name": "Tim Mayza",
+      "team": "PHI",
+      "pitches": 24,
+      "ip": 1.0,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 660604,
+      "name": "Alan Rangel",
+      "team": "PHI",
+      "pitches": 72,
+      "ip": 5.0,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 663992,
+      "name": "Richard Lovelady",
+      "team": "WSH",
+      "pitches": 9,
+      "ip": 0.2,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 690925,
+      "name": "Clayton Beeter",
+      "team": "WSH",
+      "pitches": 6,
+      "ip": 1.0,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 660853,
+      "name": "Enyel De Los Santos",
+      "team": "HOU",
+      "pitches": 19,
+      "ip": 1.1,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 805123,
+      "name": "AJ Blubaugh",
+      "team": "HOU",
+      "pitches": 38,
+      "ip": 2.0,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 701121,
+      "name": "Logan VanWey",
+      "team": "HOU",
+      "pitches": 16,
+      "ip": 1.0,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 687911,
+      "name": "Bryan King",
+      "team": "HOU",
+      "pitches": 11,
+      "ip": 0.2,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 686973,
+      "name": "Louis Varland",
+      "team": "TOR",
+      "pitches": 12,
+      "ip": 1.0,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 680755,
+      "name": "Braydon Fisher",
+      "team": "TOR",
+      "pitches": 6,
+      "ip": 1.1,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 643511,
+      "name": "Tyler Rogers",
+      "team": "TOR",
+      "pitches": 19,
+      "ip": 1.0,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 682842,
+      "name": "Abner Uribe",
+      "team": "MIL",
+      "pitches": 10,
+      "ip": 1.0,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 669270,
+      "name": "Joel Kuhnel",
+      "team": "MIL",
+      "pitches": 10,
+      "ip": 1.0,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 676879,
+      "name": "Aaron Ashby",
+      "team": "MIL",
+      "pitches": 17,
+      "ip": 1.0,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 656730,
+      "name": "Trevor Megill",
+      "team": "MIL",
+      "pitches": 12,
+      "ip": 1.0,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 622088,
+      "name": "Tejay Antone",
+      "team": "CIN",
+      "pitches": 11,
+      "ip": 0.2,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 663574,
+      "name": "Tony Santillan",
+      "team": "CIN",
+      "pitches": 13,
+      "ip": 1.0,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 594580,
+      "name": "Sam Moll",
+      "team": "CIN",
+      "pitches": 12,
+      "ip": 1.0,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 656271,
+      "name": "Brock Burke",
+      "team": "CIN",
+      "pitches": 6,
+      "ip": 0.1,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 641778,
+      "name": "Eric Lauer",
+      "team": "LAD",
+      "pitches": 84,
+      "ip": 6.0,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 656945,
+      "name": "Tanner Scott",
+      "team": "LAD",
+      "pitches": 11,
+      "ip": 1.0,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 669165,
+      "name": "Kyle Hurt",
+      "team": "LAD",
+      "pitches": 11,
+      "ip": 1.0,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 694361,
+      "name": "Will Klein",
+      "team": "LAD",
+      "pitches": 32,
+      "ip": 1.0,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 573124,
+      "name": "Taylor Rogers",
+      "team": "MIN",
+      "pitches": 17,
+      "ip": 1.1,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 679358,
+      "name": "Eric Orze",
+      "team": "MIN",
+      "pitches": 11,
+      "ip": 0.2,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 702193,
+      "name": "Andrew Morris",
+      "team": "MIN",
+      "pitches": 15,
+      "ip": 1.0,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 542888,
+      "name": "Shawn Armstrong",
+      "team": "CLE",
+      "pitches": 14,
+      "ip": 1.0,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 671922,
+      "name": "Cade Smith",
+      "team": "CLE",
+      "pitches": 28,
+      "ip": 1.2,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 682120,
+      "name": "Tim Herrin",
+      "team": "CLE",
+      "pitches": 16,
+      "ip": 1.0,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 691799,
+      "name": "Grant Taylor",
+      "team": "CWS",
+      "pitches": 30,
+      "ip": 0.2,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 622554,
+      "name": "Seranthony Dom\u00ednguez",
+      "team": "CWS",
+      "pitches": 22,
+      "ip": 0.1,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 669684,
+      "name": "Chris Murphy",
+      "team": "CWS",
+      "pitches": 6,
+      "ip": 0.2,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 663542,
+      "name": "Bryan Hudson",
+      "team": "CWS",
+      "pitches": 23,
+      "ip": 1.1,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 642528,
+      "name": "Jonathan Lo\u00e1isiga",
+      "team": "ARI",
+      "pitches": 4,
+      "ip": 0.1,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 664199,
+      "name": "Taylor Clarke",
+      "team": "ARI",
+      "pitches": 27,
+      "ip": 1.2,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 668941,
+      "name": "JoJo Romero",
+      "team": "STL",
+      "pitches": 9,
+      "ip": 1.0,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 676617,
+      "name": "Riley O'Brien",
+      "team": "STL",
+      "pitches": 17,
+      "ip": 1.0,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 666277,
+      "name": "George Soriano",
+      "team": "STL",
+      "pitches": 5,
+      "ip": 0.1,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 592773,
+      "name": "Ryne Stanek",
+      "team": "STL",
+      "pitches": 11,
+      "ip": 0.2,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 594027,
+      "name": "Tyron Guerrero",
+      "team": "BOS",
+      "pitches": 8,
+      "ip": 1.0,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 676477,
+      "name": "Garrett Whitlock",
+      "team": "BOS",
+      "pitches": 11,
+      "ip": 1.0,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 547973,
+      "name": "Aroldis Chapman",
+      "team": "BOS",
+      "pitches": 8,
+      "ip": 0.0,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 680767,
+      "name": "Victor Vodnik",
+      "team": "COL",
+      "pitches": 30,
+      "ip": 2.0,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 657514,
+      "name": "Brennan Bernardino",
+      "team": "COL",
+      "pitches": 18,
+      "ip": 1.0,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 670329,
+      "name": "Rico Garcia",
+      "team": "BAL",
+      "pitches": 9,
+      "ip": 1.0,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 820862,
+      "name": "Jos\u00e9 Fermin",
+      "team": "LAA",
+      "pitches": 26,
+      "ip": 1.1,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 489446,
+      "name": "Kirby Yates",
+      "team": "LAA",
+      "pitches": 13,
+      "ip": 1.0,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 608718,
+      "name": "Brent Suter",
+      "team": "LAA",
+      "pitches": 35,
+      "ip": 2.0,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 689266,
+      "name": "Dylan Dodd",
+      "team": "ATL",
+      "pitches": 39,
+      "ip": 1.1,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 675916,
+      "name": "James Karinchak",
+      "team": "ATL",
+      "pitches": 22,
+      "ip": 1.2,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 800311,
+      "name": "Didier Fuentes",
+      "team": "ATL",
+      "pitches": 4,
+      "ip": 0.1,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 695243,
+      "name": "Mason Miller",
+      "team": "SDP",
+      "pitches": 20,
+      "ip": 1.0,
+      "date": "2026-06-22"
+    },
+    {
+      "id": 670970,
+      "name": "Adrian Morejon",
+      "team": "SDP",
+      "pitches": 12,
+      "ip": 1.0,
+      "date": "2026-06-22"
     }
   ]
 }
