@@ -751,11 +751,24 @@ def load_existing_log():
 
 
 # Fields we always preserve from an existing row (never overwrite with blanks)
-_PRESERVE_FIELDS = {
+# Fields preserved from the existing row only when they are non-empty.
+# These are score/result fields filled in by update_scores.py — an empty
+# value means "not yet scored" and should NOT block a later update.
+_PRESERVE_IF_SET = {
     'away_score','home_score','away_f5','home_f5','f5_total',
     'f5_result','f5_lean','f5_correct','model','lean',
+}
+
+# Fields that are ALWAYS copied from the existing row regardless of whether
+# they are empty. These are manually recorded (bet results, notes) and must
+# never be silently wiped by a pipeline run that checked out a stale version
+# of the file. An empty value is a valid state (no bet placed) and should be
+# faithfully preserved rather than reset by log_games.py.
+_ALWAYS_PRESERVE = {
     'bet_placed','bet_description','bet_result','notes',
 }
+
+_PRESERVE_FIELDS = _PRESERVE_IF_SET | _ALWAYS_PRESERVE
 
 
 def write_log(all_rows):
@@ -986,8 +999,11 @@ def main():
 
         if key in existing:
             old = existing[key]
-            for f in _PRESERVE_FIELDS:
-                if old.get(f, ''):          # only keep if previously non-empty
+            for f in _PRESERVE_IF_SET:
+                if old.get(f, ''):          # only copy if previously non-empty
+                    row[f] = old[f]
+            for f in _ALWAYS_PRESERVE:
+                if f in old:                # always copy — even empty is valid
                     row[f] = old[f]
 
             changed = any(
