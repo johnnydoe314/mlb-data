@@ -7,6 +7,7 @@ pitcher_id,name,hand
 554430,Zack Wheeler,R
 571578,Patrick Corbin,L
 593974,Wandy Peralta,L
+605540,Brandon Woodruff,R
 607067,Colin Rea,R
 607259,Nick Martinez,R
 608372,Tomoyuki Sugano,R
@@ -15,6 +16,7 @@ pitcher_id,name,hand
 641302,Tyler Alexander,L
 641743,Anthony Kay,L
 641778,Eric Lauer,L
+641835,Tim Mayza,L
 642547,Freddy Peralta,R
 650633,Michael King,R
 650911,Cristopher Sánchez,L
@@ -69,6 +71,7 @@ pitcher_id,name,hand
 691951,Sam Aldegheri,L
 693821,Bryce Elder,R
 693855,Ian Seymour,L
+694361,Will Klein,R
 694973,Paul Skenes,R
 695505,Chase Burns,R
 695684,Elmer Rodríguez,R
