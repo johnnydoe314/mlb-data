@@ -1,80 +1,92 @@
 game_date,team,player,transaction_type,txn_date,description,relevant_today
+2026-06-24,CHC,Edward Cabrera,Status Change,2026-06-24,Chicago Cubs placed RHP Edward Cabrera on the 15-day injured list. Left hamstring strain.,1
+2026-06-24,CHC,Eduarniel Núñez,Designated for Assignment,2026-06-24,Chicago Cubs designated RHP Eduarniel Núñez for assignment.,1
+2026-06-24,MIA,Eury Pérez,Status Change,2026-06-24,Miami Marlins activated RHP Eury Pérez from the 15-day injured list.,1
+2026-06-24,CHC,Ben Brown,Status Change,2026-06-24,"Chicago Cubs placed RHP Ben Brown on the 15-day injured list retroactive to June 21, 2026. Neck strain.",1
+2026-06-24,MIN,Austin Voth,Designated for Assignment,2026-06-24,Minnesota Twins designated RHP Austin Voth for assignment.,1
+2026-06-24,MIN,Kody Funderburk,Recalled,2026-06-24,Minnesota Twins recalled LHP Kody Funderburk from St. Paul Saints.,1
+2026-06-24,WSH,Carson Palmquist,Recalled,2026-06-24,Washington Nationals recalled LHP Carson Palmquist from Rochester Red Wings.,1
+2026-06-24,NYM,Jonathan Pintaro,Recalled,2026-06-24,New York Mets recalled RHP Jonathan Pintaro from Syracuse Mets.,1
+2026-06-24,TEX,Winston Santos,Recalled,2026-06-24,Texas Rangers recalled RHP Winston Santos from Frisco RoughRiders.,1
+2026-06-24,MIN,Marco Raya,Recalled,2026-06-24,Minnesota Twins recalled RHP Marco Raya from St. Paul Saints.,1
+2026-06-24,CHC,Gavin Hollowell,Recalled,2026-06-24,Chicago Cubs recalled RHP Gavin Hollowell from Iowa Cubs.,1
+2026-06-24,CHC,Tyler Ferguson,Recalled,2026-06-24,Chicago Cubs recalled RHP Tyler Ferguson from Iowa Cubs.,1
 2026-06-24,CIN,Elly De La Cruz,Status Change,2026-06-23,Cincinnati Reds activated SS Elly De La Cruz from the 10-day injured list.,1
 2026-06-24,DET,Burch Smith,Status Change,2026-06-23,Detroit Tigers transferred RHP Burch Smith from the 15-day injured list to the 60-day injured list. Right shoulder inflammation.,1
-2026-06-24,NYY,Ali Sánchez,Status Change,2026-06-23,New York Yankees placed C Ali Sánchez on the paternity list.,1
-2026-06-24,TOR,Shane Bieber,Status Change,2026-06-23,Toronto Blue Jays activated RHP Shane Bieber from the 60-day injured list.,1
-2026-06-24,CHC,Jayden Murray,Status Change,2026-06-23,Chicago Cubs activated RHP Jayden Murray.,1
-2026-06-24,TBR,Dom Keegan,Designated for Assignment,2026-06-23,Tampa Bay Rays designated C Dom Keegan for assignment.,1
 2026-06-24,TOR,Hayden Juenger,Designated for Assignment,2026-06-23,Toronto Blue Jays designated RHP Hayden Juenger for assignment.,1
 2026-06-24,SEA,Randy Arozarena,Status Change,2026-06-23,Seattle Mariners activated LF Randy Arozarena from the 10-day injured list.,1
 2026-06-24,SDP,Freddy Fermin,Status Change,2026-06-23,San Diego Padres activated C Freddy Fermin from the 7-day injured list.,1
 2026-06-24,KCR,Maikel Garcia,Status Change,2026-06-23,Kansas City Royals placed 3B Maikel Garcia on the 10-day injured list. Left hand muscle strain.,1
-2026-06-24,KCR,Josh Rojas,Recalled,2026-06-23,Kansas City Royals recalled 3B Josh Rojas from Omaha Storm Chasers.,1
+2026-06-24,NYY,Ali Sánchez,Status Change,2026-06-23,New York Yankees placed C Ali Sánchez on the paternity list.,1
+2026-06-24,TOR,Shane Bieber,Status Change,2026-06-23,Toronto Blue Jays activated RHP Shane Bieber from the 60-day injured list.,1
+2026-06-24,CHC,Jayden Murray,Status Change,2026-06-23,Chicago Cubs activated RHP Jayden Murray.,1
+2026-06-24,TBR,Dom Keegan,Designated for Assignment,2026-06-23,Tampa Bay Rays designated C Dom Keegan for assignment.,1
 2026-06-24,NYY,J.C. Escarra,Recalled,2026-06-23,New York Yankees recalled C J.C. Escarra from Scranton/Wilkes-Barre RailRiders.,1
 2026-06-24,SDP,JP Sears,Recalled,2026-06-23,San Diego Padres recalled LHP JP Sears from El Paso Chihuahuas.,1
-2026-06-24,LAA,Nick Madrigal,Designated for Assignment,2026-06-22,Los Angeles Angels designated 3B Nick Madrigal for assignment.,1
-2026-06-24,CWS,Kyle Teel,Status Change,2026-06-22,Chicago White Sox activated C Kyle Teel from the 60-day injured list.,1
-2026-06-24,COL,Mickey Moniak,Status Change,2026-06-22,Colorado Rockies activated LF Mickey Moniak from the 10-day injured list.,1
-2026-06-24,MIA,Max Meyer,Status Change,2026-06-22,Miami Marlins placed RHP Max Meyer on the bereavement list.,1
-2026-06-24,LAD,Brock Stewart,Status Change,2026-06-22,Los Angeles Dodgers activated RHP Brock Stewart from the 15-day injured list.,1
-2026-06-24,MIL,Brandon Woodruff,Status Change,2026-06-22,Milwaukee Brewers activated RHP Brandon Woodruff from the 15-day injured list.,1
+2026-06-24,KCR,Josh Rojas,Recalled,2026-06-23,Kansas City Royals recalled 3B Josh Rojas from Omaha Storm Chasers.,1
 2026-06-24,HOU,Bryan Abreu,Status Change,2026-06-22,Houston Astros placed RHP Bryan Abreu on the restricted list.,1
 2026-06-24,BAL,Michael Siani,Designated for Assignment,2026-06-22,Baltimore Orioles designated CF Michael Siani for assignment.,1
 2026-06-24,CIN,Pierce Johnson,Status Change,2026-06-22,Cincinnati Reds activated RHP Pierce Johnson from the 15-day injured list.,1
-2026-06-24,CIN,Chris Paddack,Designated for Assignment,2026-06-22,Cincinnati Reds designated RHP Chris Paddack for assignment.,1
 2026-06-24,PHI,Bryse Wilson,Designated for Assignment,2026-06-22,Philadelphia Phillies designated RHP Bryse Wilson for assignment.,1
+2026-06-24,LAA,Nick Madrigal,Designated for Assignment,2026-06-22,Los Angeles Angels designated 3B Nick Madrigal for assignment.,1
+2026-06-24,CWS,Kyle Teel,Status Change,2026-06-22,Chicago White Sox activated C Kyle Teel from the 60-day injured list.,1
+2026-06-24,CIN,Chris Paddack,Designated for Assignment,2026-06-22,Cincinnati Reds designated RHP Chris Paddack for assignment.,1
+2026-06-24,COL,Mickey Moniak,Status Change,2026-06-22,Colorado Rockies activated LF Mickey Moniak from the 10-day injured list.,1
+2026-06-24,MIA,Max Meyer,Status Change,2026-06-22,Miami Marlins placed RHP Max Meyer on the bereavement list.,1
 2026-06-24,LAA,Jorge Soler,Status Change,2026-06-22,Los Angeles Angels activated DH Jorge Soler from the 10-day injured list.,1
+2026-06-24,LAD,Brock Stewart,Status Change,2026-06-22,Los Angeles Dodgers activated RHP Brock Stewart from the 15-day injured list.,1
+2026-06-24,MIL,Brandon Woodruff,Status Change,2026-06-22,Milwaukee Brewers activated RHP Brandon Woodruff from the 15-day injured list.,1
 2026-06-24,PHI,Kyle Backhus,Status Change,2026-06-22,Philadelphia Phillies activated LHP Kyle Backhus from the 15-day injured list.,1
-2026-06-24,HOU,Logan VanWey,Recalled,2026-06-22,Houston Astros recalled RHP Logan VanWey from Sugar Land Space Cowboys.,1
 2026-06-24,NYY,Yerry De los Santos,Recalled,2026-06-22,New York Yankees recalled RHP Yerry De los Santos from Scranton/Wilkes-Barre RailRiders.,1
 2026-06-24,MIA,Zach Brzykcy,Recalled,2026-06-22,Miami Marlins recalled RHP Zach Brzykcy from Jacksonville Jumbo Shrimp.,1
+2026-06-24,HOU,Logan VanWey,Recalled,2026-06-22,Houston Astros recalled RHP Logan VanWey from Sugar Land Space Cowboys.,1
 2026-06-24,PHI,Alan Rangel,Recalled,2026-06-22,Philadelphia Phillies recalled RHP Alan Rangel from Lehigh Valley IronPigs.,1
-2026-06-24,ATH,Luis Severino,Status Change,2026-06-21,Athletics transferred RHP Luis Severino from the 15-day injured list to the 60-day injured list. Right shoulder strain.,1
-2026-06-24,NYY,Austin Wells,Status Change,2026-06-21,New York Yankees activated C Austin Wells from the 10-day injured list.,1
-2026-06-24,ATH,Scott Barlow,Designated for Assignment,2026-06-21,Athletics designated RHP Scott Barlow for assignment.,1
-2026-06-24,MIA,Josh Ekness,Status Change,2026-06-21,Miami Marlins transferred RHP Josh Ekness from the 15-day injured list to the 60-day injured list. Right calf strain.,1
-2026-06-24,MIN,Kendry Rojas,Status Change,2026-06-21,Minnesota Twins activated LHP Kendry Rojas from the 15-day injured list.,1
-2026-06-24,COL,Sammy Peralta,Designated for Assignment,2026-06-21,Colorado Rockies designated LHP Sammy Peralta for assignment.,1
-2026-06-24,MIA,Griffin Conine,Status Change,2026-06-21,Miami Marlins activated LF Griffin Conine from the 60-day injured list.,1
-2026-06-24,COL,Blas Castaño,Status Change,2026-06-21,"Colorado Rockies placed RHP Blas Castaño on the 15-day injured list retroactive to June 18, 2026. Right pectoral strain.",1
-2026-06-24,TEX,Jack Leiter,Status Change,2026-06-21,"Texas Rangers placed RHP Jack Leiter on the 15-day injured list retroactive to June 19, 2026. Right ankle posterior impingement.",1
-2026-06-24,ARI,Yilber Díaz,Designated for Assignment,2026-06-21,Arizona Diamondbacks designated RHP Yilber Díaz for assignment.,1
 2026-06-24,CWS,Jordan Hicks,Status Change,2026-06-21,Chicago White Sox activated RHP Jordan Hicks from the 15-day injured list.,1
-2026-06-24,SDP,Miguel Andujar,Status Change,2026-06-21,San Diego Padres activated DH Miguel Andujar from the 10-day injured list.,1
-2026-06-24,MIA,Liam Hicks,Status Change,2026-06-21,"Miami Marlins placed C Liam Hicks on the 10-day injured list retroactive to June 20, 2026. Low back strain.",1
-2026-06-24,TBR,Michael Grove,Status Change,2026-06-21,Tampa Bay Rays activated RHP Michael Grove from the 60-day injured list.,1
+2026-06-24,COL,Blas Castaño,Status Change,2026-06-21,"Colorado Rockies placed RHP Blas Castaño on the 15-day injured list retroactive to June 18, 2026. Right pectoral strain.",1
+2026-06-24,ARI,Yilber Díaz,Designated for Assignment,2026-06-21,Arizona Diamondbacks designated RHP Yilber Díaz for assignment.,1
+2026-06-24,MIA,Josh Ekness,Status Change,2026-06-21,Miami Marlins transferred RHP Josh Ekness from the 15-day injured list to the 60-day injured list. Right calf strain.,1
+2026-06-24,COL,Sammy Peralta,Designated for Assignment,2026-06-21,Colorado Rockies designated LHP Sammy Peralta for assignment.,1
 2026-06-24,MIN,Justin Lawrence,Designated for Assignment,2026-06-21,Minnesota Twins designated RHP Justin Lawrence for assignment.,1
 2026-06-24,MIA,Christopher Morel,Designated for Assignment,2026-06-21,Miami Marlins designated 1B Christopher Morel for assignment.,1
+2026-06-24,MIA,Griffin Conine,Status Change,2026-06-21,Miami Marlins activated LF Griffin Conine from the 60-day injured list.,1
+2026-06-24,ATH,Luis Severino,Status Change,2026-06-21,Athletics transferred RHP Luis Severino from the 15-day injured list to the 60-day injured list. Right shoulder strain.,1
+2026-06-24,TEX,Jack Leiter,Status Change,2026-06-21,"Texas Rangers placed RHP Jack Leiter on the 15-day injured list retroactive to June 19, 2026. Right ankle posterior impingement.",1
+2026-06-24,SDP,Miguel Andujar,Status Change,2026-06-21,San Diego Padres activated DH Miguel Andujar from the 10-day injured list.,1
+2026-06-24,MIA,Liam Hicks,Status Change,2026-06-21,"Miami Marlins placed C Liam Hicks on the 10-day injured list retroactive to June 20, 2026. Low back strain.",1
+2026-06-24,MIN,Kendry Rojas,Status Change,2026-06-21,Minnesota Twins activated LHP Kendry Rojas from the 15-day injured list.,1
+2026-06-24,TBR,Michael Grove,Status Change,2026-06-21,Tampa Bay Rays activated RHP Michael Grove from the 60-day injured list.,1
 2026-06-24,SDP,Nick Solak,Designated for Assignment,2026-06-21,San Diego Padres designated 1B Nick Solak for assignment.,1
-2026-06-24,NYY,Elmer Rodríguez,Recalled,2026-06-21,New York Yankees recalled RHP Elmer Rodríguez from Scranton/Wilkes-Barre RailRiders.,1
+2026-06-24,NYY,Austin Wells,Status Change,2026-06-21,New York Yankees activated C Austin Wells from the 10-day injured list.,1
+2026-06-24,ATH,Scott Barlow,Designated for Assignment,2026-06-21,Athletics designated RHP Scott Barlow for assignment.,1
 2026-06-24,TEX,Jose Corniell,Recalled,2026-06-21,Texas Rangers recalled RHP Jose Corniell from Round Rock Express.,1
-2026-06-24,SFG,Jared Oliva,Designated for Assignment,2026-06-20,San Francisco Giants designated CF Jared Oliva for assignment.,1
+2026-06-24,NYY,Elmer Rodríguez,Recalled,2026-06-21,New York Yankees recalled RHP Elmer Rodríguez from Scranton/Wilkes-Barre RailRiders.,1
 2026-06-24,TOR,Lazaro Estrada,Status Change,2026-06-20,Toronto Blue Jays activated RHP Lazaro Estrada from the 60-day injured list.,1
 2026-06-24,TOR,Daulton Varsho,Status Change,2026-06-20,Toronto Blue Jays activated CF Daulton Varsho from the 10-day injured list.,1
-2026-06-24,ARI,Michael Soroka,Status Change,2026-06-20,Arizona Diamondbacks placed RHP Michael Soroka on the 15-day injured list. Left glute strain.,1
+2026-06-24,ATH,Mark Leiter Jr.,Status Change,2026-06-20,"Athletics placed RHP Mark Leiter Jr. on the 15-day injured list retroactive to June 18, 2026. Right hip impingement.",1
 2026-06-24,LAD,Blake Treinen,Status Change,2026-06-20,Los Angeles Dodgers placed RHP Blake Treinen on the 15-day injured list. Right elbow inflammation.,1
 2026-06-24,BAL,Adley Rutschman,Status Change,2026-06-20,"Baltimore Orioles placed C Adley Rutschman on the 7-day injured list retroactive to June 19, 2026. Concussion.",1
-2026-06-24,ARI,Jordan Lawlar,Status Change,2026-06-20,Arizona Diamondbacks placed LF Jordan Lawlar on the 10-day injured list. Right hamstring strain.,1
+2026-06-24,ARI,Michael Soroka,Status Change,2026-06-20,Arizona Diamondbacks placed RHP Michael Soroka on the 15-day injured list. Left glute strain.,1
 2026-06-24,SDP,Ron Marinaccio,Status Change,2026-06-20,San Diego Padres activated RHP Ron Marinaccio.,1
 2026-06-24,BOS,Isiah Kiner-Falefa,Status Change,2026-06-20,"Boston Red Sox placed 2B Isiah Kiner-Falefa on the 10-day injured list retroactive to June 19, 2026. Left forearm inflammation.",1
 2026-06-24,CHC,Luis Peralta,Designated for Assignment,2026-06-20,Chicago Cubs designated LHP Luis Peralta for assignment.,1
-2026-06-24,ATH,Mark Leiter Jr.,Status Change,2026-06-20,"Athletics placed RHP Mark Leiter Jr. on the 15-day injured list retroactive to June 18, 2026. Right hip impingement.",1
-2026-06-24,ARI,Tim Tawa,Recalled,2026-06-20,Arizona Diamondbacks recalled LF Tim Tawa from Reno Aces.,1
-2026-06-24,LAD,Chayce McDermott,Recalled,2026-06-20,Los Angeles Dodgers recalled RHP Chayce McDermott from Oklahoma City Comets.,1
+2026-06-24,ARI,Jordan Lawlar,Status Change,2026-06-20,Arizona Diamondbacks placed LF Jordan Lawlar on the 10-day injured list. Right hamstring strain.,1
+2026-06-24,SFG,Jared Oliva,Designated for Assignment,2026-06-20,San Francisco Giants designated CF Jared Oliva for assignment.,1
 2026-06-24,BAL,Michael Siani,Recalled,2026-06-20,Baltimore Orioles recalled CF Michael Siani from Norfolk Tides.,1
 2026-06-24,ARI,Philip Abner,Recalled,2026-06-20,Arizona Diamondbacks recalled LHP Philip Abner from Reno Aces.,1
+2026-06-24,ARI,Tim Tawa,Recalled,2026-06-20,Arizona Diamondbacks recalled LF Tim Tawa from Reno Aces.,1
+2026-06-24,LAD,Chayce McDermott,Recalled,2026-06-20,Los Angeles Dodgers recalled RHP Chayce McDermott from Oklahoma City Comets.,1
 2026-06-24,BOS,Anthony Seigler,Recalled,2026-06-20,Boston Red Sox recalled 2B Anthony Seigler from Worcester Red Sox.,1
 2026-06-24,ARI,Ryne Nelson,Status Change,2026-06-19,"Arizona Diamondbacks placed RHP Ryne Nelson on the 15-day injured list retroactive to June 16, 2026. Strained right elbow.",1
-2026-06-24,TBR,Austin Slater,Designated for Assignment,2026-06-19,Tampa Bay Rays designated RF Austin Slater for assignment.,1
+2026-06-24,TEX,Michael Helman,Status Change,2026-06-19,Texas Rangers transferred CF Michael Helman from the 10-day injured list to the 60-day injured list. Right finger fracture.,1
 2026-06-24,DET,Wenceel Pérez,Status Change,2026-06-19,"Detroit Tigers placed RF Wenceel Pérez on the 10-day injured list retroactive to June 17, 2026. Left orbital fracture.",1
 2026-06-24,CLE,Erik Sabrowski,Status Change,2026-06-19,Cleveland Guardians activated LHP Erik Sabrowski from the 15-day injured list.,1
-2026-06-24,KCR,Seth Lugo,Status Change,2026-06-19,Kansas City Royals activated RHP Seth Lugo from the 7-day injured list.,1
-2026-06-24,TBR,Jonny DeLuca,Status Change,2026-06-19,Tampa Bay Rays activated RF Jonny DeLuca from the 10-day injured list.,1
-2026-06-24,SEA,Miles Mastrobuoni,Designated for Assignment,2026-06-19,Seattle Mariners designated 3B Miles Mastrobuoni for assignment.,1
 2026-06-24,ATL,Joey Bart,Status Change,2026-06-19,Atlanta Braves activated C Joey Bart from the 10-day injured list.,1
 2026-06-24,SDP,Mason Miller,Status Change,2026-06-19,San Diego Padres activated RHP Mason Miller from the bereavement list.,1
-2026-06-24,TEX,Michael Helman,Status Change,2026-06-19,Texas Rangers transferred CF Michael Helman from the 10-day injured list to the 60-day injured list. Right finger fracture.,1
+2026-06-24,KCR,Seth Lugo,Status Change,2026-06-19,Kansas City Royals activated RHP Seth Lugo from the 7-day injured list.,1
+2026-06-24,TBR,Jonny DeLuca,Status Change,2026-06-19,Tampa Bay Rays activated RF Jonny DeLuca from the 10-day injured list.,1
+2026-06-24,TBR,Austin Slater,Designated for Assignment,2026-06-19,Tampa Bay Rays designated RF Austin Slater for assignment.,1
+2026-06-24,SEA,Miles Mastrobuoni,Designated for Assignment,2026-06-19,Seattle Mariners designated 3B Miles Mastrobuoni for assignment.,1
 2026-06-24,CHC,Justin Dean,Recalled,2026-06-19,Chicago Cubs recalled CF Justin Dean from Iowa Cubs.,1
+2026-06-24,ARI,Yilber Díaz,Recalled,2026-06-19,Arizona Diamondbacks recalled RHP Yilber Díaz from Reno Aces.,1
 2026-06-24,TOR,Brendon Little,Recalled,2026-06-19,Toronto Blue Jays recalled LHP Brendon Little from Buffalo Bisons.,1
 2026-06-24,DET,Trei Cruz,Recalled,2026-06-19,Detroit Tigers recalled CF Trei Cruz from Toledo Mud Hens.,1
-2026-06-24,ARI,Yilber Díaz,Recalled,2026-06-19,Arizona Diamondbacks recalled RHP Yilber Díaz from Reno Aces.,1
