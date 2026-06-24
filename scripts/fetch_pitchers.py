@@ -37,7 +37,7 @@ ABBREV_FIX = {
 }
 
 FIELDS = [
-    "game_date","game_pk","game_time","venue",
+    "game_date","game_pk","game_num","game_time","venue",
     "away_team","away_team_name","home_team","home_team_name",
     "away_pitcher_id","away_pitcher","home_pitcher_id","home_pitcher","status"
 ]
@@ -88,6 +88,7 @@ def parse_games(data: dict) -> list[dict]:
             games.append({
                 "game_date":      date_entry.get("date", ""),
                 "game_pk":        str(g.get("gamePk", "")),
+                "game_num":       "",  # filled below by parse_games
                 "game_time":      game_time,
                 "venue":          g.get("venue", {}).get("name", ""),
                 "away_team":      ABBREV_FIX.get(away["team"].get("abbreviation", ""), away["team"].get("abbreviation", "")),
@@ -100,6 +101,19 @@ def parse_games(data: dict) -> list[dict]:
                 "home_pitcher":    home_name,
                 "status":         g.get("status", {}).get("detailedState", ""),
             })
+    # Assign game_num for doubleheaders — when same (date, away, home)
+    # appears more than once (e.g. postponement makeup + regular game)
+    # label them 1 and 2 in chronological order so log_games.py can key
+    # on (date, away, home, game_num) and keep both rows distinct.
+    from collections import defaultdict
+    counts: dict = defaultdict(int)
+    for game in games:
+        k = (game['game_date'], game['away_team'], game['home_team'])
+        counts[k] += 1
+        game['game_num'] = str(counts[k]) if counts[k] > 1 or any(
+            (g['game_date'], g['away_team'], g['home_team']) == k
+            for g in games if g is not game
+        ) else ''
     return games
 
 def save(games: list[dict]):
