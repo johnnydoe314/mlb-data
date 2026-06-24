@@ -140,6 +140,7 @@ FIELDS = [
     'k_matchup_f5','k_matchup_dir',
     'v3_core_qual','v3_core_dir','v3_core_conf','v3_rules',
     'v3_counter_qual','v3_counter_dir','v3_counter_conf',
+    'v4_qual','v4_dir','v4_conf','v4_rules','v4_validated',
     'composite','band','model_dir','aligned','alignment_type','qualified',
     'sp_cat','bat_cat','bp_cat','f5_rec','full_rec','run_line_flag',
     'away_score','home_score',
@@ -694,6 +695,56 @@ def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen,
         v3_counter_dir  = 'HOME' if model == 'AWAY' else 'AWAY'
         v3_counter_conf = max(r[1] for r in v3_counter)
 
+    # ── V4 MODEL — FULL-GAME, AWAY-side only ───────────────────────────────────
+    # ⚠️ NOT LIVE-VALIDATED. These rules come from an in-sample systematic search
+    # over 649 scored games (the same games they're measured against). The win
+    # rates below are in-sample ceilings, NOT expected live performance. The
+    # realistic live rate is materially lower (likely 58-68%, not 72-76%), and
+    # the first ~20 live plays can run worse through variance alone. v4_validated
+    # stays 0 until these are confirmed on out-of-sample games. Bet accordingly.
+    #
+    # All rules are anchored on bat_edge (signed: positive = AWAY offense edge)
+    # confirmed by a second signal. The HOME mirror was tested and did NOT hold
+    # up out of the small sample (collapsed to ~50%), so V4 is AWAY-only by design.
+    # Block B1: composite < 1 kills the play (no-support games win only 54.5%).
+    #
+    # In-sample rule performance (full-game, n / win%):
+    #   F1: bat_edge>=1.5 + sp_edge>=0.5      → 76.2% (16W 5L, n=21)
+    #   F2: bat_edge>=1.5 + home_sp_kbb<15    → 74.1% (20W 7L, n=27)
+    #   F3: bat_edge>=1.5 + composite>=3      → 73.9% (17W 6L, n=23)
+    #   F4: bat_edge>=2.0 + composite>=2      → 72.7% (16W 6L, n=22)
+    #   Multi-rule: >=2 confirm → 75.0%, >=4 → 90.9% (n=11)
+    v4_rules_fired = []   # (rule_id, base_in_sample_conf)
+    v4_block = adj < 1.0  # B1: composite must be >= 1 to support an AWAY play
+
+    if not miss and not v4_block:
+        # bat is signed; positive = AWAY offensive edge. All V4 rules are AWAY.
+        if bat >= 1.5 and sp >= 0.5:
+            v4_rules_fired.append(('F1', 76.2))
+        if bat >= 1.5 and h_kbb < 15:        # h_kbb = home SP K-BB%
+            v4_rules_fired.append(('F2', 74.1))
+        if bat >= 1.5 and adj >= 3:
+            v4_rules_fired.append(('F3', 73.9))
+        if bat >= 2.0 and adj >= 2:
+            v4_rules_fired.append(('F4', 72.7))
+
+    v4_qual = False
+    v4_dir  = ''
+    v4_conf = 0.0
+    v4_rules_str = ''
+    if v4_rules_fired:
+        v4_qual = True
+        v4_dir  = 'AWAY'
+        n_fired = len(v4_rules_fired)
+        best    = max(r[1] for r in v4_rules_fired)
+        # Multi-rule confirmation bonus, mirroring V3's structure but capped
+        # below the in-sample ceiling to avoid presenting an inflated number.
+        if n_fired >= 2:
+            v4_conf = round(min(best + 2.0, 78.0), 1)
+        else:
+            v4_conf = round(best, 1)
+        v4_rules_str = '+'.join(r[0] for r in v4_rules_fired)
+
     return {
         'sp_edge': round(sp,2), 'bat_edge': round(bat,2),
         'bp_edge': bp, 'park_adj': park, 'composite': adj,
@@ -730,6 +781,9 @@ def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen,
         'v3_core_conf': v3_core_conf, 'v3_rules': v3_rules_str,
         'v3_counter_qual': int(v3_counter_qual), 'v3_counter_dir': v3_counter_dir,
         'v3_counter_conf': v3_counter_conf,
+        'v4_qual': int(v4_qual), 'v4_dir': v4_dir,
+        'v4_conf': v4_conf, 'v4_rules': v4_rules_str,
+        'v4_validated': 0,   # stays 0 until confirmed on out-of-sample games
         'away_fa_score': round(ba['fat'], 3),
         'home_fa_score': round(hb_bp['fat'], 3),
         'away_bp_tired': ba.get('tired', 0),
@@ -956,6 +1010,11 @@ def main():
             'v3_counter_qual': c['v3_counter_qual'],
             'v3_counter_dir':  c['v3_counter_dir'],
             'v3_counter_conf': c['v3_counter_conf'],
+            'v4_qual':         c['v4_qual'],
+            'v4_dir':          c['v4_dir'],
+            'v4_conf':         c['v4_conf'],
+            'v4_rules':        c['v4_rules'],
+            'v4_validated':    c['v4_validated'],
             'composite':      c['composite'],
             'band':           c['band'],
             'model_dir':      c['model_dir'],
@@ -995,7 +1054,8 @@ def main():
         # meaningful changes (SP scratches, lineup news, manual corrections),
         # not every time the pipeline happens to execute.
         _CORE_FIELDS = ('composite', 'model_dir', 'away_sp', 'home_sp',
-                        'sp_edge', 'bat_edge', 'bp_edge', 'qualified')
+                        'sp_edge', 'bat_edge', 'bp_edge', 'qualified',
+                        'v4_qual', 'v4_dir')
 
         if key in existing:
             old = existing[key]
