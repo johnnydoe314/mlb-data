@@ -119,7 +119,7 @@ def recommend_play(sp, bat, bp, model_dir):
                 f5=f5, full=full, run_line=run_line)
 
 FIELDS = [
-    'game_date','away_team','home_team','away_sp','home_sp',
+    'game_date','game_num','away_team','home_team','away_sp','home_sp',
     'away_gap','home_gap','sp_edge','bat_edge','bp_edge','park_adj',
     'away_fa_score','home_fa_score','away_bp_tired','home_bp_tired',
     'away_off_score','home_off_score','away_wrc_plus','home_wrc_plus',
