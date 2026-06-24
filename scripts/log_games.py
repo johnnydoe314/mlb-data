@@ -952,7 +952,7 @@ def main():
         # (date, away, home) matchup appears twice (postponement makeup +
         # regular game), game_num='1'/'2' differentiates them. Fall back
         # to the standard 3-tuple for all single games (game_num='').
-        game_num = game.get('game_num', '')
+        game_num = g.get('game_num', '')
         key = (row_date, at, ht, game_num)
 
         c = compute_composite(
@@ -967,7 +967,7 @@ def main():
         # Start with fresh composite values
         row = {
             'game_date':      row_date,
-            'game_num':       game.get('game_num', ''),
+            'game_num':       g.get('game_num', ''),
             'away_team':      at,
             'home_team':      ht,
             'away_sp':        asn,
