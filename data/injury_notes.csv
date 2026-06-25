@@ -1,7 +1,10 @@
 game_date,team,player,transaction_type,txn_date,description,relevant_today
-2026-06-25,TBR,Steven Matz,Status Change,2026-06-25,"Tampa Bay Rays placed LHP Steven Matz on the 15-day injured list retroactive to June 24, 2026. Left ankle sprain.",1
+2026-06-25,CHC,Yosver Zulueta,Designated for Assignment,2026-06-25,Chicago Cubs designated RHP Yosver Zulueta for assignment.,1
 2026-06-25,PIT,Spencer Horwitz,Status Change,2026-06-25,Pittsburgh Pirates placed 1B Spencer Horwitz on the 10-day injured list. Left hamstring strain.,1
+2026-06-25,ATH,Zack Gelof,Status Change,2026-06-25,"Athletics placed 3B Zack Gelof on the 10-day injured list retroactive to June 24, 2026. Right hand contusion.",1
+2026-06-25,TBR,Steven Matz,Status Change,2026-06-25,"Tampa Bay Rays placed LHP Steven Matz on the 15-day injured list retroactive to June 24, 2026. Left ankle sprain.",1
 2026-06-25,TBR,Michael Grove,Recalled,2026-06-25,Tampa Bay Rays recalled RHP Michael Grove from Durham Bulls.,1
+2026-06-25,ATH,Alika Williams,Recalled,2026-06-25,Athletics recalled SS Alika Williams from Las Vegas Aviators.,1
 2026-06-25,PIT,Jack Brannigan,Recalled,2026-06-25,Pittsburgh Pirates recalled SS Jack Brannigan from Altoona Curve.,1
 2026-06-25,CHC,Ben Brown,Status Change,2026-06-24,"Chicago Cubs placed RHP Ben Brown on the 15-day injured list retroactive to June 21, 2026. Neck strain.",1
 2026-06-25,CHC,Edward Cabrera,Status Change,2026-06-24,Chicago Cubs placed RHP Edward Cabrera on the 15-day injured list. Left hamstring strain.,1
@@ -22,14 +25,14 @@ game_date,team,player,transaction_type,txn_date,description,relevant_today
 2026-06-25,HOU,Colton Gordon,Recalled,2026-06-24,Houston Astros recalled LHP Colton Gordon from Sugar Land Space Cowboys.,1
 2026-06-25,NYY,Oswaldo Cabrera,Recalled,2026-06-24,New York Yankees recalled 3B Oswaldo Cabrera from Scranton/Wilkes-Barre RailRiders.,1
 2026-06-25,ARI,Mitch Bratt,Recalled,2026-06-24,Arizona Diamondbacks recalled LHP Mitch Bratt from Reno Aces.,1
-2026-06-25,DET,Burch Smith,Status Change,2026-06-23,Detroit Tigers transferred RHP Burch Smith from the 15-day injured list to the 60-day injured list. Right shoulder inflammation.,1
 2026-06-25,NYY,Ali Sánchez,Status Change,2026-06-23,New York Yankees placed C Ali Sánchez on the paternity list.,1
 2026-06-25,TOR,Shane Bieber,Status Change,2026-06-23,Toronto Blue Jays activated RHP Shane Bieber from the 60-day injured list.,1
 2026-06-25,CHC,Jayden Murray,Status Change,2026-06-23,Chicago Cubs activated RHP Jayden Murray.,1
 2026-06-25,TBR,Dom Keegan,Designated for Assignment,2026-06-23,Tampa Bay Rays designated C Dom Keegan for assignment.,1
+2026-06-25,SEA,Randy Arozarena,Status Change,2026-06-23,Seattle Mariners activated LF Randy Arozarena from the 10-day injured list.,1
 2026-06-25,TOR,Hayden Juenger,Designated for Assignment,2026-06-23,Toronto Blue Jays designated RHP Hayden Juenger for assignment.,1
 2026-06-25,KCR,Maikel Garcia,Status Change,2026-06-23,Kansas City Royals placed 3B Maikel Garcia on the 10-day injured list. Left hand muscle strain.,1
-2026-06-25,SEA,Randy Arozarena,Status Change,2026-06-23,Seattle Mariners activated LF Randy Arozarena from the 10-day injured list.,1
+2026-06-25,DET,Burch Smith,Status Change,2026-06-23,Detroit Tigers transferred RHP Burch Smith from the 15-day injured list to the 60-day injured list. Right shoulder inflammation.,1
 2026-06-25,NYY,J.C. Escarra,Recalled,2026-06-23,New York Yankees recalled C J.C. Escarra from Scranton/Wilkes-Barre RailRiders.,1
 2026-06-25,KCR,Josh Rojas,Recalled,2026-06-23,Kansas City Royals recalled 3B Josh Rojas from Omaha Storm Chasers.,1
 2026-06-25,PHI,Bryse Wilson,Designated for Assignment,2026-06-22,Philadelphia Phillies designated RHP Bryse Wilson for assignment.,1
@@ -38,14 +41,14 @@ game_date,team,player,transaction_type,txn_date,description,relevant_today
 2026-06-25,HOU,Logan VanWey,Recalled,2026-06-22,Houston Astros recalled RHP Logan VanWey from Sugar Land Space Cowboys.,1
 2026-06-25,NYY,Yerry De los Santos,Recalled,2026-06-22,New York Yankees recalled RHP Yerry De los Santos from Scranton/Wilkes-Barre RailRiders.,1
 2026-06-25,PHI,Alan Rangel,Recalled,2026-06-22,Philadelphia Phillies recalled RHP Alan Rangel from Lehigh Valley IronPigs.,1
-2026-06-25,ATH,Luis Severino,Status Change,2026-06-21,Athletics transferred RHP Luis Severino from the 15-day injured list to the 60-day injured list. Right shoulder strain.,1
-2026-06-25,ARI,Yilber Díaz,Designated for Assignment,2026-06-21,Arizona Diamondbacks designated RHP Yilber Díaz for assignment.,1
 2026-06-25,TBR,Michael Grove,Status Change,2026-06-21,Tampa Bay Rays activated RHP Michael Grove from the 60-day injured list.,1
+2026-06-25,ATH,Luis Severino,Status Change,2026-06-21,Athletics transferred RHP Luis Severino from the 15-day injured list to the 60-day injured list. Right shoulder strain.,1
 2026-06-25,NYY,Austin Wells,Status Change,2026-06-21,New York Yankees activated C Austin Wells from the 10-day injured list.,1
 2026-06-25,ATH,Scott Barlow,Designated for Assignment,2026-06-21,Athletics designated RHP Scott Barlow for assignment.,1
 2026-06-25,TEX,Jack Leiter,Status Change,2026-06-21,"Texas Rangers placed RHP Jack Leiter on the 15-day injured list retroactive to June 19, 2026. Right ankle posterior impingement.",1
-2026-06-25,TEX,Jose Corniell,Recalled,2026-06-21,Texas Rangers recalled RHP Jose Corniell from Round Rock Express.,1
+2026-06-25,ARI,Yilber Díaz,Designated for Assignment,2026-06-21,Arizona Diamondbacks designated RHP Yilber Díaz for assignment.,1
 2026-06-25,NYY,Elmer Rodríguez,Recalled,2026-06-21,New York Yankees recalled RHP Elmer Rodríguez from Scranton/Wilkes-Barre RailRiders.,1
+2026-06-25,TEX,Jose Corniell,Recalled,2026-06-21,Texas Rangers recalled RHP Jose Corniell from Round Rock Express.,1
 2026-06-25,ARI,Michael Soroka,Status Change,2026-06-20,Arizona Diamondbacks placed RHP Michael Soroka on the 15-day injured list. Left glute strain.,1
 2026-06-25,CHC,Luis Peralta,Designated for Assignment,2026-06-20,Chicago Cubs designated LHP Luis Peralta for assignment.,1
 2026-06-25,ARI,Jordan Lawlar,Status Change,2026-06-20,Arizona Diamondbacks placed LF Jordan Lawlar on the 10-day injured list. Right hamstring strain.,1
