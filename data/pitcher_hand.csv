@@ -28,7 +28,9 @@ pitcher_id,name,hand
 608379,Michael Wacha,R
 615698,Cal Quantrill,R
 621111,Walker Buehler,R
+622491,Luis Castillo,R
 624133,Ranger Suarez,L
+625643,Reynaldo López,R
 640455,Sean Manaea,L
 641302,Tyler Alexander,L
 641743,Anthony Kay,L
@@ -85,6 +87,7 @@ pitcher_id,name,hand
 672282,Reid Detmers,L
 672456,Keider Montero,R
 673540,Kodai Senga,R
+674444,Steven Cruz,R
 674841,Andrew Alvarez,L
 675512,Troy Melton,R
 675660,Shane Drohan,L
@@ -132,6 +135,7 @@ pitcher_id,name,hand
 694346,Trey Gibson,R
 694361,Will Klein,R
 694738,Landen Roupp,R
+694819,Jacob Misiorowski,R
 694973,Paul Skenes,R
 695076,Rhett Lowder,R
 695505,Chase Burns,R
@@ -152,6 +156,7 @@ pitcher_id,name,hand
 801139,Payton Tolle,L
 805673,Zebby Matthews,R
 807743,Sean Sullivan,L
+808963,Roki Sasaki,R
 808967,Yoshinobu Yamamoto,R
 813349,Connelly Early,L
 837227,Tatsuya Imai,R
