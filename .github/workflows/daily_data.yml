@@ -2,9 +2,10 @@ name: MLB Daily Data
 
 on:
   schedule:
-    - cron: '0 15 * * *'    # 10:00 AM CT (full run — stats + bullpen + batting)
-    - cron: '0 19 * * *'    # 2:00 PM CT  (refresh bullpen/fatigue)
-    - cron: '0 23 * * *'    # 6:00 PM CT  (pre-game refresh)
+    - cron: '0 13 * * *'    # 8:00 AM CT  (full run — stats + bullpen + batting)
+    - cron: '0 16 * * *'    # 11:00 AM CT (mid-morning refresh)
+    - cron: '0 19 * * *'    # 2:00 PM CT  (afternoon refresh)
+    - cron: '0 22 * * *'    # 5:00 PM CT  (pre-game refresh)
   workflow_dispatch:
 
 env:
