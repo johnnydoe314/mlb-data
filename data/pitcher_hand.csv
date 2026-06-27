@@ -38,6 +38,7 @@ pitcher_id,name,hand
 641793,Zack Littell,R
 641816,Tyler Mahle,R
 641835,Tim Mayza,L
+642121,Cole Sulser,R
 642547,Freddy Peralta,R
 643377,Griffin Jax,R
 645261,Sandy Alcantara,R
@@ -54,6 +55,7 @@ pitcher_id,name,hand
 657277,Logan Webb,R
 657746,Joe Ryan,R
 660271,Shohei Ohtani,R
+660604,Alan Rangel,R
 663372,Ryan Feltner,R
 663436,Davis Martin,R
 663554,Casey Mize,R
@@ -108,6 +110,8 @@ pitcher_id,name,hand
 680694,Kyle Bradish,R
 680732,Sean Burke,R
 680736,Justin Wrobleski,L
+681035,Christian Scott,R
+681190,Randy Vásquez,R
 681293,Spencer Arrighetti,R
 681347,Mike Burrows,R
 681517,Kyle Leahy,R
