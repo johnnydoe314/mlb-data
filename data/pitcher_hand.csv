@@ -47,6 +47,7 @@ pitcher_id,name,hand
 650644,Aaron Civale,R
 650911,Cristopher Sánchez,L
 656302,Dylan Cease,R
+656427,Jack Flaherty,R
 656492,Foster Griffin,L
 656550,Grant Holmes,R
 656605,Mitch Keller,R
@@ -74,6 +75,7 @@ pitcher_id,name,hand
 668678,Zac Gallen,R
 668909,Gavin Williams,R
 668984,Casey Legumina,R
+669020,Ryan Rolison,L
 669022,MacKenzie Gore,L
 669160,Dustin May,R
 669302,Logan Gilbert,R
@@ -88,6 +90,7 @@ pitcher_id,name,hand
 671096,Andrew Abbott,L
 671737,Taj Bradley,R
 672282,Reid Detmers,L
+672335,Cionel Pérez,L
 672456,Keider Montero,R
 673540,Kodai Senga,R
 674444,Steven Cruz,R
@@ -128,6 +131,7 @@ pitcher_id,name,hand
 687223,Carson Palmquist,L
 687473,Ryan Gusto,R
 687562,Jake Bennett,L
+687570,Connor Prielipp,L
 688107,Robert Gasser,L
 689818,David Sandlin,R
 690986,Kyle Harrison,L
