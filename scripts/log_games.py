@@ -718,7 +718,7 @@ def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen,
     v4_block = adj < 1.0  # B1: composite must be >= 1 to support an AWAY play
 
     if not miss and not v4_block:
-        # bat is signed; positive = AWAY offensive edge. All V4 rules are AWAY.
+        # bat is signed; positive = AWAY offensive edge. F1-F4 are all AWAY.
         if bat >= 1.5 and sp >= 0.5:
             v4_rules_fired.append(('F1', 76.2))
         if bat >= 1.5 and h_kbb < 15:        # h_kbb = home SP K-BB%
@@ -727,6 +727,26 @@ def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen,
             v4_rules_fired.append(('F3', 73.9))
         if bat >= 2.0 and adj >= 2:
             v4_rules_fired.append(('F4', 72.7))
+
+    # F5: weak-alignment signal -- analysis of 333 June games found that when
+    # sp_edge, bat_edge, and bp_edge are EACH individually below the model's
+    # own NEUTRAL threshold (too small to trip F1-F4 or any V3 rule) but all
+    # three share the same sign, full-game directional accuracy was 70.4%
+    # (n=27 decisive) vs a 56.0% baseline using sp_edge sign alone. F5 bypasses
+    # the B1 composite floor (composite is near-zero by construction for these
+    # games) and supports both directions, unlike F1-F4 which are AWAY-only.
+    # v4_validated=0 until confirmed out-of-sample on live data going forward.
+    # Mutually exclusive with F1-F4 (those require bat>=1.5; F5 requires |bat|<1.5).
+    F5_SP_CUT, F5_BAT_CUT, F5_BP_CUT = 1.5, 1.5, 1.0
+    f5_fired = False
+    f5_dir = ''
+    if (not miss and not v4_rules_fired
+            and abs(sp) < F5_SP_CUT and abs(bat) < F5_BAT_CUT and abs(bp) < F5_BP_CUT
+            and sp != 0 and bat != 0 and bp != 0):
+        signs = {1 if sp > 0 else -1, 1 if bat > 0 else -1, 1 if bp > 0 else -1}
+        if len(signs) == 1:
+            f5_fired = True
+            f5_dir = 'AWAY' if sp > 0 else 'HOME'
 
     v4_qual = False
     v4_dir  = ''
@@ -744,6 +764,14 @@ def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen,
         else:
             v4_conf = round(best, 1)
         v4_rules_str = '+'.join(r[0] for r in v4_rules_fired)
+    elif f5_fired:
+        v4_qual = True
+        v4_dir  = f5_dir
+        # Conservative confidence: empirical 70.4% on n=27 is too thin a
+        # sample to present at face value. Starting at 65.0% pending live
+        # validation; will be revisited once more games accumulate.
+        v4_conf = 65.0
+        v4_rules_str = 'F5'
 
     return {
         'sp_edge': round(sp,2), 'bat_edge': round(bat,2),
