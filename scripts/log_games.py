@@ -547,7 +547,9 @@ def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen,
     std  = (sp>1.5 and bat>1.5) or (sp<-1.5 and bat<-1.5)
     spd  = abs(sp)>=3.0 and abs(bat)<=1.5
     aln  = std or (spd and aa>=5)
-    miss = (asn!='TBD' and not a) or (hsn!='TBD' and not h)
+    # Block any signal when either starter is TBD — league-average defaults
+    # produce false signals and TBD games should never be bet.
+    miss = asn == 'TBD' or hsn == 'TBD' or (asn!='TBD' and not a) or (hsn!='TBD' and not h)
 
     rec = recommend_play(round(sp,2), round(bat,2), bp, model)
 
