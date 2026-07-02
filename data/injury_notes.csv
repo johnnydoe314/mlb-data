@@ -1,47 +1,47 @@
 game_date,team,player,transaction_type,txn_date,description,relevant_today
 2026-07-02,ATL,Rowdy Tellez,Designated for Assignment,2026-07-02,Atlanta Braves designated 1B Rowdy Tellez for assignment.,1
 2026-07-02,ATL,Jim Jarvis,Recalled,2026-07-02,Atlanta Braves recalled SS Jim Jarvis from Gwinnett Stripers.,1
-2026-07-02,KCR,Kris Bubic,Status Change,2026-07-01,Kansas City Royals placed LHP Kris Bubic on the 60-day injured list. Left elbow soreness.,1
-2026-07-02,TEX,Corey Seager,Status Change,2026-07-01,Texas Rangers placed SS Corey Seager on the 10-day injured list. Lower back inflammation.,1
 2026-07-02,COL,John Brebbia,Designated for Assignment,2026-07-01,Colorado Rockies designated RHP John Brebbia for assignment.,1
-2026-07-02,CWS,Noah Schultz,Status Change,2026-07-01,Chicago White Sox activated LHP Noah Schultz from the 15-day injured list.,1
 2026-07-02,KCR,Connor Seabold,Status Change,2026-07-01,Kansas City Royals placed RHP Connor Seabold on the 15-day injured list. Right lat strain.,1
+2026-07-02,KCR,Kris Bubic,Status Change,2026-07-01,Kansas City Royals placed LHP Kris Bubic on the 60-day injured list. Left elbow soreness.,1
 2026-07-02,DET,Will Vest,Status Change,2026-07-01,"Detroit Tigers placed RHP Will Vest on the 15-day injured list retroactive to June 28, 2026. Right posterior elbow inflammation.",1
-2026-07-02,KCR,Randy Dobnak,Recalled,2026-07-01,Kansas City Royals recalled RHP Randy Dobnak from Omaha Storm Chasers.,1
+2026-07-02,TEX,Corey Seager,Status Change,2026-07-01,Texas Rangers placed SS Corey Seager on the 10-day injured list. Lower back inflammation.,1
+2026-07-02,CWS,Noah Schultz,Status Change,2026-07-01,Chicago White Sox activated LHP Noah Schultz from the 15-day injured list.,1
 2026-07-02,COL,Gabriel Hughes,Recalled,2026-07-01,Colorado Rockies recalled RHP Gabriel Hughes from Albuquerque Isotopes.,1
-2026-07-02,TEX,Josh Smith,Recalled,2026-07-01,Texas Rangers recalled 2B Josh Smith from Round Rock Express.,1
 2026-07-02,DET,Beau Brieske,Recalled,2026-07-01,Detroit Tigers recalled RHP Beau Brieske from Toledo Mud Hens.,1
+2026-07-02,TEX,Josh Smith,Recalled,2026-07-01,Texas Rangers recalled 2B Josh Smith from Round Rock Express.,1
+2026-07-02,KCR,Randy Dobnak,Recalled,2026-07-01,Kansas City Royals recalled RHP Randy Dobnak from Omaha Storm Chasers.,1
 2026-07-02,LAD,Charlie Barnes,Recalled,2026-07-01,Los Angeles Dodgers recalled LHP Charlie Barnes from Oklahoma City Comets.,1
 2026-07-02,PIT,Cam Sanders,Recalled,2026-07-01,Pittsburgh Pirates recalled RHP Cam Sanders from Indianapolis Indians.,1
-2026-07-02,CIN,Dane Myers,Status Change,2026-06-30,Cincinnati Reds placed CF Dane Myers on the 10-day injured list. Left shoulder contusion.,1
-2026-07-02,TEX,Chris Paddack,Designated for Assignment,2026-06-30,Texas Rangers designated RHP Chris Paddack for assignment.,1
 2026-07-02,COL,Tanner Gordon,Status Change,2026-06-30,Colorado Rockies activated RHP Tanner Gordon from the 15-day injured list.,1
-2026-07-02,MIA,Liam Hicks,Status Change,2026-06-30,Miami Marlins activated C Liam Hicks from the 10-day injured list.,1
-2026-07-02,STL,Ryan Fernandez,Status Change,2026-06-30,St. Louis Cardinals activated RHP Ryan Fernandez from the 15-day injured list.,1
-2026-07-02,CIN,Emilio Pagán,Status Change,2026-06-30,Cincinnati Reds activated RHP Emilio Pagán from the 15-day injured list.,1
-2026-07-02,STL,Ryne Stanek,Status Change,2026-06-30,St. Louis Cardinals placed RHP Ryne Stanek on the paternity list.,1
 2026-07-02,LAD,Jonathan Hernández,Designated for Assignment,2026-06-30,Los Angeles Dodgers designated RHP Jonathan Hernández for assignment.,1
 2026-07-02,MIA,Anthony Bender,Status Change,2026-06-30,Miami Marlins placed RHP Anthony Bender on the 15-day injured list. Right shin stress reaction.,1
-2026-07-02,LAD,Wyatt Mills,Recalled,2026-06-30,Los Angeles Dodgers recalled RHP Wyatt Mills from Oklahoma City Comets.,1
+2026-07-02,STL,Ryan Fernandez,Status Change,2026-06-30,St. Louis Cardinals activated RHP Ryan Fernandez from the 15-day injured list.,1
+2026-07-02,CIN,Dane Myers,Status Change,2026-06-30,Cincinnati Reds placed CF Dane Myers on the 10-day injured list. Left shoulder contusion.,1
+2026-07-02,TEX,Chris Paddack,Designated for Assignment,2026-06-30,Texas Rangers designated RHP Chris Paddack for assignment.,1
+2026-07-02,CIN,Emilio Pagán,Status Change,2026-06-30,Cincinnati Reds activated RHP Emilio Pagán from the 15-day injured list.,1
+2026-07-02,MIA,Liam Hicks,Status Change,2026-06-30,Miami Marlins activated C Liam Hicks from the 10-day injured list.,1
+2026-07-02,STL,Ryne Stanek,Status Change,2026-06-30,St. Louis Cardinals placed RHP Ryne Stanek on the paternity list.,1
 2026-07-02,TEX,Gavin Collyer,Recalled,2026-06-30,Texas Rangers recalled RHP Gavin Collyer from Round Rock Express.,1
 2026-07-02,SEA,Cole Wilcox,Recalled,2026-06-30,Seattle Mariners recalled RHP Cole Wilcox from Tacoma Rainiers.,1
 2026-07-02,MIA,Zach Brzykcy,Recalled,2026-06-30,Miami Marlins recalled RHP Zach Brzykcy from Jacksonville Jumbo Shrimp.,1
-2026-07-02,TEX,Joe Ross,Designated for Assignment,2026-06-29,Texas Rangers designated RHP Joe Ross for assignment.,1
+2026-07-02,LAD,Wyatt Mills,Recalled,2026-06-30,Los Angeles Dodgers recalled RHP Wyatt Mills from Oklahoma City Comets.,1
 2026-07-02,LAD,Teoscar Hernández,Status Change,2026-06-29,Los Angeles Dodgers activated LF Teoscar Hernández from the 10-day injured list.,1
 2026-07-02,SDP,David Morgan,Status Change,2026-06-29,"San Diego Padres placed RHP David Morgan on the 15-day injured list retroactive to June 28, 2026. Left knee inflammation.",1
 2026-07-02,SEA,Rob Refsnyder,Status Change,2026-06-29,"Seattle Mariners placed DH Rob Refsnyder on the 10-day injured list retroactive to June 27, 2026. Right knee inflammation.",1
+2026-07-02,TEX,Joe Ross,Designated for Assignment,2026-06-29,Texas Rangers designated RHP Joe Ross for assignment.,1
 2026-07-02,TEX,Jarred Kelenic,Designated for Assignment,2026-06-29,Texas Rangers designated RF Jarred Kelenic for assignment.,1
 2026-07-02,SDP,Jake Cronenworth,Status Change,2026-06-29,San Diego Padres activated 2B Jake Cronenworth from the 7-day injured list.,1
 2026-07-02,SDP,Bradgley Rodriguez,Recalled,2026-06-29,San Diego Padres recalled RHP Bradgley Rodriguez from San Antonio Missions.,1
-2026-07-02,CLE,Chase DeLauter,Status Change,2026-06-28,Cleveland Guardians activated RF Chase DeLauter from the 10-day injured list.,1
+2026-07-02,TEX,Wyatt Langford,Status Change,2026-06-28,Texas Rangers placed LF Wyatt Langford on the 10-day injured list. Left hamstring strain.,1
 2026-07-02,DET,Jack Flaherty,Status Change,2026-06-28,Detroit Tigers activated RHP Jack Flaherty from the 15-day injured list.,1
-2026-07-02,CIN,Blake Dunn,Status Change,2026-06-28,"Cincinnati Reds placed CF Blake Dunn on the 10-day injured list retroactive to June 27, 2026. Right elbow sprain.",1
 2026-07-02,TEX,Evan Carter,Status Change,2026-06-28,Texas Rangers activated CF Evan Carter from the 10-day injured list.,1
 2026-07-02,COL,Jordan Beck,Status Change,2026-06-28,Colorado Rockies activated LF Jordan Beck from the 10-day injured list.,1
-2026-07-02,TEX,Wyatt Langford,Status Change,2026-06-28,Texas Rangers placed LF Wyatt Langford on the 10-day injured list. Left hamstring strain.,1
-2026-07-02,TBR,Trevor Martin,Recalled,2026-06-28,Tampa Bay Rays recalled RHP Trevor Martin from Durham Bulls.,1
+2026-07-02,CIN,Blake Dunn,Status Change,2026-06-28,"Cincinnati Reds placed CF Blake Dunn on the 10-day injured list retroactive to June 27, 2026. Right elbow sprain.",1
+2026-07-02,CLE,Chase DeLauter,Status Change,2026-06-28,Cleveland Guardians activated RF Chase DeLauter from the 10-day injured list.,1
 2026-07-02,CIN,TJ Friedl,Recalled,2026-06-28,Cincinnati Reds recalled CF TJ Friedl from Louisville Bats.,1
+2026-07-02,TBR,Trevor Martin,Recalled,2026-06-28,Tampa Bay Rays recalled RHP Trevor Martin from Durham Bulls.,1
 2026-07-02,LAA,Jose Siri,Status Change,2026-06-27,Los Angeles Angels activated LF Jose Siri from the paternity list.,1
-2026-07-02,KCR,Eric Cerantola,Recalled,2026-06-27,Kansas City Royals recalled RHP Eric Cerantola from Omaha Storm Chasers.,1
 2026-07-02,CWS,Tyler Schweitzer,Recalled,2026-06-27,Chicago White Sox recalled LHP Tyler Schweitzer from Charlotte Knights.,1
+2026-07-02,KCR,Eric Cerantola,Recalled,2026-06-27,Kansas City Royals recalled RHP Eric Cerantola from Omaha Storm Chasers.,1
 2026-07-02,SEA,Josh Simpson,Recalled,2026-06-27,Seattle Mariners recalled LHP Josh Simpson from Tacoma Rainiers.,1
