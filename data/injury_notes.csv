@@ -1,12 +1,17 @@
 game_date,team,player,transaction_type,txn_date,description,relevant_today
+2026-07-03,BAL,Chadwick Tromp,Designated for Assignment,2026-07-03,Baltimore Orioles designated C Chadwick Tromp for assignment.,1
 2026-07-03,HOU,Bennett Sousa,Status Change,2026-07-03,Houston Astros transferred LHP Bennett Sousa from the 15-day injured list to the 60-day injured list. Left elbow inflammation.,1
-2026-07-03,ATL,Ian Hamilton,Designated for Assignment,2026-07-03,Atlanta Braves designated RHP Ian Hamilton for assignment.,1
+2026-07-03,BAL,Ryan Helsley,Status Change,2026-07-03,"Baltimore Orioles placed RHP Ryan Helsley on the 15-day injured list retroactive to June 30, 2026. Right elbow discomfort.",1
 2026-07-03,NYY,Trent Grisham,Status Change,2026-07-03,New York Yankees activated CF Trent Grisham from the 10-day injured list.,1
-2026-07-03,NYY,Ryan McMahon,Status Change,2026-07-03,New York Yankees activated 3B Ryan McMahon from the 10-day injured list.,1
-2026-07-03,HOU,Cristian Javier,Status Change,2026-07-03,Houston Astros activated RHP Cristian Javier from the 60-day injured list.,1
+2026-07-03,ATL,Ian Hamilton,Designated for Assignment,2026-07-03,Atlanta Braves designated RHP Ian Hamilton for assignment.,1
 2026-07-03,STL,Ryne Stanek,Status Change,2026-07-03,St. Louis Cardinals activated RHP Ryne Stanek from the paternity list.,1
+2026-07-03,NYY,Ryan McMahon,Status Change,2026-07-03,New York Yankees activated 3B Ryan McMahon from the 10-day injured list.,1
 2026-07-03,NYY,Carlos Rodón,Status Change,2026-07-03,"New York Yankees placed LHP Carlos Rodón on the 15-day injured list retroactive to June 30, 2026. Left elbow inflammation.",1
+2026-07-03,HOU,Cristian Javier,Status Change,2026-07-03,Houston Astros activated RHP Cristian Javier from the 60-day injured list.,1
 2026-07-03,ATL,Danny Young,Status Change,2026-07-03,Atlanta Braves activated LHP Danny Young from the 60-day injured list.,1
+2026-07-03,BAL,Jeremiah Jackson,Recalled,2026-07-03,Baltimore Orioles recalled 2B Jeremiah Jackson from Norfolk Tides.,1
+2026-07-03,CLE,Franco Aleman,Recalled,2026-07-03,Cleveland Guardians recalled RHP Franco Aleman from Columbus Clippers.,1
+2026-07-03,BAL,Anthony Nunez,Recalled,2026-07-03,Baltimore Orioles recalled RHP Anthony Nunez from Norfolk Tides.,1
 2026-07-03,ATL,Anthony Molina,Recalled,2026-07-03,Atlanta Braves recalled RHP Anthony Molina from Gwinnett Stripers.,1
 2026-07-03,SDP,Jason Adam,Status Change,2026-07-02,"San Diego Padres placed RHP Jason Adam on the 15-day injured list retroactive to June 30, 2026. Right shoulder strain.",1
 2026-07-03,SDP,Germán Márquez,Status Change,2026-07-02,San Diego Padres activated RHP Germán Márquez from the 15-day injured list.,1
