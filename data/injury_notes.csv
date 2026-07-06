@@ -1,7 +1,14 @@
 game_date,team,player,transaction_type,txn_date,description,relevant_today
-2026-07-06,ATL,Martín Pérez,Status Change,2026-07-06,Atlanta Braves placed LHP Martín Pérez on the 15-day injured list. Left forearm contusion.,1
+2026-07-06,ATL,Jair Camargo,Designated for Assignment,2026-07-06,Atlanta Braves designated C Jair Camargo for assignment.,1
 2026-07-06,ATL,Carlos Carrasco,Designated for Assignment,2026-07-06,Atlanta Braves designated RHP Carlos Carrasco for assignment.,1
+2026-07-06,HOU,Braden Shewmake,Status Change,2026-07-06,Houston Astros activated SS Braden Shewmake from the 10-day injured list.,1
+2026-07-06,ATL,Eli White,Status Change,2026-07-06,Atlanta Braves placed RF Eli White on the paternity list.,1
+2026-07-06,ATL,Martín Pérez,Status Change,2026-07-06,Atlanta Braves placed LHP Martín Pérez on the 15-day injured list. Left forearm contusion.,1
+2026-07-06,STL,Max Rajcic,Status Change,2026-07-06,"St. Louis Cardinals placed RHP Max Rajcic on the 15-day injured list retroactive to July 4, 2026. Right elbow soreness.",1
+2026-07-06,TBR,Chris Roycroft,Recalled,2026-07-06,Tampa Bay Rays recalled RHP Chris Roycroft from Durham Bulls.,1
 2026-07-06,ATL,JR Ritchie,Recalled,2026-07-06,Atlanta Braves recalled RHP JR Ritchie from Gwinnett Stripers.,1
+2026-07-06,STL,Gordon Graceffo,Recalled,2026-07-06,St. Louis Cardinals recalled RHP Gordon Graceffo from Memphis Redbirds.,1
+2026-07-06,WSH,Cole Henry,Recalled,2026-07-06,Washington Nationals recalled RHP Cole Henry from Rochester Red Wings.,1
 2026-07-06,WSH,Eddy Yean,Status Change,2026-07-05,Washington Nationals activated RHP Eddy Yean.,1
 2026-07-06,PHI,Jean Cabrera,Designated for Assignment,2026-07-05,Philadelphia Phillies designated RHP Jean Cabrera for assignment.,1
 2026-07-06,WSH,Robert Hassell III,Designated for Assignment,2026-07-05,Washington Nationals designated CF Robert Hassell III for assignment.,1
@@ -49,14 +56,14 @@ game_date,team,player,transaction_type,txn_date,description,relevant_today
 2026-07-06,KCR,Eric Cerantola,Designated for Assignment,2026-07-02,Kansas City Royals designated RHP Eric Cerantola for assignment.,1
 2026-07-06,ATL,Jim Jarvis,Recalled,2026-07-02,Atlanta Braves recalled SS Jim Jarvis from Gwinnett Stripers.,1
 2026-07-06,LAD,Paul Gervase,Recalled,2026-07-02,Los Angeles Dodgers recalled RHP Paul Gervase from Oklahoma City Comets.,1
+2026-07-06,SFG,Matt Chapman,Status Change,2026-07-01,San Francisco Giants placed 3B Matt Chapman on the 10-day injured list. Abdominal strain.,1
 2026-07-06,KCR,Connor Seabold,Status Change,2026-07-01,Kansas City Royals placed RHP Connor Seabold on the 15-day injured list. Right lat strain.,1
 2026-07-06,KCR,Kris Bubic,Status Change,2026-07-01,Kansas City Royals placed LHP Kris Bubic on the 60-day injured list. Left elbow soreness.,1
 2026-07-06,TOR,George Springer,Status Change,2026-07-01,Toronto Blue Jays placed DH George Springer on the paternity list.,1
 2026-07-06,COL,John Brebbia,Designated for Assignment,2026-07-01,Colorado Rockies designated RHP John Brebbia for assignment.,1
 2026-07-06,WSH,Mitchell Parker,Status Change,2026-07-01,Washington Nationals transferred LHP Mitchell Parker from the 15-day injured list to the 60-day injured list. Left elbow inflammation.,1
-2026-07-06,SFG,Matt Chapman,Status Change,2026-07-01,San Francisco Giants placed 3B Matt Chapman on the 10-day injured list. Abdominal strain.,1
-2026-07-06,SFG,Christian Koss,Recalled,2026-07-01,San Francisco Giants recalled 2B Christian Koss from Sacramento River Cats.,1
-2026-07-06,LAD,Charlie Barnes,Recalled,2026-07-01,Los Angeles Dodgers recalled LHP Charlie Barnes from Oklahoma City Comets.,1
-2026-07-06,COL,Gabriel Hughes,Recalled,2026-07-01,Colorado Rockies recalled RHP Gabriel Hughes from Albuquerque Isotopes.,1
 2026-07-06,KCR,Randy Dobnak,Recalled,2026-07-01,Kansas City Royals recalled RHP Randy Dobnak from Omaha Storm Chasers.,1
+2026-07-06,LAD,Charlie Barnes,Recalled,2026-07-01,Los Angeles Dodgers recalled LHP Charlie Barnes from Oklahoma City Comets.,1
+2026-07-06,SFG,Christian Koss,Recalled,2026-07-01,San Francisco Giants recalled 2B Christian Koss from Sacramento River Cats.,1
 2026-07-06,TOR,Jonatan Clase,Recalled,2026-07-01,Toronto Blue Jays recalled LF Jonatan Clase from Buffalo Bisons.,1
+2026-07-06,COL,Gabriel Hughes,Recalled,2026-07-01,Colorado Rockies recalled RHP Gabriel Hughes from Albuquerque Isotopes.,1
