@@ -30,6 +30,7 @@ pitcher_id,name,hand
 608566,Germán Márquez,R
 615698,Cal Quantrill,R
 621111,Walker Buehler,R
+621112,Paul Blackburn,R
 622491,Luis Castillo,R
 624133,Ranger Suarez,L
 625643,Reynaldo López,R
@@ -40,6 +41,7 @@ pitcher_id,name,hand
 641793,Zack Littell,R
 641816,Tyler Mahle,R
 641835,Tim Mayza,L
+641927,Bailey Ober,R
 642121,Cole Sulser,R
 642547,Freddy Peralta,R
 643377,Griffin Jax,R
@@ -66,6 +68,7 @@ pitcher_id,name,hand
 663556,Shane McClanahan,L
 663567,Peter Lambert,R
 663568,Stephen Kolek,R
+663776,Patrick Sandoval,L
 663903,Brady Singer,R
 663969,Tyler Phillips,R
 664285,Framber Valdez,L
@@ -103,6 +106,7 @@ pitcher_id,name,hand
 674841,Andrew Alvarez,L
 675512,Troy Melton,R
 675660,Shane Drohan,L
+676083,Janson Junk,R
 676106,Emerson Hancock,R
 676282,Joey Cantillo,L
 676440,Tanner Bibee,R
@@ -173,6 +177,7 @@ pitcher_id,name,hand
 700241,Michael McGreevy,R
 700712,Walbert Ureña,R
 701542,Will Warren,R
+701656,Logan Henderson,R
 702056,Trey Yesavage,R
 702070,Noah Cameron,L
 702273,Noah Schultz,L
