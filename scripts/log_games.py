@@ -654,22 +654,10 @@ def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen,
     fav_k_low = fav_k < 18.0          # B1: blocks all standard plays (30.8% F5 hist.)
     opp_k_dom = opp_k_adv >= 5.0      # B3: blocks R1-R4, enables R5 instead
 
-    # ── R6 pre-computation: no-park composite sweet spot ────────────────────
-    # Backtest (June 2026, 333 games): |sp+bat+bp| in [3,5) → 78.3% F5
-    # directional accuracy (n=43 decisive). Fires in raw-composite direction;
-    # B1 still applies. Two modes:
-    #   1. Raw direction == model direction → adds to v3_same as confirming rule
-    #   2. Park made model NEUT, raw in [3,5) → fires standalone (the main
-    #      "park-killed signal" use case, e.g. NYY@BOS, WSH@BOS)
-    # Suppressed when raw direction conflicts with a non-NEUT model direction.
-    comp_raw = sp + bat + bp
-    aa_raw   = abs(comp_raw)
-    r6_dir   = 'AWAY' if comp_raw > 0 else ('HOME' if comp_raw < 0 else '')
-    r6_fav_k = (a_k if r6_dir == 'AWAY' else h_k) if r6_dir else 0.0
-    r6_qual  = (not miss and r6_dir != ''
-                and 3.0 <= aa_raw < 5.0
-                and r6_fav_k >= 18.0)
-
+    # R6 (no-park composite sweet spot) removed 2026-07-13 — live results
+    # (2W-12L-3P, 14.3% win rate since 7/1 introduction) badly underperformed
+    # its 78.3% backtest and dragged otherwise-sound multi-rule confirmations
+    # (R1+R6 alone: 20% win rate) down with it. See repo notes for full review.
     v3_same = []      # (rule_id, standalone_capable, base_confidence)
     v3_counter = []
 
@@ -689,11 +677,6 @@ def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen,
         # R5: K% matchup counter — supplementary (n=11, below 20 threshold)
         if opp_k_dom and opp_kbb >= 13 and not fav_k_low:
             v3_counter.append(('R5', 73.0))
-        # R6: no-park composite sweet spot (same direction as model)
-        # B3 guard: don't fire when opp pitcher K-dominance is active
-        # (preserves R5 counter behaviour for games like PHI vs Skenes)
-        if r6_qual and r6_dir == model and not opp_k_dom:
-            v3_same.append(('R6', True, 76.5))
 
     v3_core_qual = False
     v3_core_dir  = ''
@@ -709,18 +692,6 @@ def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen,
             best_conf    = max(r[2] for r in v3_same)
             v3_core_conf = round(min(best_conf + (5.0 if confirmed else 0.0), 85.0), 1)
             v3_rules_str = '+'.join(r[0] for r in v3_same)
-
-    # R6 standalone: park made model NEUT but raw composite is in sweet spot
-    # This fires for park-killed signals (e.g. DET@NYY, WSH@BOS at Fenway)
-    # B3 guard for NEUT case: check opp K-dominance relative to r6_dir
-    if r6_qual and not v3_core_qual and model == 'NEUT':
-        r6_opp_k_adv = (k_mu_away if r6_dir == 'HOME' else k_mu_home)
-        r6_opp_k_dom = r6_opp_k_adv >= 5.0
-        if not r6_opp_k_dom:
-            v3_core_qual = True
-            v3_core_dir  = r6_dir
-            v3_core_conf = 76.5
-            v3_rules_str = 'R6'
 
     v3_counter_qual = False
     v3_counter_dir  = ''
