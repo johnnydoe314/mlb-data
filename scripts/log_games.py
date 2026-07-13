@@ -141,6 +141,7 @@ FIELDS = [
     'v3_core_qual','v3_core_dir','v3_core_conf','v3_rules',
     'v3_counter_qual','v3_counter_dir','v3_counter_conf',
     'v4_qual','v4_dir','v4_conf','v4_rules','v4_validated',
+    'shadow_full_qual','shadow_full_dir','shadow_full_conf','shadow_validated',
     'composite','band','model_dir','aligned','alignment_type','qualified',
     'sp_cat','bat_cat','bp_cat','f5_rec','full_rec','run_line_flag',
     'away_score','home_score',
@@ -779,6 +780,29 @@ def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen,
         v4_conf = 65.0
         v4_rules_str = 'F5'
 
+    # ── Shadow full-game leg (tracking only, NOT a live bet) ─────────────
+    # Added 2026-07-13. Rationale: backtest of all V3 plays (n=79, May-July)
+    # found that when the F5 window pushes, the full game still goes the
+    # V3-predicted direction 66.7% of the time (12/18); even after an F5
+    # LOSS the full game still goes V3's direction 21.1% of the time; after
+    # an F5 WIN, 81.0%. Right now, any game where V3 fires but V4 doesn't
+    # independently confirm has no full-game leg at all, leaving that
+    # documented edge untracked. This field tags a conservative full-game
+    # shadow pick in V3's direction whenever V3 fires alone. It is NOT
+    # combined with real V4 signals, NOT auto-bet, and carries no stated
+    # win-rate claim beyond "worth tracking" until enough live shadow
+    # results accumulate to validate or reject it — same discipline used
+    # to validate V4's F5-rule before it was trusted. shadow_validated
+    # stays 0 indefinitely; this is a research field, not a betting rule.
+    shadow_full_qual = False
+    shadow_full_dir  = ''
+    shadow_full_conf = 0.0
+    v3_any_qual = v3_core_qual or v3_counter_qual
+    if v3_any_qual and not v4_qual:
+        shadow_full_qual = True
+        shadow_full_dir  = v3_core_dir if v3_core_qual else v3_counter_dir
+        shadow_full_conf = 60.0  # deliberately conservative; unvalidated
+
     return {
         'sp_edge': round(sp,2), 'bat_edge': round(bat,2),
         'bp_edge': bp, 'park_adj': park, 'composite': adj,
@@ -818,6 +842,8 @@ def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen,
         'v4_qual': int(v4_qual), 'v4_dir': v4_dir,
         'v4_conf': v4_conf, 'v4_rules': v4_rules_str,
         'v4_validated': 0,   # stays 0 until confirmed on out-of-sample games
+        'shadow_full_qual': int(shadow_full_qual), 'shadow_full_dir': shadow_full_dir,
+        'shadow_full_conf': shadow_full_conf, 'shadow_validated': 0,
         'away_fa_score': round(ba['fat'], 3),
         'home_fa_score': round(hb_bp['fat'], 3),
         'away_bp_tired': ba.get('tired', 0),
@@ -1055,6 +1081,10 @@ def main():
             'v4_conf':         c['v4_conf'],
             'v4_rules':        c['v4_rules'],
             'v4_validated':    c['v4_validated'],
+            'shadow_full_qual': c['shadow_full_qual'],
+            'shadow_full_dir':  c['shadow_full_dir'],
+            'shadow_full_conf': c['shadow_full_conf'],
+            'shadow_validated': c['shadow_validated'],
             'composite':      c['composite'],
             'band':           c['band'],
             'model_dir':      c['model_dir'],
