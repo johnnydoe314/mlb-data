@@ -142,6 +142,7 @@ FIELDS = [
     'v3_counter_qual','v3_counter_dir','v3_counter_conf',
     'v4_qual','v4_dir','v4_conf','v4_rules','v4_validated',
     'shadow_full_qual','shadow_full_dir','shadow_full_conf','shadow_validated',
+    'bp_alt_qual','bp_alt_dir','bp_alt_conf','bp_alt_validated',
     'composite','band','model_dir','aligned','alignment_type','qualified',
     'sp_cat','bat_cat','bp_cat','f5_rec','full_rec','run_line_flag',
     'away_score','home_score',
@@ -709,6 +710,29 @@ def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen,
         v3_counter_dir  = 'HOME' if model == 'AWAY' else 'AWAY'
         v3_counter_conf = max(r[1] for r in v3_counter)
 
+    # ── bp_alt: candidate R2 variant (research only, NOT a live V3 rule) ────
+    # Added 2026-07-21. R2 requires bp_cat=='NEUTRAL'; full review found
+    # V3-qualifying games with bp_cat=='GOOD' won at 80.0% (n=22) vs 55.9%
+    # for NEUTRAL. This candidate rule swaps R2's bullpen condition to GOOD
+    # while keeping its other guards identical (bat_fav>=1.5, B1/B3 blocks).
+    # Precise backtest of this exact formulation: 72.7% (8W-3L-2P, n=13) --
+    # lower than the looser 80% figure since most GOOD-bp_cat V3 plays also
+    # required a separate bat_fav>=1.5 check to isolate. Of the 13, 10 already
+    # qualify via R1/R3/R4 (this would mostly add confirmation weight); only
+    # 3 would be genuinely new plays. Tracked independently of v3_core_qual
+    # so its true standalone hit rate can be read cleanly. NOT combined with
+    # R1-R5 at full weight -- bp_alt_validated stays 0 until enough live
+    # results accumulate to decide whether to promote it to a real R2b rule,
+    # same discipline used for the V4 F5-rule and shadow_full field.
+    bp_alt_qual = False
+    bp_alt_dir  = ''
+    bp_alt_conf = 0.0
+    if (not miss and model != 'NEUT' and bat_fav >= 1.5
+            and rec['bp_cat'] == 'GOOD' and not fav_k_low and not opp_k_dom):
+        bp_alt_qual = True
+        bp_alt_dir  = model
+        bp_alt_conf = 65.0  # conservative; backtest was 72.7% on a thin n=13
+
     # ── V4 MODEL — FULL-GAME, AWAY-side only ───────────────────────────────────
     # ⚠️ NOT LIVE-VALIDATED. These rules come from an in-sample systematic search
     # over 649 scored games (the same games they're measured against). The win
@@ -851,6 +875,8 @@ def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen,
         'v4_validated': 0,   # stays 0 until confirmed on out-of-sample games
         'shadow_full_qual': int(shadow_full_qual), 'shadow_full_dir': shadow_full_dir,
         'shadow_full_conf': shadow_full_conf, 'shadow_validated': 0,
+        'bp_alt_qual': int(bp_alt_qual), 'bp_alt_dir': bp_alt_dir,
+        'bp_alt_conf': bp_alt_conf, 'bp_alt_validated': 0,
         'away_fa_score': round(ba['fat'], 3),
         'home_fa_score': round(hb_bp['fat'], 3),
         'away_bp_tired': ba.get('tired', 0),
@@ -1092,6 +1118,10 @@ def main():
             'shadow_full_dir':  c['shadow_full_dir'],
             'shadow_full_conf': c['shadow_full_conf'],
             'shadow_validated': c['shadow_validated'],
+            'bp_alt_qual':      c['bp_alt_qual'],
+            'bp_alt_dir':       c['bp_alt_dir'],
+            'bp_alt_conf':      c['bp_alt_conf'],
+            'bp_alt_validated': c['bp_alt_validated'],
             'composite':      c['composite'],
             'band':           c['band'],
             'model_dir':      c['model_dir'],
