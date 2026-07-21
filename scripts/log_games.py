@@ -663,9 +663,16 @@ def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen,
     v3_counter = []
 
     if not miss and model != 'NEUT':
-        # R1: composite sweet spot — 79.3% (23W 6L, n=29)
+        # R1: composite sweet spot — DEMOTED to confirm-only 2026-07-21.
+        # Full re-analysis (all qualifying games since June 1, n=123, not
+        # just placed bets) found R1 alone at 47.6% (10W-11L-2P) -- below a
+        # coin flip -- and adding R1 to already-strong combos consistently
+        # made them worse: R3 alone 75.0% -> R1+R3 50.0%; R3+R2 80.0% ->
+        # R1+R3+R2 33.3%. R1 still contributes to confirmation bonuses when
+        # paired with R3/R4, but can no longer single-handedly qualify a
+        # play or drag a strong sub-combo down on its own.
         if 3 <= aa < 6 and not fav_k_low and not opp_k_dom:
-            v3_same.append(('R1', True, 79.3))
+            v3_same.append(('R1', False, 79.3))
         # R3: SP K-BB% sweet spot (15-20) — 82.6% (19W 4L, n=23)
         if 15 <= fav_kbb <= 20 and aa >= 2 and not fav_k_low and not opp_k_dom:
             v3_same.append(('R3', True, 82.6))
