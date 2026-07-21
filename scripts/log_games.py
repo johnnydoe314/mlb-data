@@ -145,6 +145,7 @@ FIELDS = [
     'bp_alt_qual','bp_alt_dir','bp_alt_conf','bp_alt_validated',
     'away_sp_roll_pa','away_sp_roll_kbb','away_sp_roll_gap','away_sp_roll_hh',
     'home_sp_roll_pa','home_sp_roll_kbb','home_sp_roll_gap','home_sp_roll_hh',
+    'roll_kbb_qual','roll_kbb_dir','roll_kbb_conf','roll_kbb_validated',
     'composite','band','model_dir','aligned','alignment_type','qualified',
     'sp_cat','bat_cat','bp_cat','f5_rec','full_rec','run_line_flag',
     'away_score','home_score',
@@ -769,6 +770,35 @@ def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen,
         bp_alt_dir  = model
         bp_alt_conf = 65.0  # conservative; backtest was 72.7% on a thin n=13
 
+    # ── roll_kbb: candidate signal, rolling K-BB% differential (research only,
+    # NOT a live rule). Added 2026-07-21, after a historical backtest using a
+    # one-time pull of per-pitcher-per-day Statcast data (2026-05-11 to
+    # present) to compute the TRUE 21-day rolling window for every past game.
+    # Two things were tested: rolling wOBA-xwOBA GAP (the same "luck" metric
+    # sp_edge/R3/R4/R5 are built on) consistently UNDERPERFORMED season gap
+    # across every window length tried (14/21/30/45 days, 46-48% vs season's
+    # steady 52%+) -- that idea was dropped, not implemented. But rolling
+    # K-BB% DIFFERENTIAL (pure recent strikeout-minus-walk rate, a lower-
+    # variance metric than xwOBA-based luck) showed a real, if modest, edge:
+    # 55.4% F5 / 53.1% full (n=426), beating season sp_edge's 52.3%/53.3% on
+    # F5 specifically. A magnitude-threshold search (bucketing by |diff|)
+    # did not show a clean, monotonic sweet spot, so this tracks the RAW
+    # differential rather than manufacture an unsupported cutoff.
+    # Requires >=15 rolling PA on both sides (same floor used in the
+    # backtest). Tracked independently of every other signal -- this is
+    # testing a new, separate hypothesis, not filling a coverage gap.
+    roll_kbb_qual = False
+    roll_kbb_dir  = ''
+    roll_kbb_conf = 0.0
+    if (a_roll and h_roll and a_roll['pa'] >= 15 and h_roll['pa'] >= 15):
+        a_kbb_roll = a_roll['k_pct'] - a_roll['bb_pct']
+        h_kbb_roll = h_roll['k_pct'] - h_roll['bb_pct']
+        roll_kbb_diff = a_kbb_roll - h_kbb_roll
+        if roll_kbb_diff != 0:
+            roll_kbb_qual = True
+            roll_kbb_dir  = 'AWAY' if roll_kbb_diff > 0 else 'HOME'
+            roll_kbb_conf = 54.0  # modest, honest discount from the 55.4% backtest
+
     # ── V4 MODEL — FULL-GAME, AWAY-side only ───────────────────────────────────
     # ⚠️ NOT LIVE-VALIDATED. These rules come from an in-sample systematic search
     # over 649 scored games (the same games they're measured against). The win
@@ -913,6 +943,8 @@ def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen,
         'shadow_full_conf': shadow_full_conf, 'shadow_validated': 0,
         'bp_alt_qual': int(bp_alt_qual), 'bp_alt_dir': bp_alt_dir,
         'bp_alt_conf': bp_alt_conf, 'bp_alt_validated': 0,
+        'roll_kbb_qual': int(roll_kbb_qual), 'roll_kbb_dir': roll_kbb_dir,
+        'roll_kbb_conf': roll_kbb_conf, 'roll_kbb_validated': 0,
         # Rolling (last-21-day) context, informational only -- not used by
         # sp_edge, composite, or any rule computation. See load_rolling_stats().
         'away_sp_roll_pa':      a_roll['pa']        if a_roll else '',
@@ -1171,6 +1203,10 @@ def main():
             'bp_alt_dir':       c['bp_alt_dir'],
             'bp_alt_conf':      c['bp_alt_conf'],
             'bp_alt_validated': c['bp_alt_validated'],
+            'roll_kbb_qual':      c['roll_kbb_qual'],
+            'roll_kbb_dir':       c['roll_kbb_dir'],
+            'roll_kbb_conf':      c['roll_kbb_conf'],
+            'roll_kbb_validated': c['roll_kbb_validated'],
             'away_sp_roll_pa':  c['away_sp_roll_pa'],
             'away_sp_roll_kbb': c['away_sp_roll_kbb'],
             'away_sp_roll_gap': c['away_sp_roll_gap'],
