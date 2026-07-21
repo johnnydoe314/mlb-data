@@ -143,6 +143,8 @@ FIELDS = [
     'v4_qual','v4_dir','v4_conf','v4_rules','v4_validated',
     'shadow_full_qual','shadow_full_dir','shadow_full_conf','shadow_validated',
     'bp_alt_qual','bp_alt_dir','bp_alt_conf','bp_alt_validated',
+    'away_sp_roll_pa','away_sp_roll_kbb','away_sp_roll_gap','away_sp_roll_hh',
+    'home_sp_roll_pa','home_sp_roll_kbb','home_sp_roll_gap','home_sp_roll_hh',
     'composite','band','model_dir','aligned','alignment_type','qualified',
     'sp_cat','bat_cat','bp_cat','f5_rec','full_rec','run_line_flag',
     'away_score','home_score',
@@ -236,6 +238,38 @@ def _project_pitcher(seasons):
     proj["data_weight"] = round(total_w, 3)  # coverage: 1.0 = full-season data
     proj["pa"]          = seasons[max(yrs)]["pa"] if yrs else 0
     return proj
+
+
+def load_rolling_stats(content):
+    """Load last-21-day rolling pitcher stats from rolling_stats.csv (produced
+    by fetch_rolling_stats.py). Context-only -- these values are surfaced as
+    away_sp_roll_*/home_sp_roll_* columns on every game row but do NOT feed
+    sp_edge, the composite, or any V3/V4/R5 rule computation. Added 2026-07-21.
+    Purpose: season-long gap (wOBA-xwOBA) has repeatedly missed real recent-form
+    divergence (a pitcher's first start back from IL, a rolling FIP crisis
+    sitting under a still-decent season ERA, etc). Surfacing both numbers side
+    by side lets that context inform analysis without yet being trusted as a
+    formal signal -- same discipline as every other new addition this season.
+    """
+    out = {}
+    reader = csv.DictReader(io.StringIO(content.lstrip('\ufeff')))
+    for row in reader:
+        name = row.get('name', '').strip()
+        if not name: continue
+        try:
+            out[name] = {
+                'pa':       int(float(row.get('pa', 0) or 0)),
+                'k_pct':    float(row.get('k_percent', 0) or 0),
+                'bb_pct':   float(row.get('bb_percent', 0) or 0),
+                'woba':     float(row.get('woba', 0) or 0),
+                'xwoba':    float(row.get('xwoba', 0) or 0),
+                'gap':      float(row.get('gap', 0) or 0),
+                'hard_hit': float(row.get('hard_hit_percent', 0) or 0),
+                'window_days': int(float(row.get('window_days', 21) or 21)),
+            }
+        except Exception:
+            continue
+    return out
 
 
 def load_pitchers(content):
@@ -512,9 +546,11 @@ def calc_def_score(pitcher, bp_gap, bp_fat, park_team, f5=False):
 
 def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen,
                       platoon=None, pitcher_hand=None,
-                      away_pid=None, home_pid=None):
+                      away_pid=None, home_pid=None, rolling=None):
     a  = pitchers.get(asn)
     h  = pitchers.get(hsn)
+    a_roll = rolling.get(asn) if rolling else None
+    h_roll = rolling.get(hsn) if rolling else None
     ab = teams.get(at)
     hb = teams.get(ht)
     ba = bullpen.get(at, {'gap':0,'fat':1.0})
@@ -877,6 +913,16 @@ def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen,
         'shadow_full_conf': shadow_full_conf, 'shadow_validated': 0,
         'bp_alt_qual': int(bp_alt_qual), 'bp_alt_dir': bp_alt_dir,
         'bp_alt_conf': bp_alt_conf, 'bp_alt_validated': 0,
+        # Rolling (last-21-day) context, informational only -- not used by
+        # sp_edge, composite, or any rule computation. See load_rolling_stats().
+        'away_sp_roll_pa':      a_roll['pa']        if a_roll else '',
+        'away_sp_roll_kbb':     round(a_roll['k_pct']-a_roll['bb_pct'],1) if a_roll else '',
+        'away_sp_roll_gap':     a_roll['gap']        if a_roll else '',
+        'away_sp_roll_hh':      a_roll['hard_hit']   if a_roll else '',
+        'home_sp_roll_pa':      h_roll['pa']        if h_roll else '',
+        'home_sp_roll_kbb':     round(h_roll['k_pct']-h_roll['bb_pct'],1) if h_roll else '',
+        'home_sp_roll_gap':     h_roll['gap']        if h_roll else '',
+        'home_sp_roll_hh':      h_roll['hard_hit']   if h_roll else '',
         'away_fa_score': round(ba['fat'], 3),
         'home_fa_score': round(hb_bp['fat'], 3),
         'away_bp_tired': ba.get('tired', 0),
@@ -991,6 +1037,7 @@ def main():
     bullpen_content = fetch_optional('bullpen.csv', 'bullpen.csv')
     fatigue_content = fetch_optional('bullpen_fatigue.csv', 'bullpen_fatigue.csv')
     platoon_content = fetch_optional('team_platoon.csv', 'team_platoon.csv')
+    rolling_content = fetch_optional('rolling_stats.csv', 'rolling_stats.csv')
     hand_content    = fetch_optional('pitcher_hand.csv', 'pitcher_hand.csv')
 
     # Merge bullpen + fatigue (empty dicts if files missing)
@@ -1009,6 +1056,7 @@ def main():
     teams        = load_teams(sc_content)    if sc_content      else {}
     platoon      = load_platoon(platoon_content) if platoon_content else {}
     pitcher_hand = load_pitcher_hand(hand_content) if hand_content else {}
+    rolling      = load_rolling_stats(rolling_content) if rolling_content else {}
 
     # Games
     games = []
@@ -1052,6 +1100,7 @@ def main():
             asn, hsn, at, ht, pitchers, teams, bullpen,
             platoon=platoon, pitcher_hand=pitcher_hand,
             away_pid=g.get('away_pid',''), home_pid=g.get('home_pid',''),
+            rolling=rolling,
         )
 
         bet_key = f"{at}@{ht}"
@@ -1122,6 +1171,14 @@ def main():
             'bp_alt_dir':       c['bp_alt_dir'],
             'bp_alt_conf':      c['bp_alt_conf'],
             'bp_alt_validated': c['bp_alt_validated'],
+            'away_sp_roll_pa':  c['away_sp_roll_pa'],
+            'away_sp_roll_kbb': c['away_sp_roll_kbb'],
+            'away_sp_roll_gap': c['away_sp_roll_gap'],
+            'away_sp_roll_hh':  c['away_sp_roll_hh'],
+            'home_sp_roll_pa':  c['home_sp_roll_pa'],
+            'home_sp_roll_kbb': c['home_sp_roll_kbb'],
+            'home_sp_roll_gap': c['home_sp_roll_gap'],
+            'home_sp_roll_hh':  c['home_sp_roll_hh'],
             'composite':      c['composite'],
             'band':           c['band'],
             'model_dir':      c['model_dir'],
