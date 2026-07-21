@@ -55,6 +55,16 @@ jobs:
         continue-on-error: true
         run: python scripts/fetch_injury_notes.py
 
+      - name: Fetch rolling (21-day) pitcher stats (rolling_stats.csv)
+        # Once/day only (8:00 AM CT slot) -- this is a heavier multi-chunk pull
+        # against Baseball Savant's pitch-level search than the other single-
+        # request fetches above, and the 21-day rolling window barely moves
+        # within a single day, so refreshing it 4x/day like the others would
+        # just add unnecessary load risk for no real benefit.
+        if: github.event.schedule == '0 13 * * *' || github.event_name == 'workflow_dispatch'
+        continue-on-error: true
+        run: python scripts/fetch_rolling_stats.py
+
       - name: Log all games with composite scores (game_log.csv)
         run: python scripts/log_games.py
 
