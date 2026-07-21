@@ -247,4 +247,15 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    import traceback
+    try:
+        main()
+    except SystemExit:
+        raise
+    except Exception:
+        OUT_DIR.mkdir(parents=True, exist_ok=True)
+        with open(OUT_DIR / "rolling_stats_debug.txt", "w") as fp:
+            fp.write("FAILED at " + datetime.utcnow().isoformat() + "\n\n")
+            fp.write(traceback.format_exc())
+        print("Wrote failure details to data/rolling_stats_debug.txt")
+        raise
