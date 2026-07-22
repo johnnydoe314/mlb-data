@@ -144,6 +144,16 @@ def calc_off_score(xwoba, bb_pct, hard_hit_pct):
     return round(xwoba * 0.55 + bb_norm * 0.25 + hh_norm * 0.20, 4)
 
 
+# Statcast's home_team/away_team codes don't always match the abbreviations
+# used elsewhere in this pipeline (log_games.py / game_log.csv, sourced from
+# a different feed). Confirmed mismatches as of 2026-07-22:
+#   AZ -> ARI, KC -> KCR, SD -> SDP, SF -> SFG, TB -> TBR
+# Without this, load_platoon()'s team lookup silently misses for these five
+# teams and falls back to season-only, the same class of silent failure as
+# the original bug -- just for a subset of teams instead of all of them.
+TEAM_CODE_FIX = {"AZ": "ARI", "KC": "KCR", "SD": "SDP", "SF": "SFG", "TB": "TBR"}
+
+
 def main():
     chunks = list(daterange_chunks(SEASON_START, TODAY, CHUNK_DAYS))
     print(f"Season-to-date team platoon pull: {SEASON_START.date()} .. {TODAY} "
@@ -187,6 +197,7 @@ def main():
             if not topbot or not (home_team and away_team):
                 continue
             batting_team = away_team if topbot == "Top" else home_team
+            batting_team = TEAM_CODE_FIX.get(batting_team, batting_team)
 
             p_throws = row.get("p_throws", "").strip()
             if p_throws not in ("L", "R"):
