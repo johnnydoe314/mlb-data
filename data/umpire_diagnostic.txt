@@ -1,0 +1,132 @@
+
+============================================================
+gamePk=745444
+============================================================
+Top-level keys: ['copyright', 'teams', 'officials', 'info', 'pitchingNotes', 'topPerformers']
+officials type: list
+officials raw: [
+  {
+    "official": {
+      "id": 427013,
+      "fullName": "Lance Barksdale",
+      "link": "/api/v1/people/427013"
+    },
+    "officialType": "Home Plate"
+  },
+  {
+    "official": {
+      "id": 547380,
+      "fullName": "Carlos Torres",
+      "link": "/api/v1/people/547380"
+    },
+    "officialType": "First Base"
+  },
+  {
+    "official": {
+      "id": 596740,
+      "fullName": "Jansen Visconti",
+      "link": "/api/v1/people/596740"
+    },
+    "officialType": "Second Base"
+  },
+  {
+    "official": {
+      "id": 605672,
+      "fullName": "Jeremie Rehak",
+      "link": "/api/v1/people/605672"
+    },
+    "officialType": "Third Base"
+  }
+]
+Umpire-related info section: {
+  "label": "Umpires",
+  "value": "HP: Lance Barksdale. 1B: Carlos Torres. 2B: Jansen Visconti. 3B: Jeremie Rehak. "
+}
+
+============================================================
+gamePk=716463
+============================================================
+Top-level keys: ['copyright', 'teams', 'officials', 'info', 'pitchingNotes', 'topPerformers']
+officials type: list
+officials raw: [
+  {
+    "official": {
+      "id": 427292,
+      "fullName": "Ron Kulpa",
+      "link": "/api/v1/people/427292"
+    },
+    "officialType": "Home Plate"
+  },
+  {
+    "official": {
+      "id": 605673,
+      "fullName": "Alex Tosi",
+      "link": "/api/v1/people/605673"
+    },
+    "officialType": "First Base"
+  },
+  {
+    "official": {
+      "id": 596740,
+      "fullName": "Jansen Visconti",
+      "link": "/api/v1/people/596740"
+    },
+    "officialType": "Second Base"
+  },
+  {
+    "official": {
+      "id": 547380,
+      "fullName": "Carlos Torres",
+      "link": "/api/v1/people/547380"
+    },
+    "officialType": "Third Base"
+  }
+]
+Umpire-related info section: {
+  "label": "Umpires",
+  "value": "HP: Ron Kulpa. 1B: Alex Tosi. 2B: Jansen Visconti. 3B: Carlos Torres. "
+}
+
+============================================================
+gamePk=717465
+============================================================
+Top-level keys: ['copyright', 'teams', 'officials', 'info', 'pitchingNotes', 'topPerformers']
+officials type: list
+officials raw: [
+  {
+    "official": {
+      "id": 665297,
+      "fullName": "Tom Hanahan",
+      "link": "/api/v1/people/665297"
+    },
+    "officialType": "Home Plate"
+  },
+  {
+    "official": {
+      "id": 573597,
+      "fullName": "Gabe Morales",
+      "link": "/api/v1/people/573597"
+    },
+    "officialType": "First Base"
+  },
+  {
+    "official": {
+      "id": 644760,
+      "fullName": "Adam Beck",
+      "link": "/api/v1/people/644760"
+    },
+    "officialType": "Second Base"
+  },
+  {
+    "official": {
+      "id": 427248,
+      "fullName": "Dan Iassogna",
+      "link": "/api/v1/people/427248"
+    },
+    "officialType": "Third Base"
+  }
+]
+Umpire-related info section: {
+  "label": "Umpires",
+  "value": "HP: Tom Hanahan. 1B: Gabe Morales. 2B: Adam Beck. 3B: Dan Iassogna. "
+}
