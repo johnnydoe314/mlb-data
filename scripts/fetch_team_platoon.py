@@ -157,13 +157,22 @@ def main():
     })
 
     total_pitch_rows = 0
+    chunks_ok = 0
+    chunks_failed = 0
     for i, (start, end) in enumerate(chunks, 1):
         print(f"  [{i}/{len(chunks)}] fetching {start} .. {end}")
         try:
             content = fetch_chunk(start, end)
+            chunks_ok += 1
         except Exception as e:
+            chunks_failed += 1
             print(f"  [SKIP] chunk {start}..{end} failed after retries, continuing "
                   f"with remaining chunks: {e}")
+            # Always write a summary so this is visible even without log access
+            OUT_DIR.mkdir(parents=True, exist_ok=True)
+            with open(OUT_DIR / "team_platoon_chunk_summary.txt", "w") as sf:
+                sf.write(f"As of chunk {i}/{len(chunks)}: {chunks_ok} ok, "
+                         f"{chunks_failed} failed\nLast failure: {start}..{end}: {e}\n")
             continue
 
         reader = csv.DictReader(io.StringIO(content))
@@ -220,6 +229,13 @@ def main():
 
     print(f"\nTotal pitch rows across all chunks: {total_pitch_rows}")
     print(f"Unique (team, hand) buckets: {len(agg)}")
+    print(f"Chunks: {chunks_ok} ok, {chunks_failed} failed (of {len(chunks)} total)")
+
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    with open(OUT_DIR / "team_platoon_chunk_summary.txt", "w") as sf:
+        sf.write(f"Final: {chunks_ok} ok, {chunks_failed} failed (of {len(chunks)} total)\n"
+                 f"Total pitch rows: {total_pitch_rows}\n"
+                 f"Unique (team,hand) buckets: {len(agg)}\n")
 
     if not agg:
         print("[FATAL] No data aggregated -- aborting without writing output.")
