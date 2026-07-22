@@ -53,7 +53,7 @@ OUT_DIR   = Path("data")
 OUT_FILE  = OUT_DIR / "team_platoon.csv"
 TIMEOUT   = 45
 CHUNK_DAYS = 5
-SEASON_START = datetime(2026, 3, 1)  # safe wide bound; hfGT=R| already
+SEASON_START = datetime.utcnow() - timedelta(days=6)  # TEMP: quick diagnostic window, will revert to full season once columns are confirmed  # noqa
                                       # restricts to actual regular-season
                                       # games, so an early start date is
                                       # harmless (no games exist before the
@@ -164,6 +164,17 @@ def main():
         except Exception as e:
             print(f"  [FATAL] chunk {start}..{end} failed after retries: {e}")
             sys.exit(1)
+
+        # DIAGNOSTIC: dump the raw response from the FIRST chunk only, so we
+        # can verify the actual column names for player_type=batter before
+        # trusting our assumptions. Every prior script in this pipeline used
+        # player_type=pitcher -- this is the first time we've tried batter,
+        # and the column set / semantics may not carry over identically.
+        if i == 1:
+            OUT_DIR.mkdir(parents=True, exist_ok=True)
+            with open(OUT_DIR / "team_platoon_chunk1_raw.txt", "w") as dbgf:
+                dbgf.write(f"Response length: {len(content)} chars\n\n")
+                dbgf.write(content[:3000])
 
         reader = csv.DictReader(io.StringIO(content))
         n = 0
