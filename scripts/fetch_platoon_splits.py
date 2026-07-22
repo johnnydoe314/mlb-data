@@ -89,13 +89,18 @@ def _fetch_splits(hand: str) -> dict:
             "https://baseballsavant.mlb.com/leaderboard/custom"
             f"?year={YEAR}&type=batter&group_by=team&filter=&min=0"
             "&selections=pa%2Cwoba%2Cxwoba%2Chard_hit_percent%2Cbb_percent%2Ck_percent"
-            f"&sort=xwoba&sortDir=desc&csv=true&pitchHand={hand}"
+            f"&sort=xwoba&sortDir=desc&csv=true&pitcher_throws={hand}"
         ),
-        # Method 2: statcast_search group_by=team with pitch_hand filter
+        # Method 2: statcast_search group_by=team, filtered by pitcher_throws --
+        # this is the CONFIRMED-correct param name (matches our own already-
+        # validated statcast_search/csv calls in fetch_rolling_stats.py etc).
+        # 'pitchHand' (the original param name here) was silently ignored by
+        # the backend, which is why team_platoon.csv has been empty this
+        # whole time -- fixed 2026-07-22.
         (
             "https://baseballsavant.mlb.com/statcast_search/csv"
             f"?all=true&hfGT=R%7C&hfSea={YEAR}%7C"
-            f"&player_type=batter&group_by=team&pitchHand={hand}&min_results=0"
+            f"&player_type=batter&group_by=team&pitcher_throws={hand}&min_results=0"
         ),
     ]
 
@@ -152,7 +157,7 @@ def _fetch_and_aggregate(hand: str) -> dict:
         "https://baseballsavant.mlb.com/leaderboard/custom"
         f"?year={YEAR}&type=batter&filter=&min=10"
         "&selections=team_name%2Cpa%2Cwoba%2Cxwoba%2Chard_hit_percent%2Cbb_percent%2Ck_percent"
-        f"&sort=xwoba&sortDir=desc&csv=true&pitchHand={hand}&player_type=batter"
+        f"&sort=xwoba&sortDir=desc&csv=true&pitcher_throws={hand}&player_type=batter"
     )
     try:
         content = _fetch(url)
