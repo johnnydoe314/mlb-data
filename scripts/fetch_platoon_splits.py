@@ -112,8 +112,24 @@ def _fetch_splits(hand: str) -> dict:
                 print(f"    [✓] vs {'LHP' if hand=='L' else 'RHP'} method {i}: {len(rows)} teams")
                 return rows
             print(f"    [~] Method {i}: {len(rows)} teams")
+            # DIAGNOSTIC: dump raw response so we can see exactly what came
+            # back instead of guessing at the next fix blindly. Only keep
+            # the first ~2000 chars to stay small; that's enough to see the
+            # header row and a couple of data rows (or an error/HTML page
+            # if the request didn't return CSV at all).
+            debug_path = OUT_DIR / f"platoon_debug_method{i}_{hand}.txt"
+            OUT_DIR.mkdir(parents=True, exist_ok=True)
+            with open(debug_path, "w") as dbgf:
+                dbgf.write(f"URL: {url}\n\n")
+                dbgf.write(f"Response length: {len(content)} chars\n\n")
+                dbgf.write("First 2000 chars of response:\n")
+                dbgf.write(content[:2000])
         except Exception as e:
             print(f"    [~] Method {i} failed: {e}")
+            debug_path = OUT_DIR / f"platoon_debug_method{i}_{hand}_error.txt"
+            OUT_DIR.mkdir(parents=True, exist_ok=True)
+            with open(debug_path, "w") as dbgf:
+                dbgf.write(f"URL: {url}\n\nException: {e}\n")
 
     # Method 3: Aggregate from individual batter leaderboard
     print(f"    [~] Falling back to individual batter aggregation vs {'LHP' if hand=='L' else 'RHP'}")
