@@ -6,6 +6,8 @@ on:
     - cron: '0 16 * * *'    # 11:00 AM CT (mid-morning refresh)
     - cron: '0 19 * * *'    # 2:00 PM CT  (afternoon refresh)
     - cron: '0 22 * * *'    # 5:00 PM CT  (pre-game refresh)
+    - cron: '0 13 * * 1'    # 8:00 AM CT Monday only (team platoon splits —
+                            # weekly, not daily; see fetch_team_platoon.py)
   workflow_dispatch:
 
 env:
@@ -50,6 +52,19 @@ jobs:
       - name: Fetch team platoon splits + pitcher handedness (team_platoon.csv, pitcher_hand.csv)
         continue-on-error: true
         run: python scripts/fetch_platoon_splits.py
+
+      - name: Fetch team platoon splits vs LHP/RHP -- REBUILD (team_platoon.csv)
+        # Weekly only (Monday 8am CT slot) + manual dispatch. This REPLACES
+        # fetch_platoon_splits.py's team_platoon.csv output (which has been
+        # silently empty all season -- see commit history for
+        # fetch_team_platoon.py). Runs weekly not daily because (a) it's a
+        # full season-to-date pull, ~29 chunks, ~18 minutes, and (b) team-
+        # level platoon tendency vs LHP/RHP is stable day to day, so a
+        # week-old snapshot is still highly relevant. The step above still
+        # runs daily for pitcher_hand.csv, which works fine and is cheap.
+        if: github.event.schedule == '0 13 * * 1' || github.event_name == 'workflow_dispatch'
+        continue-on-error: true
+        run: python scripts/fetch_team_platoon.py
 
       - name: Fetch injury/roster transaction notes (injury_notes.csv)
         continue-on-error: true
