@@ -1,11 +1,13 @@
 game_date,team,player,transaction_type,txn_date,description,relevant_today
+2026-07-23,TBR,Jesse Scholtens,Status Change,2026-07-23,Tampa Bay Rays activated RHP Jesse Scholtens from the 15-day injured list.,1
 2026-07-23,TOR,Patrick Corbin,Status Change,2026-07-23,"Toronto Blue Jays placed LHP Patrick Corbin on the 15-day injured list retroactive to July 22, 2026. Left teres major strain.",1
+2026-07-23,TOR,Addison Barger,Status Change,2026-07-23,Toronto Blue Jays transferred RF Addison Barger from the 10-day injured list to the 60-day injured list. Right elbow inflammation.,1
 2026-07-23,TOR,Davis Schneider,Recalled,2026-07-23,Toronto Blue Jays recalled LF Davis Schneider from Buffalo Bisons.,1
 2026-07-23,TOR,Adam Macko,Recalled,2026-07-23,Toronto Blue Jays recalled LHP Adam Macko from Buffalo Bisons.,1
-2026-07-23,KCR,Kameron Misner,Designated for Assignment,2026-07-22,Kansas City Royals designated CF Kameron Misner for assignment.,1
 2026-07-23,KCR,Bobby Witt Jr.,Status Change,2026-07-22,"Kansas City Royals placed SS Bobby Witt Jr. on the 10-day injured list retroactive to July 21, 2026. Low back tightness.",1
 2026-07-23,KCR,Stephen Kolek,Status Change,2026-07-22,Kansas City Royals transferred RHP Stephen Kolek from the 15-day injured list to the 60-day injured list. Right flexor strain.,1
 2026-07-23,STL,Scott Blewett,Designated for Assignment,2026-07-22,St. Louis Cardinals designated RHP Scott Blewett for assignment.,1
+2026-07-23,KCR,Kameron Misner,Designated for Assignment,2026-07-22,Kansas City Royals designated CF Kameron Misner for assignment.,1
 2026-07-23,ATL,Martín Pérez,Status Change,2026-07-22,Atlanta Braves activated LHP Martín Pérez from the 15-day injured list.,1
 2026-07-23,CLE,José Ramírez,Status Change,2026-07-22,Cleveland Guardians activated 3B José Ramírez from the 10-day injured list.,1
 2026-07-23,TOR,Jonatan Clase,Status Change,2026-07-22,"Toronto Blue Jays placed LF Jonatan Clase on the 10-day injured list retroactive to July 21, 2026. Left plantar fasciitis.",1
@@ -20,22 +22,22 @@ game_date,team,player,transaction_type,txn_date,description,relevant_today
 2026-07-23,ARI,Gerardo Carrillo,Recalled,2026-07-21,Arizona Diamondbacks recalled RHP Gerardo Carrillo from Reno Aces.,1
 2026-07-23,MIN,Jack Anderson,Recalled,2026-07-21,Minnesota Twins recalled RHP Jack Anderson from St. Paul Saints.,1
 2026-07-23,DET,Ty Madden,Recalled,2026-07-21,Detroit Tigers recalled RHP Ty Madden from Toledo Mud Hens.,1
-2026-07-23,MIN,Byron Buxton,Status Change,2026-07-20,Minnesota Twins activated CF Byron Buxton from the 10-day injured list.,1
 2026-07-23,DET,Gleyber Torres,Status Change,2026-07-20,Detroit Tigers activated 2B Gleyber Torres from the 10-day injured list.,1
+2026-07-23,MIN,Byron Buxton,Status Change,2026-07-20,Minnesota Twins activated CF Byron Buxton from the 10-day injured list.,1
 2026-07-23,SDP,Miguel Andujar,Status Change,2026-07-20,San Diego Padres placed DH Miguel Andujar on the 10-day injured list. Right wrist fracture.,1
 2026-07-23,ARI,Juan Burgos,Recalled,2026-07-20,Arizona Diamondbacks recalled RHP Juan Burgos from Reno Aces.,1
 2026-07-23,SDP,Rodolfo Durán,Recalled,2026-07-20,San Diego Padres recalled C Rodolfo Durán from El Paso Chihuahuas.,1
-2026-07-23,SDP,Wandy Peralta,Status Change,2026-07-19,San Diego Padres activated LHP Wandy Peralta from the bereavement list.,1
 2026-07-23,KCR,Stephen Kolek,Status Change,2026-07-19,Kansas City Royals placed RHP Stephen Kolek on the 15-day injured list. Right flexor strain.,1
+2026-07-23,SDP,Wandy Peralta,Status Change,2026-07-19,San Diego Padres activated LHP Wandy Peralta from the bereavement list.,1
 2026-07-23,SDP,Ron Marinaccio,Designated for Assignment,2026-07-19,San Diego Padres designated RHP Ron Marinaccio for assignment.,1
+2026-07-23,DET,Will Vest,Status Change,2026-07-19,Detroit Tigers transferred RHP Will Vest from the 15-day injured list to the 60-day injured list. Right posterior elbow inflammation.,1
 2026-07-23,ATL,Elieser Hernández,Status Change,2026-07-19,Atlanta Braves activated RHP Elieser Hernández.,1
 2026-07-23,SDP,Randy Vásquez,Status Change,2026-07-19,San Diego Padres activated RHP Randy Vásquez from the 15-day injured list.,1
-2026-07-23,DET,Will Vest,Status Change,2026-07-19,Detroit Tigers transferred RHP Will Vest from the 15-day injured list to the 60-day injured list. Right posterior elbow inflammation.,1
 2026-07-23,ARI,Lourdes Gurriel Jr.,Status Change,2026-07-18,Arizona Diamondbacks placed LF Lourdes Gurriel Jr. on the 10-day injured list. Right adductor strain.,1
 2026-07-23,CLE,Logan Allen,Status Change,2026-07-18,Cleveland Guardians activated LHP Logan Allen.,1
 2026-07-23,DET,Framber Valdez,Status Change,2026-07-18,Detroit Tigers activated LHP Framber Valdez from the bereavement list.,1
-2026-07-23,ARI,Adrian Del Castillo,Recalled,2026-07-18,Arizona Diamondbacks recalled DH Adrian Del Castillo from Reno Aces.,1
 2026-07-23,CLE,Logan Allen,Recalled,2026-07-18,Cleveland Guardians recalled LHP Logan Allen from Columbus Clippers.,1
-2026-07-23,CLE,Will Dion,Recalled,2026-07-18,Cleveland Guardians recalled LHP Will Dion from Columbus Clippers.,1
 2026-07-23,TOR,Lazaro Estrada,Recalled,2026-07-18,Toronto Blue Jays recalled RHP Lazaro Estrada from Buffalo Bisons.,1
+2026-07-23,ARI,Adrian Del Castillo,Recalled,2026-07-18,Arizona Diamondbacks recalled DH Adrian Del Castillo from Reno Aces.,1
 2026-07-23,TOR,Brendon Little,Recalled,2026-07-18,Toronto Blue Jays recalled LHP Brendon Little from Buffalo Bisons.,1
+2026-07-23,CLE,Will Dion,Recalled,2026-07-18,Cleveland Guardians recalled LHP Will Dion from Columbus Clippers.,1
