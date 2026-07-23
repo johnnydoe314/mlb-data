@@ -1,6 +1,6 @@
 URL: https://baseballsavant.mlb.com/leaderboard/custom?year=2026&type=batter&group_by=team&filter=&min=0&selections=pa%2Cwoba%2Cxwoba%2Chard_hit_percent%2Cbb_percent%2Ck_percent&sort=xwoba&sortDir=desc&csv=true&pitcher_throws=L
 
-Response length: 36127 chars
+Response length: 36243 chars
 
 First 2000 chars of response:
 ﻿"last_name, first_name","player_id","year","pa","woba","xwoba","hard_hit_percent","bb_percent","k_percent"
