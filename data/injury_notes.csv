@@ -1,4 +1,6 @@
 game_date,team,player,transaction_type,txn_date,description,relevant_today
+2026-07-24,MIL,David Hamilton,Status Change,2026-07-24,Milwaukee Brewers activated 3B David Hamilton from the 10-day injured list.,1
+2026-07-24,MIL,Braden Shewmake,Designated for Assignment,2026-07-24,Milwaukee Brewers designated SS Braden Shewmake for assignment.,1
 2026-07-24,BAL,Johnathan Rodríguez,Designated for Assignment,2026-07-23,Baltimore Orioles designated RF Johnathan Rodríguez for assignment.,1
 2026-07-24,TOR,Addison Barger,Status Change,2026-07-23,Toronto Blue Jays transferred RF Addison Barger from the 10-day injured list to the 60-day injured list. Right elbow inflammation.,1
 2026-07-24,PIT,Dennis Santana,Designated for Assignment,2026-07-23,Pittsburgh Pirates designated RHP Dennis Santana for assignment.,1
@@ -26,49 +28,49 @@ game_date,team,player,transaction_type,txn_date,description,relevant_today
 2026-07-24,BAL,Josh Walker,Recalled,2026-07-22,Baltimore Orioles recalled LHP Josh Walker from Norfolk Tides.,1
 2026-07-24,PIT,Noah Murdock,Recalled,2026-07-22,Pittsburgh Pirates recalled RHP Noah Murdock from Indianapolis Indians.,1
 2026-07-24,STL,Hunter Dobbins,Recalled,2026-07-22,St. Louis Cardinals recalled RHP Hunter Dobbins from Memphis Redbirds.,1
-2026-07-24,ATL,Kemil Custodio,Signed as Free Agent,2026-07-21,Atlanta Braves signed free agent LHP Kemil Custodio to a minor league contract.,1
 2026-07-24,ATH,Joshua Kuroda-Grauer,Status Change,2026-07-21,Athletics placed 3B Joshua Kuroda-Grauer on the 10-day injured list. Ruptured testicle surgery.,1
+2026-07-24,SFG,Trevor McDonald,Status Change,2026-07-21,San Francisco Giants placed RHP Trevor McDonald on the 15-day injured list. Right elbow strain.,1
 2026-07-24,BOS,Zack Kelly,Status Change,2026-07-21,Boston Red Sox placed RHP Zack Kelly on the 60-day injured list. Right elbow inflammation.,1
-2026-07-24,LAD,Will Smith,Status Change,2026-07-21,Los Angeles Dodgers transferred C Will Smith from the 10-day injured list to the 60-day injured list. Neck inflammation.,1
 2026-07-24,TEX,Jose Corniell,Status Change,2026-07-21,Texas Rangers placed RHP Jose Corniell on the 15-day injured list.,1
-2026-07-24,ATH,Mark Leiter Jr.,Status Change,2026-07-21,"Athletics placed RHP Mark Leiter Jr. on the 15-day injured list retroactive to July 19, 2026. Right hip impingement.",1
 2026-07-24,DET,Jack Flaherty,Status Change,2026-07-21,Detroit Tigers placed RHP Jack Flaherty on the 15-day injured list. Right flexor inflammation.,1
 2026-07-24,CWS,Kyle Teel,Status Change,2026-07-21,Chicago White Sox placed C Kyle Teel on the 10-day injured list. Left ankle sprain.,1
+2026-07-24,LAD,Will Smith,Status Change,2026-07-21,Los Angeles Dodgers transferred C Will Smith from the 10-day injured list to the 60-day injured list. Neck inflammation.,1
+2026-07-24,ATH,Mark Leiter Jr.,Status Change,2026-07-21,"Athletics placed RHP Mark Leiter Jr. on the 15-day injured list retroactive to July 19, 2026. Right hip impingement.",1
 2026-07-24,WSH,Miles Mikolas,Status Change,2026-07-21,Washington Nationals activated RHP Miles Mikolas.,1
 2026-07-24,PHI,Garrett Stubbs,Status Change,2026-07-21,"Philadelphia Phillies placed C Garrett Stubbs on the 10-day injured list retroactive to July 18, 2026. Left wrist inflammation.",1
-2026-07-24,SFG,Trevor McDonald,Status Change,2026-07-21,San Francisco Giants placed RHP Trevor McDonald on the 15-day injured list. Right elbow strain.,1
 2026-07-24,WSH,Justin Lawrence,Designated for Assignment,2026-07-21,Washington Nationals designated RHP Justin Lawrence for assignment.,1
 2026-07-24,ATL,Mike Yastrzemski,Status Change,2026-07-21,Atlanta Braves activated LF Mike Yastrzemski from the 10-day injured list.,1
 2026-07-24,ARI,Drey Jameson,Status Change,2026-07-21,"Arizona Diamondbacks placed RHP Drey Jameson on the 15-day injured list retroactive to July 20, 2026. Right hip inflammation.",1
-2026-07-24,SFG,Tristan Beck,Recalled,2026-07-21,San Francisco Giants recalled RHP Tristan Beck from Sacramento River Cats.,1
-2026-07-24,ARI,Kohl Drake,Recalled,2026-07-21,Arizona Diamondbacks recalled LHP Kohl Drake from Reno Aces.,1
-2026-07-24,PHI,Bryan De La Cruz,Recalled,2026-07-21,Philadelphia Phillies recalled OF Bryan De La Cruz from Lehigh Valley IronPigs.,1
-2026-07-24,DET,Ty Madden,Recalled,2026-07-21,Detroit Tigers recalled RHP Ty Madden from Toledo Mud Hens.,1
+2026-07-24,ATL,Kemil Custodio,Signed as Free Agent,2026-07-21,Atlanta Braves signed free agent LHP Kemil Custodio to a minor league contract.,1
 2026-07-24,WSH,Eddy Yean,Recalled,2026-07-21,Washington Nationals recalled RHP Eddy Yean from Rochester Red Wings.,1
-2026-07-24,MIN,Jack Anderson,Recalled,2026-07-21,Minnesota Twins recalled RHP Jack Anderson from St. Paul Saints.,1
-2026-07-24,CWS,Edgar Quero,Recalled,2026-07-21,Chicago White Sox recalled C Edgar Quero from Charlotte Knights.,1
-2026-07-24,ATH,Hayden Juenger,Recalled,2026-07-21,Athletics recalled RHP Hayden Juenger from Las Vegas Aviators.,1
+2026-07-24,SFG,Tristan Beck,Recalled,2026-07-21,San Francisco Giants recalled RHP Tristan Beck from Sacramento River Cats.,1
 2026-07-24,NYM,Daniel Duarte,Recalled,2026-07-21,New York Mets recalled RHP Daniel Duarte from Syracuse Mets.,1
-2026-07-24,BOS,Zack Kelly,Recalled,2026-07-21,Boston Red Sox recalled RHP Zack Kelly from Worcester Red Sox.,1
+2026-07-24,ARI,Kohl Drake,Recalled,2026-07-21,Arizona Diamondbacks recalled LHP Kohl Drake from Reno Aces.,1
+2026-07-24,DET,Ty Madden,Recalled,2026-07-21,Detroit Tigers recalled RHP Ty Madden from Toledo Mud Hens.,1
 2026-07-24,ARI,Gerardo Carrillo,Recalled,2026-07-21,Arizona Diamondbacks recalled RHP Gerardo Carrillo from Reno Aces.,1
 2026-07-24,ATH,Max Muncy,Recalled,2026-07-21,Athletics recalled 3B Max Muncy from Las Vegas Aviators.,1
-2026-07-24,CHC,Jameson Taillon,Status Change,2026-07-20,Chicago Cubs activated RHP Jameson Taillon from the 15-day injured list.,1
+2026-07-24,BOS,Zack Kelly,Recalled,2026-07-21,Boston Red Sox recalled RHP Zack Kelly from Worcester Red Sox.,1
+2026-07-24,MIN,Jack Anderson,Recalled,2026-07-21,Minnesota Twins recalled RHP Jack Anderson from St. Paul Saints.,1
+2026-07-24,ATH,Hayden Juenger,Recalled,2026-07-21,Athletics recalled RHP Hayden Juenger from Las Vegas Aviators.,1
+2026-07-24,PHI,Bryan De La Cruz,Recalled,2026-07-21,Philadelphia Phillies recalled OF Bryan De La Cruz from Lehigh Valley IronPigs.,1
+2026-07-24,CWS,Edgar Quero,Recalled,2026-07-21,Chicago White Sox recalled C Edgar Quero from Charlotte Knights.,1
 2026-07-24,MIA,Max Meyer,Status Change,2026-07-20,"Miami Marlins placed RHP Max Meyer on the 15-day injured list retroactive to July 19, 2026. Neck strain.",1
+2026-07-24,CHC,Aaron Civale,Status Change,2026-07-20,Chicago Cubs activated RHP Aaron Civale.,1
 2026-07-24,NYM,Luis Robert Jr.,Status Change,2026-07-20,New York Mets activated CF Luis Robert Jr. from the 60-day injured list.,1
 2026-07-24,BAL,Adley Rutschman,Status Change,2026-07-20,"Baltimore Orioles placed C Adley Rutschman on the 10-day injured list retroactive to July 19, 2026. Left wrist inflammation.",1
-2026-07-24,HOU,Bennett Sousa,Status Change,2026-07-20,Houston Astros activated LHP Bennett Sousa from the 60-day injured list.,1
-2026-07-24,CHC,Drew Pomeranz,Designated for Assignment,2026-07-20,Chicago Cubs designated LHP Drew Pomeranz for assignment.,1
-2026-07-24,CHC,Phil Maton,Status Change,2026-07-20,Chicago Cubs placed RHP Phil Maton on the 15-day injured list. Right knee tendinitis.,1
-2026-07-24,CHC,Aaron Civale,Status Change,2026-07-20,Chicago Cubs activated RHP Aaron Civale.,1
-2026-07-24,DET,Gleyber Torres,Status Change,2026-07-20,Detroit Tigers activated 2B Gleyber Torres from the 10-day injured list.,1
 2026-07-24,BAL,Rudy Martin Jr.,Designated for Assignment,2026-07-20,Baltimore Orioles designated RF Rudy Martin Jr. for assignment.,1
 2026-07-24,MIN,Byron Buxton,Status Change,2026-07-20,Minnesota Twins activated CF Byron Buxton from the 10-day injured list.,1
 2026-07-24,HOU,Ronel Blanco,Status Change,2026-07-20,Houston Astros activated RHP Ronel Blanco from the 60-day injured list.,1
 2026-07-24,SDP,Miguel Andujar,Status Change,2026-07-20,San Diego Padres placed DH Miguel Andujar on the 10-day injured list. Right wrist fracture.,1
+2026-07-24,CHC,Jameson Taillon,Status Change,2026-07-20,Chicago Cubs activated RHP Jameson Taillon from the 15-day injured list.,1
+2026-07-24,HOU,Bennett Sousa,Status Change,2026-07-20,Houston Astros activated LHP Bennett Sousa from the 60-day injured list.,1
+2026-07-24,CHC,Drew Pomeranz,Designated for Assignment,2026-07-20,Chicago Cubs designated LHP Drew Pomeranz for assignment.,1
+2026-07-24,CHC,Phil Maton,Status Change,2026-07-20,Chicago Cubs placed RHP Phil Maton on the 15-day injured list. Right knee tendinitis.,1
+2026-07-24,DET,Gleyber Torres,Status Change,2026-07-20,Detroit Tigers activated 2B Gleyber Torres from the 10-day injured list.,1
+2026-07-24,PHI,Alex McFarlane,Recalled,2026-07-20,Philadelphia Phillies recalled RHP Alex McFarlane from Reading Fightin Phils.,1
+2026-07-24,SDP,Rodolfo Durán,Recalled,2026-07-20,San Diego Padres recalled C Rodolfo Durán from El Paso Chihuahuas.,1
 2026-07-24,ARI,Juan Burgos,Recalled,2026-07-20,Arizona Diamondbacks recalled RHP Juan Burgos from Reno Aces.,1
 2026-07-24,MIA,Zach Brzykcy,Recalled,2026-07-20,Miami Marlins recalled RHP Zach Brzykcy from Jacksonville Jumbo Shrimp.,1
-2026-07-24,SDP,Rodolfo Durán,Recalled,2026-07-20,San Diego Padres recalled C Rodolfo Durán from El Paso Chihuahuas.,1
-2026-07-24,PHI,Alex McFarlane,Recalled,2026-07-20,Philadelphia Phillies recalled RHP Alex McFarlane from Reading Fightin Phils.,1
 2026-07-24,KCR,Stephen Kolek,Status Change,2026-07-19,Kansas City Royals placed RHP Stephen Kolek on the 15-day injured list. Right flexor strain.,1
 2026-07-24,HOU,Nate Pearson,Designated for Assignment,2026-07-19,Houston Astros designated RHP Nate Pearson for assignment.,1
 2026-07-24,SDP,Wandy Peralta,Status Change,2026-07-19,San Diego Padres activated LHP Wandy Peralta from the bereavement list.,1
