@@ -1,6 +1,6 @@
 "game_date","game_pk","game_num","game_time","venue","away_team","away_team_name","home_team","home_team_name","away_pitcher_id","away_pitcher","home_pitcher_id","home_pitcher","status"
 "2026-07-31","824651","","2026-07-31T18:20:00Z","Wrigley Field","NYY","New York Yankees","CHC","Chicago Cubs","701542","Warren, Will","684007","Imanaga, Shota","Pre-Game"
-"2026-07-31","824486","","2026-07-31T22:10:00Z","Great American Ball Park","PIT","Pittsburgh Pirates","CIN","Cincinnati Reds","694973","Skenes, Paul","668881","Greene, Hunter","Scheduled"
+"2026-07-31","824486","","2026-07-31T22:10:00Z","Great American Ball Park","PIT","Pittsburgh Pirates","CIN","Cincinnati Reds","694973","Skenes, Paul","668881","Greene, Hunter","Pre-Game"
 "2026-07-31","824809","","2026-07-31T23:05:00Z","Oriole Park at Camden Yards","PHI","Philadelphia Phillies","BAL","Baltimore Orioles","","TBD","687064","Young, Brandon","Scheduled"
 "2026-07-31","822782","","2026-07-31T23:07:00Z","Rogers Centre","STL","St. Louis Cardinals","TOR","Toronto Blue Jays","681517","Leahy, Kyle","656302","Cease, Dylan","Scheduled"
 "2026-07-31","824407","","2026-07-31T23:10:00Z","Progressive Field","ARI","Arizona Diamondbacks","CLE","Cleveland Guardians","683352","Bratt, Mitch","676440","Bibee, Tanner","Scheduled"
