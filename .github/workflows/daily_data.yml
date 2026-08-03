@@ -10,6 +10,18 @@ on:
                             # weekly, not daily; see fetch_team_platoon.py)
   workflow_dispatch:
 
+# Prevents overlapping runs from racing to commit/push at the same time.
+# Root cause of the 2026-08-03 15:37 UTC failure: GitHub's scheduler fired
+# the same trigger twice ~2 minutes apart (a known cron-scheduling quirk),
+# and with no concurrency guard, both runs fetched data and tried to push
+# independently -- one lost the race even with the existing 5-attempt
+# fetch/rebase retry loop in the "Commit and push" step. Queuing (rather
+# than cancelling) duplicate runs means a delayed/duplicate trigger simply
+# waits its turn instead of being killed mid-run or fighting over the push.
+concurrency:
+  group: daily-data-pipeline
+  cancel-in-progress: false
+
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
