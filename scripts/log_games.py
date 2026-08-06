@@ -818,19 +818,31 @@ def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen,
     #   F3: bat_edge>=1.5 + composite>=3      → 73.9% (17W 6L, n=23)
     #   F4: bat_edge>=2.0 + composite>=2      → 72.7% (16W 6L, n=22)
     #   Multi-rule: >=2 confirm → 75.0%, >=4 → 90.9% (n=11)
-    v4_rules_fired = []   # (rule_id, base_in_sample_conf)
+    v4_rules_fired = []   # (rule_id, standalone_capable, base_in_sample_conf)
     v4_block = adj < 1.0  # B1: composite must be >= 1 to support an AWAY play
 
     if not miss and not v4_block:
         # bat is signed; positive = AWAY offensive edge. F1-F4 are all AWAY.
+        #
+        # F1 DEMOTED to confirm-only 2026-08-06, same fix/reasoning as R1 in
+        # V3 (2026-07-21). Full reimplementation across all qualifying games
+        # since June 1 (n=779 total pool, current-code logic applied
+        # uniformly regardless of what was bet) found: F1 present anywhere
+        # in the combo -> 44.9% (22W-27L, n=49); F1 absent -> 66.7%
+        # (22W-11L, n=33). A 22-point gap on real samples both ways, the
+        # same shape of problem R1 had. F2/F3/F4 don't show this: F2
+        # present/absent was 54.7%/51.7% (noise-level), F4 present was
+        # actually BETTER (58.7% vs 47.2%). F3 showed a smaller, less
+        # conclusive gap (49.0% vs 60.6%) -- left alone for now, flagged as
+        # a watch item pending more data, not acted on with this pass.
         if bat >= 1.5 and sp >= 0.5:
-            v4_rules_fired.append(('F1', 76.2))
+            v4_rules_fired.append(('F1', False, 76.2))
         if bat >= 1.5 and h_kbb < 15:        # h_kbb = home SP K-BB%
-            v4_rules_fired.append(('F2', 74.1))
+            v4_rules_fired.append(('F2', True, 74.1))
         if bat >= 1.5 and adj >= 3:
-            v4_rules_fired.append(('F3', 73.9))
+            v4_rules_fired.append(('F3', True, 73.9))
         if bat >= 2.0 and adj >= 2:
-            v4_rules_fired.append(('F4', 72.7))
+            v4_rules_fired.append(('F4', True, 72.7))
 
     # F5: weak-alignment signal -- analysis of 333 June games found that when
     # sp_edge, bat_edge, and bp_edge are EACH individually below the model's
@@ -857,17 +869,20 @@ def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen,
     v4_conf = 0.0
     v4_rules_str = ''
     if v4_rules_fired:
-        v4_qual = True
-        v4_dir  = 'AWAY'
+        standalone_fired = any(r[1] for r in v4_rules_fired)
         n_fired = len(v4_rules_fired)
-        best    = max(r[1] for r in v4_rules_fired)
-        # Multi-rule confirmation bonus, mirroring V3's structure but capped
-        # below the in-sample ceiling to avoid presenting an inflated number.
-        if n_fired >= 2:
-            v4_conf = round(min(best + 2.0, 78.0), 1)
-        else:
-            v4_conf = round(best, 1)
-        v4_rules_str = '+'.join(r[0] for r in v4_rules_fired)
+        confirmed = n_fired >= 2
+        if standalone_fired or confirmed:
+            v4_qual = True
+            v4_dir  = 'AWAY'
+            best    = max(r[2] for r in v4_rules_fired)
+            # Multi-rule confirmation bonus, mirroring V3's structure but capped
+            # below the in-sample ceiling to avoid presenting an inflated number.
+            if confirmed:
+                v4_conf = round(min(best + 2.0, 78.0), 1)
+            else:
+                v4_conf = round(best, 1)
+            v4_rules_str = '+'.join(r[0] for r in v4_rules_fired)
     elif f5_fired:
         v4_qual = True
         v4_dir  = f5_dir
