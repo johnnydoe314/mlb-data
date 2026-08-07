@@ -1,7 +1,7 @@
 "game_date","game_pk","game_num","game_time","venue","away_team","away_team_name","home_team","home_team_name","away_pitcher_id","away_pitcher","home_pitcher_id","home_pitcher","status"
 "2026-08-07","823349","","2026-08-07T22:40:00Z","PNC Park","NYM","New York Mets","PIT","Pittsburgh Pirates","804267","Thornton, Zac","669387","Mlodzinski, Carmen","Scheduled"
 "2026-08-07","823428","","2026-08-07T22:40:00Z","Citizens Bank Park","TOR","Toronto Blue Jays","PHI","Philadelphia Phillies","667755","Soriano, José","554430","Wheeler, Zack","Scheduled"
-"2026-08-07","822699","","2026-08-07T22:45:00Z","Nationals Park","CIN","Cincinnati Reds","WSH","Washington Nationals","","TBD","676917","Cavalli, Cade","Scheduled"
+"2026-08-07","822699","","2026-08-07T22:45:00Z","Nationals Park","CIN","Cincinnati Reds","WSH","Washington Nationals","695534","Petty, Chase","676917","Cavalli, Cade","Scheduled"
 "2026-08-07","823515","","2026-08-07T23:05:00Z","Yankee Stadium","ATL","Atlanta Braves","NYY","New York Yankees","641816","Mahle, Tyler","608331","Fried, Max","Scheduled"
 "2026-08-07","824727","","2026-08-07T23:10:00Z","Fenway Park","ATH","Athletics","BOS","Boston Red Sox","678022","Perkins, Jack","801139","Tolle, Payton","Scheduled"
 "2026-08-07","823836","","2026-08-07T23:10:00Z","loanDepot park","LAA","Los Angeles Angels","MIA","Miami Marlins","691946","Klassen, George","663969","Phillips, Tyler","Scheduled"
