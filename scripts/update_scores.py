@@ -146,6 +146,17 @@ def get_game_result(pk: int) -> dict | None:
     away_abbrev = norm(gd.get("teams", {}).get("away", {}).get("abbreviation", ""))
     home_abbrev = norm(gd.get("teams", {}).get("home", {}).get("abbreviation", ""))
     game_date   = gd.get("datetime", {}).get("officialDate", "")
+    # gameNumber: 1 or 2 for doubleheader games, 1 for a normal single game.
+    # Confirmed field path via MLBAM's own GUMBO docs and the toddrob99/
+    # MLB-StatsAPI wrapper: gameData.game.gameNumber on the feed/live
+    # endpoint. THIS WAS THE ROOT CAUSE of the doubleheader row-conflation
+    # bug (confirmed 5 separate times: PIT@CLE 7/7, MIL@STL 7/7, PIT@CLE
+    # 7/18, LAD@NYY 7/19, ATL@NYM 7/29) -- game_num was never extracted or
+    # used as part of the match key below, so the second game of any
+    # doubleheader silently overwrote the first in the results dict, and
+    # BOTH game_log rows then read that same overwritten entry. Fixed
+    # 2026-08-06.
+    game_num    = gd.get("game", {}).get("gameNumber", 1)
 
     # ── Final scores ──────────────────────────────────────────────────────────
     ls_teams   = ls.get("teams", {})
@@ -188,6 +199,7 @@ def get_game_result(pk: int) -> dict | None:
         game_date          = game_date,
         away               = away_abbrev,
         home               = home_abbrev,
+        game_num           = game_num,
         away_score         = away_score,
         home_score         = home_score,
         away_f5            = away_f5,
@@ -293,9 +305,10 @@ def main():
     for pk in pks:
         r = get_game_result(pk)
         if r:
-            key = (r["away"], r["home"])
+            key = (r["away"], r["home"], r["game_num"])
             results[key] = r
-            print(f"    {r['away']}@{r['home']:5}  {r['away_score']}-{r['home_score']}"
+            gn_label = f" (G{r['game_num']})" if r["game_num"] and r["game_num"] != 1 else ""
+            print(f"    {r['away']}@{r['home']:5}{gn_label}  {r['away_score']}-{r['home_score']}"
                   f"   F5: {r['away_f5']}-{r['home_f5']} ({r['f5_result']})"
                   f"   SP exit: away inn {r['away_sp_exit_inn']} @ {r['away_sp_exit_score']}"
                   f" | home inn {r['home_sp_exit_inn']} @ {r['home_sp_exit_score']}")
@@ -330,7 +343,14 @@ def main():
     for row in rows:
         if row.get("game_date", "") != target:
             continue
-        key = (row.get("away_team", ""), row.get("home_team", ""))
+        # Normalize game_num: game_log.csv leaves this blank for normal
+        # single games; the API always returns 1 in that case. Treat
+        # blank/missing/'1' as equivalent so single-game days still match,
+        # while doubleheader games (game_num='2') only match their own
+        # specific game -- not whichever game happened to be fetched last.
+        row_gn_raw = (row.get("game_num", "") or "").strip()
+        row_gn = int(row_gn_raw) if row_gn_raw else 1
+        key = (row.get("away_team", ""), row.get("home_team", ""), row_gn)
         if key not in results:
             continue
 
