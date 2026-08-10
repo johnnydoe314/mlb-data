@@ -72,6 +72,26 @@ the one just fixed (that one corrupts scores in place; this one drops a
 row entirely). Not yet root-caused. Needs its own investigation before
 the next audit.
 
+## 2026-08-10 — out-of-cycle fix (not a full audit, targeted follow-up)
+
+- **Blocked V4 combo F1+F2+F3** (without F4). This is a follow-on from the
+  8/6 audit's F1 finding, but a distinct, more specific problem: F1's
+  confirm-only demotion didn't fully address it, because F1+F2+F3
+  continued to underperform badly even as a confirmed (2+ rule) combo --
+  16.7% (2W-10L, n=12) as of 8/9, having lost 4 of its last 5 fires across
+  8/6-8/9. Critically, F1+F2+F3+F4 (the 4-rule superset) is fine at 54.5%
+  (n=11), and F2 alone is strong at 66.7% (n=9) -- so this isn't "F1 is
+  bad broadly" (already handled), it's specifically this exact 3-rule
+  combination missing F4 that's toxic. Implemented as a surgical exact-set
+  exclusion (frozenset comparison), not a change to any individual rule's
+  standalone status, so F1+F2+F3+F4 and every other combo pass through
+  unaffected. Verified in isolation across 9 scenarios before deploying;
+  tested live against the current slate with no errors.
+- Decided to act out-of-cycle rather than wait for the 8/20 audit, given
+  how clear and compounding the evidence had become (the combo fired twice
+  in one day on 8/9, splitting 1W-1L, with the aggregate still badly
+  underwater).
+
 ---
 
 ## Next audit due
