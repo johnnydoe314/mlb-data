@@ -864,11 +864,23 @@ def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen,
             f5_fired = True
             f5_dir = 'AWAY' if sp > 0 else 'HOME'
 
+    # F1+F2+F3 (without F4) BLOCKED 2026-08-10. Confirmed weak across a
+    # real, growing sample: 16.7% (2W-10L, n=12) as of 8/9. Critically, this
+    # is NOT the same finding as F1's earlier confirm-only demotion
+    # (2026-08-06) -- F1+F2+F3+F4 (the 4-rule superset, F4 included) is
+    # fine at 54.5% (n=11), and F2 alone is strong at 66.7% (n=9). It's
+    # specifically this exact 3-rule combination missing F4 that's toxic.
+    # This is a surgical, exact-set exclusion -- it does not touch F1's
+    # confirm-only status, any other individual rule, or any other combo
+    # (including the healthy F1+F2+F3+F4 superset).
+    BLOCKED_V4_COMBO = frozenset({'F1', 'F2', 'F3'})
+    fired_ids = frozenset(r[0] for r in v4_rules_fired)
+
     v4_qual = False
     v4_dir  = ''
     v4_conf = 0.0
     v4_rules_str = ''
-    if v4_rules_fired:
+    if v4_rules_fired and fired_ids != BLOCKED_V4_COMBO:
         standalone_fired = any(r[1] for r in v4_rules_fired)
         n_fired = len(v4_rules_fired)
         confirmed = n_fired >= 2
