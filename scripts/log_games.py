@@ -724,6 +724,21 @@ def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen,
         if opp_k_dom and opp_kbb >= 13 and not fav_k_low:
             v3_counter.append(('R5', 73.0))
 
+    # STANDING POLICY (established 2026-08-10): any exact rule combo that
+    # accumulates a win rate below 50% on n>=10 qualifying games gets
+    # blocked from qualifying as a bettable play, but keeps being tracked
+    # (v3_rules_str stays populated) so its win rate keeps updating and can
+    # be revisited at the next full audit -- a combo that climbs back above
+    # 50% is a candidate for unblocking, not a permanent ban. Currently
+    # blocked under this policy: R1+R3+R2 (42.9%, n=11 as of 8/10) and
+    # R2+R4 (30.0%, n=10 as of 8/10, worsened from 42.9% n=7 at the 8/6
+    # audit). Matched by exact frozenset comparison, so supersets/subsets
+    # (e.g. R1+R3+R2+R4, which is fine at 83.3%) are unaffected.
+    BLOCKED_V3_COMBOS = frozenset({
+        frozenset({'R1', 'R3', 'R2'}),
+        frozenset({'R2', 'R4'}),
+    })
+
     v3_core_qual = False
     v3_core_dir  = ''
     v3_core_conf = 0.0
@@ -732,12 +747,18 @@ def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen,
     if v3_same:
         standalone_fired = any(r[1] for r in v3_same)
         confirmed        = len(v3_same) >= 2
+        fired_set        = frozenset(r[0] for r in v3_same)
         if standalone_fired or confirmed:
-            v3_core_qual = True
-            v3_core_dir  = model
-            best_conf    = max(r[2] for r in v3_same)
-            v3_core_conf = round(min(best_conf + (5.0 if confirmed else 0.0), 85.0), 1)
+            # Always record which rules fired when they'd otherwise qualify,
+            # even if blocked below -- this is what keeps the combo's win
+            # rate trackable going forward instead of going dark the moment
+            # it's blocked.
             v3_rules_str = '+'.join(r[0] for r in v3_same)
+            if fired_set not in BLOCKED_V3_COMBOS:
+                v3_core_qual = True
+                v3_core_dir  = model
+                best_conf    = max(r[2] for r in v3_same)
+                v3_core_conf = round(min(best_conf + (5.0 if confirmed else 0.0), 85.0), 1)
 
     v3_counter_qual = False
     v3_counter_dir  = ''
@@ -873,28 +894,43 @@ def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen,
     # This is a surgical, exact-set exclusion -- it does not touch F1's
     # confirm-only status, any other individual rule, or any other combo
     # (including the healthy F1+F2+F3+F4 superset).
-    BLOCKED_V4_COMBO = frozenset({'F1', 'F2', 'F3'})
+    # STANDING POLICY (established 2026-08-10, same threshold as V3 above):
+    # combos below 50% win rate on n>=10 get blocked from qualifying but
+    # keep being tracked. F1+F2+F3 was the original 8/10 fix (11.1%, n=9
+    # at the time); F1+F3+F4 added same day (42.9%, n=14) -- a real,
+    # decent sample distinct from the healthy F1+F2+F3+F4 superset (64.7%,
+    # n=17). NOTE: this fixes a real gap in the original F1+F2+F3 block --
+    # it previously left v4_rules_str empty when blocked, meaning we lost
+    # the ability to keep tracking that combo's win rate going forward.
+    # Now both blocked combos still get logged for future audits.
+    BLOCKED_V4_COMBOS = frozenset({
+        frozenset({'F1', 'F2', 'F3'}),
+        frozenset({'F1', 'F3', 'F4'}),
+    })
     fired_ids = frozenset(r[0] for r in v4_rules_fired)
 
     v4_qual = False
     v4_dir  = ''
     v4_conf = 0.0
     v4_rules_str = ''
-    if v4_rules_fired and fired_ids != BLOCKED_V4_COMBO:
+    if v4_rules_fired:
         standalone_fired = any(r[1] for r in v4_rules_fired)
         n_fired = len(v4_rules_fired)
         confirmed = n_fired >= 2
         if standalone_fired or confirmed:
-            v4_qual = True
-            v4_dir  = 'AWAY'
-            best    = max(r[2] for r in v4_rules_fired)
-            # Multi-rule confirmation bonus, mirroring V3's structure but capped
-            # below the in-sample ceiling to avoid presenting an inflated number.
-            if confirmed:
-                v4_conf = round(min(best + 2.0, 78.0), 1)
-            else:
-                v4_conf = round(best, 1)
+            # Always record which rules fired, blocked or not -- see policy
+            # note above for why this matters.
             v4_rules_str = '+'.join(r[0] for r in v4_rules_fired)
+            if fired_ids not in BLOCKED_V4_COMBOS:
+                v4_qual = True
+                v4_dir  = 'AWAY'
+                best    = max(r[2] for r in v4_rules_fired)
+                # Multi-rule confirmation bonus, mirroring V3's structure but capped
+                # below the in-sample ceiling to avoid presenting an inflated number.
+                if confirmed:
+                    v4_conf = round(min(best + 2.0, 78.0), 1)
+                else:
+                    v4_conf = round(best, 1)
     elif f5_fired:
         v4_qual = True
         v4_dir  = f5_dir
