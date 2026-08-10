@@ -734,10 +734,33 @@ def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen,
     # R2+R4 (30.0%, n=10 as of 8/10, worsened from 42.9% n=7 at the 8/6
     # audit). Matched by exact frozenset comparison, so supersets/subsets
     # (e.g. R1+R3+R2+R4, which is fine at 83.3%) are unaffected.
-    BLOCKED_V3_COMBOS = frozenset({
-        frozenset({'R1', 'R3', 'R2'}),
-        frozenset({'R2', 'R4'}),
-    })
+    # STANDING POLICY (established 2026-08-10, tightened same day): a rule
+    # combo only qualifies as a live bettable play once it has independently
+    # proven itself with n>=10 DECIDED games (pushes excluded) AND a win
+    # rate >=55%. This SUPERSEDES the earlier same-day block-list approach
+    # (which only excluded known-bad combos and let everything else fire by
+    # default) -- this is now an ALLOWLIST: nothing fires unless it has
+    # individually earned the right to, including brand-new combos and
+    # currently-good-looking small samples. E.g. R1+R2+R3+R4 sits at 83.3%
+    # but only n=6 decided games -- blocked purely on sample size until it
+    # accumulates more. A combo not in this dict at all defaults to (0,0),
+    # i.e. blocked. This dict is a SNAPSHOT refreshed at each full audit
+    # (see AUDIT_LOG.md) -- it does not update live/dynamically, by design,
+    # for the same reason the rest of this pipeline favors periodic
+    # deliberate audits over continuous self-modification.
+    V3_COMBO_RECORD = {   # frozenset(rules) -> (wins, losses), decided games only, as of 8/10 audit
+        frozenset({'R1', 'R4'}):        (11, 8),
+        frozenset({'R3'}):              (10, 8),
+        frozenset({'R3', 'R4'}):        (9, 4),
+        frozenset({'R1', 'R2'}):        (7, 4),
+        frozenset({'R1', 'R3'}):        (7, 4),
+        frozenset({'R1', 'R3', 'R4'}):  (6, 4),
+    }
+
+    def _combo_allowed(record, fired_set):
+        w, l = record.get(fired_set, (0, 0))
+        n = w + l
+        return n >= 10 and (w / n) >= 0.55
 
     v3_core_qual = False
     v3_core_dir  = ''
@@ -750,23 +773,31 @@ def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen,
         fired_set        = frozenset(r[0] for r in v3_same)
         if standalone_fired or confirmed:
             # Always record which rules fired when they'd otherwise qualify,
-            # even if blocked below -- this is what keeps the combo's win
-            # rate trackable going forward instead of going dark the moment
-            # it's blocked.
+            # whether allowed or not -- this is what keeps every combo's win
+            # rate trackable going forward, including ones that haven't
+            # earned allowlist status yet.
             v3_rules_str = '+'.join(r[0] for r in v3_same)
-            if fired_set not in BLOCKED_V3_COMBOS:
+            if _combo_allowed(V3_COMBO_RECORD, fired_set):
                 v3_core_qual = True
                 v3_core_dir  = model
                 best_conf    = max(r[2] for r in v3_same)
                 v3_core_conf = round(min(best_conf + (5.0 if confirmed else 0.0), 85.0), 1)
 
+    # R5 counter record: 13W-6L (n=19, decided) as of the 8/10 audit -- 68.4%,
+    # clears the same n>=10/55% bar, so it continues to fire. Written as an
+    # explicit check (not just "R5 always fires") so a future decline would
+    # naturally suppress it without needing a separate code change.
+    R5_RECORD = (13, 6)
     v3_counter_qual = False
     v3_counter_dir  = ''
     v3_counter_conf = 0.0
     if v3_counter and not v3_same:
-        v3_counter_qual = True
-        v3_counter_dir  = 'HOME' if model == 'AWAY' else 'AWAY'
-        v3_counter_conf = max(r[1] for r in v3_counter)
+        r5_w, r5_l = R5_RECORD
+        r5_n = r5_w + r5_l
+        if r5_n >= 10 and (r5_w / r5_n) >= 0.55:
+            v3_counter_qual = True
+            v3_counter_dir  = 'HOME' if model == 'AWAY' else 'AWAY'
+            v3_counter_conf = max(r[1] for r in v3_counter)
 
     # ── bp_alt: candidate R2 variant (research only, NOT a live V3 rule) ────
     # Added 2026-07-21. R2 requires bp_cat=='NEUTRAL'; full review found
@@ -903,11 +934,23 @@ def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen,
     # it previously left v4_rules_str empty when blocked, meaning we lost
     # the ability to keep tracking that combo's win rate going forward.
     # Now both blocked combos still get logged for future audits.
-    BLOCKED_V4_COMBOS = frozenset({
-        frozenset({'F1', 'F2', 'F3'}),
-        frozenset({'F1', 'F3', 'F4'}),
-    })
+    # V4 ALLOWLIST (same standing policy as V3 above, established/tightened
+    # 2026-08-10). Snapshot as of the 8/10 audit, decided games only.
+    V4_COMBO_RECORD = {
+        frozenset({'F2'}):                    (10, 8),
+        frozenset({'F1', 'F2', 'F3', 'F4'}):  (11, 6),
+    }
     fired_ids = frozenset(r[0] for r in v4_rules_fired)
+
+    def _v4_combo_allowed(fired_set):
+        w, l = V4_COMBO_RECORD.get(fired_set, (0, 0))
+        n = w + l
+        return n >= 10 and (w / n) >= 0.55
+
+    # F5-rule record: 47W-23L (n=70, decided) as of the 8/10 audit -- 67.1%,
+    # clears the bar. Explicit check for the same future-proofing reason as
+    # R5 above.
+    F5_RULE_RECORD = (47, 23)
 
     v4_qual = False
     v4_dir  = ''
@@ -918,10 +961,10 @@ def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen,
         n_fired = len(v4_rules_fired)
         confirmed = n_fired >= 2
         if standalone_fired or confirmed:
-            # Always record which rules fired, blocked or not -- see policy
+            # Always record which rules fired, allowed or not -- see policy
             # note above for why this matters.
             v4_rules_str = '+'.join(r[0] for r in v4_rules_fired)
-            if fired_ids not in BLOCKED_V4_COMBOS:
+            if _v4_combo_allowed(fired_ids):
                 v4_qual = True
                 v4_dir  = 'AWAY'
                 best    = max(r[2] for r in v4_rules_fired)
@@ -932,13 +975,13 @@ def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen,
                 else:
                     v4_conf = round(best, 1)
     elif f5_fired:
-        v4_qual = True
-        v4_dir  = f5_dir
-        # Conservative confidence: empirical 70.4% on n=27 is too thin a
-        # sample to present at face value. Starting at 65.0% pending live
-        # validation; will be revisited once more games accumulate.
-        v4_conf = 65.0
+        f5r_w, f5r_l = F5_RULE_RECORD
+        f5r_n = f5r_w + f5r_l
         v4_rules_str = 'F5'
+        if f5r_n >= 10 and (f5r_w / f5r_n) >= 0.55:
+            v4_qual = True
+            v4_dir  = f5_dir
+            v4_conf = 65.0
 
     # ── Shadow full-game leg (tracking only, NOT a live bet) ─────────────
     # Added 2026-07-13. Rationale: backtest of all V3 plays (n=79, May-July)
