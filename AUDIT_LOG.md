@@ -12,6 +12,17 @@ audit, whichever comes first.** Check the date/count below before starting
 any review or analysis session; if either threshold is passed, run a full
 audit before or alongside that session.
 
+**Standing policy (established 2026-08-10): any exact rule combo with a win
+rate below 50% on n>=10 qualifying games is blocked from qualifying as a
+bettable play, but stays tracked** (the rules_str field keeps populating
+even when blocked) so its win rate keeps updating. At every audit, check
+every currently-blocked combo against this same threshold -- one that has
+climbed back above 50% on continued tracking is a candidate for
+unblocking, not a permanent ban. Likewise, check every currently-active
+combo for newly crossing below the threshold as its sample grows. Blocking
+uses exact-set matching (frozenset comparison), so a combo's supersets and
+subsets are never affected by blocking the combo itself.
+
 ---
 
 ## 2026-07-13 — first full audit
@@ -91,6 +102,34 @@ the next audit.
   how clear and compounding the evidence had become (the combo fired twice
   in one day on 8/9, splitting 1W-1L, with the aggregate still badly
   underwater).
+
+## 2026-08-10 (later same day) — systematic threshold policy adopted
+
+- Formalized the ad-hoc blocking approach (F1+F2+F3, blocked earlier today)
+  into a standing policy: any combo below 50% win rate on n>=10 games gets
+  blocked, full stop, rather than deciding case by case whether a given
+  finding is "clear enough" to act on.
+- A comprehensive re-run of every V3/V4 combo (n=836 games, June 1 - Aug 10)
+  surfaced two more combos meeting this threshold that hadn't been
+  individually flagged before:
+  - **V3 R2+R4**: 30.0% (3W-7L, n=10) -- worsened from 42.9% (n=7) at the
+    8/6 audit. Now blocked.
+  - **V3 R1+R3+R2**: 42.9% (3W-4L-4P, n=11) -- was a "watch" item since
+    8/6 (33.3%, n=10), now clears the n>=10 bar for action. Blocked.
+  - **V4 F1+F3+F4**: 42.9% (6W-8L, n=14) -- a new finding, not previously
+    flagged. Distinct from the healthy F1+F2+F3+F4 superset (64.7%, n=17).
+    Blocked.
+- **Fixed a real gap in the original F1+F2+F3 block**: it left the
+  rules_str field empty when blocked, meaning that combo would have gone
+  dark with zero new tracked data points going forward -- silently
+  defeating the "keep tracking it" half of the policy before the policy
+  was even formalized. Both V3 and V4 blocking now always populate the
+  rules_str field when a combo would otherwise have qualified, blocked or
+  not.
+- Current full block list: V3 {R1,R2,R3}, V3 {R2,R4}; V4 {F1,F2,F3}, V4
+  {F1,F3,F4}.
+- All changes verified in isolation (10 scenarios covering both blocked
+  and unblocked cases, both models) before live testing and deployment.
 
 ---
 
