@@ -12,16 +12,26 @@ audit, whichever comes first.** Check the date/count below before starting
 any review or analysis session; if either threshold is passed, run a full
 audit before or alongside that session.
 
-**Standing policy (established 2026-08-10): any exact rule combo with a win
-rate below 50% on n>=10 qualifying games is blocked from qualifying as a
-bettable play, but stays tracked** (the rules_str field keeps populating
-even when blocked) so its win rate keeps updating. At every audit, check
-every currently-blocked combo against this same threshold -- one that has
-climbed back above 50% on continued tracking is a candidate for
-unblocking, not a permanent ban. Likewise, check every currently-active
-combo for newly crossing below the threshold as its sample grows. Blocking
-uses exact-set matching (frozenset comparison), so a combo's supersets and
-subsets are never affected by blocking the combo itself.
+**Standing policy (established 2026-08-10, TIGHTENED to an allowlist same
+day): a rule combo only qualifies as a live bettable play once it has
+independently proven itself with n>=10 DECIDED games (pushes/ties
+excluded) AND a win rate >=55%.** This is stricter than a simple block
+threshold -- it's an allowlist, not a block-list: a combo doesn't qualify
+by default and then get excluded for being bad, it must actively earn
+qualification by clearing both the sample-size and win-rate bars. This
+means brand-new combos and currently-good-looking small samples (e.g. V3's
+R1+R2+R3+R4 at 83.3% but only n=6 decided games, or V4's F4 alone at 71.4%
+but only n=7) are blocked purely on insufficient sample size until they
+accumulate more decided games -- not because they look bad, but because
+they haven't yet proven themselves. Implemented as static (win, loss)
+record dicts keyed by exact frozenset combo, refreshed at each full audit
+rather than computed dynamically on every pipeline run -- consistent with
+this pipeline's general preference for periodic deliberate audits over
+continuous self-modification. Every combo still gets logged (rules_str
+populated) regardless of allowlist status, so tracking never stops. At
+every audit: recompute every combo's (win, loss) record from scratch,
+update the allowlist dict, and note which combos newly qualified or fell
+out.
 
 ---
 
@@ -130,6 +140,40 @@ the next audit.
   {F1,F3,F4}.
 - All changes verified in isolation (10 scenarios covering both blocked
   and unblocked cases, both models) before live testing and deployment.
+
+## 2026-08-10 (third entry same day) — policy tightened to an allowlist
+
+- User requested the block-list approach be tightened further: instead of
+  "block anything clearly bad," only ALLOW combos that have proven n>=10
+  decided games AND >=55% win rate. Everything else is blocked by default,
+  including combos that have never been individually flagged as bad --
+  they simply haven't earned qualification yet.
+- This is a substantially bigger behavioral change than the two earlier
+  entries today. Recomputed every V3/V4 combo's exact (win, loss) record
+  on decided games only (pushes/ties excluded) and built the initial
+  allowlist:
+  - **V3 allowed**: R1+R4 (57.9%, n=19), R3 (55.6%, n=18), R3+R4 (69.2%,
+    n=13), R1+R2 (63.6%, n=11), R1+R3 (63.6%, n=11), R1+R3+R4 (60.0%,
+    n=10), R5 counter (68.4%, n=19).
+  - **V3 now blocked purely on sample size** (would otherwise look fine
+    or great): R1+R2+R3+R4 (83.3%, n=6), R2+R3 (66.7%, n=9).
+  - **V3 blocked on both sample size and rate**: R2+R4 (30.0%, n=10),
+    R1+R2+R3 (42.9%, n=7), R1+R2+R4 (50.0%, n=6), R2+R3+R4 (0.0%, n=2).
+  - **V4 allowed**: F2 alone (55.6%, n=18), F1+F2+F3+F4 (64.7%, n=17),
+    F5-rule (67.1%, n=70).
+  - **V4 now blocked purely on sample size**: F4 alone (71.4%, n=7),
+    F2+F3 (100%, n=2), F3+F4 (66.7%, n=3), F2+F4 (66.7%, n=3), F1+F2+F4
+    (100%, n=1) -- several of these look excellent but have almost no
+    track record yet.
+  - **V4 blocked on rate**: F1+F2+F3 (31.2%, n=16), F1+F3+F4 (42.9%,
+    n=14), F2+F3+F4 (50.0%, n=4), F1+F2 (25.0%, n=4), F1+F3 (0%, n=2),
+    F1+F4 (0%, n=1).
+- Net effect: today's qualifying-play count dropped sharply (verified live
+  -- only 1 of 10 games on the current slate produced a bettable play,
+  versus multiple under the previous block-list policy). This is expected
+  and intended given the stricter bar, not a bug.
+- All changes verified in isolation (11 scenarios across V3/V4/R5/F5-rule)
+  before live testing and deployment.
 
 ---
 
