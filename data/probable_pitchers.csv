@@ -1,5 +1,5 @@
 "game_date","game_pk","game_num","game_time","venue","away_team","away_team_name","home_team","home_team_name","away_pitcher_id","away_pitcher","home_pitcher_id","home_pitcher","status"
-"2026-08-14","824643","","2026-08-14T18:20:00Z","Wrigley Field","STL","St. Louis Cardinals","CHC","Chicago Cubs","669461","Liberatore, Matthew","605280","Holmes, Clay","Scheduled"
+"2026-08-14","824643","","2026-08-14T18:20:00Z","Wrigley Field","STL","St. Louis Cardinals","CHC","Chicago Cubs","669461","Liberatore, Matthew","605280","Holmes, Clay","Pre-Game"
 "2026-08-14","824479","","2026-08-14T22:10:00Z","Great American Ball Park","MIA","Miami Marlins","CIN","Cincinnati Reds","645261","Alcantara, Sandy","695505","Burns, Chase","Scheduled"
 "2026-08-14","823346","","2026-08-14T22:40:00Z","PNC Park","BOS","Boston Red Sox","PIT","Pittsburgh Pirates","687562","Bennett, Jake","696149","Chandler, Bubba","Scheduled"
 "2026-08-14","824237","","2026-08-14T22:40:00Z","Comerica Park","CWS","Chicago White Sox","DET","Detroit Tigers","656794","Newcomb, Sean","695549","Jobe, Jackson","Scheduled"
