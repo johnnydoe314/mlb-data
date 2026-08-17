@@ -1,6 +1,6 @@
 URL: https://baseballsavant.mlb.com/leaderboard/custom?year=2026&type=batter&group_by=team&filter=&min=0&selections=pa%2Cwoba%2Cxwoba%2Chard_hit_percent%2Cbb_percent%2Ck_percent&sort=xwoba&sortDir=desc&csv=true&pitcher_throws=L
 
-Response length: 37954 chars
+Response length: 38060 chars
 
 First 2000 chars of response:
 ﻿"last_name, first_name","player_id","year","pa","woba","xwoba","hard_hit_percent","bb_percent","k_percent"
@@ -20,6 +20,7 @@ First 2000 chars of response:
 "Jensen, Carter",695600,2026,459,".306",".280",42.8,10,29.4
 "Duran, Ezequiel",677649,2026,443,".325",".299",36,7,23.9
 "DeLuca, Jonny",676356,2026,250,".316",".280",29.8,4.4,20.4
+"Callahan, Brett",814430,2026,2,".797",".323",0,0,50
 "Hoerner, Nico",663538,2026,537,".303",".325",28.3,7.4,8.6
 "Jackson, Alex",656577,2026,69,".327",".220",34.9,1.4,33.3
 "Frelick, Sal",686217,2026,313,".281",".281",27.8,8,9.9
@@ -35,4 +36,4 @@ First 2000 chars of response:
 "Soderstrom, Tyler",691016,2026,453,".349",".328",45.4,11.7,20.1
 "Crews, Dylan",686611,2026,302,".286",".319",43.6,6.6,24.2
 "Bailey, Patrick",672275,2026,260,".241",".290",39.8,7.3,25
-"Keys, Sean",815873,2026,37,".204",".211",60.9,2.7,35.1
+"K
