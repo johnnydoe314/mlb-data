@@ -1,94 +1,98 @@
 game_date,team,player,transaction_type,txn_date,description,relevant_today
+2026-08-18,TOR,Lenyn Sosa,Status Change,2026-08-18,Toronto Blue Jays activated 2B Lenyn Sosa from the 60-day injured list.,1
+2026-08-18,NYM,Austin Warren,Status Change,2026-08-18,New York Mets activated RHP Austin Warren from the 15-day injured list.,1
 2026-08-18,ATL,Tyler Kinley,Designated for Assignment,2026-08-18,Atlanta Braves designated RHP Tyler Kinley for assignment.,1
-2026-08-18,CIN,Will Banfield,Recalled,2026-08-18,Cincinnati Reds recalled C Will Banfield from Louisville Bats.,1
+2026-08-18,PIT,Antwone Kelly,Recalled,2026-08-18,Pittsburgh Pirates recalled RHP Antwone Kelly from Indianapolis Indians.,1
 2026-08-18,ATL,AJ Smith-Shawver,Recalled,2026-08-18,Atlanta Braves recalled RHP AJ Smith-Shawver from Gwinnett Stripers.,1
-2026-08-18,MIN,Austin Martin,Status Change,2026-08-17,Minnesota Twins placed RF Austin Martin on the 10-day injured list. Left hamstring strain.,1
+2026-08-18,ATH,Taylor Rashi,Recalled,2026-08-18,Athletics recalled RHP Taylor Rashi from Las Vegas Aviators.,1
+2026-08-18,CIN,Will Banfield,Recalled,2026-08-18,Cincinnati Reds recalled C Will Banfield from Louisville Bats.,1
 2026-08-18,KCR,Maikel Garcia,Status Change,2026-08-17,Kansas City Royals activated 3B Maikel Garcia from the 10-day injured list.,1
 2026-08-18,ARI,Andrew Hoffmann,Designated for Assignment,2026-08-17,Arizona Diamondbacks designated RHP Andrew Hoffmann for assignment.,1
 2026-08-18,COL,Michael Lorenzen,Designated for Assignment,2026-08-17,Colorado Rockies designated RHP Michael Lorenzen for assignment.,1
 2026-08-18,PIT,Oneil Cruz,Status Change,2026-08-17,Pittsburgh Pirates activated CF Oneil Cruz from the 60-day injured list.,1
 2026-08-18,TBR,Shane McClanahan,Status Change,2026-08-17,Tampa Bay Rays activated LHP Shane McClanahan from the 15-day injured list.,1
 2026-08-18,ARI,Ketel Marte,Status Change,2026-08-17,Arizona Diamondbacks placed 2B Ketel Marte on the restricted list.,1
-2026-08-18,KCR,Vinnie Pasquantino,Status Change,2026-08-17,Kansas City Royals activated 1B Vinnie Pasquantino from the 10-day injured list.,1
 2026-08-18,KCR,Starling Marte,Designated for Assignment,2026-08-17,Kansas City Royals designated RF Starling Marte for assignment.,1
+2026-08-18,NYM,Gabriel Arias,Designated for Assignment,2026-08-17,New York Mets designated 3B Gabriel Arias for assignment.,1
+2026-08-18,CHC,Daniel Palencia,Status Change,2026-08-17,Chicago Cubs placed RHP Daniel Palencia on the 60-day injured list. Right elbow inflammation.,1
+2026-08-18,MIN,Austin Martin,Status Change,2026-08-17,Minnesota Twins placed RF Austin Martin on the 10-day injured list. Left hamstring strain.,1
 2026-08-18,CIN,Kent Emanuel,Designated for Assignment,2026-08-17,Cincinnati Reds designated LHP Kent Emanuel for assignment.,1
+2026-08-18,KCR,Vinnie Pasquantino,Status Change,2026-08-17,Kansas City Royals activated 1B Vinnie Pasquantino from the 10-day injured list.,1
+2026-08-18,CHC,Dansby Swanson,Status Change,2026-08-17,Chicago Cubs placed SS Dansby Swanson on the 10-day injured list. Left oblique strain.,1
 2026-08-18,PIT,Yohan Ramírez,Status Change,2026-08-17,Pittsburgh Pirates activated RHP Yohan Ramírez from the paternity list.,1
 2026-08-18,NYY,Max Fried,Status Change,2026-08-17,"New York Yankees placed LHP Max Fried on the 15-day injured list retroactive to August 14, 2026. Left elbow bone bruise.",1
-2026-08-18,ARI,Justin Martinez,Status Change,2026-08-17,Arizona Diamondbacks activated RHP Justin Martinez from the 60-day injured list.,1
-2026-08-18,ARI,Jordan Lawlar,Status Change,2026-08-17,Arizona Diamondbacks activated LF Jordan Lawlar from the 10-day injured list.,1
 2026-08-18,CIN,Ron Marinaccio,Designated for Assignment,2026-08-17,Cincinnati Reds designated RHP Ron Marinaccio for assignment.,1
 2026-08-18,CHC,Edward Cabrera,Status Change,2026-08-17,Chicago Cubs placed RHP Edward Cabrera on the 15-day injured list. Right middle finger blister.,1
 2026-08-18,PIT,Johnathan Rodríguez,Designated for Assignment,2026-08-17,Pittsburgh Pirates designated RF Johnathan Rodríguez for assignment.,1
+2026-08-18,ARI,Justin Martinez,Status Change,2026-08-17,Arizona Diamondbacks activated RHP Justin Martinez from the 60-day injured list.,1
 2026-08-18,BOS,Eduardo Rivera,Status Change,2026-08-17,Boston Red Sox placed LHP Eduardo Rivera on the restricted list.,1
-2026-08-18,CHC,Dansby Swanson,Status Change,2026-08-17,Chicago Cubs placed SS Dansby Swanson on the 10-day injured list. Left oblique strain.,1
-2026-08-18,NYM,Gabriel Arias,Designated for Assignment,2026-08-17,New York Mets designated 3B Gabriel Arias for assignment.,1
-2026-08-18,CHC,Daniel Palencia,Status Change,2026-08-17,Chicago Cubs placed RHP Daniel Palencia on the 60-day injured list. Right elbow inflammation.,1
+2026-08-18,ARI,Jordan Lawlar,Status Change,2026-08-17,Arizona Diamondbacks activated LF Jordan Lawlar from the 10-day injured list.,1
+2026-08-18,CHC,Kevin Alcántara,Recalled,2026-08-17,Chicago Cubs recalled OF Kevin Alcántara from Iowa Cubs.,1
 2026-08-18,COL,TJ Shook,Recalled,2026-08-17,Colorado Rockies recalled RHP TJ Shook from Albuquerque Isotopes.,1
+2026-08-18,CIN,Zach Maxwell,Recalled,2026-08-17,Cincinnati Reds recalled RHP Zach Maxwell from Louisville Bats.,1
 2026-08-18,ARI,Jose Fernandez,Recalled,2026-08-17,Arizona Diamondbacks recalled DH Jose Fernandez from Reno Aces.,1
 2026-08-18,CHC,Javier Assad,Recalled,2026-08-17,Chicago Cubs recalled RHP Javier Assad from Iowa Cubs.,1
 2026-08-18,KCR,Connor Thomas,Recalled,2026-08-17,Kansas City Royals recalled LHP Connor Thomas from Omaha Storm Chasers.,1
-2026-08-18,CIN,Zach McCambley,Recalled,2026-08-17,Cincinnati Reds recalled RHP Zach McCambley from Louisville Bats.,1
 2026-08-18,STL,Quinn Mathews,Recalled,2026-08-17,St. Louis Cardinals recalled LHP Quinn Mathews from Memphis Redbirds.,1
-2026-08-18,CHC,Kevin Alcántara,Recalled,2026-08-17,Chicago Cubs recalled OF Kevin Alcántara from Iowa Cubs.,1
-2026-08-18,CIN,Zach Maxwell,Recalled,2026-08-17,Cincinnati Reds recalled RHP Zach Maxwell from Louisville Bats.,1
-2026-08-18,CHC,Edward Cabrera,Status Change,2026-08-16,Chicago Cubs activated RHP Edward Cabrera from the 15-day injured list.,1
-2026-08-18,ARI,Philip Abner,Designated for Assignment,2026-08-16,Arizona Diamondbacks designated LHP Philip Abner for assignment.,1
-2026-08-18,ATH,Tyler Soderstrom,Status Change,2026-08-16,"Athletics placed LF Tyler Soderstrom on the 10-day injured list retroactive to August 15, 2026. Left hip impingement.",1
-2026-08-18,ATL,Danny Young,Designated for Assignment,2026-08-16,Atlanta Braves designated LHP Danny Young for assignment.,1
+2026-08-18,CIN,Zach McCambley,Recalled,2026-08-17,Cincinnati Reds recalled RHP Zach McCambley from Louisville Bats.,1
 2026-08-18,BOS,Masataka Yoshida,Status Change,2026-08-16,Boston Red Sox placed DH Masataka Yoshida on the 10-day injured list. Left hamstring strain.,1
 2026-08-18,DET,Trei Cruz,Designated for Assignment,2026-08-16,Detroit Tigers designated CF Trei Cruz for assignment.,1
-2026-08-18,ATH,Justin Sterner,Status Change,2026-08-16,Athletics transferred RHP Justin Sterner from the 15-day injured list to the 60-day injured list. Right knee chondromalacia.,1
-2026-08-18,BOS,Justin Slaten,Status Change,2026-08-16,"Boston Red Sox placed RHP Justin Slaten on the 15-day injured list retroactive to August 13, 2026. Right elbow inflammation.",1
+2026-08-18,CHC,Edward Cabrera,Status Change,2026-08-16,Chicago Cubs activated RHP Edward Cabrera from the 15-day injured list.,1
+2026-08-18,ATL,Danny Young,Designated for Assignment,2026-08-16,Atlanta Braves designated LHP Danny Young for assignment.,1
 2026-08-18,TOR,Brendon Little,Status Change,2026-08-16,Toronto Blue Jays activated LHP Brendon Little from the paternity list.,1
+2026-08-18,ATH,Tyler Soderstrom,Status Change,2026-08-16,"Athletics placed LF Tyler Soderstrom on the 10-day injured list retroactive to August 15, 2026. Left hip impingement.",1
+2026-08-18,BOS,Justin Slaten,Status Change,2026-08-16,"Boston Red Sox placed RHP Justin Slaten on the 15-day injured list retroactive to August 13, 2026. Right elbow inflammation.",1
+2026-08-18,ARI,Philip Abner,Designated for Assignment,2026-08-16,Arizona Diamondbacks designated LHP Philip Abner for assignment.,1
+2026-08-18,ATH,Justin Sterner,Status Change,2026-08-16,Athletics transferred RHP Justin Sterner from the 15-day injured list to the 60-day injured list. Right knee chondromalacia.,1
 2026-08-18,LAD,Justin Wrobleski,Status Change,2026-08-16,Los Angeles Dodgers placed LHP Justin Wrobleski on the 15-day injured list. Left forearm inflammation.,1
+2026-08-18,LAD,Kyle Hurt,Recalled,2026-08-16,Los Angeles Dodgers recalled RHP Kyle Hurt from Oklahoma City Comets.,1
+2026-08-18,HOU,Miguel Ullola,Recalled,2026-08-16,Houston Astros recalled RHP Miguel Ullola from Sugar Land Space Cowboys.,1
+2026-08-18,PIT,Nick Yorke,Recalled,2026-08-16,Pittsburgh Pirates recalled 3B Nick Yorke from Indianapolis Indians.,1
+2026-08-18,BOS,Mickey Gasper,Recalled,2026-08-16,Boston Red Sox recalled C Mickey Gasper from Worcester Red Sox.,1
 2026-08-18,BOS,Raymond Burgos,Recalled,2026-08-16,Boston Red Sox recalled LHP Raymond Burgos from Worcester Red Sox.,1
 2026-08-18,ATH,Darell Hernaiz,Recalled,2026-08-16,Athletics recalled SS Darell Hernaiz from Las Vegas Aviators.,1
-2026-08-18,HOU,Miguel Ullola,Recalled,2026-08-16,Houston Astros recalled RHP Miguel Ullola from Sugar Land Space Cowboys.,1
-2026-08-18,BOS,Mickey Gasper,Recalled,2026-08-16,Boston Red Sox recalled C Mickey Gasper from Worcester Red Sox.,1
-2026-08-18,PIT,Nick Yorke,Recalled,2026-08-16,Pittsburgh Pirates recalled 3B Nick Yorke from Indianapolis Indians.,1
 2026-08-18,PIT,Hunter Barco,Recalled,2026-08-16,Pittsburgh Pirates recalled LHP Hunter Barco from Indianapolis Indians.,1
-2026-08-18,LAD,Kyle Hurt,Recalled,2026-08-16,Los Angeles Dodgers recalled RHP Kyle Hurt from Oklahoma City Comets.,1
-2026-08-18,TEX,Marco Gonzales,Designated for Assignment,2026-08-15,Texas Rangers designated LHP Marco Gonzales for assignment.,1
 2026-08-18,CWS,Jake Rogers,Status Change,2026-08-15,Chicago White Sox activated C Jake Rogers.,1
 2026-08-18,TEX,Jakob Junis,Status Change,2026-08-15,Texas Rangers activated RHP Jakob Junis from the 15-day injured list.,1
+2026-08-18,TEX,Marco Gonzales,Designated for Assignment,2026-08-15,Texas Rangers designated LHP Marco Gonzales for assignment.,1
 2026-08-18,TOR,Vladimir Guerrero Jr.,Status Change,2026-08-15,Toronto Blue Jays placed 1B Vladimir Guerrero Jr. on the 7-day injured list. Concussion.,1
 2026-08-18,TOR,Lazaro Estrada,Designated for Assignment,2026-08-15,Toronto Blue Jays designated RHP Lazaro Estrada for assignment.,1
 2026-08-18,MIL,Jihwan Bae,Designated for Assignment,2026-08-15,Milwaukee Brewers designated CF Jihwan Bae for assignment.,1
 2026-08-18,LAA,Sebastián Rivero,Status Change,2026-08-15,Los Angeles Angels placed C Sebastián Rivero on the 60-day injured list. Left hamate fracture.,1
 2026-08-18,STL,Joshua Báez,Recalled,2026-08-15,St. Louis Cardinals recalled RF Joshua Báez from Memphis Redbirds.,1
-2026-08-18,TOR,Ricky Tiedemann,Recalled,2026-08-15,Toronto Blue Jays recalled LHP Ricky Tiedemann from Buffalo Bisons.,1
 2026-08-18,CLE,Logan Allen,Recalled,2026-08-15,Cleveland Guardians recalled LHP Logan Allen from Columbus Clippers.,1
+2026-08-18,TOR,Ricky Tiedemann,Recalled,2026-08-15,Toronto Blue Jays recalled LHP Ricky Tiedemann from Buffalo Bisons.,1
 2026-08-18,TBR,Joe Boyle,Recalled,2026-08-15,Tampa Bay Rays recalled RHP Joe Boyle from Durham Bulls.,1
-2026-08-18,BAL,Chris Bassitt,Status Change,2026-08-14,Baltimore Orioles activated RHP Chris Bassitt from the 60-day injured list.,1
-2026-08-18,SEA,Colt Emerson,Status Change,2026-08-14,Seattle Mariners placed SS Colt Emerson on the 10-day injured list. Left wrist tendon inflammation.,1
-2026-08-18,MIL,Abner Uribe,Status Change,2026-08-14,"Milwaukee Brewers placed RHP Abner Uribe on the 15-day injured list retroactive to August 11, 2026. Right forearm flexor strain.",1
-2026-08-18,TOR,Paul Sewald,Status Change,2026-08-14,Toronto Blue Jays activated RHP Paul Sewald.,1
-2026-08-18,MIN,Alex Jackson,Designated for Assignment,2026-08-14,Minnesota Twins designated C Alex Jackson for assignment.,1
-2026-08-18,CWS,Davis Martin,Status Change,2026-08-14,Chicago White Sox placed RHP Davis Martin on the 15-day injured list. Right middle finger blister.,1
-2026-08-18,PIT,Yohan Ramírez,Status Change,2026-08-14,Pittsburgh Pirates placed RHP Yohan Ramírez on the paternity list.,1
 2026-08-18,CWS,Joe Rock,Designated for Assignment,2026-08-14,Chicago White Sox designated LHP Joe Rock for assignment.,1
+2026-08-18,BAL,Chris Bassitt,Status Change,2026-08-14,Baltimore Orioles activated RHP Chris Bassitt from the 60-day injured list.,1
+2026-08-18,MIL,Abner Uribe,Status Change,2026-08-14,"Milwaukee Brewers placed RHP Abner Uribe on the 15-day injured list retroactive to August 11, 2026. Right forearm flexor strain.",1
+2026-08-18,SEA,Colt Emerson,Status Change,2026-08-14,Seattle Mariners placed SS Colt Emerson on the 10-day injured list. Left wrist tendon inflammation.,1
 2026-08-18,TEX,Luis Curvelo,Designated for Assignment,2026-08-14,Texas Rangers designated RHP Luis Curvelo for assignment.,1
-2026-08-18,PIT,Billy Cook,Recalled,2026-08-14,Pittsburgh Pirates recalled CF Billy Cook from Indianapolis Indians.,1
-2026-08-18,CWS,José Urquidy,Recalled,2026-08-14,Chicago White Sox recalled RHP José Urquidy from Charlotte Knights.,1
-2026-08-18,CWS,Tyler Schweitzer,Recalled,2026-08-14,Chicago White Sox recalled LHP Tyler Schweitzer from Charlotte Knights.,1
+2026-08-18,MIN,Alex Jackson,Designated for Assignment,2026-08-14,Minnesota Twins designated C Alex Jackson for assignment.,1
+2026-08-18,PIT,Yohan Ramírez,Status Change,2026-08-14,Pittsburgh Pirates placed RHP Yohan Ramírez on the paternity list.,1
+2026-08-18,TOR,Paul Sewald,Status Change,2026-08-14,Toronto Blue Jays activated RHP Paul Sewald.,1
+2026-08-18,CWS,Davis Martin,Status Change,2026-08-14,Chicago White Sox placed RHP Davis Martin on the 15-day injured list. Right middle finger blister.,1
+2026-08-18,SFG,Jonah Cox,Recalled,2026-08-14,San Francisco Giants recalled CF Jonah Cox from Sacramento River Cats.,1
 2026-08-18,PIT,Wilber Dotel,Recalled,2026-08-14,Pittsburgh Pirates recalled RHP Wilber Dotel from Indianapolis Indians.,1
 2026-08-18,TEX,Cody Freeman,Recalled,2026-08-14,Texas Rangers recalled 3B Cody Freeman from Round Rock Express.,1
+2026-08-18,CWS,Tyler Schweitzer,Recalled,2026-08-14,Chicago White Sox recalled LHP Tyler Schweitzer from Charlotte Knights.,1
+2026-08-18,CWS,José Urquidy,Recalled,2026-08-14,Chicago White Sox recalled RHP José Urquidy from Charlotte Knights.,1
+2026-08-18,PIT,Billy Cook,Recalled,2026-08-14,Pittsburgh Pirates recalled CF Billy Cook from Indianapolis Indians.,1
 2026-08-18,MIL,Grant Anderson,Recalled,2026-08-14,Milwaukee Brewers recalled RHP Grant Anderson from Nashville Sounds.,1
-2026-08-18,SFG,Jonah Cox,Recalled,2026-08-14,San Francisco Giants recalled CF Jonah Cox from Sacramento River Cats.,1
-2026-08-18,TOR,Brendon Little,Status Change,2026-08-13,Toronto Blue Jays placed LHP Brendon Little on the paternity list.,1
-2026-08-18,KCR,Eli Morgan,Designated for Assignment,2026-08-13,Kansas City Royals designated RHP Eli Morgan for assignment.,1
-2026-08-18,TBR,Trevor Martin,Designated for Assignment,2026-08-13,Tampa Bay Rays designated RHP Trevor Martin for assignment.,1
-2026-08-18,DET,James Outman,Status Change,2026-08-13,Detroit Tigers placed CF James Outman on the 7-day injured list. Concussion.,1
 2026-08-18,BOS,Garrett Whitlock,Status Change,2026-08-13,"Boston Red Sox placed RHP Garrett Whitlock on the 15-day injured list retroactive to August 10, 2026. Right elbow inflammation.",1
+2026-08-18,TBR,Trevor Martin,Designated for Assignment,2026-08-13,Tampa Bay Rays designated RHP Trevor Martin for assignment.,1
+2026-08-18,MIN,Byron Buxton,Status Change,2026-08-13,Minnesota Twins activated CF Byron Buxton from the 10-day injured list.,1
+2026-08-18,DET,James Outman,Status Change,2026-08-13,Detroit Tigers placed CF James Outman on the 7-day injured list. Concussion.,1
+2026-08-18,KCR,Eli Morgan,Designated for Assignment,2026-08-13,Kansas City Royals designated RHP Eli Morgan for assignment.,1
 2026-08-18,SFG,Matt Chapman,Status Change,2026-08-13,San Francisco Giants transferred 3B Matt Chapman from the 10-day injured list to the 60-day injured list. Abdominal strain.,1
 2026-08-18,PIT,Endy Rodríguez,Status Change,2026-08-13,"Pittsburgh Pirates placed C Endy Rodríguez on the 10-day injured list retroactive to August 10, 2026. Left hip inflammation.",1
 2026-08-18,SFG,Trevor McDonald,Status Change,2026-08-13,San Francisco Giants transferred RHP Trevor McDonald from the 15-day injured list to the 60-day injured list. Right elbow strain.,1
-2026-08-18,MIN,Byron Buxton,Status Change,2026-08-13,Minnesota Twins activated CF Byron Buxton from the 10-day injured list.,1
-2026-08-18,TOR,Lazaro Estrada,Recalled,2026-08-13,Toronto Blue Jays recalled RHP Lazaro Estrada from Buffalo Bisons.,1
+2026-08-18,TOR,Brendon Little,Status Change,2026-08-13,Toronto Blue Jays placed LHP Brendon Little on the paternity list.,1
 2026-08-18,PHI,Kameron Misner,Recalled,2026-08-13,Philadelphia Phillies recalled CF Kameron Misner from Lehigh Valley IronPigs.,1
+2026-08-18,DET,Trei Cruz,Recalled,2026-08-13,Detroit Tigers recalled CF Trei Cruz from Toledo Mud Hens.,1
+2026-08-18,LAD,Charlie Barnes,Recalled,2026-08-13,Los Angeles Dodgers recalled LHP Charlie Barnes from Oklahoma City Comets.,1
+2026-08-18,PIT,Isaac Mattson,Recalled,2026-08-13,Pittsburgh Pirates recalled RHP Isaac Mattson from Indianapolis Indians.,1
 2026-08-18,BOS,Greg Weissert,Recalled,2026-08-13,Boston Red Sox recalled RHP Greg Weissert from Worcester Red Sox.,1
 2026-08-18,PIT,Jack Brannigan,Recalled,2026-08-13,Pittsburgh Pirates recalled SS Jack Brannigan from Indianapolis Indians.,1
 2026-08-18,TBR,Jesse Scholtens,Recalled,2026-08-13,Tampa Bay Rays recalled RHP Jesse Scholtens from Durham Bulls.,1
-2026-08-18,PIT,Isaac Mattson,Recalled,2026-08-13,Pittsburgh Pirates recalled RHP Isaac Mattson from Indianapolis Indians.,1
-2026-08-18,DET,Trei Cruz,Recalled,2026-08-13,Detroit Tigers recalled CF Trei Cruz from Toledo Mud Hens.,1
-2026-08-18,LAD,Charlie Barnes,Recalled,2026-08-13,Los Angeles Dodgers recalled LHP Charlie Barnes from Oklahoma City Comets.,1
+2026-08-18,TOR,Lazaro Estrada,Recalled,2026-08-13,Toronto Blue Jays recalled RHP Lazaro Estrada from Buffalo Bisons.,1
