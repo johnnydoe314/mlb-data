@@ -748,13 +748,21 @@ def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen,
     # (see AUDIT_LOG.md) -- it does not update live/dynamically, by design,
     # for the same reason the rest of this pipeline favors periodic
     # deliberate audits over continuous self-modification.
-    V3_COMBO_RECORD = {   # frozenset(rules) -> (wins, losses), decided games only, as of 8/10 audit
-        frozenset({'R1', 'R4'}):        (11, 8),
-        frozenset({'R3'}):              (10, 8),
-        frozenset({'R3', 'R4'}):        (9, 4),
-        frozenset({'R1', 'R2'}):        (7, 4),
-        frozenset({'R1', 'R3'}):        (7, 4),
-        frozenset({'R1', 'R3', 'R4'}):  (6, 4),
+    # Refreshed at the 2026-08-20 audit (n=969 games, June 1 - Aug 19).
+    # R3 alone DROPPED OUT this audit: was 55.6% (n=18) at the 8/10 audit,
+    # now 47.6% (10W-11L, n=21) -- a real decline on a growing sample, not
+    # noise. It's still in this dict (rather than deleted) so its win rate
+    # keeps being tracked automatically going forward; the allowed-check
+    # below will simply keep excluding it unless it climbs back above 55%.
+    # R2+R3 is a near-miss worth watching next audit: 54.5% (n=11).
+    # R1+R2+R3+R4 remains excellent (83.3%) but still under n=10 (n=6).
+    V3_COMBO_RECORD = {   # frozenset(rules) -> (wins, losses), decided games only
+        frozenset({'R1', 'R4'}):        (16, 11),
+        frozenset({'R3'}):              (10, 11),  # DROPPED OUT 8/20 (was allowed)
+        frozenset({'R3', 'R4'}):        (11, 4),
+        frozenset({'R1', 'R2'}):        (8, 5),
+        frozenset({'R1', 'R3'}):        (9, 5),
+        frozenset({'R1', 'R3', 'R4'}):  (7, 4),
     }
 
     def _combo_allowed(record, fired_set):
@@ -787,7 +795,7 @@ def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen,
     # clears the same n>=10/55% bar, so it continues to fire. Written as an
     # explicit check (not just "R5 always fires") so a future decline would
     # naturally suppress it without needing a separate code change.
-    R5_RECORD = (13, 6)
+    R5_RECORD = (15, 6)  # refreshed 2026-08-20 audit, 71.4% n=21
     v3_counter_qual = False
     v3_counter_dir  = ''
     v3_counter_conf = 0.0
@@ -936,9 +944,13 @@ def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen,
     # Now both blocked combos still get logged for future audits.
     # V4 ALLOWLIST (same standing policy as V3 above, established/tightened
     # 2026-08-10). Snapshot as of the 8/10 audit, decided games only.
+    # Refreshed at the 2026-08-20 audit. F2 alone DROPPED OUT this audit:
+    # was 55.6% (n=18) at the 8/10 audit, now exactly 50.0% (10W-10L,
+    # n=20) -- same pattern as V3's R3 above. Kept in the dict for
+    # continued tracking rather than deleted.
     V4_COMBO_RECORD = {
-        frozenset({'F2'}):                    (10, 8),
-        frozenset({'F1', 'F2', 'F3', 'F4'}):  (11, 6),
+        frozenset({'F2'}):                    (10, 10),  # DROPPED OUT 8/20 (was allowed)
+        frozenset({'F1', 'F2', 'F3', 'F4'}):  (11, 8),
     }
     fired_ids = frozenset(r[0] for r in v4_rules_fired)
 
@@ -950,7 +962,7 @@ def compute_composite(asn, hsn, at, ht, pitchers, teams, bullpen,
     # F5-rule record: 47W-23L (n=70, decided) as of the 8/10 audit -- 67.1%,
     # clears the bar. Explicit check for the same future-proofing reason as
     # R5 above.
-    F5_RULE_RECORD = (47, 23)
+    F5_RULE_RECORD = (49, 26)  # refreshed 2026-08-20 audit, 65.3% n=75
 
     v4_qual = False
     v4_dir  = ''
