@@ -175,12 +175,49 @@ the next audit.
 - All changes verified in isolation (11 scenarios across V3/V4/R5/F5-rule)
   before live testing and deployment.
 
+## 2026-08-20 — fourth full audit (n=969 games, June 1 - Aug 19)
+
+Scheduled audit, run on time per the standing cadence.
+
+- **V3 `R3` alone dropped out of the allowlist.** Was 55.6% (n=18) at the
+  8/10 audit; now 47.6% (10W-11L, n=21) -- a real decline on a growing
+  sample, not noise. This was one of the most frequently-firing V3
+  signals all season, so this is a meaningful narrowing of future plays.
+- **V4 `F2` alone dropped out of the allowlist.** Was 55.6% (n=18) at the
+  8/10 audit; now exactly 50.0% (10W-10L, n=20) -- same pattern as R3
+  above.
+- Both combos are kept in their record dicts (not deleted) specifically
+  so tracking continues uninterrupted -- if either climbs back above 55%
+  on n>=10 at a future audit, it's a natural candidate for re-inclusion,
+  the allowlist mechanism doesn't need any code change to make that
+  happen, just updated numbers.
+- Everything else that was already allowed stayed allowed, mostly with
+  improved or stable rates: R1+R4 59.3% (n=27), R3+R4 73.3% (n=15),
+  R1+R3 64.3% (n=14), R1+R2 61.5% (n=13), R1+R3+R4 63.6% (n=11), R5
+  counter 71.4% (n=21), F1+F2+F3+F4 57.9% (n=19), F5-rule 65.3% (n=75).
+- **Watch list for next audit:**
+  - V3 R2+R3: 54.5% (6W-5L, n=11) -- a near-miss, just under the bar.
+  - V3 R1+R2+R3+R4: 83.3% (5W-1L, n=6) -- excellent rate, still under
+    the n>=10 sample bar.
+  - V4 F1+F3+F4: 42.9% (n=14), F1+F2+F3: 26.3% (n=19) -- both remain
+    clearly blocked, consistent with prior findings.
+- All changes verified in isolation before live testing; tested against
+  today's 15-game slate with no errors.
+
+**Operational note, unrelated to rule findings:** `game_log.csv` has
+grown past GitHub's 1MB inline-content limit for the Contents API (now
+~1,459 rows). Reading it now requires fetching via the raw
+`raw.githubusercontent.com` download URL rather than the Contents API's
+base64-encoded response, which silently returns empty content for files
+over that size. Worth remembering for all future reads of this file.
+
 ---
 
 ## Next audit due
 
-**~2026-08-20** (or ~150 new qualifying games from 8/6, whichever comes
-first). Carry over from this audit: (1) re-check the R1+R3+R2, R2+R4, and
-F3 watch-list items now that they'll have ~2 more weeks of data; (2)
-investigate and fix the row-loss issue found above; (3) confirm the F1 and
-game_num fixes are behaving correctly in live data since deployment.
+**~2026-09-03** (or ~150 new qualifying games from 8/20, whichever comes
+first). Carry over from this audit: (1) re-check R2+R3 (54.5%, n=11) and
+R1+R2+R3+R4 (83.3%, n=6) against the n>=10/55% bar; (2) re-check whether
+R3 alone or F2 alone have recovered above 55%; (3) the row-loss issue
+found on 8/10 (some historical doubleheader dates show only one row per
+matchup instead of two) is still open and not yet root-caused.
