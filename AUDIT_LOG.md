@@ -206,10 +206,17 @@ Scheduled audit, run on time per the standing cadence.
 
 **Operational note, unrelated to rule findings:** `game_log.csv` has
 grown past GitHub's 1MB inline-content limit for the Contents API (now
-~1,459 rows). Reading it now requires fetching via the raw
-`raw.githubusercontent.com` download URL rather than the Contents API's
-base64-encoded response, which silently returns empty content for files
-over that size. Worth remembering for all future reads of this file.
+~1,459 rows). Initially worked around by reading via the raw
+`raw.githubusercontent.com` download URL, but a follow-up round-trip
+test found that approach serves stale content for 30+ seconds after a
+fresh write (CDN caching) -- risky for this pipeline's constant
+read-modify-write pattern. **Properly fixed 2026-08-20** with
+`scripts/gh_helpers.py`, which reads via the Git Blobs API instead
+(`GET /repos/{o}/{r}/git/blobs/{sha}`) -- confirmed via a real
+write-then-immediate-reread-with-zero-sleep test to have no size limit
+and no staleness. Use `gh_read`/`gh_write`/`gh_read_modify_write` from
+that module for any future script that reads or writes `game_log.csv`
+or any other file that may grow past 1MB.
 
 ---
 
