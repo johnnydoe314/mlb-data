@@ -1,6 +1,6 @@
 "game_date","game_pk","game_num","game_time","venue","away_team","away_team_name","home_team","home_team_name","away_pitcher_id","away_pitcher","home_pitcher_id","home_pitcher","status"
-"2026-08-22","823509","","2026-08-22T17:35:00Z","Yankee Stadium","TOR","Toronto Blue Jays","NYY","New York Yankees","656302","Cease, Dylan","677960","Weathers, Ryan","In Progress"
-"2026-08-22","823743","","2026-08-22T18:10:00Z","American Family Field","ATL","Atlanta Braves","MIL","Milwaukee Brewers","527048","Pérez, Martín","701656","Henderson, Logan","In Progress"
+"2026-08-22","823509","","2026-08-22T17:35:00Z","Yankee Stadium","TOR","Toronto Blue Jays","NYY","New York Yankees","656302","Cease, Dylan","677960","Weathers, Ryan","Final"
+"2026-08-22","823743","","2026-08-22T18:10:00Z","American Family Field","ATL","Atlanta Braves","MIL","Milwaukee Brewers","527048","Pérez, Martín","701656","Henderson, Logan","Final"
 "2026-08-22","823831","","2026-08-22T20:10:00Z","loanDepot park","WSH","Washington Nationals","MIA","Miami Marlins","663623","Irvin, Jake","691587","Pérez, Eury","In Progress"
 "2026-08-22","823422","","2026-08-22T22:05:00Z","Citizens Bank Park","STL","St. Louis Cardinals","PHI","Philadelphia Phillies","687273","Mathews, Quinn","691725","Painter, Andrew","Pre-Game"
 "2026-08-22","824798","","2026-08-22T23:05:00Z","Oriole Park at Camden Yards","TBR","Tampa Bay Rays","BAL","Baltimore Orioles","663556","McClanahan, Shane","687064","Young, Brandon","Pre-Game"
