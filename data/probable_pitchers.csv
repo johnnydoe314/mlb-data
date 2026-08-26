@@ -1,5 +1,5 @@
 "game_date","game_pk","game_num","game_time","venue","away_team","away_team_name","home_team","home_team_name","away_pitcher_id","away_pitcher","home_pitcher_id","home_pitcher","status"
-"2026-08-26","824234","","2026-08-26T17:10:00Z","Comerica Park","TBR","Tampa Bay Rays","DET","Detroit Tigers","642547","Peralta, Freddy","675512","Melton, Troy","Scheduled"
+"2026-08-26","824234","","2026-08-26T17:10:00Z","Comerica Park","TBR","Tampa Bay Rays","DET","Detroit Tigers","642547","Peralta, Freddy","675512","Melton, Troy","Pre-Game"
 "2026-08-26","825039","","2026-08-26T19:40:00Z","Chase Field","CHC","Chicago Cubs","ARI","Arizona Diamondbacks","571510","Boyd, Matthew","593958","Rodriguez, Eduardo","Scheduled"
 "2026-08-26","823180","","2026-08-26T19:45:00Z","Oracle Park","CIN","Cincinnati Reds","SFG","San Francisco Giants","666157","Lodolo, Nick","694738","Roupp, Landen","Scheduled"
 "2026-08-26","823988","","2026-08-26T20:07:00Z","Angel Stadium","CLE","Cleveland Guardians","LAA","Los Angeles Angels","676282","Cantillo, Joey","680570","Rodriguez, Grayson","Scheduled"
