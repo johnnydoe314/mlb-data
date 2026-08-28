@@ -1114,6 +1114,74 @@ _ALWAYS_PRESERVE = {
 _PRESERVE_FIELDS = _PRESERVE_IF_SET | _ALWAYS_PRESERVE
 
 
+def refresh_preserve_fields_from_remote(rows):
+    """
+    Fixes a real race condition, confirmed live on 2026-08-27: this script's
+    own merge logic (see _PRESERVE_IF_SET / _ALWAYS_PRESERVE above) only
+    protects bet/score fields against what load_existing_log() read from
+    the LOCAL checkout, taken at the START of this run. A scheduled
+    workflow run takes several minutes end to end (multiple fetch steps
+    before this one); if a manual grading push lands on the remote AFTER
+    this run's checkout but BEFORE this run's own "Commit and push" step,
+    this run's local snapshot never sees it -- and when this run pushes,
+    it silently overwrites the manual grading with the stale (pre-grading)
+    values it preserved from checkout time. This isn't a flaw in the
+    preserve logic itself (which correctly protects against local
+    staleness within a run); it's a gap against staleness relative to
+    the REMOTE, which only a live re-check right before the final write
+    can close.
+
+    This function does exactly that: a narrow, final re-fetch of ONLY the
+    preserve-fields from the actual current remote state (via the Git
+    Blobs API -- see scripts/gh_helpers.py -- which has no CDN staleness,
+    confirmed via a real round-trip test), applied as the very last step
+    before writing. It does not touch any freshly-computed composite/
+    signal field, only the same narrow field set _PRESERVE_FIELDS already
+    covers. Requires GITHUB_TOKEN in the environment; if absent or the
+    fetch fails for any reason, this degrades gracefully to a no-op --
+    the existing local-checkout-based preservation still applies as a
+    fallback, so a missing token doesn't break the script, it just
+    narrows back to the pre-fix protection level for that one run.
+    """
+    token = os.environ.get('GITHUB_TOKEN', '').strip()
+    if not token:
+        print("  [~] GITHUB_TOKEN not set — skipping remote freshness check "
+              "(preserve logic still protects against local-checkout staleness)")
+        return rows
+
+    try:
+        sys.path.insert(0, str(Path(__file__).resolve().parent))
+        from gh_helpers import gh_read
+        remote_content, _ = gh_read(token, 'johnnydoe314/mlb-data', 'data/game_log.csv')
+    except Exception as e:
+        print(f"  [~] Remote freshness check failed ({e}) — falling back to "
+              f"local-checkout preservation only")
+        return rows
+
+    remote_rows = {
+        (r['game_date'], r['away_team'], r['home_team'], r.get('game_num', '')): r
+        for r in csv.DictReader(io.StringIO(remote_content))
+    }
+
+    refreshed = 0
+    for row in rows:
+        key = (row['game_date'], row['away_team'], row['home_team'], row.get('game_num', ''))
+        remote_row = remote_rows.get(key)
+        if remote_row is None:
+            continue
+        for f in _PRESERVE_FIELDS:
+            remote_val = remote_row.get(f, '')
+            if remote_val != row.get(f, ''):
+                row[f] = remote_val
+                refreshed += 1
+
+    if refreshed:
+        print(f"  [✓] Remote freshness check: refreshed {refreshed} preserve-field "
+              f"value(s) from the live remote state (caught a manual update this "
+              f"run's local checkout hadn't seen)")
+    return rows
+
+
 def write_log(all_rows):
     """Write the complete game log, always overwriting — never appending."""
     LOG_FILE.parent.mkdir(parents=True, exist_ok=True)
@@ -1415,6 +1483,7 @@ def main():
         rev_str = f" rev{row['revision']}:{row['last_updated_reason']}" if action == 'REFRESH' else ''
         print(f"  [{action}] {at}@{ht:<7} {c['composite']:+.1f} {c['band']:<5} {c['model_dir']:<5} {c['alignment_type']:<10}{qual_str}{rev_str}")
 
+    updated_rows = refresh_preserve_fields_from_remote(updated_rows)
     write_log(updated_rows)
     print(f"\n  [✓] {LOG_FILE} — {len(updated_rows)} total rows ({sum(1 for g in games)} today's games)")
 
