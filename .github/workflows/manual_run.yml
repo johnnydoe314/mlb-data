@@ -8,6 +8,16 @@ on:
         required: false
         default: 'scripts/log_games.py'
 
+# Shares daily-data-pipeline's concurrency group so a manual run (this
+# workflow defaults to running log_games.py) can never race against a
+# scheduled daily_data.yml run or update_scores.yml -- confirmed live on
+# 2026-08-27/28 as a real source of data loss (a manual grading push
+# landing mid-run of another workflow got silently overwritten when that
+# run finished and pushed its own stale local snapshot).
+concurrency:
+  group: daily-data-pipeline
+  cancel-in-progress: false
+
 jobs:
   run-script:
     runs-on: ubuntu-latest
@@ -25,7 +35,12 @@ jobs:
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
       - name: Execute Python script
+        # GITHUB_TOKEN is needed here specifically for log_games.py's
+        # refresh_preserve_fields_from_remote() -- see that function's
+        # docstring. Harmless for any other script that doesn't use it.
         run: python ${{ github.event.inputs.script_path }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Commit any new/changed data files
         if: always()
