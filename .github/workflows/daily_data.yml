@@ -93,7 +93,14 @@ jobs:
         run: python scripts/fetch_rolling_stats.py
 
       - name: Log all games with composite scores (game_log.csv)
+        # GITHUB_TOKEN is required here for refresh_preserve_fields_from_remote()
+        # in log_games.py -- fixes a real race condition (confirmed live on
+        # 2026-08-27 and again 2026-08-28) where a manual grading push landing
+        # mid-run gets silently overwritten by this run's own stale local-
+        # checkout snapshot when it later pushes. See log_games.py for details.
         run: python scripts/log_games.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Commit and push
         run: |
