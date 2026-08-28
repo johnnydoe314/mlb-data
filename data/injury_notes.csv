@@ -1,10 +1,10 @@
 game_date,team,player,transaction_type,txn_date,description,relevant_today
 2026-08-27,SFG,Bryce Eldridge,Status Change,2026-08-27,San Francisco Giants activated DH Bryce Eldridge from the bereavement list.,1
 2026-08-27,KCR,Michael Massey,Status Change,2026-08-27,"Kansas City Royals placed 2B Michael Massey on the 7-day injured list retroactive to August 26, 2026. Concussion.",1
-2026-08-27,LAD,Roki Sasaki,Status Change,2026-08-27,Los Angeles Dodgers placed RHP Roki Sasaki on the 15-day injured list. Right middle finger blister.,1
 2026-08-27,TOR,Jonatan Clase,Status Change,2026-08-27,Toronto Blue Jays transferred LF Jonatan Clase from the 10-day injured list to the 60-day injured list. Left plantar fasciitis.,1
-2026-08-27,STL,Peter Strzelecki,Status Change,2026-08-27,"St. Louis Cardinals placed RHP Peter Strzelecki on the 15-day injured list retroactive to August 26, 2026. Right forearm extensor inflammation.",1
 2026-08-27,SFG,Buddy Kennedy,Designated for Assignment,2026-08-27,San Francisco Giants designated 3B Buddy Kennedy for assignment.,1
+2026-08-27,STL,Peter Strzelecki,Status Change,2026-08-27,"St. Louis Cardinals placed RHP Peter Strzelecki on the 15-day injured list retroactive to August 26, 2026. Right forearm extensor inflammation.",1
+2026-08-27,LAD,Roki Sasaki,Status Change,2026-08-27,Los Angeles Dodgers placed RHP Roki Sasaki on the 15-day injured list. Right middle finger blister.,1
 2026-08-27,ARI,Jose Cabrera,Recalled,2026-08-27,Arizona Diamondbacks recalled RHP Jose Cabrera from Reno Aces.,1
 2026-08-27,LAD,Seth Halvorsen,Recalled,2026-08-27,Los Angeles Dodgers recalled RHP Seth Halvorsen from Oklahoma City Comets.,1
 2026-08-27,KCR,Josh Rojas,Recalled,2026-08-27,Kansas City Royals recalled 3B Josh Rojas from Omaha Storm Chasers.,1
@@ -33,12 +33,12 @@ game_date,team,player,transaction_type,txn_date,description,relevant_today
 2026-08-27,COL,Kyle Freeland,Status Change,2026-08-24,"Colorado Rockies placed LHP Kyle Freeland on the 15-day injured list retroactive to August 21, 2026. Cervical radiculopathy.",1
 2026-08-27,TOR,Shane Bieber,Status Change,2026-08-24,"Toronto Blue Jays placed RHP Shane Bieber on the 15-day injured list retroactive to August 21, 2026. Right teres major inflammation.",1
 2026-08-27,SFG,Willy Adames,Status Change,2026-08-24,San Francisco Giants placed SS Willy Adames on the 10-day injured list. Left elbow sprain.,1
+2026-08-27,SFG,Ryan Walker,Recalled,2026-08-24,San Francisco Giants recalled RHP Ryan Walker from Sacramento River Cats.,1
+2026-08-27,ATL,Brewer Hicklen,Recalled,2026-08-24,Atlanta Braves recalled RF Brewer Hicklen from Gwinnett Stripers.,1
 2026-08-27,SFG,Grant McCray,Recalled,2026-08-24,San Francisco Giants recalled CF Grant McCray from Sacramento River Cats.,1
 2026-08-27,ARI,Juan Burgos,Recalled,2026-08-24,Arizona Diamondbacks recalled RHP Juan Burgos from Reno Aces.,1
-2026-08-27,ATL,Brewer Hicklen,Recalled,2026-08-24,Atlanta Braves recalled RF Brewer Hicklen from Gwinnett Stripers.,1
-2026-08-27,SFG,Ryan Walker,Recalled,2026-08-24,San Francisco Giants recalled RHP Ryan Walker from Sacramento River Cats.,1
-2026-08-27,SFG,Shay Whitcomb,Recalled,2026-08-24,San Francisco Giants recalled 3B Shay Whitcomb from Sacramento River Cats.,1
 2026-08-27,SFG,Anthony Molina,Recalled,2026-08-24,San Francisco Giants recalled RHP Anthony Molina from Sacramento River Cats.,1
+2026-08-27,SFG,Shay Whitcomb,Recalled,2026-08-24,San Francisco Giants recalled 3B Shay Whitcomb from Sacramento River Cats.,1
 2026-08-27,SFG,Nate Furman,Recalled,2026-08-24,San Francisco Giants recalled 2B Nate Furman from Sacramento River Cats.,1
 2026-08-27,ARI,Michael Soroka,Status Change,2026-08-23,Arizona Diamondbacks placed RHP Michael Soroka on the 15-day injured list. Right arm inflammation.,1
 2026-08-27,STL,Ramón Urías,Status Change,2026-08-23,St. Louis Cardinals activated 3B Ramón Urías from the 60-day injured list.,1
