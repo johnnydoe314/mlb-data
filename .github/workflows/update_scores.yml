@@ -1,5 +1,14 @@
 name: Update Scores
 
+# Shares daily-data-pipeline's concurrency group -- see manual_run.yml and
+# daily_data.yml for the full explanation. Without this, a scheduled or
+# manual update_scores.yml run could push freshly-written score data, then
+# have it silently reverted moments later by a daily_data.yml/manual_run.yml
+# run that had checked out an older, pre-score-update snapshot.
+concurrency:
+  group: daily-data-pipeline
+  cancel-in-progress: false
+
 on:
   # 10am UTC = 5am CT — catches all overnight final scores (targets yesterday)
   schedule:
