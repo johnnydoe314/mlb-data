@@ -1,10 +1,19 @@
 game_date,team,player,transaction_type,txn_date,description,relevant_today
+2026-08-31,MIL,Bryse Wilson,Status Change,2026-08-31,Milwaukee Brewers placed RHP Bryse Wilson on the 15-day injured list. Low back strain.,1
+2026-08-31,MIL,Abner Uribe,Status Change,2026-08-31,Milwaukee Brewers activated RHP Abner Uribe from the 15-day injured list.,1
+2026-08-31,NYM,Mark Vientos,Status Change,2026-08-31,New York Mets activated 1B Mark Vientos from the 10-day injured list.,1
+2026-08-31,BAL,Luis Vázquez,Designated for Assignment,2026-08-31,Baltimore Orioles designated SS Luis Vázquez for assignment.,1
+2026-08-31,SEA,Nick Davila,Status Change,2026-08-31,Seattle Mariners placed RHP Nick Davila on the 15-day injured list. SC joint sprain.,1
+2026-08-31,SEA,Colt Emerson,Status Change,2026-08-31,Seattle Mariners transferred SS Colt Emerson from the 10-day injured list to the 60-day injured list. Left wrist tendon repair.,1
+2026-08-31,DET,Tanner Rainey,Designated for Assignment,2026-08-31,Detroit Tigers designated RHP Tanner Rainey for assignment.,1
 2026-08-31,CWS,Tyler Schweitzer,Status Change,2026-08-31,Chicago White Sox activated LHP Tyler Schweitzer from the paternity list.,1
 2026-08-31,MIA,Xavier Edwards,Status Change,2026-08-31,Miami Marlins placed 2B Xavier Edwards on the 10-day injured list. Left thumb sprain.,1
 2026-08-31,BOS,Willson Contreras,Status Change,2026-08-31,Boston Red Sox placed 1B Willson Contreras on the 10-day injured list. Left hamstring strain.,1
-2026-08-31,NYM,Mark Vientos,Status Change,2026-08-31,New York Mets activated 1B Mark Vientos from the 10-day injured list.,1
-2026-08-31,BOS,Mickey Gasper,Recalled,2026-08-31,Boston Red Sox recalled DH Mickey Gasper from Worcester Red Sox.,1
+2026-08-31,SEA,Cooper Criswell,Status Change,2026-08-31,Seattle Mariners activated RHP Cooper Criswell from the 60-day injured list.,1
+2026-08-31,BAL,Cade Povich,Recalled,2026-08-31,Baltimore Orioles recalled LHP Cade Povich from Norfolk Tides.,1
+2026-08-31,DET,Yilber Díaz,Recalled,2026-08-31,Detroit Tigers recalled RHP Yilber Díaz from Toledo Mud Hens.,1
 2026-08-31,MIA,Jared Serna,Recalled,2026-08-31,Miami Marlins recalled SS Jared Serna from Jacksonville Jumbo Shrimp.,1
+2026-08-31,BOS,Mickey Gasper,Recalled,2026-08-31,Boston Red Sox recalled DH Mickey Gasper from Worcester Red Sox.,1
 2026-08-31,MIA,Cade Gibson,Recalled,2026-08-31,Miami Marlins recalled LHP Cade Gibson from Jacksonville Jumbo Shrimp.,1
 2026-08-31,SDP,Samad Taylor,Status Change,2026-08-30,San Diego Padres activated LF Samad Taylor from the 10-day injured list.,1
 2026-08-31,SDP,Gavin Sheets,Status Change,2026-08-30,San Diego Padres placed 1B Gavin Sheets on the 10-day injured list. Left foot sprain.,1
@@ -29,10 +38,10 @@ game_date,team,player,transaction_type,txn_date,description,relevant_today
 2026-08-31,BOS,Garrett Whitlock,Status Change,2026-08-29,Boston Red Sox activated RHP Garrett Whitlock from the 15-day injured list.,1
 2026-08-31,NYY,Max Fried,Status Change,2026-08-29,New York Yankees activated LHP Max Fried from the 15-day injured list.,1
 2026-08-31,LAA,Shaun Anderson,Designated for Assignment,2026-08-29,Los Angeles Angels designated RHP Shaun Anderson for assignment.,1
-2026-08-31,MIA,Wikelman González,Recalled,2026-08-29,Miami Marlins recalled RHP Wikelman González from Jacksonville Jumbo Shrimp.,1
-2026-08-31,ARI,Mitch Bratt,Recalled,2026-08-29,Arizona Diamondbacks recalled LHP Mitch Bratt from Reno Aces.,1
 2026-08-31,NYY,Brendan Beck,Recalled,2026-08-29,New York Yankees recalled RHP Brendan Beck from Scranton/Wilkes-Barre RailRiders.,1
 2026-08-31,SFG,Matt Wilkinson,Recalled,2026-08-29,San Francisco Giants recalled LHP Matt Wilkinson from Sacramento River Cats.,1
+2026-08-31,ARI,Mitch Bratt,Recalled,2026-08-29,Arizona Diamondbacks recalled LHP Mitch Bratt from Reno Aces.,1
+2026-08-31,MIA,Wikelman González,Recalled,2026-08-29,Miami Marlins recalled RHP Wikelman González from Jacksonville Jumbo Shrimp.,1
 2026-08-31,BOS,Raymond Burgos,Recalled,2026-08-29,Boston Red Sox recalled LHP Raymond Burgos from Worcester Red Sox.,1
 2026-08-31,CWS,Andrew Benintendi,Status Change,2026-08-28,Chicago White Sox activated DH Andrew Benintendi from the bereavement list.,1
 2026-08-31,LAA,Wade Meckler,Status Change,2026-08-28,Los Angeles Angels activated LF Wade Meckler from the 7-day injured list.,1
