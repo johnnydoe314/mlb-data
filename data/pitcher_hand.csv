@@ -94,10 +94,12 @@ pitcher_id,name,hand
 663623,Jake Irvin,R
 663738,Daniel Lynch IV,L
 663776,Patrick Sandoval,L
+663795,Justin Hagenman,R
 663855,Jordan Hicks,R
 663903,Brady Singer,R
 663969,Tyler Phillips,R
 664141,JT Brubaker,R
+664199,Taylor Clarke,R
 664285,Framber Valdez,L
 664299,Cristian Javier,R
 664353,José Urquidy,R
@@ -175,6 +177,7 @@ pitcher_id,name,hand
 681347,Mike Burrows,R
 681517,Kyle Leahy,R
 682052,Jacob Lopez,L
+682227,Brandon Williamson,L
 682243,Bryce Miller,R
 682254,Mason Montgomery,L
 683003,Jared Jones,R
