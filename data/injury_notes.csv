@@ -1,19 +1,21 @@
 game_date,team,player,transaction_type,txn_date,description,relevant_today
-2026-09-03,MIA,Leo Jiménez,Designated for Assignment,2026-09-03,Miami Marlins designated 3B Leo Jiménez for assignment.,1
 2026-09-03,PIT,Kirby Yates,Status Change,2026-09-03,"Pittsburgh Pirates placed RHP Kirby Yates on the 15-day injured list retroactive to August 31, 2026. Right shoulder impingement.",1
+2026-09-03,MIA,Leo Jiménez,Designated for Assignment,2026-09-03,Miami Marlins designated 3B Leo Jiménez for assignment.,1
 2026-09-03,SFG,Keaton Winn,Status Change,2026-09-03,San Francisco Giants transferred RHP Keaton Winn from the 15-day injured list to the 60-day injured list. Right elbow neuritis.,1
+2026-09-03,SEA,Brennen Davis,Status Change,2026-09-03,Seattle Mariners placed CF Brennen Davis on the 60-day injured list. Left hamstring strain.,1
+2026-09-03,SEA,Brennen Davis,Recalled,2026-09-03,Seattle Mariners recalled CF Brennen Davis from Tacoma Rainiers.,1
 2026-09-03,PIT,Wilber Dotel,Recalled,2026-09-03,Pittsburgh Pirates recalled RHP Wilber Dotel from Indianapolis Indians.,1
-2026-09-03,PIT,Khristian Curtis,Recalled,2026-09-03,Pittsburgh Pirates recalled RHP Khristian Curtis from Indianapolis Indians.,1
 2026-09-03,MIA,Deyvison De Los Santos,Recalled,2026-09-03,Miami Marlins recalled 3B Deyvison De Los Santos from Jacksonville Jumbo Shrimp.,1
+2026-09-03,PIT,Khristian Curtis,Recalled,2026-09-03,Pittsburgh Pirates recalled RHP Khristian Curtis from Indianapolis Indians.,1
+2026-09-03,ATH,José Suarez,Designated for Assignment,2026-09-02,Athletics designated LHP José Suarez for assignment.,1
 2026-09-03,TBR,Griffin Jax,Status Change,2026-09-02,Tampa Bay Rays activated RHP Griffin Jax from the 15-day injured list.,1
 2026-09-03,KCR,Drew Waters,Designated for Assignment,2026-09-02,Kansas City Royals designated LF Drew Waters for assignment.,1
-2026-09-03,MIL,Joel Kuhnel,Designated for Assignment,2026-09-02,Milwaukee Brewers designated RHP Joel Kuhnel for assignment.,1
-2026-09-03,LAD,Blake Treinen,Status Change,2026-09-02,Los Angeles Dodgers activated RHP Blake Treinen from the 60-day injured list.,1
-2026-09-03,LAD,Eric Lauer,Status Change,2026-09-02,Los Angeles Dodgers placed LHP Eric Lauer on the 15-day injured list. Left elbow inflammation.,1
-2026-09-03,ATH,José Suarez,Designated for Assignment,2026-09-02,Athletics designated LHP José Suarez for assignment.,1
 2026-09-03,KCR,Michael Massey,Status Change,2026-09-02,Kansas City Royals activated 2B Michael Massey from the 7-day injured list.,1
 2026-09-03,LAD,Will Klein,Status Change,2026-09-02,Los Angeles Dodgers transferred RHP Will Klein from the 15-day injured list to the 60-day injured list. Right elbow discomfort.,1
 2026-09-03,CWS,Davis Martin,Status Change,2026-09-02,Chicago White Sox activated RHP Davis Martin from the 15-day injured list.,1
+2026-09-03,LAD,Blake Treinen,Status Change,2026-09-02,Los Angeles Dodgers activated RHP Blake Treinen from the 60-day injured list.,1
+2026-09-03,LAD,Eric Lauer,Status Change,2026-09-02,Los Angeles Dodgers placed LHP Eric Lauer on the 15-day injured list. Left elbow inflammation.,1
+2026-09-03,MIL,Joel Kuhnel,Designated for Assignment,2026-09-02,Milwaukee Brewers designated RHP Joel Kuhnel for assignment.,1
 2026-09-03,BOS,Raymond Burgos,Recalled,2026-09-02,Boston Red Sox recalled LHP Raymond Burgos from Worcester Red Sox.,1
 2026-09-03,PIT,Endy Rodríguez,Status Change,2026-09-01,Pittsburgh Pirates transferred C Endy Rodríguez from the 10-day injured list to the 60-day injured list. Left hip inflammation.,1
 2026-09-03,BOS,Tyron Guerrero,Status Change,2026-09-01,Boston Red Sox placed RHP Tyron Guerrero on the 15-day injured list. Right shoulder inflammation.,1
@@ -81,18 +83,18 @@ game_date,team,player,transaction_type,txn_date,description,relevant_today
 2026-09-03,TEX,Ben Peoples,Recalled,2026-08-31,Texas Rangers recalled RHP Ben Peoples from Round Rock Express.,1
 2026-09-03,TEX,Robby Ahlstrom,Recalled,2026-08-31,Texas Rangers recalled LHP Robby Ahlstrom from Round Rock Express.,1
 2026-09-03,MIA,Jared Serna,Recalled,2026-08-31,Miami Marlins recalled SS Jared Serna from Jacksonville Jumbo Shrimp.,1
-2026-09-03,BOS,Roman Anthony,Status Change,2026-08-30,Boston Red Sox activated LF Roman Anthony from the 60-day injured list.,1
-2026-09-03,BOS,Trevor Story,Status Change,2026-08-30,Boston Red Sox activated SS Trevor Story from the 60-day injured list.,1
-2026-09-03,SEA,Emerson Hancock,Status Change,2026-08-30,"Seattle Mariners placed RHP Emerson Hancock on the 15-day injured list retroactive to August 29, 2026. Left abductor strain.",1
 2026-09-03,SFG,Sam Hentges,Status Change,2026-08-30,"San Francisco Giants placed LHP Sam Hentges on the 15-day injured list retroactive to August 27, 2026. Left forearm strain.",1
+2026-09-03,BOS,Trevor Story,Status Change,2026-08-30,Boston Red Sox activated SS Trevor Story from the 60-day injured list.,1
+2026-09-03,BOS,Roman Anthony,Status Change,2026-08-30,Boston Red Sox activated LF Roman Anthony from the 60-day injured list.,1
+2026-09-03,SEA,Emerson Hancock,Status Change,2026-08-30,"Seattle Mariners placed RHP Emerson Hancock on the 15-day injured list retroactive to August 29, 2026. Left abductor strain.",1
 2026-09-03,STL,JJ Wetherholt,Status Change,2026-08-30,St. Louis Cardinals placed 2B JJ Wetherholt on the 10-day injured list. Right wrist tendinitis.,1
 2026-09-03,SFG,Matt Wilkinson,Recalled,2026-08-30,San Francisco Giants recalled LHP Matt Wilkinson from Sacramento River Cats.,1
-2026-09-03,STL,César Prieto,Recalled,2026-08-30,St. Louis Cardinals recalled 3B César Prieto from Memphis Redbirds.,1
 2026-09-03,SEA,Nick Davila,Recalled,2026-08-30,Seattle Mariners recalled RHP Nick Davila from Tacoma Rainiers.,1
+2026-09-03,STL,César Prieto,Recalled,2026-08-30,St. Louis Cardinals recalled 3B César Prieto from Memphis Redbirds.,1
 2026-09-03,CHC,Hoby Milner,Designated for Assignment,2026-08-29,Chicago Cubs designated LHP Hoby Milner for assignment.,1
 2026-09-03,SFG,Casey Schmitt,Status Change,2026-08-29,San Francisco Giants transferred LF Casey Schmitt from the 10-day injured list to the 60-day injured list. Left knee meniscus tear.,1
-2026-09-03,BOS,Garrett Whitlock,Status Change,2026-08-29,Boston Red Sox activated RHP Garrett Whitlock from the 15-day injured list.,1
 2026-09-03,STL,Caleb Ferguson,Designated for Assignment,2026-08-29,St. Louis Cardinals designated LHP Caleb Ferguson for assignment.,1
+2026-09-03,BOS,Garrett Whitlock,Status Change,2026-08-29,Boston Red Sox activated RHP Garrett Whitlock from the 15-day injured list.,1
 2026-09-03,MIA,Wikelman González,Recalled,2026-08-29,Miami Marlins recalled RHP Wikelman González from Jacksonville Jumbo Shrimp.,1
 2026-09-03,SFG,Matt Wilkinson,Recalled,2026-08-29,San Francisco Giants recalled LHP Matt Wilkinson from Sacramento River Cats.,1
 2026-09-03,STL,Brycen Mautz,Recalled,2026-08-29,St. Louis Cardinals recalled LHP Brycen Mautz from Memphis Redbirds.,1
