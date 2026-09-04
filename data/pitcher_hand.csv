@@ -18,6 +18,7 @@ pitcher_id,name,hand
 592332,Kevin Gausman,R
 592662,Robbie Ray,L
 592791,Jameson Taillon,R
+592866,Trevor Williams,R
 593958,Eduardo Rodriguez,L
 593974,Wandy Peralta,L
 594798,Jacob deGrom,R
@@ -231,6 +232,7 @@ pitcher_id,name,hand
 694819,Jacob Misiorowski,R
 694918,Blade Tidwell,R
 694973,Paul Skenes,R
+695034,Kade Morris,R
 695076,Rhett Lowder,R
 695418,Brad Lord,R
 695505,Chase Burns,R
@@ -269,6 +271,7 @@ pitcher_id,name,hand
 806188,Cade Gibson,L
 807739,Kade Anderson,L
 807743,Sean Sullivan,L
+808825,Andrew Sears,L
 808963,Roki Sasaki,R
 808967,Yoshinobu Yamamoto,R
 813349,Connelly Early,L
