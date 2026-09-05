@@ -1,4 +1,6 @@
 game_date,team,player,transaction_type,txn_date,description,relevant_today
+2026-09-05,SFG,Joel Kuhnel,Status Change,2026-09-05,San Francisco Giants activated RHP Joel Kuhnel.,1
+2026-09-05,CHC,Javier Assad,Recalled,2026-09-05,Chicago Cubs recalled RHP Javier Assad from Iowa Cubs.,1
 2026-09-05,TOR,Jameson Taillon,Status Change,2026-09-04,Toronto Blue Jays activated RHP Jameson Taillon from the 15-day injured list.,1
 2026-09-05,TBR,Shane McClanahan,Status Change,2026-09-04,Tampa Bay Rays placed LHP Shane McClanahan on the 15-day injured list. Left forearm tightness.,1
 2026-09-05,WSH,Max Kranick,Designated for Assignment,2026-09-04,Washington Nationals designated RHP Max Kranick for assignment.,1
@@ -29,9 +31,9 @@ game_date,team,player,transaction_type,txn_date,description,relevant_today
 2026-09-05,SEA,Brennen Davis,Status Change,2026-09-03,Seattle Mariners placed CF Brennen Davis on the 60-day injured list. Left hamstring strain.,1
 2026-09-05,SFG,Keaton Winn,Status Change,2026-09-03,San Francisco Giants transferred RHP Keaton Winn from the 15-day injured list to the 60-day injured list. Right elbow neuritis.,1
 2026-09-05,SEA,Brennen Davis,Recalled,2026-09-03,Seattle Mariners recalled CF Brennen Davis from Tacoma Rainiers.,1
-2026-09-05,MIA,Deyvison De Los Santos,Recalled,2026-09-03,Miami Marlins recalled 3B Deyvison De Los Santos from Jacksonville Jumbo Shrimp.,1
 2026-09-05,PIT,Wilber Dotel,Recalled,2026-09-03,Pittsburgh Pirates recalled RHP Wilber Dotel from Indianapolis Indians.,1
 2026-09-05,PIT,Khristian Curtis,Recalled,2026-09-03,Pittsburgh Pirates recalled RHP Khristian Curtis from Indianapolis Indians.,1
+2026-09-05,MIA,Deyvison De Los Santos,Recalled,2026-09-03,Miami Marlins recalled 3B Deyvison De Los Santos from Jacksonville Jumbo Shrimp.,1
 2026-09-05,KCR,Michael Massey,Status Change,2026-09-02,Kansas City Royals activated 2B Michael Massey from the 7-day injured list.,1
 2026-09-05,LAD,Will Klein,Status Change,2026-09-02,Los Angeles Dodgers transferred RHP Will Klein from the 15-day injured list to the 60-day injured list. Right elbow discomfort.,1
 2026-09-05,CWS,Davis Martin,Status Change,2026-09-02,Chicago White Sox activated RHP Davis Martin from the 15-day injured list.,1
