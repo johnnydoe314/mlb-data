@@ -1,3 +1,3 @@
-Final: 37 ok, 0 failed (of 37 total)
-Total pitch rows: 730765
+Final: 38 ok, 0 failed (of 38 total)
+Total pitch rows: 762882
 Unique (team,hand) buckets: 60

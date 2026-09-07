@@ -11,6 +11,7 @@ pitcher_id,name,hand
 554430,Zack Wheeler,R
 571510,Matthew Boyd,L
 571578,Patrick Corbin,L
+571882,Derek Law,R
 571927,Steven Matz,L
 571945,Miles Mikolas,R
 579328,Yusei Kikuchi,L
@@ -22,6 +23,7 @@ pitcher_id,name,hand
 593958,Eduardo Rodriguez,L
 593974,Wandy Peralta,L
 594798,Jacob deGrom,R
+601713,Nick Pivetta,R
 605135,Chris Bassitt,R
 605280,Clay Holmes,R
 605288,Adrian Houser,R
@@ -164,6 +166,7 @@ pitcher_id,name,hand
 677960,Ryan Weathers,L
 677976,Randy Dobnak,R
 678022,Jack Perkins,R
+678394,Brayan Bello,R
 678868,Eddy Yean,R
 678906,Kai-Wei Teng,R
 679883,Luinder Avila,R
@@ -268,6 +271,7 @@ pitcher_id,name,hand
 801139,Payton Tolle,L
 802408,Brycen Mautz,L
 804267,Zach Thornton,L
+804636,Jonah Tong,R
 805673,Zebby Matthews,R
 806188,Cade Gibson,L
 807739,Kade Anderson,L
