@@ -1,5 +1,7 @@
 game_date,team,player,transaction_type,txn_date,description,relevant_today
+2026-09-10,PIT,Braxton Ashcraft,Status Change,2026-09-10,"Pittsburgh Pirates placed RHP Braxton Ashcraft on the 15-day injured list retroactive to September 7, 2026. Right arm discomfort.",1
 2026-09-10,NYY,Jazz Chisholm Jr.,Status Change,2026-09-10,"New York Yankees placed 2B Jazz Chisholm Jr. on the 10-day injured list retroactive to September 9, 2026. Right thumb sprain.",1
+2026-09-10,PIT,Antwone Kelly,Recalled,2026-09-10,Pittsburgh Pirates recalled RHP Antwone Kelly from Indianapolis Indians.,1
 2026-09-10,NYY,Anthony Volpe,Recalled,2026-09-10,New York Yankees recalled SS Anthony Volpe from Scranton/Wilkes-Barre RailRiders.,1
 2026-09-10,ATL,Elieser Hernández,Designated for Assignment,2026-09-09,Atlanta Braves designated RHP Elieser Hernández for assignment.,1
 2026-09-10,ATL,Bailey Falter,Status Change,2026-09-09,Atlanta Braves activated LHP Bailey Falter.,1
@@ -7,11 +9,11 @@ game_date,team,player,transaction_type,txn_date,description,relevant_today
 2026-09-10,ATL,Reynaldo López,Status Change,2026-09-09,Atlanta Braves activated RHP Reynaldo López from the 15-day injured list.,1
 2026-09-10,ATL,Bryce Elder,Status Change,2026-09-09,"Atlanta Braves placed RHP Bryce Elder on the 15-day injured list retroactive to September 6, 2026. Right knee surgery.",1
 2026-09-10,CWS,Chris Murphy,Recalled,2026-09-09,Chicago White Sox recalled LHP Chris Murphy from Charlotte Knights.,1
+2026-09-10,SEA,Stuart Fairchild,Designated for Assignment,2026-09-08,Seattle Mariners designated CF Stuart Fairchild for assignment.,1
 2026-09-10,SEA,Hoby Milner,Status Change,2026-09-08,Seattle Mariners activated LHP Hoby Milner.,1
-2026-09-10,SEA,Victor Robles,Status Change,2026-09-08,Seattle Mariners activated RF Victor Robles.,1
 2026-09-10,TBR,Hunter Bigge,Designated for Assignment,2026-09-08,Tampa Bay Rays designated RHP Hunter Bigge for assignment.,1
 2026-09-10,PIT,Isaac Mattson,Status Change,2026-09-08,Pittsburgh Pirates placed RHP Isaac Mattson on the 15-day injured list. Right hip impingement.,1
-2026-09-10,SEA,Stuart Fairchild,Designated for Assignment,2026-09-08,Seattle Mariners designated CF Stuart Fairchild for assignment.,1
+2026-09-10,SEA,Victor Robles,Status Change,2026-09-08,Seattle Mariners activated RF Victor Robles.,1
 2026-09-10,TBR,Taylor Walls,Status Change,2026-09-08,"Tampa Bay Rays placed SS Taylor Walls on the 10-day injured list retroactive to September 6, 2026. Right hip flexor strain.",1
 2026-09-10,PIT,Brandon Eisert,Recalled,2026-09-08,Pittsburgh Pirates recalled LHP Brandon Eisert from Indianapolis Indians.,1
 2026-09-10,CWS,Chris Murphy,Status Change,2026-09-07,Chicago White Sox activated LHP Chris Murphy.,1
