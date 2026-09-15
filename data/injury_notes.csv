@@ -1,49 +1,51 @@
 game_date,team,player,transaction_type,txn_date,description,relevant_today
-2026-09-14,DET,Keider Montero,Status Change,2026-09-14,Detroit Tigers activated RHP Keider Montero from the paternity list.,1
 2026-09-14,TOR,Rudy Martin Jr.,Status Change,2026-09-14,"Toronto Blue Jays placed RF Rudy Martin Jr. on the 10-day injured list retroactive to September 13, 2026. Left hamstring strain.",1
 2026-09-14,SDP,Ty France,Status Change,2026-09-14,San Diego Padres activated 1B Ty France from the paternity list.,1
+2026-09-14,DET,Keider Montero,Status Change,2026-09-14,Detroit Tigers activated RHP Keider Montero from the paternity list.,1
+2026-09-14,LAD,Edgardo Henriquez,Status Change,2026-09-14,Los Angeles Dodgers placed RHP Edgardo Henriquez on the 15-day injured list. Lower back discomfort.,1
 2026-09-14,ATL,Bailey Falter,Designated for Assignment,2026-09-14,Atlanta Braves designated LHP Bailey Falter for assignment.,1
-2026-09-14,TOR,Davis Schneider,Recalled,2026-09-14,Toronto Blue Jays recalled LF Davis Schneider from Buffalo Bisons.,1
+2026-09-14,LAD,Bobby Miller,Recalled,2026-09-14,Los Angeles Dodgers recalled RHP Bobby Miller from Oklahoma City Comets.,1
 2026-09-14,TOR,Brendan Cellucci,Recalled,2026-09-14,Toronto Blue Jays recalled LHP Brendan Cellucci from Buffalo Bisons.,1
 2026-09-14,ATL,Owen Murphy,Recalled,2026-09-14,Atlanta Braves recalled RHP Owen Murphy from Gwinnett Stripers.,1
+2026-09-14,TOR,Davis Schneider,Recalled,2026-09-14,Toronto Blue Jays recalled LF Davis Schneider from Buffalo Bisons.,1
 2026-09-14,LAD,Paul Gervase,Recalled,2026-09-14,Los Angeles Dodgers recalled RHP Paul Gervase from Oklahoma City Comets.,1
 2026-09-14,BAL,Codi Heuer,Recalled,2026-09-14,Baltimore Orioles recalled RHP Codi Heuer from Norfolk Tides.,1
 2026-09-14,MIA,Xavier Edwards,Status Change,2026-09-13,Miami Marlins activated 2B Xavier Edwards from the 10-day injured list.,1
-2026-09-14,ARI,Lourdes Gurriel Jr.,Designated for Assignment,2026-09-13,Arizona Diamondbacks designated LF Lourdes Gurriel Jr. for assignment.,1
 2026-09-14,MIA,Owen Caissie,Status Change,2026-09-13,Miami Marlins placed RF Owen Caissie on the 10-day injured list. Lumbar stress reaction.,1
 2026-09-14,BAL,Kyle Bradish,Status Change,2026-09-13,Baltimore Orioles placed RHP Kyle Bradish on the 15-day injured list. Lower abdominal discomfort.,1
+2026-09-14,ARI,Lourdes Gurriel Jr.,Designated for Assignment,2026-09-13,Arizona Diamondbacks designated LF Lourdes Gurriel Jr. for assignment.,1
 2026-09-14,BAL,Yaramil Hiraldo,Recalled,2026-09-13,Baltimore Orioles recalled RHP Yaramil Hiraldo from Norfolk Tides.,1
 2026-09-14,CWS,David Sandlin,Recalled,2026-09-13,Chicago White Sox recalled RHP David Sandlin from Charlotte Knights.,1
 2026-09-14,ARI,Jose Fernandez,Recalled,2026-09-13,Arizona Diamondbacks recalled DH Jose Fernandez from Reno Aces.,1
 2026-09-14,ARI,Tyler Locklear,Status Change,2026-09-12,Arizona Diamondbacks placed 1B Tyler Locklear on the 60-day injured list. Fractured right thumb.,1
-2026-09-14,DET,Keider Montero,Status Change,2026-09-12,Detroit Tigers placed RHP Keider Montero on the paternity list.,1
 2026-09-14,CHC,Edward Cabrera,Status Change,2026-09-12,Chicago Cubs activated RHP Edward Cabrera from the 15-day injured list.,1
 2026-09-14,CHC,Trent Thornton,Status Change,2026-09-12,Chicago Cubs placed RHP Trent Thornton on the 15-day injured list. Left ankle sprain.,1
-2026-09-14,MIN,Emmanuel Rodriguez,Recalled,2026-09-12,Minnesota Twins recalled CF Emmanuel Rodriguez from St. Paul Saints.,1
+2026-09-14,DET,Keider Montero,Status Change,2026-09-12,Detroit Tigers placed RHP Keider Montero on the paternity list.,1
 2026-09-14,DET,Andrew Sears,Recalled,2026-09-12,Detroit Tigers recalled LHP Andrew Sears from Toledo Mud Hens.,1
 2026-09-14,ARI,Tyler Locklear,Recalled,2026-09-12,Arizona Diamondbacks recalled 1B Tyler Locklear from Reno Aces.,1
+2026-09-14,MIN,Emmanuel Rodriguez,Recalled,2026-09-12,Minnesota Twins recalled CF Emmanuel Rodriguez from St. Paul Saints.,1
 2026-09-14,LAD,Eric Lauer,Status Change,2026-09-11,Los Angeles Dodgers transferred LHP Eric Lauer from the 15-day injured list to the 60-day injured list. Left elbow inflammation.,1
 2026-09-14,NYM,Chris Devenski,Designated for Assignment,2026-09-11,New York Mets designated RHP Chris Devenski for assignment.,1
 2026-09-14,LAD,Shohei Ohtani,Status Change,2026-09-11,"Los Angeles Dodgers placed TWP Shohei Ohtani on the 15-day injured list retroactive to September 8, 2026. Right biceps inflammation.",1
-2026-09-14,ATL,Lane Thomas,Status Change,2026-09-11,"Atlanta Braves placed LF Lane Thomas on the 10-day injured list retroactive to September 8, 2026. Strained left intercostal muscle.",1
 2026-09-14,TOR,Jesús Sánchez,Designated for Assignment,2026-09-11,Toronto Blue Jays designated RF Jesús Sánchez for assignment.,1
+2026-09-14,ATL,Lane Thomas,Status Change,2026-09-11,"Atlanta Braves placed LF Lane Thomas on the 10-day injured list retroactive to September 8, 2026. Strained left intercostal muscle.",1
 2026-09-14,SDP,Ty France,Status Change,2026-09-11,San Diego Padres placed 1B Ty France on the paternity list.,1
-2026-09-14,ATL,DaShawn Keirsey Jr.,Recalled,2026-09-11,Atlanta Braves recalled CF DaShawn Keirsey Jr. from Gwinnett Stripers.,1
-2026-09-14,NYM,Jack Weisenburger,Recalled,2026-09-11,New York Mets recalled RHP Jack Weisenburger from Syracuse Mets.,1
 2026-09-14,NYY,Bradley Hanner,Recalled,2026-09-11,New York Yankees recalled RHP Bradley Hanner from Scranton/Wilkes-Barre RailRiders.,1
+2026-09-14,NYM,Jack Weisenburger,Recalled,2026-09-11,New York Mets recalled RHP Jack Weisenburger from Syracuse Mets.,1
+2026-09-14,ATL,DaShawn Keirsey Jr.,Recalled,2026-09-11,Atlanta Braves recalled CF DaShawn Keirsey Jr. from Gwinnett Stripers.,1
 2026-09-14,SDP,Mason McCoy,Recalled,2026-09-11,San Diego Padres recalled 2B Mason McCoy from El Paso Chihuahuas.,1
-2026-09-14,MIN,Austin Martin,Status Change,2026-09-10,Minnesota Twins activated RF Austin Martin from the 10-day injured list.,1
 2026-09-14,NYY,Jazz Chisholm Jr.,Status Change,2026-09-10,"New York Yankees placed 2B Jazz Chisholm Jr. on the 10-day injured list retroactive to September 9, 2026. Right thumb sprain.",1
+2026-09-14,MIN,Austin Martin,Status Change,2026-09-10,Minnesota Twins activated RF Austin Martin from the 10-day injured list.,1
 2026-09-14,NYY,Anthony Volpe,Recalled,2026-09-10,New York Yankees recalled SS Anthony Volpe from Scranton/Wilkes-Barre RailRiders.,1
 2026-09-14,ATL,Elieser Hernández,Designated for Assignment,2026-09-09,Atlanta Braves designated RHP Elieser Hernández for assignment.,1
-2026-09-14,ATL,Bailey Falter,Status Change,2026-09-09,Atlanta Braves activated LHP Bailey Falter.,1
-2026-09-14,MIA,Pete Fairbanks,Status Change,2026-09-09,Miami Marlins activated RHP Pete Fairbanks from the 15-day injured list.,1
-2026-09-14,ARI,Zac Gallen,Status Change,2026-09-09,Arizona Diamondbacks activated RHP Zac Gallen from the 60-day injured list.,1
 2026-09-14,ARI,Michael Soroka,Status Change,2026-09-09,Arizona Diamondbacks activated RHP Michael Soroka from the 15-day injured list.,1
 2026-09-14,SFG,Spencer Bivens,Designated for Assignment,2026-09-09,San Francisco Giants designated RHP Spencer Bivens for assignment.,1
-2026-09-14,ATL,Reynaldo López,Status Change,2026-09-09,Atlanta Braves activated RHP Reynaldo López from the 15-day injured list.,1
+2026-09-14,ATL,Bailey Falter,Status Change,2026-09-09,Atlanta Braves activated LHP Bailey Falter.,1
+2026-09-14,MIA,Pete Fairbanks,Status Change,2026-09-09,Miami Marlins activated RHP Pete Fairbanks from the 15-day injured list.,1
 2026-09-14,BAL,Blaze Alexander,Status Change,2026-09-09,Baltimore Orioles placed 3B Blaze Alexander on the 10-day injured list. Low back discomfort.,1
+2026-09-14,ARI,Zac Gallen,Status Change,2026-09-09,Arizona Diamondbacks activated RHP Zac Gallen from the 60-day injured list.,1
+2026-09-14,ATL,Reynaldo López,Status Change,2026-09-09,Atlanta Braves activated RHP Reynaldo López from the 15-day injured list.,1
 2026-09-14,ATL,Bryce Elder,Status Change,2026-09-09,"Atlanta Braves placed RHP Bryce Elder on the 15-day injured list retroactive to September 6, 2026. Right knee surgery.",1
 2026-09-14,CWS,Tyler Davis,Status Change,2026-09-09,Chicago White Sox placed RHP Tyler Davis on the bereavement list.,1
-2026-09-14,BAL,Jeremiah Jackson,Recalled,2026-09-09,Baltimore Orioles recalled 2B Jeremiah Jackson from Norfolk Tides.,1
 2026-09-14,CWS,Chris Murphy,Recalled,2026-09-09,Chicago White Sox recalled LHP Chris Murphy from Charlotte Knights.,1
+2026-09-14,BAL,Jeremiah Jackson,Recalled,2026-09-09,Baltimore Orioles recalled 2B Jeremiah Jackson from Norfolk Tides.,1
