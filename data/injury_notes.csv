@@ -1,15 +1,20 @@
 game_date,team,player,transaction_type,txn_date,description,relevant_today
 2026-09-22,ATH,Joshua Kuroda-Grauer,Status Change,2026-09-22,Athletics activated 3B Joshua Kuroda-Grauer from the 60-day injured list.,1
-2026-09-22,NYM,Devin Williams,Status Change,2026-09-22,New York Mets activated RHP Devin Williams from the 15-day injured list.,1
-2026-09-22,PIT,Camilo Doval,Designated for Assignment,2026-09-22,Pittsburgh Pirates designated RHP Camilo Doval for assignment.,1
+2026-09-22,TEX,Michael Helman,Status Change,2026-09-22,Texas Rangers activated CF Michael Helman from the 60-day injured list.,1
 2026-09-22,NYY,Jazz Chisholm Jr.,Status Change,2026-09-22,New York Yankees activated 2B Jazz Chisholm Jr. from the 10-day injured list.,1
-2026-09-22,NYM,Christian Scott,Status Change,2026-09-22,New York Mets placed RHP Christian Scott on the 15-day injured list. Left knee inflammation.,1
-2026-09-22,TEX,Peyton Gray,Status Change,2026-09-22,Texas Rangers activated RHP Peyton Gray from the 15-day injured list.,1
+2026-09-22,SFG,Blade Tidwell,Status Change,2026-09-22,San Francisco Giants placed RHP Blade Tidwell on the 15-day injured list.,1
 2026-09-22,PIT,Kirby Yates,Status Change,2026-09-22,Pittsburgh Pirates activated RHP Kirby Yates from the 15-day injured list.,1
-2026-09-22,ATH,Max Muncy,Status Change,2026-09-22,Athletics placed 3B Max Muncy on the 10-day injured list. Left knee chondromalacia.,1
-2026-09-22,CIN,Tony Santillan,Status Change,2026-09-22,"Cincinnati Reds placed RHP Tony Santillan on the 15-day injured list retroactive to September 19, 2026. Left hip labral tear.",1
+2026-09-22,PIT,Camilo Doval,Designated for Assignment,2026-09-22,Pittsburgh Pirates designated RHP Camilo Doval for assignment.,1
+2026-09-22,NYM,Devin Williams,Status Change,2026-09-22,New York Mets activated RHP Devin Williams from the 15-day injured list.,1
+2026-09-22,TEX,Peyton Gray,Status Change,2026-09-22,Texas Rangers activated RHP Peyton Gray from the 15-day injured list.,1
 2026-09-22,ATH,J.T. Ginn,Status Change,2026-09-22,Athletics transferred RHP J.T. Ginn from the 15-day injured list to the 60-day injured list. Right elbow impingement.,1
+2026-09-22,NYM,Christian Scott,Status Change,2026-09-22,New York Mets placed RHP Christian Scott on the 15-day injured list. Left knee inflammation.,1
+2026-09-22,TEX,Joc Pederson,Status Change,2026-09-22,"Texas Rangers placed DH Joc Pederson on the 10-day injured list retroactive to September 19, 2026. Left wrist fracture.",1
+2026-09-22,CIN,Tony Santillan,Status Change,2026-09-22,"Cincinnati Reds placed RHP Tony Santillan on the 15-day injured list retroactive to September 19, 2026. Left hip labral tear.",1
+2026-09-22,TEX,Cal Quantrill,Status Change,2026-09-22,Texas Rangers transferred RHP Cal Quantrill from the 15-day injured list to the 60-day injured list. Right lat strain.,1
+2026-09-22,ATH,Max Muncy,Status Change,2026-09-22,Athletics placed 3B Max Muncy on the 10-day injured list. Left knee chondromalacia.,1
 2026-09-22,CIN,Connor Phillips,Recalled,2026-09-22,Cincinnati Reds recalled RHP Connor Phillips from Louisville Bats.,1
+2026-09-22,SFG,Braxton Roxby,Recalled,2026-09-22,San Francisco Giants recalled RHP Braxton Roxby from Sacramento River Cats.,1
 2026-09-22,TOR,Trey Yesavage,Status Change,2026-09-21,Toronto Blue Jays activated RHP Trey Yesavage from the 15-day injured list.,1
 2026-09-22,SFG,Bryce Eldridge,Status Change,2026-09-21,"San Francisco Giants placed DH Bryce Eldridge on the 7-day injured list retroactive to September 18, 2026. Concussion.",1
 2026-09-22,SFG,Jung Hoo Lee,Status Change,2026-09-21,San Francisco Giants placed RF Jung Hoo Lee on the 10-day injured list. Groin contusion.,1
