@@ -1,12 +1,16 @@
 game_date,team,player,transaction_type,txn_date,description,relevant_today
-2026-09-21,TOR,Trey Yesavage,Status Change,2026-09-21,Toronto Blue Jays activated RHP Trey Yesavage from the 15-day injured list.,1
-2026-09-21,DET,Colt Keith,Status Change,2026-09-21,"Detroit Tigers placed 3B Colt Keith on the 10-day injured list retroactive to September 20, 2026.",1
+2026-09-21,SFG,Philip Abner,Designated for Assignment,2026-09-21,San Francisco Giants designated LHP Philip Abner for assignment.,1
 2026-09-21,DET,Troy Melton,Status Change,2026-09-21,Detroit Tigers placed RHP Troy Melton on the 15-day injured list.,1
-2026-09-21,MIN,Alex Jackson,Designated for Assignment,2026-09-21,Minnesota Twins designated C Alex Jackson for assignment.,1
+2026-09-21,DET,Colt Keith,Status Change,2026-09-21,"Detroit Tigers placed 3B Colt Keith on the 10-day injured list retroactive to September 20, 2026.",1
+2026-09-21,SFG,Marcelo Mayer,Status Change,2026-09-21,San Francisco Giants activated 2B Marcelo Mayer from the 10-day injured list.,1
+2026-09-21,SFG,Jung Hoo Lee,Status Change,2026-09-21,San Francisco Giants placed RF Jung Hoo Lee on the 10-day injured list. Groin contusion.,1
 2026-09-21,WSH,DJ Herz,Status Change,2026-09-21,Washington Nationals activated LHP DJ Herz from the 60-day injured list.,1
+2026-09-21,TOR,Trey Yesavage,Status Change,2026-09-21,Toronto Blue Jays activated RHP Trey Yesavage from the 15-day injured list.,1
 2026-09-21,TOR,Joe Mantiply,Designated for Assignment,2026-09-21,Toronto Blue Jays designated LHP Joe Mantiply for assignment.,1
-2026-09-21,TOR,Chad Dallas,Recalled,2026-09-21,Toronto Blue Jays recalled RHP Chad Dallas from Buffalo Bisons.,1
+2026-09-21,SFG,Bryce Eldridge,Status Change,2026-09-21,"San Francisco Giants placed DH Bryce Eldridge on the 7-day injured list retroactive to September 18, 2026. Concussion.",1
+2026-09-21,MIN,Alex Jackson,Designated for Assignment,2026-09-21,Minnesota Twins designated C Alex Jackson for assignment.,1
 2026-09-21,DET,River Ryan,Recalled,2026-09-21,Detroit Tigers recalled RHP River Ryan from Toledo Mud Hens.,1
+2026-09-21,TOR,Chad Dallas,Recalled,2026-09-21,Toronto Blue Jays recalled RHP Chad Dallas from Buffalo Bisons.,1
 2026-09-21,DET,Jace Jung,Recalled,2026-09-21,Detroit Tigers recalled 3B Jace Jung from Toledo Mud Hens.,1
 2026-09-21,SFG,Tristan Beck,Recalled,2026-09-20,San Francisco Giants recalled RHP Tristan Beck from Sacramento River Cats.,1
 2026-09-21,SFG,Sam Hentges,Status Change,2026-09-19,San Francisco Giants activated LHP Sam Hentges from the 15-day injured list.,1
