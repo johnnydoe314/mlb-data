@@ -1,21 +1,22 @@
 game_date,team,player,transaction_type,txn_date,description,relevant_today
-2026-09-23,BAL,Samuel Basallo,Status Change,2026-09-23,"Baltimore Orioles placed C Samuel Basallo on the 7-day injured list retroactive to September 22, 2026. Concussion.",1
-2026-09-23,HOU,Cristian Javier,Status Change,2026-09-23,Houston Astros placed RHP Cristian Javier on the 15-day injured list.,1
+2026-09-23,TOR,Dylan Cease,Status Change,2026-09-23,"Toronto Blue Jays placed RHP Dylan Cease on the 15-day injured list retroactive to September 20, 2026. Right shoulder inflammation.",1
+2026-09-23,LAD,Tarik Skubal,Status Change,2026-09-23,Los Angeles Dodgers activated LHP Tarik Skubal from the bereavement list.,1
 2026-09-23,ATL,Robert Suarez,Status Change,2026-09-23,Atlanta Braves activated RHP Robert Suarez from the 60-day injured list.,1
+2026-09-23,BAL,Samuel Basallo,Status Change,2026-09-23,"Baltimore Orioles placed C Samuel Basallo on the 7-day injured list retroactive to September 22, 2026. Concussion.",1
+2026-09-23,LAD,Shohei Ohtani,Status Change,2026-09-23,Los Angeles Dodgers activated TWP Shohei Ohtani from the 15-day injured list.,1
+2026-09-23,NYM,Xzavion Curry,Designated for Assignment,2026-09-23,New York Mets designated RHP Xzavion Curry for assignment.,1
+2026-09-23,HOU,Cristian Javier,Status Change,2026-09-23,Houston Astros placed RHP Cristian Javier on the 15-day injured list.,1
 2026-09-23,CLE,Shawn Armstrong,Status Change,2026-09-23,Cleveland Guardians activated RHP Shawn Armstrong from the 60-day injured list.,1
 2026-09-23,BOS,Ceddanne Rafaela,Status Change,2026-09-23,Boston Red Sox activated CF Ceddanne Rafaela from the 10-day injured list.,1
 2026-09-23,CLE,Connor Brogdon,Designated for Assignment,2026-09-23,Cleveland Guardians designated RHP Connor Brogdon for assignment.,1
-2026-09-23,LAD,Shohei Ohtani,Status Change,2026-09-23,Los Angeles Dodgers activated TWP Shohei Ohtani from the 15-day injured list.,1
-2026-09-23,NYM,Xzavion Curry,Designated for Assignment,2026-09-23,New York Mets designated RHP Xzavion Curry for assignment.,1
-2026-09-23,TOR,Dylan Cease,Status Change,2026-09-23,"Toronto Blue Jays placed RHP Dylan Cease on the 15-day injured list retroactive to September 20, 2026. Right shoulder inflammation.",1
-2026-09-23,LAD,Tarik Skubal,Status Change,2026-09-23,Los Angeles Dodgers activated LHP Tarik Skubal from the bereavement list.,1
 2026-09-23,HOU,Jake Meyers,Status Change,2026-09-23,Houston Astros placed CF Jake Meyers on the 60-day injured list.,1
+2026-09-23,WSH,Gus Varland,Recalled,2026-09-23,Washington Nationals recalled RHP Gus Varland from Rochester Red Wings.,1
 2026-09-23,BAL,Heston Kjerstad,Recalled,2026-09-23,Baltimore Orioles recalled LF Heston Kjerstad from Norfolk Tides.,1
 2026-09-23,TOR,Chase Lee,Recalled,2026-09-23,Toronto Blue Jays recalled RHP Chase Lee from Buffalo Bisons.,1
-2026-09-23,TBR,Mason Englert,Recalled,2026-09-23,Tampa Bay Rays recalled RHP Mason Englert from Durham Bulls.,1
 2026-09-23,TOR,CJ Van Eyk,Recalled,2026-09-23,Toronto Blue Jays recalled RHP CJ Van Eyk from Buffalo Bisons.,1
+2026-09-23,TEX,Gavin Collyer,Recalled,2026-09-23,Texas Rangers recalled RHP Gavin Collyer from Round Rock Express.,1
+2026-09-23,TBR,Mason Englert,Recalled,2026-09-23,Tampa Bay Rays recalled RHP Mason Englert from Durham Bulls.,1
 2026-09-23,BAL,Trey Gibson,Recalled,2026-09-23,Baltimore Orioles recalled RHP Trey Gibson from Norfolk Tides.,1
-2026-09-23,WSH,Gus Varland,Recalled,2026-09-23,Washington Nationals recalled RHP Gus Varland from Rochester Red Wings.,1
 2026-09-23,SFG,Blade Tidwell,Status Change,2026-09-22,San Francisco Giants placed RHP Blade Tidwell on the 15-day injured list.,1
 2026-09-23,ATH,Joshua Kuroda-Grauer,Status Change,2026-09-22,Athletics activated 3B Joshua Kuroda-Grauer from the 60-day injured list.,1
 2026-09-23,NYM,Devin Williams,Status Change,2026-09-22,New York Mets activated RHP Devin Williams from the 15-day injured list.,1
