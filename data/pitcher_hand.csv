@@ -1,6 +1,8 @@
 pitcher_id,name,hand
+434378,Justin Verlander,R
 453286,Max Scherzer,R
 476594,Robert Stock,R
+489446,Kirby Yates,R
 500779,Jose Quintana,L
 518876,Merrill Kelly,R
 519242,Chris Sale,L
@@ -116,6 +118,7 @@ pitcher_id,name,hand
 665871,Javier Assad,R
 666157,Nick Lodolo,L
 666200,Jesús Luzardo,L
+667652,Jack Ralston,R
 667755,José Soriano,R
 668390,Cole Winn,R
 668678,Zac Gallen,R
