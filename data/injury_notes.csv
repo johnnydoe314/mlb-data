@@ -1,16 +1,25 @@
 game_date,team,player,transaction_type,txn_date,description,relevant_today
-2026-09-27,BOS,Mickey Gasper,Status Change,2026-09-27,"Boston Red Sox placed DH Mickey Gasper on the 10-day injured list retroactive to September 26, 2026. Right biceps strain.",1
-2026-09-27,BOS,Eli White,Status Change,2026-09-27,Boston Red Sox transferred CF Eli White from the 10-day injured list to the 60-day injured list. Right foot ligament injury.,1
-2026-09-27,NYM,Jonathan Pintaro,Status Change,2026-09-27,New York Mets placed RHP Jonathan Pintaro on the 15-day injured list. Undisclosed illness.,1
-2026-09-27,PHI,José Urquidy,Designated for Assignment,2026-09-27,Philadelphia Phillies designated RHP José Urquidy for assignment.,1
-2026-09-27,BOS,Tyron Guerrero,Status Change,2026-09-27,"Boston Red Sox placed RHP Tyron Guerrero on the 15-day injured list retroactive to September 24, 2026. Right shoulder strain.",1
-2026-09-27,PHI,Jesús Luzardo,Status Change,2026-09-27,Philadelphia Phillies activated LHP Jesús Luzardo from the 15-day injured list.,1
 2026-09-27,BOS,Tanner Houck,Status Change,2026-09-27,Boston Red Sox activated RHP Tanner Houck from the 60-day injured list.,1
+2026-09-27,BOS,Mickey Gasper,Status Change,2026-09-27,"Boston Red Sox placed DH Mickey Gasper on the 10-day injured list retroactive to September 26, 2026. Right biceps strain.",1
+2026-09-27,LAD,Blake Treinen,Status Change,2026-09-27,Los Angeles Dodgers placed RHP Blake Treinen on the 15-day injured list. Right shoulder inflammation.,1
+2026-09-27,BOS,Tyron Guerrero,Status Change,2026-09-27,"Boston Red Sox placed RHP Tyron Guerrero on the 15-day injured list retroactive to September 24, 2026. Right shoulder strain.",1
+2026-09-27,KCR,James McArthur,Status Change,2026-09-27,Kansas City Royals activated RHP James McArthur from the 60-day injured list.,1
+2026-09-27,BOS,Eli White,Status Change,2026-09-27,Boston Red Sox transferred CF Eli White from the 10-day injured list to the 60-day injured list. Right foot ligament injury.,1
+2026-09-27,PHI,Jesús Luzardo,Status Change,2026-09-27,Philadelphia Phillies activated LHP Jesús Luzardo from the 15-day injured list.,1
+2026-09-27,NYM,Jonathan Pintaro,Status Change,2026-09-27,New York Mets placed RHP Jonathan Pintaro on the 15-day injured list. Undisclosed illness.,1
+2026-09-27,KCR,Tony Gonsolin,Status Change,2026-09-27,Kansas City Royals placed RHP Tony Gonsolin on the 15-day injured list. Allergic reaction.,1
+2026-09-27,PHI,José Urquidy,Designated for Assignment,2026-09-27,Philadelphia Phillies designated RHP José Urquidy for assignment.,1
+2026-09-27,DET,Jack Flaherty,Status Change,2026-09-27,Detroit Tigers activated RHP Jack Flaherty from the 15-day injured list.,1
 2026-09-27,CLE,Austin Peterson,Recalled,2026-09-27,Cleveland Guardians recalled RHP Austin Peterson from Columbus Clippers.,1
 2026-09-27,BOS,Nate Eaton,Recalled,2026-09-27,Boston Red Sox recalled LF Nate Eaton from Worcester Red Sox.,1
-2026-09-27,TBR,Jesse Scholtens,Recalled,2026-09-27,Tampa Bay Rays recalled RHP Jesse Scholtens from Durham Bulls.,1
 2026-09-27,NYM,Jefry Yan,Recalled,2026-09-27,New York Mets recalled LHP Jefry Yan from FCL Mets.,1
 2026-09-27,BOS,Wyatt Olds,Recalled,2026-09-27,Boston Red Sox recalled RHP Wyatt Olds from Worcester Red Sox.,1
+2026-09-27,TEX,Cam Cauley,Recalled,2026-09-27,Texas Rangers recalled CF Cam Cauley from Round Rock Express.,1
+2026-09-27,LAD,Bobby Miller,Recalled,2026-09-27,Los Angeles Dodgers recalled RHP Bobby Miller from Oklahoma City Comets.,1
+2026-09-27,HOU,Raynel Delgado,Recalled,2026-09-27,Houston Astros recalled 2B Raynel Delgado from Sugar Land Space Cowboys.,1
+2026-09-27,PIT,Noah Murdock,Recalled,2026-09-27,Pittsburgh Pirates recalled RHP Noah Murdock from Indianapolis Indians.,1
+2026-09-27,TBR,Jesse Scholtens,Recalled,2026-09-27,Tampa Bay Rays recalled RHP Jesse Scholtens from Durham Bulls.,1
+2026-09-27,CHC,Braxton Garrett,Recalled,2026-09-27,Chicago Cubs recalled LHP Braxton Garrett from Iowa Cubs.,1
 2026-09-27,CHC,Antoine Kelly,Designated for Assignment,2026-09-26,Chicago Cubs designated LHP Antoine Kelly for assignment.,1
 2026-09-27,WSH,Connelly Early,Status Change,2026-09-26,Washington Nationals activated LHP Connelly Early from the 60-day injured list.,1
 2026-09-27,MIN,Jeff Hoffman,Status Change,2026-09-26,"Minnesota Twins placed RHP Jeff Hoffman on the 15-day injured list retroactive to September 23, 2026. Right forearm inflammation.",1
