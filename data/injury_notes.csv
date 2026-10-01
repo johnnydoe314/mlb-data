@@ -1,86 +1,19 @@
 game_date,team,player,transaction_type,txn_date,description,relevant_today
-2026-09-30,BOS,Curtis Mead,Status Change,2026-09-30,Boston Red Sox activated 3B Curtis Mead.,1
-2026-09-30,SDP,Rodolfo Durán,Status Change,2026-09-29,San Diego Padres placed C Rodolfo Durán on the 60-day injured list. Right forearm strain.,1
-2026-09-30,SDP,Joe Musgrove,Status Change,2026-09-29,San Diego Padres activated RHP Joe Musgrove from the 60-day injured list.,1
-2026-09-30,ATL,Ricky Vanasco,Designated for Assignment,2026-09-29,Atlanta Braves designated RHP Ricky Vanasco for assignment.,1
-2026-09-30,NYY,Trent Grisham,Status Change,2026-09-29,New York Yankees activated CF Trent Grisham from the 10-day injured list.,1
-2026-09-30,NYY,Giancarlo Stanton,Status Change,2026-09-29,New York Yankees activated DH Giancarlo Stanton from the 60-day injured list.,1
-2026-09-30,BOS,Garrett Crochet,Status Change,2026-09-29,Boston Red Sox activated LHP Garrett Crochet from the 60-day injured list.,1
-2026-09-30,NYY,Alexander Cornielle,Designated for Assignment,2026-09-29,New York Yankees designated RHP Alexander Cornielle for assignment.,1
-2026-09-30,BOS,Justin Slaten,Status Change,2026-09-29,Boston Red Sox transferred RHP Justin Slaten from the 15-day injured list to the 60-day injured list. Right elbow inflammation.,1
-2026-09-30,ATL,Elieser Hernández,Designated for Assignment,2026-09-29,Atlanta Braves designated RHP Elieser Hernández for assignment.,1
-2026-09-30,SDP,Jeremiah Estrada,Status Change,2026-09-28,San Diego Padres activated RHP Jeremiah Estrada from the 15-day injured list.,1
-2026-09-30,CWS,Joey Bart,Status Change,2026-09-28,Chicago White Sox activated C Joey Bart from the 10-day injured list.,1
-2026-09-30,CWS,Jake Rogers,Status Change,2026-09-28,Chicago White Sox activated C Jake Rogers from the paternity list.,1
-2026-09-30,SDP,Miguel Andujar,Status Change,2026-09-28,San Diego Padres activated DH Miguel Andujar from the 10-day injured list.,1
-2026-09-30,CHC,Trent Thornton,Status Change,2026-09-28,Chicago Cubs activated RHP Trent Thornton from the 15-day injured list.,1
-2026-09-30,CHC,Edward Cabrera,Status Change,2026-09-28,Chicago Cubs activated RHP Edward Cabrera.,1
-2026-09-30,ATL,Bryce Elder,Status Change,2026-09-28,Atlanta Braves activated RHP Bryce Elder from the 15-day injured list.,1
-2026-09-30,HOU,Steven Okert,Status Change,2026-09-28,Houston Astros activated LHP Steven Okert from the 15-day injured list.,1
-2026-09-30,PHI,Alan Rangel,Recalled,2026-09-28,Philadelphia Phillies recalled RHP Alan Rangel from Lehigh Valley IronPigs.,1
-2026-09-30,CHC,James Triantos,Recalled,2026-09-28,Chicago Cubs recalled 2B James Triantos from Iowa Cubs.,1
-2026-09-30,SDP,Jhony Brito,Recalled,2026-09-28,San Diego Padres recalled RHP Jhony Brito from El Paso Chihuahuas.,1
-2026-09-30,CWS,Edgar Quero,Recalled,2026-09-28,Chicago White Sox recalled C Edgar Quero from Charlotte Knights.,1
-2026-09-30,CWS,Tanner McDougal,Recalled,2026-09-28,Chicago White Sox recalled RHP Tanner McDougal from Charlotte Knights.,1
-2026-09-30,BOS,Romy Gonzalez,Recalled,2026-09-28,Boston Red Sox recalled DH Romy Gonzalez from Worcester Red Sox.,1
-2026-09-30,PHI,Gabriel Rincones Jr.,Recalled,2026-09-28,Philadelphia Phillies recalled RF Gabriel Rincones Jr. from Lehigh Valley IronPigs.,1
-2026-09-30,CHC,Justin Dean,Recalled,2026-09-28,Chicago Cubs recalled CF Justin Dean from Iowa Cubs.,1
-2026-09-30,HOU,Zach Cole,Recalled,2026-09-28,Houston Astros recalled LF Zach Cole from Sugar Land Space Cowboys.,1
-2026-09-30,HOU,Joey Loperfido,Recalled,2026-09-28,Houston Astros recalled LF Joey Loperfido from Sugar Land Space Cowboys.,1
-2026-09-30,NYY,Elmer Rodríguez,Recalled,2026-09-28,New York Yankees recalled RHP Elmer Rodríguez from Scranton/Wilkes-Barre RailRiders.,1
-2026-09-30,CHC,BJ Murray Jr.,Recalled,2026-09-28,Chicago Cubs recalled 3B BJ Murray Jr. from Iowa Cubs.,1
-2026-09-30,SDP,Rodolfo Durán,Recalled,2026-09-28,San Diego Padres recalled C Rodolfo Durán from El Paso Chihuahuas.,1
-2026-09-30,BOS,Tsung-Che Cheng,Recalled,2026-09-28,Boston Red Sox recalled SS Tsung-Che Cheng from Worcester Red Sox.,1
-2026-09-30,BOS,Kristian Campbell,Recalled,2026-09-28,Boston Red Sox recalled OF Kristian Campbell from Worcester Red Sox.,1
-2026-09-30,CWS,Tyler Schweitzer,Recalled,2026-09-28,Chicago White Sox recalled LHP Tyler Schweitzer from Charlotte Knights.,1
-2026-09-30,HOU,Alimber Santa,Recalled,2026-09-28,Houston Astros recalled RHP Alimber Santa from Sugar Land Space Cowboys.,1
-2026-09-30,PHI,Moisés Chace,Recalled,2026-09-28,Philadelphia Phillies recalled RHP Moisés Chace from Reading Fightin Phils.,1
-2026-09-30,SDP,Will Wagner,Recalled,2026-09-28,San Diego Padres recalled DH Will Wagner from El Paso Chihuahuas.,1
-2026-09-30,CHC,Jordan Wicks,Recalled,2026-09-28,Chicago Cubs recalled LHP Jordan Wicks from Iowa Cubs.,1
-2026-09-30,CWS,Shane Smith,Recalled,2026-09-28,Chicago White Sox recalled RHP Shane Smith from Charlotte Knights.,1
-2026-09-30,PHI,Andrew Hoffmann,Recalled,2026-09-28,Philadelphia Phillies recalled RHP Andrew Hoffmann from Lehigh Valley IronPigs.,1
-2026-09-30,PHI,Nestor Cortes,Recalled,2026-09-28,Philadelphia Phillies recalled LHP Nestor Cortes from Lehigh Valley IronPigs.,1
-2026-09-30,CHC,Ethan Roberts,Recalled,2026-09-28,Chicago Cubs recalled RHP Ethan Roberts from Iowa Cubs.,1
-2026-09-30,CWS,Jonathan Cannon,Recalled,2026-09-28,Chicago White Sox recalled RHP Jonathan Cannon from Charlotte Knights.,1
-2026-09-30,SDP,Mason McCoy,Recalled,2026-09-28,San Diego Padres recalled 2B Mason McCoy from El Paso Chihuahuas.,1
-2026-09-30,SDP,Gage Workman,Recalled,2026-09-28,San Diego Padres recalled 3B Gage Workman from El Paso Chihuahuas.,1
-2026-09-30,HOU,Kai-Wei Teng,Recalled,2026-09-28,Houston Astros recalled RHP Kai-Wei Teng from Sugar Land Space Cowboys.,1
-2026-09-30,CWS,Junior Perez,Recalled,2026-09-28,Chicago White Sox recalled CF Junior Perez from Charlotte Knights.,1
-2026-09-30,SDP,Garrett Hawkins,Recalled,2026-09-28,San Diego Padres recalled RHP Garrett Hawkins from El Paso Chihuahuas.,1
-2026-09-30,NYY,Angel Chivilli,Recalled,2026-09-28,New York Yankees recalled RHP Angel Chivilli from Scranton/Wilkes-Barre RailRiders.,1
-2026-09-30,HOU,Zach Dezenzo,Recalled,2026-09-28,Houston Astros recalled LF Zach Dezenzo from Sugar Land Space Cowboys.,1
-2026-09-30,CHC,Tyler Ferguson,Recalled,2026-09-28,Chicago Cubs recalled RHP Tyler Ferguson from Iowa Cubs.,1
-2026-09-30,CHC,Kevin Alcántara,Recalled,2026-09-28,Chicago Cubs recalled DH Kevin Alcántara from Iowa Cubs.,1
-2026-09-30,PHI,Colby Thomas,Recalled,2026-09-28,Philadelphia Phillies recalled RF Colby Thomas from Lehigh Valley IronPigs.,1
-2026-09-30,SDP,JP Sears,Recalled,2026-09-28,San Diego Padres recalled LHP JP Sears from El Paso Chihuahuas.,1
-2026-09-30,SDP,Hunter Stratton,Recalled,2026-09-28,San Diego Padres recalled RHP Hunter Stratton from El Paso Chihuahuas.,1
-2026-09-30,PHI,Kameron Misner,Recalled,2026-09-28,Philadelphia Phillies recalled CF Kameron Misner from Lehigh Valley IronPigs.,1
-2026-09-30,PHI,Grant Holman,Recalled,2026-09-28,Philadelphia Phillies recalled RHP Grant Holman from Lehigh Valley IronPigs.,1
-2026-09-30,CHC,Jayden Murray,Recalled,2026-09-28,Chicago Cubs recalled RHP Jayden Murray from Iowa Cubs.,1
-2026-09-30,CHC,Julian Aguiar,Recalled,2026-09-28,Chicago Cubs recalled RHP Julian Aguiar from ACL Cubs.,1
-2026-09-30,BOS,Tyler Samaniego,Recalled,2026-09-28,Boston Red Sox recalled LHP Tyler Samaniego from Worcester Red Sox.,1
-2026-09-30,CWS,Rikuu Nishida,Recalled,2026-09-28,Chicago White Sox recalled RF Rikuu Nishida from Charlotte Knights.,1
-2026-09-30,HOU,Collin Price,Recalled,2026-09-28,Houston Astros recalled C Collin Price from Sugar Land Space Cowboys.,1
-2026-09-30,NYY,J.C. Escarra,Recalled,2026-09-28,New York Yankees recalled C J.C. Escarra from Scranton/Wilkes-Barre RailRiders.,1
-2026-09-30,NYY,Jasson Domínguez,Recalled,2026-09-28,New York Yankees recalled RF Jasson Domínguez from Scranton/Wilkes-Barre RailRiders.,1
-2026-09-30,BOS,Mickey Gasper,Status Change,2026-09-27,"Boston Red Sox placed DH Mickey Gasper on the 10-day injured list retroactive to September 26, 2026. Right biceps strain.",1
-2026-09-30,BOS,Tyron Guerrero,Status Change,2026-09-27,"Boston Red Sox placed RHP Tyron Guerrero on the 15-day injured list retroactive to September 24, 2026. Right shoulder strain.",1
-2026-09-30,PHI,Jesús Luzardo,Status Change,2026-09-27,Philadelphia Phillies activated LHP Jesús Luzardo from the 15-day injured list.,1
-2026-09-30,BOS,Eli White,Status Change,2026-09-27,Boston Red Sox transferred CF Eli White from the 10-day injured list to the 60-day injured list. Right foot ligament injury.,1
-2026-09-30,PHI,José Urquidy,Designated for Assignment,2026-09-27,Philadelphia Phillies designated RHP José Urquidy for assignment.,1
-2026-09-30,BOS,Tanner Houck,Status Change,2026-09-27,Boston Red Sox activated RHP Tanner Houck from the 60-day injured list.,1
-2026-09-30,BOS,Wyatt Olds,Recalled,2026-09-27,Boston Red Sox recalled RHP Wyatt Olds from Worcester Red Sox.,1
-2026-09-30,HOU,Raynel Delgado,Recalled,2026-09-27,Houston Astros recalled 2B Raynel Delgado from Sugar Land Space Cowboys.,1
-2026-09-30,CHC,Braxton Garrett,Recalled,2026-09-27,Chicago Cubs recalled LHP Braxton Garrett from Iowa Cubs.,1
-2026-09-30,BOS,Nate Eaton,Recalled,2026-09-27,Boston Red Sox recalled LF Nate Eaton from Worcester Red Sox.,1
-2026-09-30,CHC,Antoine Kelly,Designated for Assignment,2026-09-26,Chicago Cubs designated LHP Antoine Kelly for assignment.,1
-2026-09-30,SDP,Gavin Sheets,Status Change,2026-09-26,San Diego Padres activated 1B Gavin Sheets from the 10-day injured list.,1
-2026-09-30,CWS,Jake Rogers,Status Change,2026-09-26,Chicago White Sox placed C Jake Rogers on the paternity list.,1
-2026-09-30,SDP,Casey Mize,Status Change,2026-09-26,San Diego Padres placed RHP Casey Mize on the 15-day injured list. Right ankle sprain.,1
-2026-09-30,SDP,Griffin Canning,Recalled,2026-09-26,San Diego Padres recalled RHP Griffin Canning from ACL Padres.,1
-2026-09-30,CWS,Drew Romo,Recalled,2026-09-26,Chicago White Sox recalled C Drew Romo from Charlotte Knights.,1
-2026-09-30,NYY,Fernando Cruz,Status Change,2026-09-25,New York Yankees transferred RHP Fernando Cruz from the 15-day injured list to the 60-day injured list. Right elbow discomfort.,1
-2026-09-30,CHC,Gavin Hollowell,Status Change,2026-09-25,Chicago Cubs activated RHP Gavin Hollowell from the 15-day injured list.,1
-2026-09-30,BOS,Jedixson Paez,Recalled,2026-09-25,Boston Red Sox recalled RHP Jedixson Paez from Worcester Red Sox.,1
-2026-09-30,NYY,Yerry De los Santos,Recalled,2026-09-25,New York Yankees recalled RHP Yerry De los Santos from Scranton/Wilkes-Barre RailRiders.,1
-2026-09-30,NYY,Brendan Beck,Recalled,2026-09-25,New York Yankees recalled RHP Brendan Beck from Scranton/Wilkes-Barre RailRiders.,1
+2026-10-01,ATL,Ricky Vanasco,Designated for Assignment,2026-09-29,Atlanta Braves designated RHP Ricky Vanasco for assignment.,1
+2026-10-01,ATL,Elieser Hernández,Designated for Assignment,2026-09-29,Atlanta Braves designated RHP Elieser Hernández for assignment.,1
+2026-10-01,ATL,Bryce Elder,Status Change,2026-09-28,Atlanta Braves activated RHP Bryce Elder from the 15-day injured list.,1
+2026-10-01,ATL,Rolddy Muñoz,Recalled,2026-09-28,Atlanta Braves recalled RHP Rolddy Muñoz from Gwinnett Stripers.,1
+2026-10-01,PHI,Alan Rangel,Recalled,2026-09-28,Philadelphia Phillies recalled RHP Alan Rangel from Lehigh Valley IronPigs.,1
+2026-10-01,ATL,Blake Burkhalter,Recalled,2026-09-28,Atlanta Braves recalled RHP Blake Burkhalter from Gwinnett Stripers.,1
+2026-10-01,PHI,Andrew Hoffmann,Recalled,2026-09-28,Philadelphia Phillies recalled RHP Andrew Hoffmann from Lehigh Valley IronPigs.,1
+2026-10-01,PHI,Kameron Misner,Recalled,2026-09-28,Philadelphia Phillies recalled CF Kameron Misner from Lehigh Valley IronPigs.,1
+2026-10-01,PHI,Nestor Cortes,Recalled,2026-09-28,Philadelphia Phillies recalled LHP Nestor Cortes from Lehigh Valley IronPigs.,1
+2026-10-01,ATL,James Karinchak,Recalled,2026-09-28,Atlanta Braves recalled RHP James Karinchak from Gwinnett Stripers.,1
+2026-10-01,PHI,Gabriel Rincones Jr.,Recalled,2026-09-28,Philadelphia Phillies recalled RF Gabriel Rincones Jr. from Lehigh Valley IronPigs.,1
+2026-10-01,PHI,Colby Thomas,Recalled,2026-09-28,Philadelphia Phillies recalled RF Colby Thomas from Lehigh Valley IronPigs.,1
+2026-10-01,PHI,Grant Holman,Recalled,2026-09-28,Philadelphia Phillies recalled RHP Grant Holman from Lehigh Valley IronPigs.,1
+2026-10-01,ATL,Tyler Uberstine,Recalled,2026-09-28,Atlanta Braves recalled RHP Tyler Uberstine from Gwinnett Stripers.,1
+2026-10-01,ATL,Jim Jarvis,Recalled,2026-09-28,Atlanta Braves recalled SS Jim Jarvis from Gwinnett Stripers.,1
+2026-10-01,PHI,Moisés Chace,Recalled,2026-09-28,Philadelphia Phillies recalled RHP Moisés Chace from Reading Fightin Phils.,1
+2026-10-01,PHI,José Urquidy,Designated for Assignment,2026-09-27,Philadelphia Phillies designated RHP José Urquidy for assignment.,1
+2026-10-01,PHI,Jesús Luzardo,Status Change,2026-09-27,Philadelphia Phillies activated LHP Jesús Luzardo from the 15-day injured list.,1
