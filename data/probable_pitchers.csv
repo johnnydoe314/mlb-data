@@ -1,3 +1,3 @@
 "game_date","game_pk","game_num","game_time","venue","away_team","away_team_name","home_team","home_team_name","away_pitcher_id","away_pitcher","home_pitcher_id","home_pitcher","status"
-"2026-10-04","849825","","2026-10-04T20:00:00Z","American Family Field","SDP","San Diego Padres","MIL","Milwaukee Brewers","650633","King, Michael","701656","Henderson, Logan","Final"
-"2026-10-04","849823","","2026-10-05T00:00:00Z","UNIQLO Field at Dodger Stadium","ATL","Atlanta Braves","LAD","Los Angeles Dodgers","678061","Kerr, Ray","605483","Snell, Blake","Warmup"
+"2026-10-05","849834","","2026-10-05T21:00:00Z","Progressive Field","CWS","Chicago White Sox","CLE","Cleveland Guardians","641743","Kay, Anthony","668909","Williams, Gavin","Pre-Game"
+"2026-10-05","849839","","2026-10-06T00:00:00Z","Tropicana Field","NYY","New York Yankees","TBR","Tampa Bay Rays","693645","Schlittler, Cam","642547","Peralta, Freddy","Pre-Game"
