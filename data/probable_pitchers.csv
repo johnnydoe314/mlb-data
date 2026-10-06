@@ -1,3 +1,3 @@
 "game_date","game_pk","game_num","game_time","venue","away_team","away_team_name","home_team","home_team_name","away_pitcher_id","away_pitcher","home_pitcher_id","home_pitcher","status"
-"2026-10-06","849819","","2026-10-06T22:00:00Z","Truist Park","LAD","Los Angeles Dodgers","ATL","Atlanta Braves","808967","Yamamoto, Yoshinobu","519242","Sale, Chris","Scheduled"
-"2026-10-06","849826","","2026-10-07T01:30:00Z","Petco Park","MIL","Milwaukee Brewers","SDP","San Diego Padres","669160","May, Dustin","601713","Pivetta, Nick","Scheduled"
+"2026-10-06","849819","","2026-10-06T22:00:00Z","Truist Park","LAD","Los Angeles Dodgers","ATL","Atlanta Braves","808967","Yamamoto, Yoshinobu","519242","Sale, Chris","In Progress"
+"2026-10-06","849826","","2026-10-07T01:30:00Z","Petco Park","MIL","Milwaukee Brewers","SDP","San Diego Padres","669160","May, Dustin","601713","Pivetta, Nick","Pre-Game"
