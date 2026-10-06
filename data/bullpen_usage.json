@@ -1,86 +1,4 @@
 {
-  "2026-10-01": [
-    {
-      "id": 554430,
-      "name": "Zack Wheeler",
-      "team": "PHI",
-      "pitches": 68,
-      "ip": 4.0,
-      "date": "2026-10-01"
-    },
-    {
-      "id": 661395,
-      "name": "Jhoan Duran",
-      "team": "PHI",
-      "pitches": 15,
-      "ip": 1.0,
-      "date": "2026-10-01"
-    },
-    {
-      "id": 680742,
-      "name": "Jonathan Bowlan",
-      "team": "PHI",
-      "pitches": 16,
-      "ip": 1.0,
-      "date": "2026-10-01"
-    },
-    {
-      "id": 641835,
-      "name": "Tim Mayza",
-      "team": "PHI",
-      "pitches": 6,
-      "ip": 0.1,
-      "date": "2026-10-01"
-    },
-    {
-      "id": 605400,
-      "name": "Aaron Nola",
-      "team": "PHI",
-      "pitches": 38,
-      "ip": 1.2,
-      "date": "2026-10-01"
-    },
-    {
-      "id": 689266,
-      "name": "Dylan Dodd",
-      "team": "ATL",
-      "pitches": 14,
-      "ip": 0.2,
-      "date": "2026-10-01"
-    },
-    {
-      "id": 663158,
-      "name": "Robert Suarez",
-      "team": "ATL",
-      "pitches": 11,
-      "ip": 0.2,
-      "date": "2026-10-01"
-    },
-    {
-      "id": 800311,
-      "name": "Didier Fuentes",
-      "team": "ATL",
-      "pitches": 13,
-      "ip": 1.0,
-      "date": "2026-10-01"
-    },
-    {
-      "id": 519242,
-      "name": "Chris Sale",
-      "team": "ATL",
-      "pitches": 21,
-      "ip": 1.1,
-      "date": "2026-10-01"
-    },
-    {
-      "id": 656550,
-      "name": "Grant Holmes",
-      "team": "ATL",
-      "pitches": 28,
-      "ip": 2.0,
-      "date": "2026-10-01"
-    }
-  ],
   "2026-10-02": [],
   "2026-10-03": [
     {
@@ -460,6 +378,136 @@
       "pitches": 36,
       "ip": 2.0,
       "date": "2026-10-04"
+    }
+  ],
+  "2026-10-05": [
+    {
+      "id": 641743,
+      "name": "Anthony Kay",
+      "team": "CWS",
+      "pitches": 17,
+      "ip": 0.1,
+      "date": "2026-10-05"
+    },
+    {
+      "id": 691799,
+      "name": "Grant Taylor",
+      "team": "CWS",
+      "pitches": 7,
+      "ip": 1.1,
+      "date": "2026-10-05"
+    },
+    {
+      "id": 680732,
+      "name": "Sean Burke",
+      "team": "CWS",
+      "pitches": 83,
+      "ip": 5.1,
+      "date": "2026-10-05"
+    },
+    {
+      "id": 656794,
+      "name": "Sean Newcomb",
+      "team": "CWS",
+      "pitches": 40,
+      "ip": 2.0,
+      "date": "2026-10-05"
+    },
+    {
+      "id": 542888,
+      "name": "Shawn Armstrong",
+      "team": "CLE",
+      "pitches": 16,
+      "ip": 1.1,
+      "date": "2026-10-05"
+    },
+    {
+      "id": 671922,
+      "name": "Cade Smith",
+      "team": "CLE",
+      "pitches": 5,
+      "ip": 1.0,
+      "date": "2026-10-05"
+    },
+    {
+      "id": 681870,
+      "name": "Erik Sabrowski",
+      "team": "CLE",
+      "pitches": 11,
+      "ip": 0.2,
+      "date": "2026-10-05"
+    },
+    {
+      "id": 683769,
+      "name": "Hunter Gaddis",
+      "team": "CLE",
+      "pitches": 17,
+      "ip": 1.0,
+      "date": "2026-10-05"
+    },
+    {
+      "id": 621112,
+      "name": "Paul Blackburn",
+      "team": "NYY",
+      "pitches": 12,
+      "ip": 1.0,
+      "date": "2026-10-05"
+    },
+    {
+      "id": 677960,
+      "name": "Ryan Weathers",
+      "team": "NYY",
+      "pitches": 13,
+      "ip": 0.2,
+      "date": "2026-10-05"
+    },
+    {
+      "id": 687396,
+      "name": "Brent Headrick",
+      "team": "NYY",
+      "pitches": 18,
+      "ip": 0.2,
+      "date": "2026-10-05"
+    },
+    {
+      "id": 670280,
+      "name": "David Bednar",
+      "team": "NYY",
+      "pitches": 3,
+      "ip": 0.1,
+      "date": "2026-10-05"
+    },
+    {
+      "id": 670167,
+      "name": "John Schreiber",
+      "team": "NYY",
+      "pitches": 15,
+      "ip": 1.0,
+      "date": "2026-10-05"
+    },
+    {
+      "id": 592155,
+      "name": "Cam Booser",
+      "team": "TBR",
+      "pitches": 8,
+      "ip": 0.1,
+      "date": "2026-10-05"
+    },
+    {
+      "id": 693855,
+      "name": "Ian Seymour",
+      "team": "TBR",
+      "pitches": 41,
+      "ip": 3.0,
+      "date": "2026-10-05"
+    },
+    {
+      "id": 641329,
+      "name": "Bryan Baker",
+      "team": "TBR",
+      "pitches": 9,
+      "ip": 1.0,
+      "date": "2026-10-05"
     }
   ]
 }
