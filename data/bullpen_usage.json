@@ -1,5 +1,4 @@
 {
-  "2026-10-02": [],
   "2026-10-03": [
     {
       "id": 641743,
@@ -508,6 +507,120 @@
       "pitches": 9,
       "ip": 1.0,
       "date": "2026-10-05"
+    }
+  ],
+  "2026-10-06": [
+    {
+      "id": 656945,
+      "name": "Tanner Scott",
+      "team": "LAD",
+      "pitches": 19,
+      "ip": 1.0,
+      "date": "2026-10-06"
+    },
+    {
+      "id": 621242,
+      "name": "Edwin D\u00edaz",
+      "team": "LAD",
+      "pitches": 19,
+      "ip": 1.0,
+      "date": "2026-10-06"
+    },
+    {
+      "id": 689266,
+      "name": "Dylan Dodd",
+      "team": "ATL",
+      "pitches": 17,
+      "ip": 1.0,
+      "date": "2026-10-06"
+    },
+    {
+      "id": 669276,
+      "name": "Dylan Lee",
+      "team": "ATL",
+      "pitches": 9,
+      "ip": 1.0,
+      "date": "2026-10-06"
+    },
+    {
+      "id": 628452,
+      "name": "Raisel Iglesias",
+      "team": "ATL",
+      "pitches": 22,
+      "ip": 1.0,
+      "date": "2026-10-06"
+    },
+    {
+      "id": 608718,
+      "name": "Brent Suter",
+      "team": "ATL",
+      "pitches": 21,
+      "ip": 1.0,
+      "date": "2026-10-06"
+    },
+    {
+      "id": 682842,
+      "name": "Abner Uribe",
+      "team": "MIL",
+      "pitches": 7,
+      "ip": 1.0,
+      "date": "2026-10-06"
+    },
+    {
+      "id": 668941,
+      "name": "JoJo Romero",
+      "team": "MIL",
+      "pitches": 30,
+      "ip": 1.2,
+      "date": "2026-10-06"
+    },
+    {
+      "id": 669084,
+      "name": "DL Hall",
+      "team": "MIL",
+      "pitches": 29,
+      "ip": 1.1,
+      "date": "2026-10-06"
+    },
+    {
+      "id": 622608,
+      "name": "Antonio Senzatela",
+      "team": "MIL",
+      "pitches": 14,
+      "ip": 1.0,
+      "date": "2026-10-06"
+    },
+    {
+      "id": 673513,
+      "name": "Yuki Matsui",
+      "team": "SDP",
+      "pitches": 23,
+      "ip": 1.0,
+      "date": "2026-10-06"
+    },
+    {
+      "id": 650633,
+      "name": "Michael King",
+      "team": "SDP",
+      "pitches": 40,
+      "ip": 2.0,
+      "date": "2026-10-06"
+    },
+    {
+      "id": 592094,
+      "name": "Jason Adam",
+      "team": "SDP",
+      "pitches": 13,
+      "ip": 0.1,
+      "date": "2026-10-06"
+    },
+    {
+      "id": 699134,
+      "name": "Bradgley Rodriguez",
+      "team": "SDP",
+      "pitches": 21,
+      "ip": 1.1,
+      "date": "2026-10-06"
     }
   ]
 }
