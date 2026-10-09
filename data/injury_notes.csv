@@ -1,51 +1,52 @@
 game_date,team,player,transaction_type,txn_date,description,relevant_today
+2026-10-09,ATL,Luke Williams,Designated for Assignment,2026-10-09,Atlanta Braves designated SS Luke Williams for assignment.,1
+2026-10-09,NYY,Yerry De los Santos,Status Change,2026-10-08,New York Yankees activated RHP Yerry De los Santos.,1
 2026-10-09,NYY,Michael Fulmer,Status Change,2026-10-08,New York Yankees activated RHP Michael Fulmer.,1
+2026-10-09,NYY,J.C. Escarra,Status Change,2026-10-08,New York Yankees activated C J.C. Escarra.,1
+2026-10-09,SDP,Garrett Hawkins,Status Change,2026-10-08,San Diego Padres activated RHP Garrett Hawkins.,1
+2026-10-09,SDP,Mason McCoy,Status Change,2026-10-08,San Diego Padres activated 2B Mason McCoy.,1
+2026-10-09,SDP,Sung-Mun Song,Status Change,2026-10-08,San Diego Padres activated 2B Sung-Mun Song.,1
+2026-10-09,SDP,Gage Workman,Status Change,2026-10-08,San Diego Padres activated 3B Gage Workman.,1
+2026-10-09,ATL,Luke Williams,Status Change,2026-10-08,Atlanta Braves activated SS Luke Williams.,1
+2026-10-09,NYY,Amed Rosario,Status Change,2026-10-08,New York Yankees activated 3B Amed Rosario.,1
+2026-10-09,NYY,Aaron Judge,Status Change,2026-10-08,New York Yankees activated RF Aaron Judge.,1
+2026-10-09,ATL,Dominic Smith,Status Change,2026-10-08,Atlanta Braves activated DH Dominic Smith.,1
+2026-10-09,SDP,Griffin Canning,Status Change,2026-10-08,San Diego Padres activated RHP Griffin Canning.,1
+2026-10-09,ATL,Rolddy Muñoz,Status Change,2026-10-08,Atlanta Braves activated RHP Rolddy Muñoz.,1
+2026-10-09,SDP,JP Sears,Status Change,2026-10-08,San Diego Padres activated LHP JP Sears.,1
+2026-10-09,SDP,Hunter Stratton,Status Change,2026-10-08,San Diego Padres activated RHP Hunter Stratton.,1
 2026-10-09,ATL,Bryce Elder,Status Change,2026-10-08,Atlanta Braves activated RHP Bryce Elder.,1
 2026-10-09,NYY,Elmer Rodríguez,Status Change,2026-10-08,New York Yankees activated RHP Elmer Rodríguez.,1
 2026-10-09,NYY,Angel Chivilli,Status Change,2026-10-08,New York Yankees activated RHP Angel Chivilli.,1
 2026-10-09,ATL,Blake Burkhalter,Status Change,2026-10-08,Atlanta Braves activated RHP Blake Burkhalter.,1
 2026-10-09,ATL,Martín Pérez,Status Change,2026-10-08,Atlanta Braves activated LHP Martín Pérez.,1
-2026-10-09,SDP,Jhony Brito,Status Change,2026-10-08,San Diego Padres activated RHP Jhony Brito.,1
-2026-10-09,NYY,Amed Rosario,Status Change,2026-10-08,New York Yankees activated 3B Amed Rosario.,1
-2026-10-09,NYY,Yerry De los Santos,Status Change,2026-10-08,New York Yankees activated RHP Yerry De los Santos.,1
-2026-10-09,ATL,Dominic Smith,Status Change,2026-10-08,Atlanta Braves activated DH Dominic Smith.,1
-2026-10-09,SDP,Casey Mize,Status Change,2026-10-08,San Diego Padres activated RHP Casey Mize from the 15-day injured list.,1
-2026-10-09,NYY,Clarke Schmidt,Status Change,2026-10-08,New York Yankees activated RHP Clarke Schmidt.,1
-2026-10-09,NYY,J.C. Escarra,Status Change,2026-10-08,New York Yankees activated C J.C. Escarra.,1
-2026-10-09,SDP,Garrett Hawkins,Status Change,2026-10-08,San Diego Padres activated RHP Garrett Hawkins.,1
-2026-10-09,ATL,Luke Williams,Status Change,2026-10-08,Atlanta Braves activated SS Luke Williams.,1
-2026-10-09,ATL,Jim Jarvis,Status Change,2026-10-08,Atlanta Braves activated SS Jim Jarvis.,1
-2026-10-09,SDP,Randy Vásquez,Status Change,2026-10-08,San Diego Padres activated RHP Randy Vásquez.,1
-2026-10-09,ATL,Kyle Farmer,Status Change,2026-10-08,Atlanta Braves activated DH Kyle Farmer.,1
-2026-10-09,SDP,Jeremiah Estrada,Status Change,2026-10-08,San Diego Padres activated RHP Jeremiah Estrada.,1
-2026-10-09,ATL,Tyler Uberstine,Status Change,2026-10-08,Atlanta Braves activated RHP Tyler Uberstine.,1
-2026-10-09,SDP,Griffin Canning,Status Change,2026-10-08,San Diego Padres activated RHP Griffin Canning.,1
-2026-10-09,ATL,Rolddy Muñoz,Status Change,2026-10-08,Atlanta Braves activated RHP Rolddy Muñoz.,1
-2026-10-09,SDP,Wandy Peralta,Status Change,2026-10-08,San Diego Padres activated LHP Wandy Peralta.,1
-2026-10-09,SDP,Will Wagner,Status Change,2026-10-08,San Diego Padres activated DH Will Wagner.,1
-2026-10-09,NYY,Jasson Domínguez,Status Change,2026-10-08,New York Yankees activated RF Jasson Domínguez.,1
-2026-10-09,SDP,Mason McCoy,Status Change,2026-10-08,San Diego Padres activated 2B Mason McCoy.,1
-2026-10-09,SDP,Sung-Mun Song,Status Change,2026-10-08,San Diego Padres activated 2B Sung-Mun Song.,1
-2026-10-09,SDP,Gage Workman,Status Change,2026-10-08,San Diego Padres activated 3B Gage Workman.,1
-2026-10-09,SDP,JP Sears,Status Change,2026-10-08,San Diego Padres activated LHP JP Sears.,1
-2026-10-09,SDP,Hunter Stratton,Status Change,2026-10-08,San Diego Padres activated RHP Hunter Stratton.,1
-2026-10-09,ATL,Reynaldo López,Status Change,2026-10-08,Atlanta Braves activated RHP Reynaldo López.,1
 2026-10-09,NYY,Tim Hill,Status Change,2026-10-08,New York Yankees activated LHP Tim Hill.,1
 2026-10-09,NYY,Max Schuemann,Status Change,2026-10-08,New York Yankees activated LF Max Schuemann.,1
 2026-10-09,ATL,DaShawn Keirsey Jr.,Status Change,2026-10-08,Atlanta Braves activated CF DaShawn Keirsey Jr..,1
 2026-10-09,ATL,James Karinchak,Status Change,2026-10-08,Atlanta Braves activated RHP James Karinchak.,1
-2026-10-09,NYY,Aaron Judge,Status Change,2026-10-08,New York Yankees activated RF Aaron Judge.,1
+2026-10-09,SDP,Jhony Brito,Status Change,2026-10-08,San Diego Padres activated RHP Jhony Brito.,1
+2026-10-09,ATL,Jim Jarvis,Status Change,2026-10-08,Atlanta Braves activated SS Jim Jarvis.,1
+2026-10-09,SDP,Randy Vásquez,Status Change,2026-10-08,San Diego Padres activated RHP Randy Vásquez.,1
+2026-10-09,ATL,Kyle Farmer,Status Change,2026-10-08,Atlanta Braves activated DH Kyle Farmer.,1
+2026-10-09,SDP,Jeremiah Estrada,Status Change,2026-10-08,San Diego Padres activated RHP Jeremiah Estrada.,1
+2026-10-09,SDP,Casey Mize,Status Change,2026-10-08,San Diego Padres activated RHP Casey Mize from the 15-day injured list.,1
+2026-10-09,NYY,Clarke Schmidt,Status Change,2026-10-08,New York Yankees activated RHP Clarke Schmidt.,1
+2026-10-09,SDP,Wandy Peralta,Status Change,2026-10-08,San Diego Padres activated LHP Wandy Peralta.,1
+2026-10-09,SDP,Will Wagner,Status Change,2026-10-08,San Diego Padres activated DH Will Wagner.,1
+2026-10-09,NYY,Jasson Domínguez,Status Change,2026-10-08,New York Yankees activated RF Jasson Domínguez.,1
+2026-10-09,ATL,Reynaldo López,Status Change,2026-10-08,Atlanta Braves activated RHP Reynaldo López.,1
+2026-10-09,ATL,Tyler Uberstine,Status Change,2026-10-08,Atlanta Braves activated RHP Tyler Uberstine.,1
 2026-10-09,ATL,Owen Murphy,Recalled,2026-10-08,Atlanta Braves recalled RHP Owen Murphy from FCL Braves.,1
-2026-10-09,NYY,Brendan Beck,Recalled,2026-10-08,New York Yankees recalled RHP Brendan Beck from FCL Yankees.,1
 2026-10-09,TBR,Alex Cook,Recalled,2026-10-08,Tampa Bay Rays recalled RHP Alex Cook from Durham Bulls.,1
+2026-10-09,ATL,Michael Grove,Recalled,2026-10-08,Atlanta Braves recalled RHP Michael Grove from Gwinnett Stripers.,1
+2026-10-09,NYY,Bradley Hanner,Recalled,2026-10-08,New York Yankees recalled RHP Bradley Hanner from FCL Yankees.,1
 2026-10-09,MIL,Colton Gordon,Recalled,2026-10-08,Milwaukee Brewers recalled LHP Colton Gordon from Biloxi Shuckers.,1
+2026-10-09,NYY,Brendan Beck,Recalled,2026-10-08,New York Yankees recalled RHP Brendan Beck from FCL Yankees.,1
 2026-10-09,LAD,Kyle Hurt,Recalled,2026-10-08,Los Angeles Dodgers recalled RHP Kyle Hurt from Oklahoma City Comets.,1
 2026-10-09,NYY,Luis Gil,Recalled,2026-10-08,New York Yankees recalled RHP Luis Gil from FCL Yankees.,1
-2026-10-09,NYY,Bradley Hanner,Recalled,2026-10-08,New York Yankees recalled RHP Bradley Hanner from FCL Yankees.,1
-2026-10-09,ATL,Michael Grove,Recalled,2026-10-08,Atlanta Braves recalled RHP Michael Grove from Gwinnett Stripers.,1
 2026-10-09,SDP,Kyle Hart,Recalled,2026-10-08,San Diego Padres recalled LHP Kyle Hart from ACL Padres.,1
 2026-10-09,SDP,Mason Miller,Status Change,2026-10-07,San Diego Padres activated RHP Mason Miller from the paternity list.,1
-2026-10-09,SDP,Wandy Peralta,Status Change,2026-10-06,San Diego Padres activated LHP Wandy Peralta.,1
 2026-10-09,SDP,Mason Miller,Status Change,2026-10-06,San Diego Padres placed RHP Mason Miller on the paternity list.,1
+2026-10-09,SDP,Wandy Peralta,Status Change,2026-10-06,San Diego Padres activated LHP Wandy Peralta.,1
 2026-10-09,LAD,Emmet Sheehan,Recalled,2026-10-06,Los Angeles Dodgers recalled RHP Emmet Sheehan from Oklahoma City Comets.,1
 2026-10-09,SDP,Walker Buehler,Status Change,2026-10-05,San Diego Padres activated RHP Walker Buehler from the paternity list.,1
