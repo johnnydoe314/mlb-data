@@ -1,5 +1,4 @@
 {
-  "2026-10-09": [],
   "2026-10-10": [
     {
       "id": 691799,
@@ -268,6 +267,56 @@
       "pitches": 5,
       "ip": 0.1,
       "date": "2026-10-12"
+    }
+  ],
+  "2026-10-13": [
+    {
+      "id": 542888,
+      "name": "Shawn Armstrong",
+      "team": "CLE",
+      "pitches": 20,
+      "ip": 1.2,
+      "date": "2026-10-13"
+    },
+    {
+      "id": 677944,
+      "name": "Slade Cecconi",
+      "team": "CLE",
+      "pitches": 16,
+      "ip": 1.0,
+      "date": "2026-10-13"
+    },
+    {
+      "id": 682120,
+      "name": "Tim Herrin",
+      "team": "CLE",
+      "pitches": 6,
+      "ip": 0.1,
+      "date": "2026-10-13"
+    },
+    {
+      "id": 693855,
+      "name": "Ian Seymour",
+      "team": "TBR",
+      "pitches": 15,
+      "ip": 1.1,
+      "date": "2026-10-13"
+    },
+    {
+      "id": 687330,
+      "name": "Kevin Kelly",
+      "team": "TBR",
+      "pitches": 17,
+      "ip": 0.2,
+      "date": "2026-10-13"
+    },
+    {
+      "id": 641329,
+      "name": "Bryan Baker",
+      "team": "TBR",
+      "pitches": 8,
+      "ip": 1.0,
+      "date": "2026-10-13"
     }
   ]
 }
