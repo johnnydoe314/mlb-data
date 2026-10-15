@@ -1,46 +1,4 @@
 {
-  "2026-10-10": [
-    {
-      "id": 691799,
-      "name": "Grant Taylor",
-      "team": "CWS",
-      "pitches": 13,
-      "ip": 1.0,
-      "date": "2026-10-10"
-    },
-    {
-      "id": 656794,
-      "name": "Sean Newcomb",
-      "team": "CWS",
-      "pitches": 23,
-      "ip": 2.0,
-      "date": "2026-10-10"
-    },
-    {
-      "id": 671922,
-      "name": "Cade Smith",
-      "team": "CLE",
-      "pitches": 27,
-      "ip": 1.2,
-      "date": "2026-10-10"
-    },
-    {
-      "id": 681870,
-      "name": "Erik Sabrowski",
-      "team": "CLE",
-      "pitches": 5,
-      "ip": 0.1,
-      "date": "2026-10-10"
-    },
-    {
-      "id": 683769,
-      "name": "Hunter Gaddis",
-      "team": "CLE",
-      "pitches": 24,
-      "ip": 1.1,
-      "date": "2026-10-10"
-    }
-  ],
   "2026-10-11": [
     {
       "id": 681911,
@@ -317,6 +275,56 @@
       "pitches": 8,
       "ip": 1.0,
       "date": "2026-10-13"
+    }
+  ],
+  "2026-10-14": [
+    {
+      "id": 682842,
+      "name": "Abner Uribe",
+      "team": "MIL",
+      "pitches": 20,
+      "ip": 0.1,
+      "date": "2026-10-14"
+    },
+    {
+      "id": 669084,
+      "name": "DL Hall",
+      "team": "MIL",
+      "pitches": 28,
+      "ip": 2.1,
+      "date": "2026-10-14"
+    },
+    {
+      "id": 656730,
+      "name": "Trevor Megill",
+      "team": "MIL",
+      "pitches": 18,
+      "ip": 1.1,
+      "date": "2026-10-14"
+    },
+    {
+      "id": 680736,
+      "name": "Justin Wrobleski",
+      "team": "LAD",
+      "pitches": 32,
+      "ip": 1.2,
+      "date": "2026-10-14"
+    },
+    {
+      "id": 623465,
+      "name": "Evan Phillips",
+      "team": "LAD",
+      "pitches": 10,
+      "ip": 1.0,
+      "date": "2026-10-14"
+    },
+    {
+      "id": 808963,
+      "name": "Roki Sasaki",
+      "team": "LAD",
+      "pitches": 14,
+      "ip": 0.1,
+      "date": "2026-10-14"
     }
   ]
 }
