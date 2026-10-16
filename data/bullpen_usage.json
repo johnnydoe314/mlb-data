@@ -1,62 +1,4 @@
 {
-  "2026-10-11": [
-    {
-      "id": 681911,
-      "name": "Alex Vesia",
-      "team": "LAD",
-      "pitches": 16,
-      "ip": 1.0,
-      "date": "2026-10-11"
-    },
-    {
-      "id": 656945,
-      "name": "Tanner Scott",
-      "team": "LAD",
-      "pitches": 9,
-      "ip": 1.0,
-      "date": "2026-10-11"
-    },
-    {
-      "id": 623465,
-      "name": "Evan Phillips",
-      "team": "LAD",
-      "pitches": 17,
-      "ip": 1.0,
-      "date": "2026-10-11"
-    },
-    {
-      "id": 682842,
-      "name": "Abner Uribe",
-      "team": "MIL",
-      "pitches": 15,
-      "ip": 1.0,
-      "date": "2026-10-11"
-    },
-    {
-      "id": 676879,
-      "name": "Aaron Ashby",
-      "team": "MIL",
-      "pitches": 26,
-      "ip": 2.0,
-      "date": "2026-10-11"
-    },
-    {
-      "id": 669084,
-      "name": "DL Hall",
-      "team": "MIL",
-      "pitches": 4,
-      "ip": 0.2,
-      "date": "2026-10-11"
-    },
-    {
-      "id": 656730,
-      "name": "Trevor Megill",
-      "team": "MIL",
-      "pitches": 19,
-      "ip": 1.0,
-      "date": "2026-10-11"
-    }
-  ],
   "2026-10-12": [
     {
       "id": 681911,
@@ -325,6 +267,120 @@
       "pitches": 14,
       "ip": 0.1,
       "date": "2026-10-14"
+    }
+  ],
+  "2026-10-15": [
+    {
+      "id": 669330,
+      "name": "Tyler Wells",
+      "team": "TBR",
+      "pitches": 26,
+      "ip": 2.0,
+      "date": "2026-10-15"
+    },
+    {
+      "id": 571927,
+      "name": "Steven Matz",
+      "team": "TBR",
+      "pitches": 25,
+      "ip": 2.0,
+      "date": "2026-10-15"
+    },
+    {
+      "id": 671922,
+      "name": "Cade Smith",
+      "team": "CLE",
+      "pitches": 18,
+      "ip": 1.1,
+      "date": "2026-10-15"
+    },
+    {
+      "id": 682982,
+      "name": "Daniel Espino",
+      "team": "CLE",
+      "pitches": 12,
+      "ip": 1.0,
+      "date": "2026-10-15"
+    },
+    {
+      "id": 681870,
+      "name": "Erik Sabrowski",
+      "team": "CLE",
+      "pitches": 10,
+      "ip": 1.0,
+      "date": "2026-10-15"
+    },
+    {
+      "id": 683769,
+      "name": "Hunter Gaddis",
+      "team": "CLE",
+      "pitches": 9,
+      "ip": 0.2,
+      "date": "2026-10-15"
+    },
+    {
+      "id": 668941,
+      "name": "JoJo Romero",
+      "team": "MIL",
+      "pitches": 24,
+      "ip": 2.0,
+      "date": "2026-10-15"
+    },
+    {
+      "id": 675660,
+      "name": "Shane Drohan",
+      "team": "MIL",
+      "pitches": 25,
+      "ip": 1.0,
+      "date": "2026-10-15"
+    },
+    {
+      "id": 676879,
+      "name": "Aaron Ashby",
+      "team": "MIL",
+      "pitches": 39,
+      "ip": 3.0,
+      "date": "2026-10-15"
+    },
+    {
+      "id": 669160,
+      "name": "Dustin May",
+      "team": "MIL",
+      "pitches": 44,
+      "ip": 3.0,
+      "date": "2026-10-15"
+    },
+    {
+      "id": 681911,
+      "name": "Alex Vesia",
+      "team": "LAD",
+      "pitches": 9,
+      "ip": 0.1,
+      "date": "2026-10-15"
+    },
+    {
+      "id": 656945,
+      "name": "Tanner Scott",
+      "team": "LAD",
+      "pitches": 24,
+      "ip": 1.0,
+      "date": "2026-10-15"
+    },
+    {
+      "id": 621242,
+      "name": "Edwin D\u00edaz",
+      "team": "LAD",
+      "pitches": 37,
+      "ip": 3.0,
+      "date": "2026-10-15"
+    },
+    {
+      "id": 623465,
+      "name": "Evan Phillips",
+      "team": "LAD",
+      "pitches": 14,
+      "ip": 0.1,
+      "date": "2026-10-15"
     }
   ]
 }
