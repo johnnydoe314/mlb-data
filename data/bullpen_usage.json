@@ -1,54 +1,4 @@
 {
-  "2026-10-13": [
-    {
-      "id": 542888,
-      "name": "Shawn Armstrong",
-      "team": "CLE",
-      "pitches": 20,
-      "ip": 1.2,
-      "date": "2026-10-13"
-    },
-    {
-      "id": 677944,
-      "name": "Slade Cecconi",
-      "team": "CLE",
-      "pitches": 16,
-      "ip": 1.0,
-      "date": "2026-10-13"
-    },
-    {
-      "id": 682120,
-      "name": "Tim Herrin",
-      "team": "CLE",
-      "pitches": 6,
-      "ip": 0.1,
-      "date": "2026-10-13"
-    },
-    {
-      "id": 693855,
-      "name": "Ian Seymour",
-      "team": "TBR",
-      "pitches": 15,
-      "ip": 1.1,
-      "date": "2026-10-13"
-    },
-    {
-      "id": 687330,
-      "name": "Kevin Kelly",
-      "team": "TBR",
-      "pitches": 17,
-      "ip": 0.2,
-      "date": "2026-10-13"
-    },
-    {
-      "id": 641329,
-      "name": "Bryan Baker",
-      "team": "TBR",
-      "pitches": 8,
-      "ip": 1.0,
-      "date": "2026-10-13"
-    }
-  ],
   "2026-10-14": [
     {
       "id": 682842,
@@ -213,5 +163,103 @@
       "date": "2026-10-15"
     }
   ],
-  "2026-10-16": []
+  "2026-10-16": [],
+  "2026-10-17": [
+    {
+      "id": 592155,
+      "name": "Cam Booser",
+      "team": "TBR",
+      "pitches": 4,
+      "ip": 0.1,
+      "date": "2026-10-17"
+    },
+    {
+      "id": 693855,
+      "name": "Ian Seymour",
+      "team": "TBR",
+      "pitches": 29,
+      "ip": 1.0,
+      "date": "2026-10-17"
+    },
+    {
+      "id": 687330,
+      "name": "Kevin Kelly",
+      "team": "TBR",
+      "pitches": 16,
+      "ip": 0.2,
+      "date": "2026-10-17"
+    },
+    {
+      "id": 642547,
+      "name": "Freddy Peralta",
+      "team": "TBR",
+      "pitches": 9,
+      "ip": 0.2,
+      "date": "2026-10-17"
+    },
+    {
+      "id": 641329,
+      "name": "Bryan Baker",
+      "team": "TBR",
+      "pitches": 12,
+      "ip": 1.0,
+      "date": "2026-10-17"
+    },
+    {
+      "id": 542888,
+      "name": "Shawn Armstrong",
+      "team": "CLE",
+      "pitches": 13,
+      "ip": 1.0,
+      "date": "2026-10-17"
+    },
+    {
+      "id": 677944,
+      "name": "Slade Cecconi",
+      "team": "CLE",
+      "pitches": 22,
+      "ip": 1.0,
+      "date": "2026-10-17"
+    },
+    {
+      "id": 670036,
+      "name": "Matt Festa",
+      "team": "CLE",
+      "pitches": 21,
+      "ip": 1.1,
+      "date": "2026-10-17"
+    },
+    {
+      "id": 676282,
+      "name": "Joey Cantillo",
+      "team": "CLE",
+      "pitches": 15,
+      "ip": 0.2,
+      "date": "2026-10-17"
+    },
+    {
+      "id": 682982,
+      "name": "Daniel Espino",
+      "team": "CLE",
+      "pitches": 22,
+      "ip": 0.1,
+      "date": "2026-10-17"
+    },
+    {
+      "id": 682120,
+      "name": "Tim Herrin",
+      "team": "CLE",
+      "pitches": 14,
+      "ip": 1.0,
+      "date": "2026-10-17"
+    },
+    {
+      "id": 656492,
+      "name": "Foster Griffin",
+      "team": "CLE",
+      "pitches": 44,
+      "ip": 3.2,
+      "date": "2026-10-17"
+    }
+  ]
 }
