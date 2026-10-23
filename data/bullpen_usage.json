@@ -1,78 +1,4 @@
 {
-  "2026-10-18": [
-    {
-      "id": 669330,
-      "name": "Tyler Wells",
-      "team": "TBR",
-      "pitches": 5,
-      "ip": 0.1,
-      "date": "2026-10-18"
-    },
-    {
-      "id": 592155,
-      "name": "Cam Booser",
-      "team": "TBR",
-      "pitches": 10,
-      "ip": 0.2,
-      "date": "2026-10-18"
-    },
-    {
-      "id": 641329,
-      "name": "Bryan Baker",
-      "team": "TBR",
-      "pitches": 14,
-      "ip": 1.0,
-      "date": "2026-10-18"
-    },
-    {
-      "id": 542888,
-      "name": "Shawn Armstrong",
-      "team": "CLE",
-      "pitches": 13,
-      "ip": 1.1,
-      "date": "2026-10-18"
-    },
-    {
-      "id": 671922,
-      "name": "Cade Smith",
-      "team": "CLE",
-      "pitches": 22,
-      "ip": 1.1,
-      "date": "2026-10-18"
-    },
-    {
-      "id": 800048,
-      "name": "Parker Messick",
-      "team": "CLE",
-      "pitches": 57,
-      "ip": 2.0,
-      "date": "2026-10-18"
-    },
-    {
-      "id": 681870,
-      "name": "Erik Sabrowski",
-      "team": "CLE",
-      "pitches": 18,
-      "ip": 1.2,
-      "date": "2026-10-18"
-    },
-    {
-      "id": 683769,
-      "name": "Hunter Gaddis",
-      "team": "CLE",
-      "pitches": 19,
-      "ip": 1.2,
-      "date": "2026-10-18"
-    },
-    {
-      "id": 682120,
-      "name": "Tim Herrin",
-      "team": "CLE",
-      "pitches": 18,
-      "ip": 1.0,
-      "date": "2026-10-18"
-    }
-  ],
   "2026-10-19": [
     {
       "id": 542888,
@@ -180,5 +106,6 @@
     }
   ],
   "2026-10-20": [],
-  "2026-10-21": []
+  "2026-10-21": [],
+  "2026-10-22": []
 }
