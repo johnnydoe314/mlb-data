@@ -1,5 +1,4 @@
 {
-  "2026-10-20": [],
   "2026-10-21": [],
   "2026-10-22": [],
   "2026-10-23": [
@@ -58,6 +57,88 @@
       "pitches": 20,
       "ip": 1.0,
       "date": "2026-10-23"
+    }
+  ],
+  "2026-10-24": [
+    {
+      "id": 669330,
+      "name": "Tyler Wells",
+      "team": "TBR",
+      "pitches": 8,
+      "ip": 0.2,
+      "date": "2026-10-24"
+    },
+    {
+      "id": 571927,
+      "name": "Steven Matz",
+      "team": "TBR",
+      "pitches": 8,
+      "ip": 0.1,
+      "date": "2026-10-24"
+    },
+    {
+      "id": 592155,
+      "name": "Cam Booser",
+      "team": "TBR",
+      "pitches": 13,
+      "ip": 1.1,
+      "date": "2026-10-24"
+    },
+    {
+      "id": 693855,
+      "name": "Ian Seymour",
+      "team": "TBR",
+      "pitches": 34,
+      "ip": 0.2,
+      "date": "2026-10-24"
+    },
+    {
+      "id": 687330,
+      "name": "Kevin Kelly",
+      "team": "TBR",
+      "pitches": 32,
+      "ip": 1.1,
+      "date": "2026-10-24"
+    },
+    {
+      "id": 682842,
+      "name": "Abner Uribe",
+      "team": "MIL",
+      "pitches": 26,
+      "ip": 1.1,
+      "date": "2026-10-24"
+    },
+    {
+      "id": 668941,
+      "name": "JoJo Romero",
+      "team": "MIL",
+      "pitches": 16,
+      "ip": 1.0,
+      "date": "2026-10-24"
+    },
+    {
+      "id": 676879,
+      "name": "Aaron Ashby",
+      "team": "MIL",
+      "pitches": 28,
+      "ip": 1.2,
+      "date": "2026-10-24"
+    },
+    {
+      "id": 669084,
+      "name": "DL Hall",
+      "team": "MIL",
+      "pitches": 11,
+      "ip": 1.0,
+      "date": "2026-10-24"
+    },
+    {
+      "id": 669160,
+      "name": "Dustin May",
+      "team": "MIL",
+      "pitches": 12,
+      "ip": 1.0,
+      "date": "2026-10-24"
     }
   ]
 }
