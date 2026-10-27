@@ -1,5 +1,4 @@
 {
-  "2026-10-22": [],
   "2026-10-23": [
     {
       "id": 571927,
@@ -140,5 +139,63 @@
       "date": "2026-10-24"
     }
   ],
-  "2026-10-25": []
+  "2026-10-25": [],
+  "2026-10-26": [
+    {
+      "id": 605540,
+      "name": "Brandon Woodruff",
+      "team": "MIL",
+      "pitches": 18,
+      "ip": 1.0,
+      "date": "2026-10-26"
+    },
+    {
+      "id": 622608,
+      "name": "Antonio Senzatela",
+      "team": "MIL",
+      "pitches": 26,
+      "ip": 2.0,
+      "date": "2026-10-26"
+    },
+    {
+      "id": 669330,
+      "name": "Tyler Wells",
+      "team": "TBR",
+      "pitches": 16,
+      "ip": 1.0,
+      "date": "2026-10-26"
+    },
+    {
+      "id": 571927,
+      "name": "Steven Matz",
+      "team": "TBR",
+      "pitches": 17,
+      "ip": 1.0,
+      "date": "2026-10-26"
+    },
+    {
+      "id": 592155,
+      "name": "Cam Booser",
+      "team": "TBR",
+      "pitches": 12,
+      "ip": 0.0,
+      "date": "2026-10-26"
+    },
+    {
+      "id": 642121,
+      "name": "Cole Sulser",
+      "team": "TBR",
+      "pitches": 32,
+      "ip": 1.1,
+      "date": "2026-10-26"
+    },
+    {
+      "id": 664076,
+      "name": "Garrett Cleavinger",
+      "team": "TBR",
+      "pitches": 11,
+      "ip": 1.0,
+      "date": "2026-10-26"
+    }
+  ]
 }
