@@ -1,62 +1,4 @@
 {
-  "2026-10-23": [
-    {
-      "id": 571927,
-      "name": "Steven Matz",
-      "team": "TBR",
-      "pitches": 31,
-      "ip": 1.2,
-      "date": "2026-10-23"
-    },
-    {
-      "id": 642121,
-      "name": "Cole Sulser",
-      "team": "TBR",
-      "pitches": 4,
-      "ip": 0.1,
-      "date": "2026-10-23"
-    },
-    {
-      "id": 664076,
-      "name": "Garrett Cleavinger",
-      "team": "TBR",
-      "pitches": 10,
-      "ip": 0.2,
-      "date": "2026-10-23"
-    },
-    {
-      "id": 687330,
-      "name": "Kevin Kelly",
-      "team": "TBR",
-      "pitches": 12,
-      "ip": 0.1,
-      "date": "2026-10-23"
-    },
-    {
-      "id": 682842,
-      "name": "Abner Uribe",
-      "team": "MIL",
-      "pitches": 15,
-      "ip": 1.1,
-      "date": "2026-10-23"
-    },
-    {
-      "id": 676879,
-      "name": "Aaron Ashby",
-      "team": "MIL",
-      "pitches": 20,
-      "ip": 1.2,
-      "date": "2026-10-23"
-    },
-    {
-      "id": 656730,
-      "name": "Trevor Megill",
-      "team": "MIL",
-      "pitches": 20,
-      "ip": 1.0,
-      "date": "2026-10-23"
-    }
-  ],
   "2026-10-24": [
     {
       "id": 669330,
@@ -196,6 +138,112 @@
       "pitches": 11,
       "ip": 1.0,
       "date": "2026-10-26"
+    }
+  ],
+  "2026-10-27": [
+    {
+      "id": 682842,
+      "name": "Abner Uribe",
+      "team": "MIL",
+      "pitches": 19,
+      "ip": 2.0,
+      "date": "2026-10-27"
+    },
+    {
+      "id": 668941,
+      "name": "JoJo Romero",
+      "team": "MIL",
+      "pitches": 11,
+      "ip": 1.0,
+      "date": "2026-10-27"
+    },
+    {
+      "id": 675660,
+      "name": "Shane Drohan",
+      "team": "MIL",
+      "pitches": 15,
+      "ip": 0.0,
+      "date": "2026-10-27"
+    },
+    {
+      "id": 676879,
+      "name": "Aaron Ashby",
+      "team": "MIL",
+      "pitches": 31,
+      "ip": 2.1,
+      "date": "2026-10-27"
+    },
+    {
+      "id": 669084,
+      "name": "DL Hall",
+      "team": "MIL",
+      "pitches": 24,
+      "ip": 1.2,
+      "date": "2026-10-27"
+    },
+    {
+      "id": 622608,
+      "name": "Antonio Senzatela",
+      "team": "MIL",
+      "pitches": 18,
+      "ip": 0.2,
+      "date": "2026-10-27"
+    },
+    {
+      "id": 656730,
+      "name": "Trevor Megill",
+      "team": "MIL",
+      "pitches": 5,
+      "ip": 0.1,
+      "date": "2026-10-27"
+    },
+    {
+      "id": 669330,
+      "name": "Tyler Wells",
+      "team": "TBR",
+      "pitches": 24,
+      "ip": 1.2,
+      "date": "2026-10-27"
+    },
+    {
+      "id": 607259,
+      "name": "Nick Martinez",
+      "team": "TBR",
+      "pitches": 33,
+      "ip": 2.0,
+      "date": "2026-10-27"
+    },
+    {
+      "id": 592155,
+      "name": "Cam Booser",
+      "team": "TBR",
+      "pitches": 9,
+      "ip": 0.1,
+      "date": "2026-10-27"
+    },
+    {
+      "id": 693855,
+      "name": "Ian Seymour",
+      "team": "TBR",
+      "pitches": 32,
+      "ip": 1.0,
+      "date": "2026-10-27"
+    },
+    {
+      "id": 687330,
+      "name": "Kevin Kelly",
+      "team": "TBR",
+      "pitches": 12,
+      "ip": 1.0,
+      "date": "2026-10-27"
+    },
+    {
+      "id": 641329,
+      "name": "Bryan Baker",
+      "team": "TBR",
+      "pitches": 21,
+      "ip": 2.0,
+      "date": "2026-10-27"
     }
   ]
 }
