@@ -1,40 +1,13 @@
 game_date,team,player,transaction_type,txn_date,description,relevant_today
-2026-11-03,NYM,Christian Cairo,Designated for Assignment,2026-11-02,New York Mets designated SS Christian Cairo for assignment.,1
-2026-11-03,STL,Max Rajcic,Status Change,2026-11-02,St. Louis Cardinals activated RHP Max Rajcic from the 60-day injured list.,1
-2026-11-03,NYM,Tylor Megill,Status Change,2026-11-02,New York Mets activated RHP Tylor Megill from the 60-day injured list.,1
-2026-11-03,NYM,Jorge Polanco,Status Change,2026-11-02,New York Mets activated DH Jorge Polanco from the 60-day injured list.,1
-2026-11-03,ATH,Luis Severino,Status Change,2026-11-02,Athletics activated RHP Luis Severino from the 60-day injured list.,1
-2026-11-03,TBR,Alex Cook,Status Change,2026-11-02,Tampa Bay Rays activated RHP Alex Cook.,1
-2026-11-03,TBR,Ty Johnson,Status Change,2026-11-02,Tampa Bay Rays activated RHP Ty Johnson.,1
-2026-11-03,TBR,Manuel Rodríguez,Status Change,2026-11-02,Tampa Bay Rays activated RHP Manuel Rodríguez.,1
-2026-11-03,TBR,Jesse Scholtens,Status Change,2026-11-02,Tampa Bay Rays activated RHP Jesse Scholtens.,1
-2026-11-03,TBR,Carson Williams,Status Change,2026-11-02,Tampa Bay Rays activated SS Carson Williams.,1
-2026-11-03,TEX,Jack Leiter,Status Change,2026-11-02,Texas Rangers activated RHP Jack Leiter from the 60-day injured list.,1
-2026-11-03,WSH,Ken Waldichuk,Designated for Assignment,2026-11-02,Washington Nationals designated LHP Ken Waldichuk for assignment.,1
-2026-11-03,WSH,Drew Millas,Status Change,2026-11-02,Washington Nationals activated C Drew Millas from the 60-day injured list.,1
-2026-11-03,WSH,Matt Waldron,Status Change,2026-11-02,Washington Nationals activated RHP Matt Waldron from the 60-day injured list.,1
-2026-11-03,ATH,J.T. Ginn,Status Change,2026-11-02,Athletics activated RHP J.T. Ginn from the 60-day injured list.,1
-2026-11-03,ATH,Gunnar Hoglund,Status Change,2026-11-02,Athletics activated RHP Gunnar Hoglund from the 60-day injured list.,1
-2026-11-03,HOU,Mike Burrows,Status Change,2026-11-02,Houston Astros activated RHP Mike Burrows from the 60-day injured list.,1
-2026-11-03,NYY,Kervin Castro,Status Change,2026-11-02,New York Yankees activated RHP Kervin Castro from the 60-day injured list.,1
-2026-11-03,TBR,Ryan Pepiot,Status Change,2026-11-02,Tampa Bay Rays activated RHP Ryan Pepiot from the 60-day injured list.,1
-2026-11-03,SFG,Randy Rodríguez,Status Change,2026-11-02,San Francisco Giants activated RHP Randy Rodríguez.,1
-2026-11-03,SFG,Casey Schmitt,Status Change,2026-11-02,San Francisco Giants activated LF Casey Schmitt from the 60-day injured list.,1
-2026-11-03,TOR,Jonatan Clase,Status Change,2026-11-02,Toronto Blue Jays activated LF Jonatan Clase from the 60-day injured list.,1
-2026-11-03,PHI,Johan Rojas,Status Change,2026-11-02,Philadelphia Phillies activated CF Johan Rojas from the 60-day injured list.,1
-2026-11-03,PIT,Mitch Keller,Status Change,2026-11-02,Pittsburgh Pirates activated RHP Mitch Keller from the 60-day injured list.,1
-2026-11-03,PIT,Endy Rodríguez,Status Change,2026-11-02,Pittsburgh Pirates activated C Endy Rodríguez from the 60-day injured list.,1
-2026-11-03,TBR,Jacob Melton,Status Change,2026-11-02,Tampa Bay Rays activated LF Jacob Melton from the 60-day injured list.,1
-2026-11-03,MIA,William Kempner,Status Change,2026-11-02,Miami Marlins activated RHP William Kempner from the 60-day injured list.,1
-2026-11-03,WSH,PJ Poulin,Designated for Assignment,2026-11-02,Washington Nationals designated LHP PJ Poulin for assignment.,1
+2026-11-03,MIN,Mick Abel,Status Change,2026-11-02,Minnesota Twins activated RHP Mick Abel from the 60-day injured list.,1
+2026-11-03,CHC,Riley Martin,Status Change,2026-11-02,Chicago Cubs activated LHP Riley Martin from the 60-day injured list.,1
+2026-11-03,DET,Trey Sweeney,Status Change,2026-11-02,Detroit Tigers activated SS Trey Sweeney from the 60-day injured list.,1
+2026-11-03,DET,Yilber Díaz,Designated for Assignment,2026-11-02,Detroit Tigers designated RHP Yilber Díaz for assignment.,1
+2026-11-03,BOS,Eli White,Status Change,2026-11-02,Boston Red Sox activated CF Eli White from the 60-day injured list.,1
+2026-11-03,BOS,Eduardo Rivera,Designated for Assignment,2026-11-02,Boston Red Sox designated LHP Eduardo Rivera for assignment.,1
 2026-11-03,MIN,David Festa,Status Change,2026-11-02,Minnesota Twins activated RHP David Festa from the 60-day injured list.,1
 2026-11-03,MIN,Pablo López,Status Change,2026-11-02,Minnesota Twins activated RHP Pablo López from the 60-day injured list.,1
 2026-11-03,SDP,Rodolfo Durán,Status Change,2026-11-02,San Diego Padres activated C Rodolfo Durán from the 60-day injured list.,1
-2026-11-03,SFG,Hayden Birdsong,Status Change,2026-11-02,San Francisco Giants activated RHP Hayden Birdsong from the 60-day injured list.,1
-2026-11-03,SFG,Rafael Devers,Status Change,2026-11-02,San Francisco Giants activated 1B Rafael Devers from the 60-day injured list.,1
-2026-11-03,SFG,Trevor McDonald,Status Change,2026-11-02,San Francisco Giants activated RHP Trevor McDonald from the 60-day injured list.,1
-2026-11-03,SFG,Adrian Houser,Status Change,2026-11-02,San Francisco Giants activated RHP Adrian Houser from the 60-day injured list.,1
-2026-11-03,TOR,Addison Barger,Status Change,2026-11-02,Toronto Blue Jays activated RF Addison Barger from the 60-day injured list.,1
 2026-11-03,ATH,Nick Kurtz,Status Change,2026-11-02,Athletics activated 1B Nick Kurtz from the 60-day injured list.,1
 2026-11-03,ATH,Justin Sterner,Status Change,2026-11-02,Athletics activated RHP Justin Sterner from the 60-day injured list.,1
 2026-11-03,ATH,Jacob Wilson,Status Change,2026-11-02,Athletics activated SS Jacob Wilson from the 60-day injured list.,1
@@ -50,8 +23,48 @@ game_date,team,player,transaction_type,txn_date,description,relevant_today
 2026-11-03,CHC,Porter Hodge,Status Change,2026-11-02,Chicago Cubs activated RHP Porter Hodge from the 60-day injured list.,1
 2026-11-03,MIA,Ronny Henriquez,Status Change,2026-11-02,Miami Marlins activated RHP Ronny Henriquez from the 60-day injured list.,1
 2026-11-03,STL,Chase Hampton,Designated for Assignment,2026-11-02,St. Louis Cardinals designated RHP Chase Hampton for assignment.,1
-2026-11-03,MIN,Mick Abel,Status Change,2026-11-02,Minnesota Twins activated RHP Mick Abel from the 60-day injured list.,1
-2026-11-03,CHC,Riley Martin,Status Change,2026-11-02,Chicago Cubs activated LHP Riley Martin from the 60-day injured list.,1
+2026-11-03,TBR,Jacob Melton,Status Change,2026-11-02,Tampa Bay Rays activated LF Jacob Melton from the 60-day injured list.,1
+2026-11-03,MIA,William Kempner,Status Change,2026-11-02,Miami Marlins activated RHP William Kempner from the 60-day injured list.,1
+2026-11-03,WSH,PJ Poulin,Designated for Assignment,2026-11-02,Washington Nationals designated LHP PJ Poulin for assignment.,1
+2026-11-03,DET,Wenceel Pérez,Status Change,2026-11-02,Detroit Tigers activated RF Wenceel Pérez from the 60-day injured list.,1
+2026-11-03,DET,Reese Olson,Status Change,2026-11-02,Detroit Tigers activated RHP Reese Olson from the 60-day injured list.,1
+2026-11-03,DET,Will Vest,Status Change,2026-11-02,Detroit Tigers activated RHP Will Vest from the 60-day injured list.,1
+2026-11-03,BOS,Zack Kelly,Status Change,2026-11-02,Boston Red Sox activated RHP Zack Kelly from the 60-day injured list.,1
+2026-11-03,BOS,Justin Slaten,Status Change,2026-11-02,Boston Red Sox activated RHP Justin Slaten from the 60-day injured list.,1
+2026-11-03,DET,Parker Meadows,Status Change,2026-11-02,Detroit Tigers activated CF Parker Meadows from the 60-day injured list.,1
+2026-11-03,HOU,Carlos Correa,Status Change,2026-11-02,Houston Astros activated SS Carlos Correa from the 60-day injured list.,1
+2026-11-03,MIN,Cole Sands,Status Change,2026-11-02,Minnesota Twins activated RHP Cole Sands from the 60-day injured list.,1
+2026-11-03,SFG,Rowan Wick,Status Change,2026-11-02,San Francisco Giants activated RHP Rowan Wick from the 60-day injured list.,1
+2026-11-03,SFG,Reiver Sanmartin,Designated for Assignment,2026-11-02,San Francisco Giants designated LHP Reiver Sanmartin for assignment.,1
+2026-11-03,BOS,Zack Kelly,Designated for Assignment,2026-11-02,Boston Red Sox designated RHP Zack Kelly for assignment.,1
+2026-11-03,TBR,Joe Boyle,Status Change,2026-11-02,Tampa Bay Rays activated RHP Joe Boyle.,1
+2026-11-03,TBR,Casey Legumina,Status Change,2026-11-02,Tampa Bay Rays activated RHP Casey Legumina.,1
+2026-11-03,TBR,Shane McClanahan,Status Change,2026-11-02,Tampa Bay Rays activated LHP Shane McClanahan.,1
+2026-11-03,TBR,Kenny Piper,Status Change,2026-11-02,Tampa Bay Rays activated C Kenny Piper.,1
+2026-11-03,TEX,Jose Corniell,Status Change,2026-11-02,Texas Rangers activated RHP Jose Corniell from the 60-day injured list.,1
+2026-11-03,TEX,Cole Winn,Status Change,2026-11-02,Texas Rangers activated RHP Cole Winn from the 60-day injured list.,1
+2026-11-03,SDP,Bryan Hoeing,Status Change,2026-11-02,San Diego Padres activated RHP Bryan Hoeing from the 60-day injured list.,1
+2026-11-03,SFG,Matt Chapman,Status Change,2026-11-02,San Francisco Giants activated 3B Matt Chapman from the 60-day injured list.,1
+2026-11-03,SFG,Joel Peguero,Status Change,2026-11-02,San Francisco Giants activated RHP Joel Peguero from the 60-day injured list.,1
+2026-11-03,ARI,Tyler Locklear,Status Change,2026-11-02,Arizona Diamondbacks activated 1B Tyler Locklear from the 60-day injured list.,1
+2026-11-03,ARI,Andrew Saalfrank,Status Change,2026-11-02,Arizona Diamondbacks activated LHP Andrew Saalfrank from the 60-day injured list.,1
+2026-11-03,LAD,Gavin Stone,Status Change,2026-11-02,Los Angeles Dodgers activated RHP Gavin Stone from the 60-day injured list.,1
+2026-11-03,SFG,Daniel Susac,Status Change,2026-11-02,San Francisco Giants activated C Daniel Susac from the 60-day injured list.,1
+2026-11-03,SFG,Keaton Winn,Status Change,2026-11-02,San Francisco Giants activated RHP Keaton Winn from the 60-day injured list.,1
+2026-11-03,ATH,J.T. Ginn,Status Change,2026-11-02,Athletics activated RHP J.T. Ginn from the 60-day injured list.,1
+2026-11-03,ATH,Gunnar Hoglund,Status Change,2026-11-02,Athletics activated RHP Gunnar Hoglund from the 60-day injured list.,1
+2026-11-03,HOU,Mike Burrows,Status Change,2026-11-02,Houston Astros activated RHP Mike Burrows from the 60-day injured list.,1
+2026-11-03,NYY,Kervin Castro,Status Change,2026-11-02,New York Yankees activated RHP Kervin Castro from the 60-day injured list.,1
+2026-11-03,TBR,Ryan Pepiot,Status Change,2026-11-02,Tampa Bay Rays activated RHP Ryan Pepiot from the 60-day injured list.,1
+2026-11-03,SFG,Randy Rodríguez,Status Change,2026-11-02,San Francisco Giants activated RHP Randy Rodríguez.,1
+2026-11-03,SFG,Casey Schmitt,Status Change,2026-11-02,San Francisco Giants activated LF Casey Schmitt from the 60-day injured list.,1
+2026-11-03,COL,RJ Petit,Status Change,2026-11-02,Colorado Rockies activated RHP RJ Petit from the 60-day injured list.,1
+2026-11-03,PHI,Johan Rojas,Status Change,2026-11-02,Philadelphia Phillies activated CF Johan Rojas from the 60-day injured list.,1
+2026-11-03,STL,Max Rajcic,Status Change,2026-11-02,St. Louis Cardinals activated RHP Max Rajcic from the 60-day injured list.,1
+2026-11-03,NYM,Tylor Megill,Status Change,2026-11-02,New York Mets activated RHP Tylor Megill from the 60-day injured list.,1
+2026-11-03,NYM,Jorge Polanco,Status Change,2026-11-02,New York Mets activated DH Jorge Polanco from the 60-day injured list.,1
+2026-11-03,PIT,Mitch Keller,Status Change,2026-11-02,Pittsburgh Pirates activated RHP Mitch Keller from the 60-day injured list.,1
+2026-11-03,PIT,Endy Rodríguez,Status Change,2026-11-02,Pittsburgh Pirates activated C Endy Rodríguez from the 60-day injured list.,1
 2026-11-03,NYM,Reed Garrett,Status Change,2026-11-02,New York Mets activated RHP Reed Garrett from the 60-day injured list.,1
 2026-11-03,BAL,Jordan Westburg,Status Change,2026-11-02,Baltimore Orioles activated 3B Jordan Westburg from the 60-day injured list.,1
 2026-11-03,TOR,Jake Bloss,Status Change,2026-11-02,Toronto Blue Jays activated RHP Jake Bloss.,1
@@ -74,18 +87,22 @@ game_date,team,player,transaction_type,txn_date,description,relevant_today
 2026-11-03,LAD,Will Klein,Status Change,2026-11-02,Los Angeles Dodgers activated RHP Will Klein from the 60-day injured list.,1
 2026-11-03,SFG,Blade Tidwell,Status Change,2026-11-02,San Francisco Giants activated RHP Blade Tidwell from the 60-day injured list.,1
 2026-11-03,SFG,Carson Whisenhunt,Status Change,2026-11-02,San Francisco Giants activated LHP Carson Whisenhunt from the 60-day injured list.,1
-2026-11-03,DET,Trey Sweeney,Status Change,2026-11-02,Detroit Tigers activated SS Trey Sweeney from the 60-day injured list.,1
-2026-11-03,DET,Yilber Díaz,Designated for Assignment,2026-11-02,Detroit Tigers designated RHP Yilber Díaz for assignment.,1
-2026-11-03,BOS,Eli White,Status Change,2026-11-02,Boston Red Sox activated CF Eli White from the 60-day injured list.,1
-2026-11-03,BOS,Eduardo Rivera,Designated for Assignment,2026-11-02,Boston Red Sox designated LHP Eduardo Rivera for assignment.,1
+2026-11-03,TOR,Addison Barger,Status Change,2026-11-02,Toronto Blue Jays activated RF Addison Barger from the 60-day injured list.,1
+2026-11-03,TOR,Jonatan Clase,Status Change,2026-11-02,Toronto Blue Jays activated LF Jonatan Clase from the 60-day injured list.,1
+2026-11-03,NYM,Christian Cairo,Designated for Assignment,2026-11-02,New York Mets designated SS Christian Cairo for assignment.,1
+2026-11-03,ATH,Luis Severino,Status Change,2026-11-02,Athletics activated RHP Luis Severino from the 60-day injured list.,1
+2026-11-03,TBR,Alex Cook,Status Change,2026-11-02,Tampa Bay Rays activated RHP Alex Cook.,1
+2026-11-03,TBR,Ty Johnson,Status Change,2026-11-02,Tampa Bay Rays activated RHP Ty Johnson.,1
+2026-11-03,TBR,Manuel Rodríguez,Status Change,2026-11-02,Tampa Bay Rays activated RHP Manuel Rodríguez.,1
+2026-11-03,TBR,Jesse Scholtens,Status Change,2026-11-02,Tampa Bay Rays activated RHP Jesse Scholtens.,1
+2026-11-03,TBR,Carson Williams,Status Change,2026-11-02,Tampa Bay Rays activated SS Carson Williams.,1
+2026-11-03,TEX,Jack Leiter,Status Change,2026-11-02,Texas Rangers activated RHP Jack Leiter from the 60-day injured list.,1
+2026-11-03,WSH,Ken Waldichuk,Designated for Assignment,2026-11-02,Washington Nationals designated LHP Ken Waldichuk for assignment.,1
+2026-11-03,WSH,Drew Millas,Status Change,2026-11-02,Washington Nationals activated C Drew Millas from the 60-day injured list.,1
+2026-11-03,WSH,Matt Waldron,Status Change,2026-11-02,Washington Nationals activated RHP Matt Waldron from the 60-day injured list.,1
 2026-11-03,HOU,Brandon Walter,Status Change,2026-11-02,Houston Astros activated LHP Brandon Walter from the 60-day injured list.,1
 2026-11-03,MIN,Mike Paredes,Status Change,2026-11-02,Minnesota Twins activated RHP Mike Paredes from the 60-day injured list.,1
 2026-11-03,WSH,José Tena,Designated for Assignment,2026-11-02,Washington Nationals designated DH José Tena for assignment.,1
-2026-11-03,ARI,Tyler Locklear,Status Change,2026-11-02,Arizona Diamondbacks activated 1B Tyler Locklear from the 60-day injured list.,1
-2026-11-03,ARI,Andrew Saalfrank,Status Change,2026-11-02,Arizona Diamondbacks activated LHP Andrew Saalfrank from the 60-day injured list.,1
-2026-11-03,LAD,Gavin Stone,Status Change,2026-11-02,Los Angeles Dodgers activated RHP Gavin Stone from the 60-day injured list.,1
-2026-11-03,SFG,Daniel Susac,Status Change,2026-11-02,San Francisco Giants activated C Daniel Susac from the 60-day injured list.,1
-2026-11-03,SFG,Keaton Winn,Status Change,2026-11-02,San Francisco Giants activated RHP Keaton Winn from the 60-day injured list.,1
 2026-11-03,SEA,Matt Brash,Status Change,2026-11-02,Seattle Mariners activated RHP Matt Brash from the 60-day injured list.,1
 2026-11-03,SEA,Nick Davila,Status Change,2026-11-02,Seattle Mariners activated RHP Nick Davila from the 60-day injured list.,1
 2026-11-03,SEA,Colt Emerson,Status Change,2026-11-02,Seattle Mariners activated SS Colt Emerson from the 60-day injured list.,1
@@ -110,26 +127,10 @@ game_date,team,player,transaction_type,txn_date,description,relevant_today
 2026-11-03,MIA,Adam Mazur,Status Change,2026-11-02,Miami Marlins activated RHP Adam Mazur from the 60-day injured list.,1
 2026-11-03,MIA,Robby Snelling,Status Change,2026-11-02,Miami Marlins activated LHP Robby Snelling from the 60-day injured list.,1
 2026-11-03,SFG,Jesus Rodriguez,Status Change,2026-11-02,San Francisco Giants activated C Jesus Rodriguez.,1
-2026-11-03,DET,Wenceel Pérez,Status Change,2026-11-02,Detroit Tigers activated RF Wenceel Pérez from the 60-day injured list.,1
-2026-11-03,DET,Reese Olson,Status Change,2026-11-02,Detroit Tigers activated RHP Reese Olson from the 60-day injured list.,1
-2026-11-03,DET,Will Vest,Status Change,2026-11-02,Detroit Tigers activated RHP Will Vest from the 60-day injured list.,1
-2026-11-03,BOS,Zack Kelly,Status Change,2026-11-02,Boston Red Sox activated RHP Zack Kelly from the 60-day injured list.,1
-2026-11-03,BOS,Justin Slaten,Status Change,2026-11-02,Boston Red Sox activated RHP Justin Slaten from the 60-day injured list.,1
-2026-11-03,DET,Parker Meadows,Status Change,2026-11-02,Detroit Tigers activated CF Parker Meadows from the 60-day injured list.,1
-2026-11-03,HOU,Carlos Correa,Status Change,2026-11-02,Houston Astros activated SS Carlos Correa from the 60-day injured list.,1
-2026-11-03,MIN,Cole Sands,Status Change,2026-11-02,Minnesota Twins activated RHP Cole Sands from the 60-day injured list.,1
-2026-11-03,SFG,Rowan Wick,Status Change,2026-11-02,San Francisco Giants activated RHP Rowan Wick from the 60-day injured list.,1
-2026-11-03,SFG,Reiver Sanmartin,Designated for Assignment,2026-11-02,San Francisco Giants designated LHP Reiver Sanmartin for assignment.,1
-2026-11-03,BOS,Zack Kelly,Designated for Assignment,2026-11-02,Boston Red Sox designated RHP Zack Kelly for assignment.,1
-2026-11-03,TBR,Joe Boyle,Status Change,2026-11-02,Tampa Bay Rays activated RHP Joe Boyle.,1
-2026-11-03,TBR,Casey Legumina,Status Change,2026-11-02,Tampa Bay Rays activated RHP Casey Legumina.,1
-2026-11-03,TBR,Shane McClanahan,Status Change,2026-11-02,Tampa Bay Rays activated LHP Shane McClanahan.,1
-2026-11-03,TBR,Kenny Piper,Status Change,2026-11-02,Tampa Bay Rays activated C Kenny Piper.,1
-2026-11-03,TEX,Jose Corniell,Status Change,2026-11-02,Texas Rangers activated RHP Jose Corniell from the 60-day injured list.,1
-2026-11-03,TEX,Cole Winn,Status Change,2026-11-02,Texas Rangers activated RHP Cole Winn from the 60-day injured list.,1
-2026-11-03,SDP,Bryan Hoeing,Status Change,2026-11-02,San Diego Padres activated RHP Bryan Hoeing from the 60-day injured list.,1
-2026-11-03,SFG,Matt Chapman,Status Change,2026-11-02,San Francisco Giants activated 3B Matt Chapman from the 60-day injured list.,1
-2026-11-03,SFG,Joel Peguero,Status Change,2026-11-02,San Francisco Giants activated RHP Joel Peguero from the 60-day injured list.,1
+2026-11-03,SFG,Hayden Birdsong,Status Change,2026-11-02,San Francisco Giants activated RHP Hayden Birdsong from the 60-day injured list.,1
+2026-11-03,SFG,Rafael Devers,Status Change,2026-11-02,San Francisco Giants activated 1B Rafael Devers from the 60-day injured list.,1
+2026-11-03,SFG,Trevor McDonald,Status Change,2026-11-02,San Francisco Giants activated RHP Trevor McDonald from the 60-day injured list.,1
+2026-11-03,SFG,Adrian Houser,Status Change,2026-11-02,San Francisco Giants activated RHP Adrian Houser from the 60-day injured list.,1
 2026-11-03,PIT,Akil Baddoo,Claimed Off Waivers,2026-11-02,Pittsburgh Pirates claimed LF Akil Baddoo off waivers from Milwaukee Brewers.,1
 2026-11-03,WSH,Richard Lovelady,Designated for Assignment,2026-11-01,Washington Nationals designated LHP Richard Lovelady for assignment.,1
 2026-11-03,BAL,Colin Selby,Status Change,2026-10-31,Baltimore Orioles activated RHP Colin Selby from the 60-day injured list.,1
